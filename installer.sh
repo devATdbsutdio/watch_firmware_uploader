@@ -38,7 +38,7 @@ sleep 2
 echo "Making \"bin\" directory..."
 mkdir bin
 sleep 2
-oecho "Going to $HOME/bin ..."
+echo "Going to $HOME/bin ..."
 cd $HOME/bin
 sleep 2
 echo "Downloading arduino-cli..."
