@@ -98,7 +98,10 @@ fi
 # [[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
 
 
-
+# ---- git clone the firmware source code ---- #
+# enter the source code dir
+# select serial port
+# compile the code & upload
 
 
 
