@@ -68,21 +68,28 @@ CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
 sleep 2
 
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
-echo "Adding core url to config"
+CORE_URL=http://drazzy.com/package_drazzy.com_index.json
+ADD_CORE_URL="$HOME/bin/arduino-cli config add board_manager.additional_urls $CORE_URL"
 
-$HOME/bin/arduino-cli config add board_manager.additional_urls http://drazzy.com/package_drazzy.com_index.json
+if  grep -q "$CORE_URL" "$CONFIG_FILE" ; then
+  echo "$CORE_URL already exists in config file" ; 
+else
+  echo "$CORE_URL doesn't exist in config file!" ;
+  echo "Adding core url to config"
+  $ADD_CORE_URL
+fi
+
 
 # ---- Install the megaTinyCore ---- #
 clear
-echo "Searching Core...\n"
+echo "Searching Core..."
 
 CORE=megaTinyCore
 CORE_EXT=megaavr
 SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
 CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE:$CORE_EXT"
  
-[[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
-
+[[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD && echo "Core installed sucessfully"
 
 
 
