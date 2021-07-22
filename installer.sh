@@ -81,8 +81,9 @@ fi
 # ---- Install the megaTinyCore ---- #
 CORE=megaTinyCore
 CORE_EXT=megaavr
+CORE_COMB=megaTinyCore:megaavr
 SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
-CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE:$CORE_EXT"
+CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE_COMB"
 
 echo "Searching $CORE..."
 
