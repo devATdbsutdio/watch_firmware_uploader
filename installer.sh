@@ -78,7 +78,3 @@ sleep 4
 clear
 sleep 1
 cd $HOME/clock_uploader_machine
-
-
-
-
