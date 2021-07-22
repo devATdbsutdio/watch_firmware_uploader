@@ -71,11 +71,15 @@ sleep 2
 CORE_URL=http://drazzy.com/package_drazzy.com_index.json
 ADD_CORE_URL="$HOME/bin/arduino-cli config add board_manager.additional_urls $CORE_URL"
 
-if  grep -q "$CORE_URL" "$CONFIG_FILE" ; then
-  echo "$CORE_URL already exists in config file" ; 
+if [ grep -q "$CORE_URL" "$CONFIG_FILE" ]
+then
+  echo "$CORE_URL already exists in config file"
+  sleep 2 
 else
-  echo "$CORE_URL doesn't exist in config file!" ;
-  echo "Adding core url to config"
+  echo "$CORE_URL doesn't exist in config file!"
+  sleep 2
+  echo "Adding $CORE_URL to config file"
+  sleep 2
   $ADD_CORE_URL
 fi
 
@@ -88,8 +92,20 @@ CORE=megaTinyCore
 CORE_EXT=megaavr
 SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
 CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE:$CORE_EXT"
- 
-[[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD && echo "Core installed sucessfully"
+
+if [ ! "$($SEARCH_CMD)" =~ "No" ]
+then
+  echo "Core found. Installing now ..."
+  sleep 2
+  $CORE_INSTALL_CMD
+elif [ "$($SEARCH_CMD)" =~ "No" ]
+then
+  echo "No such Core !"
+  sleep 2
+fi
+
+# [[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
+
 
 
 
