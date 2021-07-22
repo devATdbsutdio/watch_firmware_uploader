@@ -83,7 +83,7 @@ SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
 #CORE_INSTALL_CMD=$HOME/bin/arduino-cli core install $CORE:$CORE_EXT
 CORE_INSTALL_CMD="echo \"core found install now...\""
  
-[[ ! "$($SEARCH_CMD" =~ "No" ]] && $CORE_INSTALL_CMD
+[[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
 
 
 
