@@ -51,13 +51,13 @@ sleep 2
 echo "Making \"bin\" directory..."
 mkdir bin
 sleep 2
-echo "Editing bashrc..."
-if ! echo 'export PATH=/home/pi/bin:$PATH' >> $HOME/.bashrc; then
-    echo "Could Not Edit Bash !"
-fi
-echo "sourcing bashrc... [Temporarily deactivated]" 
+#echo "Editing bashrc..."
+#if ! echo 'export PATH=/home/pi/bin:$PATH' >> $HOME/.bashrc; then
+#    echo "Could Not Edit Bash !"
+#fi
+#echo "sourcing bashrc... [Temporarily deactivated]" 
 #sudo source home/pi/.bashrc
-sleep 2
+#sleep 2
 echo "Going to $HOME/bin ..."
 cd $HOME/bin
 sleep 2
