@@ -29,15 +29,6 @@ do
  esac
 done
 
-# ---- GIT INSTALL ---- #
-clear
-echo "Installing git..."
-apt-get install git -y
-clear 
-echo "git installed!"
-sleep 2
-clear
-
 
 #Install python3
 #Install pip3
