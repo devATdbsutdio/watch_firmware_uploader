@@ -31,6 +31,7 @@ done
 
 
 # ---- Install arduino-cli ---- #
+: '
 sleep 1
 echo "Going to home directory..."
 cd $HOME
@@ -38,14 +39,7 @@ sleep 2
 echo "Making \"bin\" directory..."
 mkdir bin
 sleep 2
-#echo "Editing bashrc..."
-#if ! echo 'export PATH=/home/pi/bin:$PATH' >> $HOME/.bashrc; then
-#    echo "Could Not Edit Bash !"
-#fi
-#echo "sourcing bashrc... [Temporarily deactivated]" 
-#sudo source home/pi/.bashrc
-#sleep 2
-echo "Going to $HOME/bin ..."
+oecho "Going to $HOME/bin ..."
 cd $HOME/bin
 sleep 2
 echo "Downloading arduino-cli..."
@@ -65,13 +59,17 @@ sleep 4
 clear
 sleep 1
 cd $HOME/clock_uploader_machine
-
+'
 
 # ---- Create Arduino-cli init file [if it doesn't exist]---- #
 CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
-[ ! -f $CONFIG_FILE ] && $HOME/bin/arduino-cli config init
+[ ! -f $CONFIG_FILE ] && $HOME/bin/arduino-cli config init && echo "There is Config file now!"
+
+sleep 2
 
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
+echo "Adding core url to config"
+
 $HOME/bin/arduino-cli config add board_manager.additional_urls http://drazzy.com/package_drazzy.com_index.json
 
 # ---- Install the megaTinyCore ---- #
