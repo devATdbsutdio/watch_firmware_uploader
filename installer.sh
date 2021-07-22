@@ -3,16 +3,44 @@
 # Install arduino-cli, will install it in /home/pi/bin/ dir
 # curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
-cd /home/pi/
+clear
+
+sleep 1
+echo "Going to home directory..."
+cd $HOME
+
+sleep 1
+echo "Making \"bin\" directory..."
 mkdir bin
-sudo echo 'export PATH=/home/pi/bin:$PATH' >> ~/.bashrc 
-sudo source home/pi/.bashrc
-cd /home/pi/bin
+
+sleep 1
+echo "Editing bashrc..."
+
+if ! echo 'export PATH=/home/pi/bin:$PATH' >> $HOME/.bashrc; then
+    echo "Could Not Edit Bash !"
+fi 
+#sudo source home/pi/.bashrc
+
+sleep 1
+echo "Going to $HOME/bin ..."
+cd $HOME/bin
+
+sleep 1
+echo "Downloading arduino-cli..."
+sleep 2
+clear 
 wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
+clear
+echo "Download finished"
+sleep 2
+clear
+echo "Unzipping..."
 tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm LICENSE.txt
 rm arduino-cli_latest_Linux_ARMv7.tar.gz
-cd /home/pi/clock_uploader_machine/
+rm LICENSE.txt
+clear
+sleep 1
+cd $HOME/clock_uploader_machine
 
 
 
