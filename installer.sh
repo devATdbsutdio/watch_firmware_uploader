@@ -44,20 +44,15 @@ cd $HOME/bin
 sleep 2
 echo "Downloading arduino-cli..."
 sleep 2
-clear 
 wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
-clear
 echo "Download finished!"
 sleep 2
-clear
 echo "Unzipping..."
 tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
 rm arduino-cli_latest_Linux_ARMv7.tar.gz
 rm LICENSE.txt
 echo "arduino-cli installed in $HOME/bin/arduino-cli"
 sleep 4
-clear
-sleep 1
 cd $HOME/clock_uploader_machine
 '
 
@@ -84,13 +79,12 @@ fi
 
 
 # ---- Install the megaTinyCore ---- #
-clear
-echo "Searching Core..."
-
 CORE=megaTinyCore
 CORE_EXT=megaavr
 SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
 CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE:$CORE_EXT"
+
+echo "Searching $CORE..."
 
 if ! "$($SEARCH_CMD)" =~ "No" ; then
   echo "Core found. Installing now ..."
