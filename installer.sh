@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Install arduino-cli, will install it in /home/pi/bin/ dir
-# curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+clear
+sleep 1
 
 # ---- SYS UPDATE & UPGRADE ---- #
 while true
@@ -28,10 +28,6 @@ do
  ;;
  esac
 done
-
-
-#Install python3
-#Install pip3
 
 
 # ---- Install arduino-cli ---- #
@@ -69,3 +65,44 @@ sleep 4
 clear
 sleep 1
 cd $HOME/clock_uploader_machine
+
+
+# ---- Create Arduino-cli init file [if it doesn't exist]---- #
+CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
+[ ! -f $CONFIG_FILE ] && $HOME/bin/arduino-cli config init
+
+# ---- Add in board's manager additonal urls for MegaTinyCore ---- #
+$HOME/bin/arduino-cli config add board_manager.additional_urls http://drazzy.com/package_drazzy.com_index.json
+
+# ---- Install the megaTinyCore ---- #
+clear
+echo "Searching Core...\n"
+
+CORE=megaTinyCore
+CORE_EXT=megaavr
+
+SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
+#CORE_INSTALL_CMD=$HOME/bin/arduino-cli core install $CORE:$CORE_EXT
+CORE_INSTALL_CMD="echo \"core found install now...\""
+ 
+[[ ! "$($SEARCH_CMD" =~ "No" ]] && $CORE_INSTALL_CMD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
