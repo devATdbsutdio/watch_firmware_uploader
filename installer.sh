@@ -31,7 +31,6 @@ done
 
 
 # ---- Install arduino-cli ---- #
-: '
 sleep 1
 echo "Going to home directory..."
 cd $HOME
@@ -54,7 +53,7 @@ rm LICENSE.txt
 echo "arduino-cli installed in $HOME/bin/arduino-cli"
 sleep 4
 cd $HOME/clock_uploader_machine
-'
+
 
 # ---- Create Arduino-cli init file [if it doesn't exist]---- #
 CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
