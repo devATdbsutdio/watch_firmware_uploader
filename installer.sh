@@ -78,10 +78,8 @@ echo "Searching Core...\n"
 
 CORE=megaTinyCore
 CORE_EXT=megaavr
-
 SEARCH_CMD="$HOME/bin/arduino-cli core search $CORE"
-#CORE_INSTALL_CMD=$HOME/bin/arduino-cli core install $CORE:$CORE_EXT
-CORE_INSTALL_CMD="echo \"core found install now...\""
+CORE_INSTALL_CMD="$HOME/bin/arduino-cli core install $CORE:$CORE_EXT"
  
 [[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
 
