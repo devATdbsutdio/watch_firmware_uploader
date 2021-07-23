@@ -38,10 +38,10 @@ BANNER="
 while true
 do
  clear
- echo "${GREEN}$BANNER${RESET}" && echo " " && echo "${YELLOW}"
- echo " PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
- echo " PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
- echo " PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]." && echo "${RESET}"
+ echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo "${YELLOW}"
+ echo -e " PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
+ echo -e " PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
+ echo -e " PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]." && echo "${RESET}"
  read -r -p "  > " input
  case $input in
    [pP])
