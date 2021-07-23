@@ -9,16 +9,18 @@ RESET='\033[0m'
 
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
-   tput cup 11 1
+   tput cup 11 0
    echo -e "${RED}$msg"
    l=${#msg}
    l=$(( l+5 ))
    for i in {10..0}
    do
      tput cup 11 $l
-     echo -n "$i${RESET}"
+     echo -n "$i"
+     ${RESET}
      sleep 1
    done
+   echo " "
 }
 
 
@@ -67,7 +69,7 @@ do
  ;;
    [uU])
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > UPLOADING FIRMWARE NOW${RESET}" && echo " "
- echo -e "${YELLOW} > EXECUTING: ${UPLOAD_CMD[*]}${RESET}"
+ echo " > EXECUTING: ${UPLOAD_CMD[*]}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
  countdown
@@ -78,5 +80,4 @@ do
  clear
  ;;
  esac
-done
- 
+done 

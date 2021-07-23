@@ -20,7 +20,7 @@ countdown() {
         echo -n "$msg"
         l=${#msg}
         l=$(( l+5 ))
-        for i in {30..1}
+        for i in {2..1}
         do
                 tput cup 10 $l
                 echo -n "$i"
@@ -29,3 +29,7 @@ countdown() {
 }
 
 countdown
+
+UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
+
+echo " > EXECUTING: ${UPLOAD_CMD[*]}"
