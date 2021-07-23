@@ -38,7 +38,7 @@ do
  clear
  echo "$BANNER"
  echo "Select the right port [use the num keys]:"
- IFS=$'\n' ports=( $(ls /dev/tty.*) )
+ IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
    UPLOAD_CMD="arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip --output-dir ./build/ -u -p $port -P pyupdi57k -t"
    echo "Selected port is: [$REPLY] $port" && sleep 5 ; break
