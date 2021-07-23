@@ -51,10 +51,8 @@ do
  echo "$BANNER"
  echo "Uploading firmware now..."
  cd $HOME/clock_firmware_production && $UPLOAD_CMD && cd $HOME
- $UPLOAD_CMD
- echo "$port"
  sleep 5
- clear
+ #clear
  ;;
   *)
  clear 
