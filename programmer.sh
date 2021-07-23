@@ -12,7 +12,7 @@ countdown() {
    echo "$msg"
    l=${#msg}
    l=$(( l+5 ))
-   for i in {5..1}
+   for i in {5..0}
    do
      tput cup 10 $l
      echo -n "$i"
