@@ -23,7 +23,11 @@ while true
 do
  clear
  echo "$BANNER"
- read -r -p "P = Pull latest firmware. S = Select upload port. U = To upload firmware: " input
+ tput cup 10
+ echo "[1] PRESS 'P' TO GET LATEST FIRMWARE."
+ echo "[2] PRESS 'S' TO SELECT FIRMWARE UPLOAD PORT [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
+ echo "[3] PRESS 'U' TO UPLOAD FIRMWARE [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
+ read -r -p ": " input
  case $input in
    [pP])
  clear
@@ -44,7 +48,6 @@ do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   #UPLOAD_CMD="$HOME/bin/arduino-cli compile --help"
    echo " " && echo " " && echo "Selected port is: [$REPLY] $port" && sleep 4 ; break
  done 
  sleep 1

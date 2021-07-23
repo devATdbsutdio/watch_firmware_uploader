@@ -13,18 +13,19 @@
 #  echo "library not found"
 #fi
 
-#PS3="Enter a number: "
+countdown() {
+        msg="BACK TO PROMPT IN: "
+        clear
+        tput cup 10 5
+        echo -n "$msg"
+        l=${#msg}
+        l=$(( l+5 ))
+        for i in {30..1}
+        do
+                tput cup 10 $l
+                echo -n "$i"
+                sleep 1
+        done
+}
 
-#select character in Sheldon Leonard Penny Howard Raj
-#do
-#    echo "Selected character: $character"
-#    echo "Selected number: $REPLY"
-#done
-
-FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
-FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
-
-UPLOAD_CMD="$HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p /dev/ttyUSB0 -P pyupdi -t"
-
-$UPLOAD_CMD
-
+countdown
