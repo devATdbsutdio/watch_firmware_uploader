@@ -12,7 +12,7 @@ countdown() {
    tput cup 11 0
    echo -e "${RED}$msg${RESET}"
    l=${#msg}
-   l=$(( l+2 ))
+   l=$(( l ))
    for i in {10..0}
    do
      tput cup 11 $l
