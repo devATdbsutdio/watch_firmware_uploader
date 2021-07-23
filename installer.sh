@@ -128,8 +128,8 @@ cd $HOME
 git clone https://github.com/dattasaurabh82/clock_firmware_production.git
 
 
-
-
+# ---- auto load programmer.sh ---- #
+# TBD
 
 
 
