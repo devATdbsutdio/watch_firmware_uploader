@@ -10,14 +10,13 @@ RESET='\033[0m'
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
    tput cup 11 0
-   echo -e "${RED}$msg"
+   echo -e "${RED}$msg${RESET}"
    l=${#msg}
    l=$(( l+2 ))
    for i in {10..0}
    do
      tput cup 11 $l
-     echo -n "${RED}$i"
-     echo -e "${RESET}"
+     echo -n "$i"
      sleep 1
    done
    echo " "
@@ -75,7 +74,7 @@ do
  countdown
  ;;
   *)
- clear && echo "${GREEN}$BANNER${RESET}" && echo "${RED} > INVALID INPUT ${RESET}"
+ clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${RED} > INVALID INPUT ${RESET}"
  countdown
  clear
  ;;
