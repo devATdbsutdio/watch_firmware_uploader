@@ -28,7 +28,8 @@ do
  echo " PRESS 'P' THEN 'ENTER' TO GET LATEST FIRMWARE."
  echo " PRESS 'S' THEN 'ENTER' TO SELECT FIRMWARE UPLOAD PORT [MAKE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
  echo " PRESS 'U' THEN 'ENTER' TO UPLOAD FIRMWARE [MAKE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
- read -r -p ": " input
+ echo ""
+ read -r -p "  > " input
  case $input in
    [pP])
  clear
