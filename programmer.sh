@@ -17,7 +17,7 @@ countdown() {
    do
      tput cup 11 $l
      echo -n "$i"
-     ${RESET}
+     echo -e "${RESET}"
      sleep 1
    done
    echo " "
@@ -69,7 +69,7 @@ do
  ;;
    [uU])
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > UPLOADING FIRMWARE NOW${RESET}" && echo " "
- echo " > EXECUTING: ${UPLOAD_CMD[*]}"
+ #echo " > EXECUTING: ${UPLOAD_CMD[*]}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
  countdown
