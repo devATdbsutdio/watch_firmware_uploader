@@ -71,8 +71,8 @@ do
  #echo " > EXECUTING: ${UPLOAD_CMD[*]}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
- clear && echo -e "${GREEN}$BANNER${RESET}"
- countdown
+ #clear && echo -e "${GREEN}$BANNER${RESET}"
+ #countdown
  ;;
   *)
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${RED} > INVALID INPUT ${RESET}"
