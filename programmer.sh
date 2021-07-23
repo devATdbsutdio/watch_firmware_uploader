@@ -51,7 +51,7 @@ do
  clear
  echo "$BANNER"
  echo "Uploading firmware now..."
- $UPLOAD_CMD && cd $HOME
+ echo "$UPLOAD_CMD && cd $HOME"
  sleep 10
  #clear
  ;;
