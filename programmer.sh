@@ -29,8 +29,9 @@ do
  clear
  echo "$BANNER"
  echo "Pulling the latest firmware from git..."
- # the git for latest firmware should have been cloned for this to work by installer script
- cd $HOME/clock_firmware_production && git pull && cd $HOME
+ FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
+ FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
+ cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
  sleep 2
  clear
  ;;
@@ -40,7 +41,7 @@ do
  echo "Select the right port [use the num keys]:"
  IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
-   UPLOAD_CMD="$HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip --output-dir ./build/ -u -p $port -P pyupdi -t"
+   UPLOAD_CMD="$HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR --output-dir $FIRMWARE_DIR/build -u -p $port -P pyupdi -t"
    echo "Selected port is: [$REPLY] $port" && sleep 5 ; break
  done 
  sleep 1
@@ -50,7 +51,7 @@ do
  clear
  echo "$BANNER"
  echo "Uploading firmware now..."
- cd $HOME/clock_firmware_production/clock && $UPLOAD_CMD && cd $HOME
+ $UPLOAD_CMD && cd $HOME
  sleep 10
  #clear
  ;;
