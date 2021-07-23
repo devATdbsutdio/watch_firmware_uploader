@@ -43,7 +43,8 @@ do
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
-   UPLOAD_CMD="$HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t"
+   #UPLOAD_CMD="$HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t"
+   UPLOAD_CMD="$HOME/bin/arduino-cli compile --help"
    echo " " && echo " " && echo "Selected port is: [$REPLY] $port" && sleep 4 ; break
  done 
  sleep 1
