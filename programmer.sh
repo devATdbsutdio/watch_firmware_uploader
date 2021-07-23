@@ -8,13 +8,13 @@ sleep 1
 
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
-   #tput cup 10 5
+   tput cup 10 5
    echo "$msg"
    l=${#msg}
    l=$(( l+5 ))
    for i in {5..1}
    do
-     #tput cup 10 $l
+     tput cup 10 $l
      echo -n "$i"
      sleep 1
    done
