@@ -30,7 +30,7 @@ do
  echo "$BANNER"
  echo "Pulling the latest firmware from git..."
  # the git for latest firmware should have been cloned for this to work by installer script
- # cd $HOME/clock_firmware_production && git pull && cd $HOME
+ cd $HOME/clock_firmware_production && git pull && cd $HOME
  sleep 2
  clear
  ;;
@@ -50,8 +50,8 @@ do
  clear
  echo "$BANNER"
  echo "Uploading firmware now..."
- # cd $HOME/clock_firmware_production && $UPLOAD_CMD && cd $HOME
- echo "$UPLOAD_CMD"
+ cd $HOME/clock_firmware_production && $UPLOAD_CMD && cd $HOME
+ $UPLOAD_CMD
  echo "$port"
  sleep 5
  clear
