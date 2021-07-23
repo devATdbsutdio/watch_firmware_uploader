@@ -50,7 +50,7 @@ do
  clear
  echo "$BANNER"
  echo "Uploading firmware now..."
- cd $HOME/clock_firmware_production && $UPLOAD_CMD && cd $HOME
+ cd $HOME/clock_firmware_production/clock && $UPLOAD_CMD && cd $HOME
  sleep 5
  #clear
  ;;
