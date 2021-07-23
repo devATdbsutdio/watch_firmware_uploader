@@ -6,6 +6,21 @@ sleep 1
 #ls /dev/tty.*
 #PROMPT_STR=$'\"P\" = pull firmware. \"U\" = upload firmware. \"S\" = Select port: '
 
+countdown() {
+   msg=" > BACK TO MAIN PROMPT IN: "
+   #tput cup 10 5
+   echo "$msg"
+   l=${#msg}
+   l=$(( l+5 ))
+   for i in {5..1}
+   do
+     #tput cup 10 $l
+     echo -n "$i"
+     sleep 1
+   done
+}
+
+
 BANNER="
    __ _                                       
   / _(_)_ __ _ __ _____      ____ _ _ __ ___  
@@ -46,22 +61,20 @@ do
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   echo " " && echo " " && echo "Selected port is: [$REPLY] $port" && sleep 4 ; break
- done 
- sleep 1
+   echo " " && echo " " && echo "Selected port is: [$REPLY] $port" && countdown ; break
+ done
  clear
  ;;
    [uU])
  clear && echo "$BANNER" && echo " > UPLOADING FIRMWARE NOW" && echo " "
  echo " > EXECUTING: $UPLOAD_CMD"
- sleep 1
  "${UPLOAD_CMD[@]}"
  cd $HOME
- sleep 5
+ countdown
  ;;
   *)
  clear && echo "$BANNER" && echo " > INVALID INPUT :["
- sleep 3
+ countdown
  clear
  ;;
  esac
