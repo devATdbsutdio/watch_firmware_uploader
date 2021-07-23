@@ -1,10 +1,11 @@
 !/bin/bash
 
-clear 
-sleep 1
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+WHITE='\033[0;37m'
+RESET='\033[0m'
 
-#ls /dev/tty.*
-#PROMPT_STR=$'\"P\" = pull firmware. \"U\" = upload firmware. \"S\" = Select port: '
 
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
@@ -37,14 +38,14 @@ BANNER="
 while true
 do
  clear
- echo "$BANNER" && echo " " && echo " "
+ echo "${GREEN}$BANNER${RESET}" && echo " " && echo "${YELLOW}"
  echo " PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
  echo " PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
- echo " PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]." && echo " "
+ echo " PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]." && echo "${RESET}"
  read -r -p "  > " input
  case $input in
    [pP])
- clear && echo "$BANNER" && echo " > PULLING LATEST FIRMWARE FROM REPOSITORY ..." && echo " "
+ clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ..." && echo " "
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
  echo " > EXECUTING: 'cd $FIRMWARE_REPO_DIR && git pull && cd $HOME'"
@@ -53,27 +54,26 @@ do
  clear
  ;;
   [sS])
- clear && echo "$BANNER" && echo " > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]"
+ clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]${RESET}"
  IFS=$'\n' ports=( $(ls /dev/tty*) )
- echo " " && echo " "
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   echo " " && echo " " && echo "Selected port is: [$REPLY] $port" && countdown ; break
+   echo " " && echo " " && echo "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port" && countdown ; break
  done
  clear
  ;;
    [uU])
- clear && echo "$BANNER" && echo " > UPLOADING FIRMWARE NOW" && echo " "
- echo " > EXECUTING: $UPLOAD_CMD"
+ clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > UPLOADING FIRMWARE NOW" && echo " "
+ echo " > EXECUTING: $UPLOAD_CMD${RESET}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
  countdown
  ;;
   *)
- clear && echo "$BANNER" && echo " > INVALID INPUT :["
+ clear && echo "${GREEN}$BANNER${RESET}" && echo "${RED} > INVALID INPUT ${RESET}"
  countdown
  clear
  ;;
