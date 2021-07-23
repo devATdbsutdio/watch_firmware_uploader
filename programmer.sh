@@ -8,9 +8,9 @@ RESET='\033[0m'
 
 
 countdown() {
-   msg="${RED} > BACK TO MAIN PROMPT IN: "
+   msg=" > BACK TO MAIN PROMPT IN: "
    tput cup 12 1
-   echo "$msg"
+   echo -e "${RED}$msg"
    l=${#msg}
    l=$(( l+5 ))
    for i in {10..0}
