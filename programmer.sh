@@ -51,7 +51,7 @@ do
  echo "$BANNER"
  echo "Uploading firmware now..."
  cd $HOME/clock_firmware_production/clock && $UPLOAD_CMD && cd $HOME
- sleep 5
+ sleep 10
  #clear
  ;;
   *)
