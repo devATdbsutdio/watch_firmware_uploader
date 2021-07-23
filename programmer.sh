@@ -13,7 +13,7 @@ countdown() {
    echo -e "${RED}$msg${RESET}"
    l=${#msg}
    l=$(( l ))
-   for i in {10..0}
+   for i in {5..0}
    do
      tput cup 11 $l
      echo -n "$i"
@@ -71,6 +71,7 @@ do
  #echo " > EXECUTING: ${UPLOAD_CMD[*]}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
+ clear && echo -e "${GREEN}$BANNER${RESET}"
  countdown
  ;;
   *)
