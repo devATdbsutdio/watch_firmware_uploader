@@ -97,16 +97,34 @@ fi
 
 # [[ ! "$($SEARCH_CMD)" =~ "No" ]] && $CORE_INSTALL_CMD
 
+# ---- Install the necessary libraries  ---- #
+TWOWIRELIB=TinyMegaI2C
+RTCLIB=RV8803Tiny
+LIBSEARCH_CMD="$HOME/bin/arduino-cli lib search"
+LIBINSTALL_CMD="$HOME/bin/arduino-cli lib install"
+
+echo "Searching $TWOWIRELIB in Library manager..."
+if [[ "$($LIBSEARCH_CMD $TWOWIRELIB --names)" == *$TWOWIRELIB* ]]; then
+ echo "library found"
+ echo "Installing $TWOWIRELIB Library..."
+ $LIBINSTALL_CMD $TWOWIRELIB
+else
+ echo "$TWOWIRELIB library not found!"
+fi
+
+echo "Searching $RTCLIB in Library manager..."
+if [[ "$($LIBSEARCH_CMD $RTCLIB --names)" == *$RTCLIB* ]]; then
+ echo "library found"
+ echo "Installing $RTCLIB Library..."
+ $LIBINSTALL_CMD $RTCLIB
+else
+ echo "$RTCLILB library not found!"
+fi
+
 
 # ---- git clone the firmware source code ---- #
 cd $HOME
 git clone https://github.com/dattasaurabh82/clock_firmware_production.git
-
-
-
-
-
-
 
 
 
