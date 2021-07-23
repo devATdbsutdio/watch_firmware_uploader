@@ -101,11 +101,12 @@ fi
 TWOWIRELIB=TinyMegaI2C
 RTCLIB=RV8803Tiny
 LIBSEARCH_CMD="$HOME/bin/arduino-cli lib search"
+LIBLIST_CMD="$HOME/bin/arduino-cli lib list"
 LIBINSTALL_CMD="$HOME/bin/arduino-cli lib install"
 
 echo "Searching $TWOWIRELIB in Library manager..."
 if [[ "$($LIBSEARCH_CMD $TWOWIRELIB --names)" == *$TWOWIRELIB* ]]; then
- echo "library found"
+ echo "library found in Library Manager Repo:)"
  echo "Installing $TWOWIRELIB Library..."
  $LIBINSTALL_CMD $TWOWIRELIB
 else
@@ -114,7 +115,7 @@ fi
 
 echo "Searching $RTCLIB in Library manager..."
 if [[ "$($LIBSEARCH_CMD $RTCLIB --names)" == *$RTCLIB* ]]; then
- echo "library found"
+ echo "library found in Library Manager Repo :)"
  echo "Installing $RTCLIB Library..."
  $LIBINSTALL_CMD $RTCLIB
 else
