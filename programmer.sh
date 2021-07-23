@@ -38,36 +38,36 @@ BANNER="
 while true
 do
  clear
- echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo "${YELLOW}"
- echo -e " PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
- echo -e " PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
- echo -e " PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]." && echo "${RESET}"
+ echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
+ echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
+ echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
+ echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
  read -r -p "  > " input
  case $input in
    [pP])
- clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ..." && echo " "
+ clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ...${RESET}" && echo " "
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
- echo " > EXECUTING: 'cd $FIRMWARE_REPO_DIR && git pull && cd $HOME'"
+ echo -e "${YELLOW} > EXECUTING: 'cd $FIRMWARE_REPO_DIR && git pull && cd $HOME'${RESET}"
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
  sleep 2
  clear
  ;;
   [sS])
- clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]${RESET}"
+ clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]${RESET}"
  IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   echo " " && echo " " && echo "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port" && countdown ; break
+   echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
  done
  clear
  ;;
    [uU])
- clear && echo "${GREEN}$BANNER${RESET}" && echo "${YELLOW} > UPLOADING FIRMWARE NOW" && echo " "
- echo " > EXECUTING: $UPLOAD_CMD${RESET}"
+ clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > UPLOADING FIRMWARE NOW${RESET}" && echo " "
+ echo -e "${YELLOW} > EXECUTING: $UPLOAD_CMD${RESET}"
  "${UPLOAD_CMD[@]}"
  cd $HOME
  countdown
