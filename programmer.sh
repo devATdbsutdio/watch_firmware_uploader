@@ -23,10 +23,10 @@ while true
 do
  clear
  echo "$BANNER"
- tput cup 10
- echo "[1] PRESS 'P' TO GET LATEST FIRMWARE."
- echo "[2] PRESS 'S' TO SELECT FIRMWARE UPLOAD PORT [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
- echo "[3] PRESS 'U' TO UPLOAD FIRMWARE [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
+ tput cup 10 10
+ echo -n " PRESS 'P' THEN 'ENTER' TO GET LATEST FIRMWARE."
+ echo -n " PRESS 'S' THEN 'ENTER' TO SELECT FIRMWARE UPLOAD PORT [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
+ echo -n " PRESS 'U' THEN 'ENTER' TO UPLOAD FIRMWARE [MARE SURE YOUR DEVICE IS CONNECTED FOR THIS STEP]."
  read -r -p ": " input
  case $input in
    [pP])
@@ -44,6 +44,7 @@ do
  echo "$BANNER"
  echo "Select the right port [use the num keys]:"
  IFS=$'\n' ports=( $(ls /dev/tty*) )
+ echo " "
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
