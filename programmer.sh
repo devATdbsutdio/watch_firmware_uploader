@@ -56,8 +56,8 @@ do
  echo "Uploading firmware now..."
  echo " "
  sleep 2
- ehco "$UPLOAD_CMD"
- $HOME/bin/arduino-cli compile -b --help
+ echo "$UPLOAD_CMD"
+ $HOME/bin/arduino-cli compile --help
  cd $HOME
  sleep 10
  #clear
