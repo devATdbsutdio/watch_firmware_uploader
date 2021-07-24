@@ -6,7 +6,7 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 WHITE='\033[0;37m'
 RESET='\033[0m'
-WHOLE_LINE_GREEN='\x1b[41;32m'
+WHOLE_LINE_GREEN='\x1b[42;32m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
 LINES=$(tput lines)
@@ -25,7 +25,7 @@ print_status() {
 
     #echo -n "--- FILE ---"
     echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
-    sleep 1
+    sleep 5
 
     # Move cursor to home position, back in virtual window
     tput cup 0 0
