@@ -19,6 +19,7 @@ print_status (){
     tput cup $LINES 0;
 
     echo -n "--- FILE ---"
+    sleep 1
 
     # Move cursor to home position, back in virtual window
     tput cup 0 0
