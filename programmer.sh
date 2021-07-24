@@ -18,7 +18,8 @@ set_window (){
 }
 
 
-BOTT_STAT=""
+BOTT_STAT="-"
+
 print_status{
     # Move cursor to last line in your screen
     tput cup $LINES 0;
@@ -90,7 +91,7 @@ do
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
- BOTT_STAT="${BLACK}SELECTED PORT IS: [ $REPLY ] $port${RESET}" 
+ BOTT_STAT="SELECTED PORT IS: [ $REPLY ] $port" 
  print_status ; break
  done
  clear
