@@ -89,7 +89,7 @@ do
  # show curr time stamp
  LAST_PULL="$current_date_time"
  # save curr time stamp
- $current_date_time > last_pull_info_file
+ echo "$LAST_PULL" > $last_pull_info_file
  sleep 2
  clear
  ;;
