@@ -35,6 +35,8 @@
 
 WHOLE_LINE_GREEN='\x1b[42;32m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
+YELLOW='\033[0;33m'
+RESET='\033[0m'
 
 HEIGHT=$(tput lines)
 
@@ -47,7 +49,7 @@ footer_status () {
   # Move cursor to last line in your screen
   tput cup $HEIGHT 0;
   
-  echo -e "${WHOLE_LINE_GREEN}TEST STATUS STRING${WHOLE_LINE_RESET}"
+  echo -e "${YELLOW}TEST STATUS STRING${RESET}"
   
   # Move cursor to home position, back in virtual window
   tput cup 0 0
