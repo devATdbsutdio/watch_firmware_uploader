@@ -82,8 +82,12 @@ do
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
  
- current_date_time="`date +%Y%m%d%H%M%S`"
- LAST_PULL="$current_date_time"
+ # get current time stamp
+ current_date_time="`date +"%Y-%m-%d %T"`"
+ # show curr time stamp
+ LAST_PULL="$current_date_time/"
+ # save curr time stamp
+ # --- TBD
  sleep 2
  clear
  ;;
