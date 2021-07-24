@@ -49,7 +49,7 @@ footer_status () {
   # Move cursor to last line in your screen
   tput cup $HEIGHT 0;
   
-  echo -e "${YELLOW}TEST STATUS STRING${RESET}"
+  echo -e "${WHOLE_LINE_YELLOW}TEST STATUS STRING${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
   tput cup 0 0
