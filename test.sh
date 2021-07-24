@@ -36,7 +36,7 @@
 WHOLE_LINE_GREEN='\x1b[42;32m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
-#echo " > EXECUTING: ${UPLOAD_CMD[*]}"
+HEIGHT=$(tput lines)
 
 set_window (){
   # Create a virtual window that is two lines smaller at the bottom.
