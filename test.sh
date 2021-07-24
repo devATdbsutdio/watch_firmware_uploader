@@ -33,8 +33,8 @@
 #UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
 
 
-WHOLE_LINE_GREEN='\x1b[42;32m'
-WHOLE_LINE_RESET='\x1b[K\x1b[0m'
+WHOLE_LINE_YELLOW='\x1b[41;33m\m\n\x1b[0m\x1b[41;33m'
+WHOLE_LINE_RESET='\x1b[0m'
 YELLOW='\033[0;33m'
 RESET='\033[0m'
 
@@ -49,8 +49,7 @@ footer_status () {
   # Move cursor to last line in your screen
   tput cup $HEIGHT 0;
   
-  #echo -e "${YELLOW}TEST STATUS STRING${RESET}"
-  echo -e "\x1b[42;32mWarning\x1b[0m"
+  echo -e "${YELLOW}TEST STATUS STRING${RESET}"
 
   # Move cursor to home position, back in virtual window
   tput cup 0 0
