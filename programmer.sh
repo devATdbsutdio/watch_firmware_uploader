@@ -109,14 +109,14 @@ do
  clear
  ;;
    [uU])
- BURN_STAT="Uploading now..."
+ LAST_BURN="Uploading now..."
  show_header_and_footer
  
 "${UPLOAD_CMD[@]}"
  cd $HOME
  
  burn_date_time="`date +"%Y-%m-%d %T"`"
- BURN_STAT="Last burnt at $burn_date_time"
+ LAST_BURN="Last burnt at $burn_date_time"
  show_header_and_footer
  sleep 2
  clear 
