@@ -54,6 +54,8 @@ BANNER="
 "
 
 show_header_and_footer (){
+  clear 
+
   echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
   echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
@@ -67,7 +69,9 @@ while true
 do
  clear
  set_window
+
  show_header_and_footer
+
  read -r -p "  > " input
  case $input in
    [pP])
@@ -80,7 +84,6 @@ do
 
  LAST_PULL="15:34:34"
 
- sleep 2
  clear
  ;;
   [sS])
