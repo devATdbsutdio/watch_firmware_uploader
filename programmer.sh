@@ -9,11 +9,12 @@ RESET='\033[0m'
 WHOLE_LINE_GREEN='\x1b[42;32m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
-LINES=$(tput lines)
+HEIGHT=$(tput lines)
+WIDTH=$(tput cols)
 
 set_window (){
     # Create a virtual window that is two lines smaller at the bottom.
-    tput csr 0 $(($LINES-2))
+    tput csr 0 $(($HEIGHT-2))
 }
 
 
@@ -21,7 +22,7 @@ BOTT_STAT="-"
 
 print_status() {
     # Move cursor to last line in your screen
-    tput cup $LINES 0;
+    tput cup $HEIGHT 0;
 
     #echo -n "--- FILE ---"
     echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
@@ -31,15 +32,16 @@ print_status() {
     tput cup 0 0
 }
 
+
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
-   tput cup 11 0
-   echo -e "${RED}$msg${RESET}"
+   tput cup $HEIGHT 0
+   echo -e "$msg"
    l=${#msg}
    l=$(( l ))
    for i in {5..0}
    do
-     tput cup 11 $l
+     tput cup $LINES $l
      echo -n "$i"
      sleep 3
    done
@@ -70,6 +72,9 @@ do
  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
+ tput cup $HEIGHT 0;
+ echo -e "${WHOLE_LINE_GREEN}SOME STATUS INFO${WHOLE_LINE_RESET}"
+ tput cup 0 0
  read -r -p "  > " input
  case $input in
    [pP])
@@ -90,8 +95,9 @@ do
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
- BOTT_STAT="SELECTED PORT IS: [ $REPLY ] $port" 
- print_status ; break
+ #BOTT_STAT="SELECTED PORT IS: [ $REPLY ] $port" 
+ #print_status 
+ ; break
  done
  clear
  ;;
