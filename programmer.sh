@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 BLACK='\033[0;32m'
 GREEN='\033[0;32m'
@@ -19,7 +19,7 @@ set_window (){
 
 BOTT_STAT="-"
 
-print_status{
+print_status() {
     # Move cursor to last line in your screen
     tput cup $LINES 0;
 
