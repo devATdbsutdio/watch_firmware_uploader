@@ -74,7 +74,7 @@ do
  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
  tput cup $HEIGHT 0;
  echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 20 0
+ tput cup 18 0
  read -r -p "  > " input
  case $input in
    [pP])
@@ -88,6 +88,9 @@ do
  ;;
   [sS])
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]${RESET}"
+ tput cup $HEIGHT 0;
+ echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
+ tput cup 1 $(($HEIGHT-4))
  IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
@@ -95,9 +98,7 @@ do
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
- BOTT_STAT=" PORT: [ $REPLY ] $port" ; break 
- #print_status 
- #echo -e "${WHOLE_LINE_GREEN}$port${WHOLE_LINE_RESET}" ; break
+ BOTT_STAT=" PORT: [ $REPLY ] $port" ; break
  done
  clear
  ;;
