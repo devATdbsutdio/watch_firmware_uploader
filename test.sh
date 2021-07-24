@@ -34,7 +34,7 @@
 
 
 #WHOLE_LINE_YELLOW='\x1b[41;37m\m\n\x1b[0m\x1b[41;37m'
-WHOLE_LINE_YELLOW='\x1b[43;32m\m\n\x1b[0m\x1b[43;32m'
+WHOLE_LINE_YELLOW='\x1b[43;30m\m\n\x1b[0m\x1b[43;30m'
 WHOLE_LINE_RESET='\x1b[0m'
 YELLOW='\033[0;33m'
 RESET='\033[0m'
