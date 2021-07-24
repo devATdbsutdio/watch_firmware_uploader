@@ -19,12 +19,12 @@ set_window (){
 
 
 PORT_STAT="PORT: NULL"
-
-# load last pull info file [TBD]
 last_pull_info_file=$HOME/last_pull.txt
 LAST_PULL=$(<$last_pull_info_file)
 PULL_STAT="LAST PULL: $LAST_PULL"
-BOTT_STAT="$PORT_STAT  $PULL_STAT"
+LAST_BURN=""
+BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
+BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
 
 footer_status () {
     # Move cursor to last line in your screen
@@ -33,7 +33,9 @@ footer_status () {
     PORT_STAT="$PORT_STAT"
     LAST_PULL="$LAST_PULL"
     PULL_STAT="LAST PULL: $LAST_PULL"
-    BOTT_STAT="$PORT_STAT  |  $PULL_STAT"
+    LAST_BURN="$LAST_BURN"
+    BURN_STAT="FIMWARE BURN STAT: $LAST_BURN"
+    BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
     echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
     
     # sleep 5
@@ -107,14 +109,17 @@ do
  clear
  ;;
    [uU])
- clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > UPLOADING FIRMWARE NOW${RESET}" && echo " "
- tput cup $HEIGHT 0;
- echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT UPLOADING...${WHOLE_LINE_RESET}"
- tput cup 17 0
- "${UPLOAD_CMD[@]}"
+ BURN_STAT="Uploading now..."
+ show_header_and_footer
+ 
+"${UPLOAD_CMD[@]}"
  cd $HOME
- #clear && echo -e "${GREEN}$BANNER${RESET}"
- #countdown
+ 
+ burn_date_time="`date +"%Y-%m-%d %T"`"
+ BURN_STAT="Last burnt at $burn_date_time"
+ show_header_and_footer
+ sleep 2
+ clear 
  ;;
   *)
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${RED} > INVALID INPUT ${RESET}"
