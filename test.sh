@@ -50,7 +50,7 @@ footer_status () {
   tput cup $HEIGHT 0;
   
   #echo -e "${YELLOW}TEST STATUS STRING${RESET}"
-  echo -e "\x1b[42;37mWarning\x1b[0m"
+  echo -e "\x1b[42;32mWarning\x1b[0m"
 
   # Move cursor to home position, back in virtual window
   tput cup 0 0
