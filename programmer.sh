@@ -1,11 +1,14 @@
+i
 !/bin/bash
 
+BLACK='\033[0;32m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 WHITE='\033[0;37m'
 RESET='\033[0m'
-
+WHOLE_LINE_GREEN='\x1b[41;32m'
+WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
 LINES=$(tput lines)
 
@@ -14,12 +17,14 @@ set_window (){
     tput csr 0 $(($LINES-2))
 }
 
-print_status (){
+
+BOTT_STAT=""
+print_status{
     # Move cursor to last line in your screen
     tput cup $LINES 0;
 
     #echo -n "--- FILE ---"
-    echo -e '\x1b[41;37mSELECTED SERIAL PORT\x1b[K\x1b[0m'
+    echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
     sleep 1
 
     # Move cursor to home position, back in virtual window
@@ -36,7 +41,7 @@ countdown() {
    do
      tput cup 11 $l
      echo -n "$i"
-     sleep 1
+     sleep 3
    done
    echo " "
 }
@@ -56,7 +61,6 @@ BANNER="
 "
 
 
-set_window
 
 while true
 do
@@ -86,6 +90,7 @@ do
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
+ BOTT_STAT="${BLACK}SELECTED PORT IS: [ $REPLY ] $port${RESET}" 
  print_status ; break
  done
  clear
