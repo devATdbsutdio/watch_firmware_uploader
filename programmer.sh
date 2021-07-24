@@ -7,6 +7,23 @@ WHITE='\033[0;37m'
 RESET='\033[0m'
 
 
+LINES=$(tput lines)
+
+set_window (){
+    # Create a virtual window that is two lines smaller at the bottom.
+    tput csr 0 $(($LINES-2))
+}
+
+print_status (){
+    # Move cursor to last line in your screen
+    tput cup $LINES 0;
+
+    echo -n "--- FILE ---"
+
+    # Move cursor to home position, back in virtual window
+    tput cup 0 0
+}
+
 countdown() {
    msg=" > BACK TO MAIN PROMPT IN: "
    tput cup 11 0
@@ -36,9 +53,13 @@ BANNER="
        |_|                                                             
 "
 
+
+set_window
+
 while true
 do
  clear
+ set_window
  echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
@@ -62,7 +83,8 @@ do
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
+   #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
+ print_status ; break
  done
  clear
  ;;
