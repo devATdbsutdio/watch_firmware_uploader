@@ -19,6 +19,9 @@ set_window (){
 
 
 PORT_STAT="PORT: NULL"
+
+# load last pull info file [TBD]
+last_pull_info_file=$HOME/clock_uploader_machine/last_pull
 LAST_PULL=""
 PULL_STAT="LAST PULL: $LAST_PULL"
 BOTT_STAT="$PORT_STAT  $PULL_STAT"
@@ -69,7 +72,6 @@ while true
 do
  clear
  set_window
-
  show_header_and_footer
 
  read -r -p "  > " input
@@ -85,9 +87,9 @@ do
  # get current time stamp
  current_date_time="`date +"%Y-%m-%d %T"`"
  # show curr time stamp
- LAST_PULL="$current_date_time/"
+ LAST_PULL="$current_date_time"
  # save curr time stamp
- # --- TBD
+ echo "$LAST_PULL" > last_pull_info_file
  sleep 2
  clear
  ;;
