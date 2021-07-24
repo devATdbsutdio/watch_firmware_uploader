@@ -97,7 +97,7 @@ do
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
  #BOTT_STAT="SELECTED PORT IS: [ $REPLY ] $port" 
  #print_status 
- ; break
+ echo -e "${WHOLE_LINE_GREEN}$port${WHOLE_LINE_RESET}" ; break
  done
  clear
  ;;
