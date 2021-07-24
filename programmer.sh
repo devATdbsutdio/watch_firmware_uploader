@@ -81,9 +81,10 @@ do
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
-
- LAST_PULL="15:34:34"
-
+ 
+ curr_date_time=date +"%Y-%m-%d %T"
+ LAST_PULL="$curr_date_time"
+ sleep 2
  clear
  ;;
   [sS])
