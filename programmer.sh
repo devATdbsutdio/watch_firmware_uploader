@@ -18,7 +18,8 @@ print_status (){
     # Move cursor to last line in your screen
     tput cup $LINES 0;
 
-    echo -n "--- FILE ---"
+    #echo -n "--- FILE ---"
+    echo -e '\x1b[41;37mSELECTED SERIAL PORT\x1b[K\x1b[0m'
     sleep 1
 
     # Move cursor to home position, back in virtual window
