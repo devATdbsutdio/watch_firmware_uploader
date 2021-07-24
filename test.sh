@@ -53,5 +53,10 @@ footer_status () {
   tput cup 0 0
 }
 
-clear
-footer_status
+while true
+do
+  clear
+  set_window
+  footer_status
+  read -r -p "  > " input
+done
