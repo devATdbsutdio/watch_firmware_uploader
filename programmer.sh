@@ -18,34 +18,24 @@ set_window (){
 }
 
 
-BOTT_STAT="-"
+PORT_STAT="PORT: NULL"
+LAST_PULL=""
+PULL_STAT="LAST PULL: $LAST_PULL"
+BOTT_STAT="$PORT_STAT  $PULL_STAT"
 
-print_status() {
+print_status () {
     # Move cursor to last line in your screen
     tput cup $HEIGHT 0;
 
-    #echo -n "--- FILE ---"
+    PORT_STAT="$PORT_STAT"
+    LAST_PULL="$LAST_PULL"
+    PULL_STAT="LAST PULL: $LAST_PULL"
+    BOTT_STAT="$PORT_STAT  |  $PULL_STAT"
     echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
     sleep 5
 
     # Move cursor to home position, back in virtual window
     tput cup 0 0
-}
-
-
-countdown() {
-   msg=" > BACK TO MAIN PROMPT IN: "
-   tput cup $HEIGHT 0
-   echo -e "$msg"
-   l=${#msg}
-   l=$(( l ))
-   for i in {5..0}
-   do
-     tput cup $LINES $l
-     echo -n "$i"
-     sleep 3
-   done
-   echo " "
 }
 
 
@@ -62,49 +52,60 @@ BANNER="
        |_|                                                             
 "
 
+show_header(){
+  echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
+  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
+  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
+  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
+
+  # go to teh last line
+  tput cup $HEIGHT 0;
+  # show status info [ serial port + other info]
+  echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
+  # move back up at a suitable position for prompt
+  tput cup 17 0
+}
 
 
 while true
 do
  clear
  set_window
- echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
- echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
- echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
- echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
- tput cup $HEIGHT 0;
- echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 16 0
+ show_header
  read -r -p "  > " input
  case $input in
    [pP])
- clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ...${RESET}" && echo " "
+ #clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ...${RESET}" && echo " "
+ LAST_PULL="pulling now..."
+ show_header
+
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
- echo -e "${YELLOW} > EXECUTING: 'cd $FIRMWARE_REPO_DIR && git pull && cd $HOME'${RESET}"
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
+
+ LAST_PULL="15:34:34"
+
  sleep 2
  clear
  ;;
   [sS])
- clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > SELECT THE CORRECT UPLOAD PORT [ USE THE NUMPAD + ENTER ]${RESET}"
- tput cup $HEIGHT 0;
- echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 16 0
+ show_header
+
  IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
-
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-   #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
- BOTT_STAT=" PORT: [ $REPLY ] $port" ; break
+
+   PORT_STAT="PORT: $port" ; break
  done
  clear
  ;;
    [uU])
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > UPLOADING FIRMWARE NOW${RESET}" && echo " "
- #echo " > EXECUTING: ${UPLOAD_CMD[*]}"
+ tput cup $HEIGHT 0;
+ echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT UPLOADING...${WHOLE_LINE_RESET}"
+ tput cup 17 0
  "${UPLOAD_CMD[@]}"
  cd $HOME
  #clear && echo -e "${GREEN}$BANNER${RESET}"
@@ -114,7 +115,7 @@ do
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${RED} > INVALID INPUT ${RESET}"
  tput cup $HEIGHT 0;
  echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 16 0
+ tput cup 17 0
  sleep 5
  clear
  ;;
