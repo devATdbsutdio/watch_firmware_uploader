@@ -22,7 +22,7 @@ PORT_STAT="PORT: NULL"
 
 # load last pull info file [TBD]
 last_pull_info_file=$HOME/last_pull.txt
-LAST_PULL=(<$last_pull_info_file)
+LAST_PULL=$(<$last_pull_info_file)
 PULL_STAT="LAST PULL: $LAST_PULL"
 BOTT_STAT="$PORT_STAT  $PULL_STAT"
 
