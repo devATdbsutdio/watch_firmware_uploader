@@ -82,8 +82,8 @@ do
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
  
- curr_date_time=date +"%Y-%m-%d %T"
- LAST_PULL="$curr_date_time"
+ current_date_time="`date +%Y%m%d%H%M%S`"
+ LAST_PULL="$current_date_time"
  sleep 2
  clear
  ;;
