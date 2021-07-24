@@ -6,7 +6,7 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 WHITE='\033[0;37m'
 RESET='\033[0m'
-WHOLE_LINE_GREEN='\x1b[43;30m'
+WHOLE_LINE_YELLOW='\x1b[43;30m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
 HEIGHT=$(tput lines)
@@ -36,7 +36,7 @@ footer_status () {
     LAST_BURN="$LAST_BURN"
     BURN_STAT="FIMWARE BURN STAT: $LAST_BURN"
     BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
-    echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
+    echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
     
     # sleep 5
 
@@ -61,7 +61,7 @@ BANNER="
 show_header_and_footer (){
   clear 
 
-  echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
+  echo -e "${WHOLE_LINE_YELLOW}$BANNER${WHOLE_LINE_RESET}" && echo " " && echo " "
   echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
