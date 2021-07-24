@@ -1,4 +1,3 @@
-i
 !/bin/bash
 
 BLACK='\033[0;32m'
