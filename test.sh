@@ -59,4 +59,14 @@ do
   set_window
   footer_status
   read -r -p "  > " input
+  case $input in
+    [pP])
+   footer_status
+   clear
+   ;;
+    *)
+   footer_status
+   clear
+   ;;
+   esac
 done
