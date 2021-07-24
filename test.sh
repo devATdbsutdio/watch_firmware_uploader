@@ -49,8 +49,9 @@ footer_status () {
   # Move cursor to last line in your screen
   tput cup $HEIGHT 0;
   
-  echo -e "${YELLOW}TEST STATUS STRING${RESET}"
-  
+  #echo -e "${YELLOW}TEST STATUS STRING${RESET}"
+  echo -e "\x1b[41;37m\n\x1b[0m\x1b[41;37mWarning\x1b[0m"; echo "Normal"
+
   # Move cursor to home position, back in virtual window
   tput cup 0 0
 }
