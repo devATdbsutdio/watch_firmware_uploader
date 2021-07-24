@@ -21,7 +21,7 @@ set_window (){
 PORT_STAT="PORT: NULL"
 
 # load last pull info file [TBD]
-last_pull_info_file=$HOME/clock_uploader_machine/last_pull
+last_pull_info_file=$HOME/last_pull.txt
 LAST_PULL=""
 PULL_STAT="LAST PULL: $LAST_PULL"
 BOTT_STAT="$PORT_STAT  $PULL_STAT"
