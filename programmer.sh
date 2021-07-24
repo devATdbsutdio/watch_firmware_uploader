@@ -85,7 +85,7 @@ do
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
- 
+ sleep 2 
  # get current time stamp
  current_date_time="`date +"%Y-%m-%d %T"`"
  # show curr time stamp
