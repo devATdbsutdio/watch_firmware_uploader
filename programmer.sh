@@ -73,7 +73,7 @@ do
  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ]."
  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
  tput cup $HEIGHT 0;
- echo -e "${WHOLE_LINE_GREEN}SOME STATUS INFO${WHOLE_LINE_RESET}"
+ echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
  tput cup 0 0
  read -r -p "  > " input
  case $input in
@@ -95,9 +95,9 @@ do
 
    UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
    #echo " " && echo " " && echo -e "${GREEN}SELECTED PORT IS:{RESET} [ $REPLY ] $port${RESET}" && countdown ; break
- #BOTT_STAT="SELECTED PORT IS: [ $REPLY ] $port" 
+ BOTT_STAT=" PORT: [ $REPLY ] $port" ; break 
  #print_status 
- echo -e "${WHOLE_LINE_GREEN}$port${WHOLE_LINE_RESET}" ; break
+ #echo -e "${WHOLE_LINE_GREEN}$port${WHOLE_LINE_RESET}" ; break
  done
  clear
  ;;
