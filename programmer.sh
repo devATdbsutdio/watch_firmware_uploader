@@ -74,7 +74,7 @@ do
  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
  tput cup $HEIGHT 0;
  echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 0 0
+ tput cup 20 0
  read -r -p "  > " input
  case $input in
    [pP])
