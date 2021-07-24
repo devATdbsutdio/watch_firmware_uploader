@@ -23,7 +23,7 @@ LAST_PULL=""
 PULL_STAT="LAST PULL: $LAST_PULL"
 BOTT_STAT="$PORT_STAT  $PULL_STAT"
 
-print_status () {
+footer_status () {
     # Move cursor to last line in your screen
     tput cup $HEIGHT 0;
 
@@ -32,10 +32,11 @@ print_status () {
     PULL_STAT="LAST PULL: $LAST_PULL"
     BOTT_STAT="$PORT_STAT  |  $PULL_STAT"
     echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
-    sleep 5
+    
+    # sleep 5
 
     # Move cursor to home position, back in virtual window
-    tput cup 0 0
+    tput cup 17 0
 }
 
 
@@ -52,18 +53,13 @@ BANNER="
        |_|                                                             
 "
 
-show_header(){
+show_header_and_footer (){
   echo -e "${GREEN}$BANNER${RESET}" && echo " " && echo " "
   echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
 
-  # go to teh last line
-  tput cup $HEIGHT 0;
-  # show status info [ serial port + other info]
-  echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
-  # move back up at a suitable position for prompt
-  tput cup 17 0
+  footer_status
 }
 
 
@@ -71,13 +67,12 @@ while true
 do
  clear
  set_window
- show_header
+ show_header_and_footer
  read -r -p "  > " input
  case $input in
    [pP])
- #clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${YELLOW} > PULLING LATEST FIRMWARE FROM REPOSITORY ...${RESET}" && echo " "
  LAST_PULL="pulling now..."
- show_header
+ show_header_and_footer
 
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
@@ -89,7 +84,7 @@ do
  clear
  ;;
   [sS])
- show_header
+ show_header_and_footer
 
  IFS=$'\n' ports=( $(ls /dev/tty*) )
  select port in "${ports[@]}"; do
