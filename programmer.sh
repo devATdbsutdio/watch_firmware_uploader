@@ -61,7 +61,7 @@ BANNER="
 show_header_and_footer (){
   clear 
 
-  echo -e "${WHOLE_LINE_YELLOW}$BANNER${WHOLE_LINE_RESET}" && echo " " && echo " "
+  echo -e "${YELLOW}$BANNER${RESET}" && echo " " && echo " "
   echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
