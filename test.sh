@@ -13,23 +13,45 @@
 #  echo "library not found"
 #fi
 
-countdown() {
-        msg="BACK TO PROMPT IN: "
-        clear
-        tput cup 10 5
-        echo -n "$msg"
-        l=${#msg}
-        l=$(( l+5 ))
-        for i in {2..1}
-        do
-                tput cup 10 $l
-                echo -n "$i"
-                sleep 1
-        done
+#countdown() {
+#        msg="BACK TO PROMPT IN: "
+#        clear
+#        tput cup 10 5
+#        echo -n "$msg"
+#        l=${#msg}
+#        l=$(( l+5 ))
+#        for i in {2..1}
+#        do
+#                tput cup 10 $l
+#                echo -n "$i"
+#                sleep 1
+#        done
+#}
+
+#countdown
+
+#UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
+
+
+WHOLE_LINE_GREEN='\x1b[42;32m'
+WHOLE_LINE_RESET='\x1b[K\x1b[0m'
+
+#echo " > EXECUTING: ${UPLOAD_CMD[*]}"
+
+set_window (){
+  # Create a virtual window that is two lines smaller at the bottom.
+  tput csr 0 $(($HEIGHT-2))
 }
 
-countdown
+footer_status () {
+  # Move cursor to last line in your screen
+  tput cup $HEIGHT 0;
+  
+  echo -e "${WHOLE_LINE_GREEN}TEST STATUS STRING${WHOLE_LINE_RESET}"
+  
+  # Move cursor to home position, back in virtual window
+  tput cup 0 0
+}
 
-UPLOAD_CMD=($HOME/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip $FIRMWARE_DIR -u -p $port -P pyupdi -t)
-
-echo " > EXECUTING: ${UPLOAD_CMD[*]}"
+clear
+footer_status
