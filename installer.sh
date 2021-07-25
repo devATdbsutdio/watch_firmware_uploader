@@ -96,8 +96,7 @@ process_list
 # ---- Pre-checks ---- #
 clear
 sleep 1
-echo ""
-echo -e "${YELLOW} Loading settings ...${RESET}"
+echo -e "${YELLOW}> Loading settings ...${RESET}"
 sleep 1
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
@@ -128,7 +127,7 @@ fi
 # -------------------- #
 
 # ---- Install arduino-cli ---- #
-sleep 2
+sleep 1
 echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
 echo ""
 sleep 2
@@ -158,7 +157,7 @@ echo "" && echo ""
 echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
 echo "---------------------------"
-sleep 4
+sleep 10
 # go back to the home directory
 cd "$HOME" || return
 
@@ -189,20 +188,20 @@ fi
 
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 for CORE_URL in "${CORE_URLS[@]}"; do
-  # echo "$CORE_URL"
-  ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-  if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-    echo "$CORE_URL already exists in config file"
-    sleep 2
-  else
-    echo "$CORE_URL doesn't exist in config file!"
-    sleep 2
-    echo "Adding $CORE_URL to config file"
-    sleep 2
-    $ADD_CORE_URL
-  fi
+  echo "$CORE_URL"
+  # if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+  #   echo "$CORE_URL already exists in config file"
+  #   sleep 2
+  # else
+  #   echo "$CORE_URL doesn't exist in config file!"
+  #   sleep 2
+  #   echo "Adding $CORE_URL to config file"
+  #   sleep 2
+  #   ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+  #   $ADD_CORE_URL
+  # fi
 done
-sleep 4
+sleep 10
 cli_init_file_created=true
 process_list
 
