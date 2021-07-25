@@ -198,7 +198,7 @@ for CORE_URL in "${CORE_URLS[@]}"; do
   #   echo "Adding $CORE_URL to config file"
   #   sleep 5
   ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-  $ADD_CORE_URL
+  echo "$ADD_CORE_URL"
   # fi
 done
 sleep 10
