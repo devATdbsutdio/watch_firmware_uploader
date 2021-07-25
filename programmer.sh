@@ -77,14 +77,15 @@ do
 
  FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
  FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
- cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
+ cd "$FIRMWARE_REPO_DIR" && git pull
+ cd ... || return
  sleep 2 
  # get current time stamp
  current_date_time="$(date +"%Y-%m-%d %T")"
  # show curr time stamp
  LAST_PULL="$current_date_time"
  # save curr time stamp
- echo "$LAST_PULL" > $last_pull_info_file
+ echo "$LAST_PULL" > "$last_pull_info_file"
  sleep 2
  clear
  ;;
@@ -105,8 +106,8 @@ do
  LAST_BURN="Uploading now..."
  show_header_and_footer
  
-"${UPLOAD_CMD[@]}"
- cd $HOME
+ "${UPLOAD_CMD[@]}"
+ cd ... || return
  
  burn_date_time="$(date +"%Y-%m-%d %T")"
  LAST_BURN="Last burnt at $burn_date_time"
