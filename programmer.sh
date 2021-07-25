@@ -23,23 +23,23 @@ HEIGHT=$(tput lines)
 # ---- Pre-checks ---- #
 clear
 echo ""
-echo "${YELLOW}Loading settings ...${RESET}"
+echo -e "${YELLOW}Loading settings ...${RESET}"
 sleep 1
 if [ -f "$LAST_PULL_INFO_FILE" ]; then
-  echo "${GREEN}Last pull request info exists!${RESET}"
+  echo -e "${GREEN}Last pull request info exists!${RESET}"
 else
-  echo "${RED}No \"last pull request\" info found!${RESET}"
+  echo -e "${RED}No \"last pull request\" info found!${RESET}"
 fi
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!${RESET}"
+  echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!${RESET}"
   sleep 5
 else
-  echo "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!${RESET}"
+  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!${RESET}"
   sleep 5
   exit 1
 fi
-echo "${YELLOW}Applying Settings ...${RESET}"
+echo -e "${YELLOW}Applying Settings ...${RESET}"
 sleep 1
 # -------------------- #
 
