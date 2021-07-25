@@ -46,7 +46,7 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 sleep 1
 echo ""
 echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR${RESET}"
-while [ "$(cd "$BIN_BASE_DIR")" -eq 0 ]; do
+while ! "$(cd "$BIN_BASE_DIR")"; do
   echo ""
   echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
   mkdir "$BIN_BASE_DIR"
