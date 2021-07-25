@@ -26,7 +26,7 @@ BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
 
 footer_status () {
     # Move cursor to last line in your screen
-    tput cup $HEIGHT 0;
+    tput cup "$HEIGHT" 0;
 
     BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
     echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
