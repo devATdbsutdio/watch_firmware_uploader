@@ -99,7 +99,7 @@ while true; do
     show_header_and_footer
 
     echo ""$FIRMWARE_REPO_DIR" && git pull"
-    cd "$FIRMWARE_REPO_DIR" && git pull && cd "$HOME"
+    cd "$FIRMWARE_REPO_DIR" && git pull && cd $HOME
     sleep 2
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
