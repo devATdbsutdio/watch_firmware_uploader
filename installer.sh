@@ -20,9 +20,6 @@ process_list() {
     echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
   else
     echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
-    echo -e "${RED}         -- QUITTING !${RESET}"
-    sleep 5
-    exit 1
   fi
 
   if [ $cli_installed = true ]; then
@@ -85,6 +82,9 @@ else
   # Show the updated list and task to do
   settings_found_loaded=false
   process_list
+  echo -e "${RED} QUITTING in 5 sec !${RESET}"
+  sleep 5
+  exit 1
 fi
 
 # -------------------- #
