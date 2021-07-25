@@ -29,4 +29,4 @@ FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
 UPLOAD_CMD=("$BIN" compile -a "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t) 
 
 
-echo "${UPLOAD_CMD[@]}"
+${UPLOAD_CMD[@]}
