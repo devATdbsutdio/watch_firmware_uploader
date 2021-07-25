@@ -40,4 +40,4 @@ _Tested in Raspberry PI 3B+ running raspbian:_
 - [ ] Ansible
 
 ### Get the system ready:
-1. gti clone
+1. git clone ... [TBD]
