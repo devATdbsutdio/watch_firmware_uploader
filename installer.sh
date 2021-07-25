@@ -75,7 +75,7 @@
 # BIN_BASE_DIR=""
 # CORE_URLS=""
 # ARDUINO=""
-# CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
+CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
 # CORE=megaTinyCore
 # CORE_COMB=megaTinyCore:megaavr
 # LIB_LIST=(TinyMegaI2C RV8803Tiny)
@@ -192,17 +192,17 @@ CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
 
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo "> $CORE_URL"
-  # if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-  #   echo "$CORE_URL already exists in config file"
+  if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+    echo "$CORE_URL already exists in config file"
   #   sleep 5
-  # else
-  #   echo "$CORE_URL doesn't exist in config file!"
+  else
+    echo "$CORE_URL doesn't exist in config file!"
   #   sleep 5
   #   echo "Adding $CORE_URL to config file"
   #   sleep 5
   # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
   # echo "$ADD_CORE_URL"
-  # fi
+  fi
 done
 # sleep 10
 # cli_init_file_created=true
