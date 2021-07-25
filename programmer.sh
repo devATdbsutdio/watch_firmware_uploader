@@ -50,12 +50,12 @@ BANNER="
        |_|
 "
 
-PORT_STAT="PORT: \"$PORT\""
+PORT_STAT="PORT: $PORT"
 LAST_PULL=$(<"$last_pull_info_file")
-PULL_STAT="LAST PULL: \"$LAST_PULL\""
+PULL_STAT="LAST PULL: $LAST_PULL"
 LAST_BURN="--"
-BURN_STAT="FIRMWARE BURN STAT: \"$LAST_BURN\""
-BOTT_STAT="\"$PORT_STAT\" | \"$PULL_STAT\" | \"$BURN_STAT\""
+BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
+BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
 
 set_window() {
   # Create a virtual window that is two lines smaller at the bottom.
@@ -66,20 +66,15 @@ show_header_and_footer() {
   clear
 
   echo -e "${YELLOW}$BANNER${RESET}" && echo " " && echo " "
-  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] -> GET LATEST FIRMWARE."
-  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
-  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
+  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] - LATEST FIRMWARE."
+  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] - UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
+  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] - FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
 
   # Move cursor to last line in your screen
   tput cup "$HEIGHT" 0
 
-  PORT_STAT="$PORT_STAT"
-  LAST_PULL="$LAST_PULL"
-  PULL_STAT="LAST PULL: \"$LAST_PULL\""
-  LAST_BURN="$LAST_BURN"
-  BURN_STAT="FIRMWARE BURN STAT: \"$LAST_BURN\""
-  BOTT_STAT="\"$PORT_STAT\" | \"$PULL_STAT\" | \"$BURN_STAT\""
-  echo -e "\"${WHOLE_LINE_YELLOW}\"\"$BOTT_STAT\"\"${WHOLE_LINE_RESET}\""
+  # BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+  echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
   tput cup 17 0
