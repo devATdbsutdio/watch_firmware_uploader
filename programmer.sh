@@ -19,7 +19,7 @@ if [ -f "$SETTINGS_FILE" ]; then
   echo "TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!"
   sleep 5
 else
-  echo "TARGET SETTINGS () doesn't seem to exist in: $SETTINGS_DIR . Quitting!"
+  echo "TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!"
   sleep 5
   exit 1
 fi
