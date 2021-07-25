@@ -8,6 +8,8 @@ FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
 FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 last_pull_info_file=$HOME/last_pull.txt
 
+# ymal_parser="/usr/bin/which yq"
+
 BIN=$("$HOME"/bin/yq e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
 CHIP=$("$HOME"/bin/yq e '.MICROCONTROLLER.CHIP' "$SETTINGS_FILE")
@@ -99,14 +101,13 @@ while true; do
     echo ""$FIRMWARE_REPO_DIR" && git pull"
     cd "$FIRMWARE_REPO_DIR" && git pull && cd "$HOME"
     sleep 2
-
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
     LAST_PULL="$current_date_time"
     # save curr time stamp
     echo "$LAST_PULL" >"$last_pull_info_file"
-    sleep 5
+    sleep 2
     clear
     # -------- CURR CHECK AREA -------
     ;;
