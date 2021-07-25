@@ -7,7 +7,7 @@ SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
-ymal_parse=$HOME/bin/yq
+# ymal_parse=$HOME/bin/yq
 
 ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
@@ -35,16 +35,11 @@ WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 HEIGHT=$(tput lines)
 
 BANNER="
-   __ _                                       
-  / _(_)_ __ _ __ _____      ____ _ _ __ ___  
- | |_| | '__| '_ \` _ \ \ /\ / / _\` | '__/ _ \
- |  _| | |  | | | | | \ V  V / (_| | | |  __/ 
- |_| |_|_|  |_| |_| |_|\_/\_/ \__,_|_|  \___| 
-  _   _ _ __ | | ___   __ _  __| | ___ _ __   
- | | | | '_ \| |/ _ \ / _\` |/ _\` |/ _ \ '__|  
- | |_| | |_) | | (_) | (_| | (_| |  __/ |     
-  \__,_| .__/|_|\___/ \__,_|\__,_|\___|_|     
-       |_|
+---------------------
+| FIRMARE UPLOADER. |
+---------------------
+> CURRENT FIRMWARE: $FIRMWARE_DIR
+
 "
 
 PORT_STAT="PORT: $PORT"
@@ -62,7 +57,7 @@ set_window() {
 show_header_and_footer() {
   clear
 
-  echo -e "${YELLOW}$BANNER${RESET}" && echo " " && echo " "
+  echo -e "${YELLOW}$BANNER${RESET}" && echo " "
   echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] - LATEST FIRMWARE."
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] - UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] - FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
