@@ -56,10 +56,9 @@ set_window() {
 
 show_header_and_footer() {
   clear
-
-  echo -e "${YELLOW}$BANNER${RESET}" && echo " "
-  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] - LATEST FIRMWARE."
-  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] - UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
+  echo -e "${YELLOW}$BANNER${RESET}" && echo ""
+  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] - LATEST FIRMWARE.${RESET}"
+  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] - UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ].${RESET}"
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] - FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
 
   # Move cursor to last line in your screen
@@ -78,7 +77,9 @@ show_header_and_footer() {
 
 while true; do
   clear
+  sleep 10
   set_window
+  sleep 10
   show_header_and_footer
 
   read -r -p "  > " input
