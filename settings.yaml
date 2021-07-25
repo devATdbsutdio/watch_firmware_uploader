@@ -22,4 +22,5 @@ MICROCONTROLLER:
 
 FIRMWARE:
     # This is written by "installer.sh"
+    REPO: /home/pi/clock_firmware_production
     DIR: /home/pi/clock_firmware_production/clock
