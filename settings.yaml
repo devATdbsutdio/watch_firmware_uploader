@@ -1,6 +1,6 @@
 BINARY:
     # This is written by imnstaller.sh
-    BIN: $HOME/bin/arduino-cli
+    LOCATION: $HOME/bin/arduino-cli
 
 MICROCONTROLLER:
     # Edit this parameters for your needs
