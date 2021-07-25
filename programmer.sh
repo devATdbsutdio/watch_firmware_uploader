@@ -77,7 +77,7 @@ LAST_PULL=$(<"$LAST_PULL_INFO_FILE")
 PULL_STAT="LAST PULL: $LAST_PULL"
 LAST_BURN="--"
 BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
-BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+BOTT_STAT="$PORT_STAT|$PULL_STAT|$BURN_STAT"
 
 set_window() {
   # Create a virtual window that is two lines smaller at the bottom.
@@ -97,7 +97,7 @@ show_header_and_footer() {
   PORT_STAT="PORT: $PORT"
   PULL_STAT="LAST PULL: $LAST_PULL"
   BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
-  BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+  BOTT_STAT="$PORT_STAT|$PULL_STAT|$BURN_STAT"
 
   echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
@@ -115,7 +115,7 @@ while true; do
   read -r -p "  > " input
   case $input in
   [pP])
-    LAST_PULL="pulling now..."
+    LAST_PULL="⇅"
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -146,7 +146,7 @@ while true; do
     clear
     ;;
   [uU])
-    LAST_BURN="Uploading now..."
+    LAST_BURN="➔"
     show_header_and_footer
 
     echo "EXECUTING:"
