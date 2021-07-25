@@ -13,9 +13,10 @@ if [ -f "$LAST_PULL_INFO_FILE" ]; then
 else
   echo "No \"last pull request\" info found!"
 fi
-
+sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
   echo "$SETTINGS_FILE exists!"
+  sleep 5
 else
   echo "SETTINGS FILE doesn't seem to exist! Quitiing"
   sleep 5
