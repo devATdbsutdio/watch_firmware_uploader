@@ -200,10 +200,10 @@ for CORE_URL in "${CORE_URLS[@]}"; do
     echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
     echo " "
     #   sleep 5
-    # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    # echo "$ADD_CORE_URL"
-    # $ADD_CORE_URL
-    $ARDUINO config add board_manager.additional_urls $CORE_URL
+    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    echo "$ADD_CORE_URL"
+    $ADD_CORE_URL
+    # $ARDUINO config add board_manager.additional_urls $CORE_URL
   fi
   # arduino-cli core update-index
 done
