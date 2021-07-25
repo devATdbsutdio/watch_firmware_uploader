@@ -46,7 +46,7 @@ process_list() {
     echo -e "${RED} [4] Listed libs are installed${RESET}"
   fi
   # TBD clone repository
-  sleep 5
+  sleep 10
   clear
 }
 
