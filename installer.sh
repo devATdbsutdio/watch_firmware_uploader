@@ -23,7 +23,7 @@ echo ""
 echo -e "${YELLOW}Loading settings ...${RESET}"
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
+  echo -e "${GREEN}. TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
   sleep 5
 else
   echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/"
@@ -45,32 +45,13 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 # ---- Install arduino-cli ---- #
 sleep 1
 echo ""
-echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
+echo -e "${YELLOW}Entering base/bin Directory:${RESET} cd $BIN_BASE_DIR"/bin
 sleep 1
-mkdir -p -- "$BIN_BASE_DIR"
-cd "$BIN_BASE_DIR" || exit
-echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
+mkdir -p -- "$BIN_BASE_DIR"/bin
+cd "$BIN_BASE_DIR"/bin || exit
+echo -e "${GREEN}. IN $BIN_BASE_DIR/bin now.${RESET}"
+sleep 1
 
-# if [[ ! "$(cd "$BIN_BASE_DIR")" ]]; then
-#   echo ""
-#   echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
-#   mkdir "$BIN_BASE_DIR"
-#   sleep 1
-#   echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
-#   if [[ "$(cd "$BIN_BASE_DIR")" ]]; then
-#     echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
-#   else
-#     echo -e "${RED}  Can not enter $BIN_BASE_DIR"
-#     echo -e "QUITTING NOW!${RESET}"
-#     sleep 2
-#     exit 1
-#   fi
-# else
-#   echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
-# fi
-
-# sleep 2
-# echo -e "${YELLOW}Making \"bin\" directory...{RESET}"
 # mkdir bin
 # sleep 2
 # echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
@@ -88,7 +69,7 @@ echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
 # rm LICENSE.txt
 # echo "arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
 # ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
-# # ** Entry cli's location in settings.yaml
+# # ** Update cli's location in settings.yaml
 # $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
 # sleep 2
 # # go back to the home directory
