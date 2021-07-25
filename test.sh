@@ -4,12 +4,12 @@
 #echo $0
 
 # prints the absolute path of the script 
-full_path=$(realpath "$0")
-#echo $full_path
+FULL_PATH=$(realpath "$0")
 
-# prints teh dir of the script
-SETTINGS_FILE=$(dirname "$full_path")
-#echo $SCRIPT_DIR
+# prints the dir of the script
+SETTINGS_DIR=$(dirname "$FULL_PATH")
+SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
+
 
 BIN=$("$HOME"/bin/yq e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
