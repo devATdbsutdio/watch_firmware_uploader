@@ -189,17 +189,17 @@ fi
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo "$CORE_URL"
-  if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-    echo "$CORE_URL already exists in config file"
-    sleep 5
-  else
-    echo "$CORE_URL doesn't exist in config file!"
-    sleep 5
-    echo "Adding $CORE_URL to config file"
-    sleep 5
-    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    $ADD_CORE_URL
-  fi
+  # if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+  #   echo "$CORE_URL already exists in config file"
+  #   sleep 5
+  # else
+  #   echo "$CORE_URL doesn't exist in config file!"
+  #   sleep 5
+  #   echo "Adding $CORE_URL to config file"
+  #   sleep 5
+  ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+  $ADD_CORE_URL
+  # fi
 done
 sleep 10
 cli_init_file_created=true
