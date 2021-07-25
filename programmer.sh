@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SER_PORT_REGEX='/dev/ttyA\|/dev/ttyp\|/dev/ttyU\|/dev/tty.u'
 
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -92,7 +93,7 @@ do
   [sS])
  show_header_and_footer
 
- IFS=$'\n' ports=( "$(find /dev/tty* | grep A)" )
+ IFS=$'\n' ports=( "$(find /dev/tty* | grep $SER_PORT_REGEX)" )
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
