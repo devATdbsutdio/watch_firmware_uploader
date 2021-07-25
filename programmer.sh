@@ -1,18 +1,30 @@
 #!/bin/bash
 
-echo "starting sketch"
-sleep 4
+echo "Loading settings ..."
+sleep 1
 
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
-
-echo "Read settings. Applying Settings"
-sleep 4
-
 LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
-# ymal_parser="/usr/bin/which yq"
+if [ -f "$LAST_PULL_INFO_FILE" ]; then
+  echo "Last pull request info exists!"
+else
+  echo "No \"last pull request\" info found!"
+fi
+
+if [ -f "$SETTINGS_FILE" ]; then
+  echo "$SETTINGS_FILE exists!"
+else
+  echo "SETTINGS FILE doesn't seem to exist! Quitiing"
+  sleep 5
+  exit 1
+fi
+
+echo "Applying Settings ..."
+sleep 1
+
 ymal_parse=$HOME/bin/yq
 
 ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
@@ -80,11 +92,11 @@ show_header_and_footer() {
   tput cup 14 0
 }
 
+echo "Staring now ... "
+
 while true; do
   clear
-  sleep 10
   set_window
-  sleep 10
   show_header_and_footer
 
   read -r -p "  > " input
