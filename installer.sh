@@ -80,7 +80,7 @@
 # CORE_COMB=megaTinyCore:megaavr
 # LIB_LIST=(TinyMegaI2C RV8803Tiny)
 
-# SETTING_FILE_NAME=settings.yaml
+SETTING_FILE_NAME=settings.yaml
 
 # # ymal_parse=$("which yq") #used for parsing setting file
 ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
