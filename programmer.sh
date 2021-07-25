@@ -98,7 +98,8 @@ while true; do
     LAST_PULL="pulling now..."
     show_header_and_footer
 
-    echo "EXECUTING: $FIRMWARE_REPO_DIR && git pull"
+    echo "EXECUTING:"
+    echo "$FIRMWARE_REPO_DIR && git pull"
     cd "$FIRMWARE_REPO_DIR" && git pull
     cd "$HOME" || return
     sleep 2
@@ -128,7 +129,7 @@ while true; do
 
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
-    "${UPLOAD_CMD[@]}"
+    ${UPLOAD_CMD[@]}
 
     burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="Last burnt at $burn_date_time"
