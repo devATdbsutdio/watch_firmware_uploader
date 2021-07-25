@@ -111,7 +111,7 @@ do
 
  echo ""$FIRMWARE_REPO_DIR" && git pull"
  cd "$FIRMWARE_REPO_DIR" && git pull 
- cd ... || return
+ cd "$HOME"
  sleep 2 
  # get current time stamp
  current_date_time="$(date +"%Y-%m-%d %T")"
@@ -135,9 +135,12 @@ do
    [uU])
  LAST_BURN="Uploading now..."
  show_header_and_footer
+
+ sleep 20
  
+ echo "${UPLOAD_CMD[@]}" 
  ${UPLOAD_CMD[@]}
- cd ... || return
+
  
  burn_date_time="$(date +"%Y-%m-%d %T")"
  LAST_BURN="Last burnt at $burn_date_time"
