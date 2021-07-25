@@ -92,7 +92,7 @@ do
   [sS])
  show_header_and_footer
 
- IFS=$'\n' ports=( "$(ls /dev/ttyU*)" )
+ IFS=$'\n' ports=( "$(ls /dev/tty* | gerp A)" )
  select port in "${ports[@]}"; do
    FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
    FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
