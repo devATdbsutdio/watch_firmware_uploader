@@ -109,7 +109,8 @@ do
  LAST_PULL="pulling now..."
  show_header_and_footer
 
- cd "$FIRMWARE_REPO_DIR" && git pull
+ echo ""$FIRMWARE_REPO_DIR" && git pull"
+ cd "$FIRMWARE_REPO_DIR" && git pull 
  cd ... || return
  sleep 2 
  # get current time stamp
@@ -118,7 +119,7 @@ do
  LAST_PULL="$current_date_time"
  # save curr time stamp
  echo "$LAST_PULL" > "$last_pull_info_file"
- sleep 2
+ sleep 5
  clear
  ;;
   [sS])
@@ -135,7 +136,7 @@ do
  LAST_BURN="Uploading now..."
  show_header_and_footer
  
- "${UPLOAD_CMD[@]}"
+ ${UPLOAD_CMD[@]}
  cd ... || return
  
  burn_date_time="$(date +"%Y-%m-%d %T")"
