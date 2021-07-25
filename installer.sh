@@ -83,11 +83,11 @@
 # SETTING_FILE_NAME=settings.yaml
 
 # # ymal_parse=$("which yq") #used for parsing setting file
-# ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
 
-# FULL_PATH=$(realpath "$0")
-# SETTINGS_DIR=$(dirname "$FULL_PATH")
-# SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
+FULL_PATH=$(realpath "$0")
+SETTINGS_DIR=$(dirname "$FULL_PATH")
+SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 
 # # Show the list and task to do
 # clear
