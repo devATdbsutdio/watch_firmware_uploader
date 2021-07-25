@@ -2,7 +2,7 @@ BINARY:
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
     CORES:
-        - megaTinyCore:megaavr
+        - megaTinyCore
     LIBS: 
         - TinyMegaI2C
         - RV8803Tiny
