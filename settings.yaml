@@ -3,7 +3,10 @@ BINARY:
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
     CORES:
-        - megaTinyCore
+        LINK:
+            - http://drazzy.com/package_drazzy.com_index.json
+        SEARCH_TERM:
+            - megaTinyCore
     LIBS: 
         - TinyMegaI2C
         - RV8803Tiny

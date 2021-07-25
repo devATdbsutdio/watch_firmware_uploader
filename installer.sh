@@ -7,6 +7,38 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
+settings_found_loaded=false
+cli_installed=false
+cores_installed=false
+ibs_installed=false
+
+process_list() {
+  if [ $settings_found_loaded = true ]; then
+    echo -e "${GREEN}Settings File Located and Loaded${RESET}"
+  else
+    echo -e "${RED}settings.yaml located and Loaded${RESET}"
+  fi
+
+  if [ $cli_installed = true ]; then
+    echo -e "${GREEN}arduino-cli is installed${RESET}"
+  else
+    echo -e "${RED}arduino-cli is installed${RESET}"
+  fi
+
+  if [ $cores_installed = true ]; then
+    echo -e "${GREEN}Listed cores are installed${RESET}"
+  else
+    echo -e "${RED}Listed cores are installed${RESET}"
+  fi
+
+  if [ $libs_installed = true ]; then
+    echo -e "${GREEN}listed libs are installed${RESET}"
+  else
+    echo -e "${RED}listed libs are installed${RESET}"
+  fi
+  # TBD clone repository
+}
+
 SETTING_FILE_NAME=settings.yaml
 # ymal_parse=$("which yq") #used for parsing setting file
 #
@@ -16,6 +48,11 @@ FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 
+# Show the list and task to do
+clear
+process_list
+sleep 5
+
 # ---- Pre-checks ---- #
 clear
 sleep 1
@@ -24,11 +61,23 @@ echo -e "${YELLOW}>> Loading settings ...${RESET}"
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
+  sleep 3
+
+  # Show the updated list and task to do
+  clear
+  settings_found_loaded=true
+  process_list
   sleep 5
 else
-  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/"
-  echo -e "QUITTING !${RESET}"
+  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+
+  # Show the updated list and task to do
+  clear
+  settings_found_loaded=false
+  process_list
   sleep 5
+
+  echo -e "${RED}QUITTING !${RESET}"
   exit 1
 fi
 # -------------------- #
@@ -44,11 +93,10 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 
 # ---- Install arduino-cli ---- #
 sleep 1
-echo ""
-echo -e "${GREEN}Found base directory:${RESET} $BIN_BASE_DIR"
+echo -e "${GREEN} In $SETTING_FILE_NAME, target base directory is:${RESET} $BIN_BASE_DIR"
 echo ""
 sleep 1
-echo -e "${YELLOW}>> Entering bin Directory in base:${RESET} cd $BIN_BASE_DIR/bin"
+echo -e "${YELLOW}>> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
 sleep 1
 mkdir -p -- "$BIN_BASE_DIR"/bin
 cd "$BIN_BASE_DIR"/bin || exit
@@ -67,38 +115,40 @@ tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
 rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
 echo ""
 echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
-echo "" && echo ""
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Update cli's location in settings.yaml
-echo -e "${GREEN}updated setting.yaml with arduino-cli's location${RESET}"
+echo -e "${GREEN}  Updated setting.yaml with arduino-cli's location${RESET}"
+echo "" && echo ""
+echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
-sleep 1
+echo "---------------------------"
+sleep 4
 # go back to the home directory
 cd "$HOME" || return
 
 # ---- Create Arduino-cli init file [if it doesn't exist]---- #
 echo "" && echo ""
-echo -e "${YELLOW}Looking for arduino-cli config file...${RESET}"
+echo -e "${YELLOW}>> Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED}  It doesn't exist!${RESET}"
-  sleep 1
+  sleep 2
   echo -e "${YELLOW}  Creating now..${RESET}"
   echo ""
   "$ARDUINO" config init
-  sleep 1
+  sleep 2
   echo ""
   echo "---------------------------"
   "$ARDUINO" config dump
   echo "---------------------------"
 else
   echo -e "${GREEN}  It exists!${RESET}"
-  sleep 1
+  sleep 2
   echo ""
   echo "---------------------------"
   "$ARDUINO" config dump
   echo "---------------------------"
 fi
-sleep 1
+sleep 2
 
 # # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
