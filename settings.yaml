@@ -1,5 +1,5 @@
 BINARY:
-    # This is written by "installer.sh"
+    BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
 
     # The deatils yopu can find:
@@ -21,6 +21,6 @@ MICROCONTROLLER:
     PROGRAMMER: pyupdi
 
 FIRMWARE:
-    # This is written by "installer.sh"
+    REPO_BASE: /home/pi
     REPO: /home/pi/clock_firmware_production
     DIR: /home/pi/clock_firmware_production/clock
