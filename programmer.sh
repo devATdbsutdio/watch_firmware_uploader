@@ -18,7 +18,7 @@ set_window (){
 
 PORT_STAT="PORT: NULL"
 last_pull_info_file=$HOME/last_pull.txt
-LAST_PULL=$(<$(( last_pull_info_file )))
+LAST_PULL=$(<"$last_pull_info_file")
 PULL_STAT="LAST PULL: $LAST_PULL"
 LAST_BURN=""
 BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
