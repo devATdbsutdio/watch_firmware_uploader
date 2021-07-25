@@ -189,16 +189,18 @@ SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 
 CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
+ARDUINO=$HOME/bin/arduino-cli
 
 for CORE_URL in "${CORE_URLS[@]}"; do
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
-  #   echo "Adding $CORE_URL to config file"
-  #   sleep 5
-  # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-  # echo "$ADD_CORE_URL"
+    sleep 2
+    echo "${YELLOW}Adding $CORE_URL to config file${RESET}"
+    #   sleep 5
+    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    echo "$ADD_CORE_URL"
   fi
 done
 # sleep 10
