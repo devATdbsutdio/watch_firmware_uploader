@@ -45,22 +45,24 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 # ---- Install arduino-cli ---- #
 sleep 1
 echo ""
-echo "Going to base directory: $BIN_BASE_DIR"
+echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR{RESET}"
 if [[ ! "$(cd "$BIN_BASE_DIR")" ]]; then
-  echo "$BIN_BASE_DIR Doesn't exist. Creating now ..."
+  echo ""
+  echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
   sleep 2
   mkdir "$BIN_BASE_DIR"
   cd "$BIN_BASE_DIR" || return
 fi
 # cd "$BIN_BASE_DIR" || return
 sleep 2
-echo "Making \"bin\" directory..."
+echo "${YELLOW}Making \"bin\" directory...{RESET}"
 mkdir bin
 sleep 2
 echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
 cd "$BIN_BASE_DIR"/bin || return
 sleep 2
 echo "Downloading arduino-cli..."
+echo ""
 sleep 2
 wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
 echo "Download finished!"
