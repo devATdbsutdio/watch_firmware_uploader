@@ -20,7 +20,7 @@ SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 clear
 sleep 1
 echo ""
-echo -e "${YELLOW}Loading settings ...${RESET}"
+echo -e "${YELLOW}>> Loading settings ...${RESET}"
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
@@ -45,51 +45,58 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 # ---- Install arduino-cli ---- #
 sleep 1
 echo ""
-echo -e "${YELLOW}Entering base/bin Directory:${RESET} cd $BIN_BASE_DIR"/bin
+echo -e "${GREEN}Found base directory:${RESET} $BIN_BASE_DIR"
+echo ""
+sleep 1
+echo -e "${YELLOW}>> Entering bin Directory in base:${RESET} cd $BIN_BASE_DIR/bin"
 sleep 1
 mkdir -p -- "$BIN_BASE_DIR"/bin
 cd "$BIN_BASE_DIR"/bin || exit
 echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
 sleep 1
 echo ""
-echo -e "${YELLOW}Downloading arduino-cli...${RESET}"
+echo -e "${YELLOW}>> Downloading arduino-cli...${RESET}"
 echo ""
 sleep 1
 wget "$CLI_DOWNLOAD_LINK"
 echo -e "${GREEN}  Download finished!${RESET}"
 sleep 1
 echo ""
-echo -e "${YELLOW}Unzipping...${RESET}"
+echo -e "${YELLOW}>> Unzipping...${RESET}"
 tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm arduino-cli_latest_Linux_ARMv7.tar.gz
-rm LICENSE.txt
+rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
 echo ""
 echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
 echo "" && echo ""
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Update cli's location in settings.yaml
+echo -e "${GREEN}updated setting.yaml with arduino-cli's location${RESET}"
 $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
 sleep 1
 # go back to the home directory
 cd "$HOME" || return
 
 # ---- Create Arduino-cli init file [if it doesn't exist]---- #
-echo ""
+echo "" && echo ""
 echo -e "${YELLOW}Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
-  echo "${RED}  It doesn't exist!${RESET}"
+  echo -e "${RED}  It doesn't exist!${RESET}"
   sleep 1
-  echo "${YELLOW}  Creating now..${RESET}"
+  echo -e "${YELLOW}  Creating now..${RESET}"
   echo ""
   "$ARDUINO" config init
   sleep 1
   echo ""
+  echo "---------------------------"
   "$ARDUINO" config dump
+  echo "---------------------------"
 else
-  echo "${GREEn}  It exists!${RESET}"
+  echo -e "${GREEN}  It exists!${RESET}"
   sleep 1
   echo ""
+  echo "---------------------------"
   "$ARDUINO" config dump
+  echo "---------------------------"
 fi
 sleep 1
 
