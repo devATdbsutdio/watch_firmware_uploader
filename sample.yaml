@@ -1,0 +1,16 @@
+BINARY:
+    BIN: $HOME/bin/arduino-cli
+MICROCONTROLLER:
+    CORE: megaTinyCore:megaavr:atxy7
+    CHIP: 1607
+    CLOCK: 5internal
+    BOD: 1v8
+    BODMODE: disabled
+    EEPROM_SAVE: enable
+    MILLIS: enabled
+    RESET_PIN: UPDI
+    STARTUP_TIME: 0
+    UARTV: skip
+    PROGRAMMER: pyupdi
+FIRMWARE:
+    DIR: $HOME/clock_firmware_production/clock
