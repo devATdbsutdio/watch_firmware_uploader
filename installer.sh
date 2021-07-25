@@ -45,14 +45,10 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 # ---- Install arduino-cli ---- #
 sleep 1
 echo ""
-echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR${RESET}"
-while ! "$(cd "$BIN_BASE_DIR")"; do
-  echo ""
-  echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
-  mkdir "$BIN_BASE_DIR"
-  sleep 1
-  echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
-done
+echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
+sleep 1
+mkdir -p -- "$BIN_BASE_DIR"
+cd "$BIN_BASE_DIR" || exit
 echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
 
 # if [[ ! "$(cd "$BIN_BASE_DIR")" ]]; then
