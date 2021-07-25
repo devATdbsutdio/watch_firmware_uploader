@@ -23,7 +23,7 @@ echo ""
 echo -e "${YELLOW}Loading settings ...${RESET}"
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo -e "${GREEN}. TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
+  echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
   sleep 5
 else
   echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/"
@@ -32,7 +32,7 @@ else
   exit 1
 fi
 # -------------------- #
-
+CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
 BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
 CORE_URL=http://drazzy.com/package_drazzy.com_index.json
 ARDUINO=""
@@ -49,31 +49,28 @@ echo -e "${YELLOW}Entering base/bin Directory:${RESET} cd $BIN_BASE_DIR"/bin
 sleep 1
 mkdir -p -- "$BIN_BASE_DIR"/bin
 cd "$BIN_BASE_DIR"/bin || exit
-echo -e "${GREEN}. IN $BIN_BASE_DIR/bin now.${RESET}"
+echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
 sleep 1
-
-# mkdir bin
-# sleep 2
-# echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
-# cd "$BIN_BASE_DIR"/bin || return
-# sleep 2
-# echo "Downloading arduino-cli..."
-# echo ""
-# sleep 2
-# wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
-# echo "Download finished!"
-# sleep 2
-# echo "Unzipping..."
-# tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-# rm arduino-cli_latest_Linux_ARMv7.tar.gz
-# rm LICENSE.txt
-# echo "arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
-# ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
-# # ** Update cli's location in settings.yaml
-# $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
-# sleep 2
-# # go back to the home directory
-# cd "$HOME" || return
+echo ""
+echo -e "${YELLOW}Downloading arduino-cli...${RESET}"
+echo ""
+sleep 1
+wget "$CLI_DOWNLOAD_LINK"
+echo -e "${GREEN}  Download finished!{RESET}"
+sleep 1
+echo ""
+echo -e "${YELLOW}Unzipping...${RESET}"
+tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+rm arduino-cli_latest_Linux_ARMv7.tar.gz
+rm LICENSE.txt
+echo -e "${GREEN}  arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
+echo ""
+ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+# ** Update cli's location in settings.yaml
+$ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
+sleep 1
+# go back to the home directory
+cd "$HOME" || return
 
 # # ---- Create Arduino-cli init file [if it doesn't exist]---- #
 # echo ""

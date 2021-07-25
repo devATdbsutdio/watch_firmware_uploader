@@ -1,4 +1,5 @@
 BINARY:
+    LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
     CORES:
