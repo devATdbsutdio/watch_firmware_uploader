@@ -6,7 +6,7 @@ SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 
 FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
 FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
-LAST_PULL_INFO_FILE=$HOME/last_pull.txt
+LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
 ymal_parse=$HOME/bin/yq
