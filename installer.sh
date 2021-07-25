@@ -104,7 +104,7 @@ if [ -f "$SETTINGS_FILE" ]; then
 
   CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
-  CORE_URLS=$($ymal_parseyq e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE")
+  CORE_URLS=$($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE")
   # CORE_URLS=(http://drazzy.com/package_drazzy.com_index.json)
   ARDUINO=""
   CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
