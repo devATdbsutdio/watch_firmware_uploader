@@ -7,6 +7,15 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
+SETTING_FILE_NAME=settings.yaml
+# ymal_parse=$("which yq") #used for parsing setting file
+#
+ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+
+FULL_PATH=$(realpath "$0")
+SETTINGS_DIR=$(dirname "$FULL_PATH")
+SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
+
 # ---- Pre-checks ---- #
 clear
 sleep 1
@@ -23,15 +32,6 @@ else
   exit 1
 fi
 # -------------------- #
-
-SETTING_FILE_NAME=settings.yaml
-# ymal_parse=$("which yq") #used for parsing setting file
-#
-ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
-
-FULL_PATH=$(realpath "$0")
-SETTINGS_DIR=$(dirname "$FULL_PATH")
-SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 
 BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
 CORE_URL=http://drazzy.com/package_drazzy.com_index.json
