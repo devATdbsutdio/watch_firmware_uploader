@@ -12,13 +12,13 @@ HEIGHT=$(tput lines)
 
 set_window (){
     # Create a virtual window that is two lines smaller at the bottom.
-    tput csr 0 $(($HEIGHT-2))
+    tput csr 0 $(( HEIGHT-2 ))
 }
 
 
 PORT_STAT="PORT: NULL"
 last_pull_info_file=$HOME/last_pull.txt
-LAST_PULL=$(<$last_pull_info_file)
+LAST_PULL=$(<$(( last_pull_info_file )))
 PULL_STAT="LAST PULL: $LAST_PULL"
 LAST_BURN=""
 BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
@@ -28,11 +28,6 @@ footer_status () {
     # Move cursor to last line in your screen
     tput cup $HEIGHT 0;
 
-    #PORT_STAT="$PORT_STAT"
-    #LAST_PULL="$LAST_PULL"
-    #PULL_STAT="LAST PULL: $LAST_PULL"
-    #LAST_BURN="$LAST_BURN"
-    #BURN_STAT="FIMWARE BURN STAT: $LAST_BURN"
     BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
     echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
     
@@ -85,7 +80,7 @@ do
  cd $FIRMWARE_REPO_DIR && git pull && cd $HOME
  sleep 2 
  # get current time stamp
- current_date_time="`date +"%Y-%m-%d %T"`"
+ current_date_time="$(date +"%Y-%m-%d %T")"
  # show curr time stamp
  LAST_PULL="$current_date_time"
  # save curr time stamp
@@ -113,7 +108,7 @@ do
 "${UPLOAD_CMD[@]}"
  cd $HOME
  
- burn_date_time="`date +"%Y-%m-%d %T"`"
+ burn_date_time="$(date +"%Y-%m-%d %T")"
  LAST_BURN="Last burnt at $burn_date_time"
  show_header_and_footer
  sleep 2
