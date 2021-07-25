@@ -1,6 +1,11 @@
 BINARY:
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
+    CORES:
+        - megaTinyCore:megaavr
+    LIBS: 
+        - TinyMegaI2C
+        - RV8803Tiny
 
     # The deatils yopu can find:
     # arduino-cli board details -b FQBN
