@@ -116,10 +116,8 @@ do
  ;;
   *)
  clear && echo -e "${GREEN}$BANNER${RESET}" && echo -e "${RED} > INVALID INPUT ${RESET}"
- tput cup $HEIGHT 0;
- echo -e "${WHOLE_LINE_GREEN}$BOTT_STAT${WHOLE_LINE_RESET}"
- tput cup 17 0
- sleep 5
+ show_header_and_footer
+ sleep 2
  clear
  ;;
  esac
