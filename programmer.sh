@@ -101,7 +101,7 @@ show_header_and_footer() {
   echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
-  tput cup 14 0
+  tput cup 10 0
 }
 
 echo "Staring now ... "
