@@ -118,7 +118,7 @@ while true; do
     show_header_and_footer
 
     echo "EXECUTING:"
-    echo "$FIRMWARE_REPO_DIR && git pull"
+    echo " cd $FIRMWARE_REPO_DIR && git pull "
     cd "$FIRMWARE_REPO_DIR" && git pull
     cd "$HOME" || return
     sleep 2
