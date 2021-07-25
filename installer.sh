@@ -127,29 +127,29 @@ fi
 # -------------------- #
 
 # ---- Install arduino-cli ---- #
-sleep 1
-echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
-echo ""
-sleep 2
-echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
-sleep 2
-mkdir -p -- "$BIN_BASE_DIR"/bin
-cd "$BIN_BASE_DIR"/bin || exit
-echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
-echo ""
-sleep 2
-wget "$CLI_DOWNLOAD_LINK"
-echo -e "${GREEN}  Download finished!${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Unzipping...${RESET}"
-tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
-echo ""
-echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+# sleep 1
+# echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+# echo ""
+# sleep 2
+# echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+# sleep 2
+# mkdir -p -- "$BIN_BASE_DIR"/bin
+# cd "$BIN_BASE_DIR"/bin || exit
+# echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
+# sleep 2
+# echo ""
+# echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
+# echo ""
+# sleep 2
+# wget "$CLI_DOWNLOAD_LINK"
+# echo -e "${GREEN}  Download finished!${RESET}"
+# sleep 2
+# echo ""
+# echo -e "${YELLOW}> Unzipping...${RESET}"
+# tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+# rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
+# echo ""
+# echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Update cli's location in settings.yaml
 echo -e "${GREEN}  Updated setting.yaml with arduino-cli's location${RESET}"
@@ -189,17 +189,17 @@ fi
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo "$CORE_URL"
-  # if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-  #   echo "$CORE_URL already exists in config file"
-  #   sleep 2
-  # else
-  #   echo "$CORE_URL doesn't exist in config file!"
-  #   sleep 2
-  #   echo "Adding $CORE_URL to config file"
-  #   sleep 2
-  #   ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-  #   $ADD_CORE_URL
-  # fi
+  if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+    echo "$CORE_URL already exists in config file"
+    sleep 5
+  else
+    echo "$CORE_URL doesn't exist in config file!"
+    sleep 5
+    echo "Adding $CORE_URL to config file"
+    sleep 5
+    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    $ADD_CORE_URL
+  fi
 done
 sleep 10
 cli_init_file_created=true
