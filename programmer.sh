@@ -4,8 +4,6 @@ FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 
-# FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
-# FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
@@ -27,10 +25,6 @@ PROGRAMMER=$("$HOME"/bin/yq e '.MICROCONTROLLER.PROGRAMMER' "$SETTINGS_FILE")
 FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
 
 UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
-
-echo "${UPLOAD_CMD[@]}"
-
-#SER_PORT_REGEX='/dev/ttyA\|/dev/ttyp\|/dev/ttyU\|/dev/tty.u'
 
 # GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
@@ -132,9 +126,9 @@ while true; do
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
 
-    sleep 30
+    # sleep 30
 
-    ${UPLOAD_CMD[@]}
+    "${UPLOAD_CMD[@]}"
 
     burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="Last burnt at $burn_date_time"
