@@ -28,11 +28,11 @@ footer_status () {
     # Move cursor to last line in your screen
     tput cup $HEIGHT 0;
 
-    PORT_STAT="$PORT_STAT"
-    LAST_PULL="$LAST_PULL"
-    PULL_STAT="LAST PULL: $LAST_PULL"
-    LAST_BURN="$LAST_BURN"
-    BURN_STAT="FIMWARE BURN STAT: $LAST_BURN"
+    #PORT_STAT="$PORT_STAT"
+    #LAST_PULL="$LAST_PULL"
+    #PULL_STAT="LAST PULL: $LAST_PULL"
+    #LAST_BURN="$LAST_BURN"
+    #BURN_STAT="FIMWARE BURN STAT: $LAST_BURN"
     BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
     echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
     
