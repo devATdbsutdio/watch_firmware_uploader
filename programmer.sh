@@ -126,7 +126,7 @@ while true; do
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
-    LAST_PULL="$current_date_time"
+    LAST_PULL="⇅ $current_date_time"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
     sleep 2
@@ -147,6 +147,7 @@ while true; do
     ;;
   [uU])
     LAST_BURN="➔"
+    BURN_STAT="UPLOADING: $LAST_BURN"
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -158,6 +159,7 @@ while true; do
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="✓"
+    BURN_STAT="UPLOADED: $LAST_BURN"
     show_header_and_footer
     sleep 2
     clear
