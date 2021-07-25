@@ -156,8 +156,8 @@ while true; do
 
     "${UPLOAD_CMD[@]}"
 
-    burn_date_time="$(date +"%Y-%m-%d %T")"
-    LAST_BURN="Last burnt at $burn_date_time"
+    # burn_date_time="$(date +"%Y-%m-%d %T")"
+    LAST_BURN="✓"
     show_header_and_footer
     sleep 2
     clear
