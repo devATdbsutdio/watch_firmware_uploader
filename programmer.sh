@@ -1,13 +1,19 @@
 #!/bin/bash
 
+echo "starting sketch"
+sleep 4
+
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 
+echo "Read settings. Applying Settings"
+sleep 4
+
 LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
-# ymal_parse=$HOME/bin/yq
+ymal_parse=$HOME/bin/yq
 
 ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
@@ -39,7 +45,6 @@ BANNER="
 | FIRMARE UPLOADER. |
 ---------------------
 > CURRENT FIRMWARE: $FIRMWARE_DIR
-
 "
 
 PORT_STAT="PORT: $PORT"
@@ -72,7 +77,7 @@ show_header_and_footer() {
   echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
-  tput cup 17 0
+  tput cup 14 0
 }
 
 while true; do
