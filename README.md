@@ -31,7 +31,7 @@ _Tested in Raspberry PI 3B+ running raspbian:_
 
 ### System pre-requisites:
 - [x] System Updated. `sudo apt-get update -y`
-- [x] System Upgradeed. `sudo apt-get update -y`
+- [x] System Upgraded. `sudo apt-get update -y`
 - [x] Add user to the dial out group for serial port access without root. `sudo usermod -a -G dialout pi`
 - [x] Install git `sudo apt-get install git -y`
 - [x] Python3 `python3 --version`
