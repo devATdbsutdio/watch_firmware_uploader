@@ -87,9 +87,9 @@ set_window() {
 show_header_and_footer() {
   clear
   echo -e "${YELLOW}$BANNER${RESET}" && echo ""
-  echo -e "${YELLOW} PRESS [ P ] THEN [ ENTER ] - LATEST FIRMWARE.${RESET}"
-  echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] - UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ].${RESET}"
-  echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] - FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
+  echo -e "${YELLOW} P + [ ENTER ] = PULL LATEST FIRMWARE.${RESET}"
+  echo -e "${YELLOW} S + [ ENTER ] = SELECT UPLOAD PORT${RESET}"
+  echo -e "${YELLOW} U + [ ENTER ] = UPLOAD FIRMWARE${RESET}" && echo " "
 
   # Move cursor to last line in your screen
   tput cup "$HEIGHT" 0
