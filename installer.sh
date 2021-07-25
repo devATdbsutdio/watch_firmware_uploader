@@ -51,7 +51,7 @@ process_list() {
     # clear
 
     echo ""
-    echo -e "${YELLOW} Proceed to next step? [Y/n] ${RESET}"
+    echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
     read -r -p "  > " input
     case $input in
     [yY])
