@@ -4,8 +4,8 @@ FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 
-FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
-FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
+# FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
+# FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
 LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
@@ -129,6 +129,9 @@ while true; do
 
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
+
+    sleep 30
+
     ${UPLOAD_CMD[@]}
 
     burn_date_time="$(date +"%Y-%m-%d %T")"
