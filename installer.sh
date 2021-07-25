@@ -191,7 +191,6 @@ SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
 
 for CORE_URL in "${CORE_URLS[@]}"; do
-  echo "> $CORE_URL"
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
