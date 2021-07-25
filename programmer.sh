@@ -2,32 +2,48 @@
 
 SETTING_FILE_NAME=ssettings.yaml
 
+# ymal_parse=$("which yq") #used for parsing setting file
+ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 LAST_PULL_INFO_FILE=$HOME/last_pull.txt
 
-echo "Loading settings ..."
+# ---- color info ---- #
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+RESET='\033[0m'
+WHOLE_LINE_YELLOW='\x1b[43;30m'
+WHOLE_LINE_RESET='\x1b[K\x1b[0m'
+HEIGHT=$(tput lines)
+# -------------------- #
+
+# ---- Pre-checks ---- #
+clear
+echo ""
+echo "${YELLOW}Loading settings ...${RESET}"
 sleep 1
 if [ -f "$LAST_PULL_INFO_FILE" ]; then
-  echo "Last pull request info exists!"
+  echo "${GREEN}Last pull request info exists!${RESET}"
 else
-  echo "No \"last pull request\" info found!"
+  echo "${RED}No \"last pull request\" info found!${RESET}"
 fi
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo "TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!"
+  echo "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!${RESET}"
   sleep 5
 else
-  echo "TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!"
+  echo "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!${RESET}"
   sleep 5
   exit 1
 fi
-echo "Applying Settings ..."
+echo "${YELLOW}Applying Settings ...${RESET}"
 sleep 1
+# -------------------- #
 
-ymal_parse=$HOME/bin/yq
-
+# ---- Assiging arduino-cli parameters from settings file ---- #
 ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
 CHIP=$("$HOME"/bin/yq e '.MICROCONTROLLER.CHIP' "$SETTINGS_FILE")
@@ -45,13 +61,7 @@ FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
 
 UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
 
-# GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-# RED='\033[0;31m'
-RESET='\033[0m'
-WHOLE_LINE_YELLOW='\x1b[43;30m'
-WHOLE_LINE_RESET='\x1b[K\x1b[0m'
-HEIGHT=$(tput lines)
+# ----------------------------------------------------------- #
 
 BANNER="
 ---------------------
