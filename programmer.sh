@@ -56,7 +56,7 @@ MILLIS=$("$HOME"/bin/yq e '.MICROCONTROLLER.MILLIS' "$SETTINGS_FILE")
 RESET_PIN=$("$HOME"/bin/yq e '.MICROCONTROLLER.RESET_PIN' "$SETTINGS_FILE")
 STARTUP_TIME=$("$HOME"/bin/yq e '.MICROCONTROLLER.STARTUP_TIME' "$SETTINGS_FILE")
 UARTV=$("$HOME"/bin/yq e '.MICROCONTROLLER.UARTV' "$SETTINGS_FILE")
-PORT="--"
+PORT="[x]"
 PROGRAMMER=$("$HOME"/bin/yq e '.MICROCONTROLLER.PROGRAMMER' "$SETTINGS_FILE")
 FIRMWARE_REPO_DIR=$("$HOME"/bin/yq e '.FIRMWARE.REPO' "$SETTINGS_FILE")
 FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
@@ -116,6 +116,7 @@ while true; do
   case $input in
   [pP])
     LAST_PULL="⇅"
+    PULL_STAT="PULLING $LAST_PULL ..."
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -126,7 +127,8 @@ while true; do
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
-    LAST_PULL="⇅ $current_date_time"
+    LAST_PULL="$current_date_time"
+    PULL_STAT="LAST PULL: $LAST_PULL"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
     sleep 2
