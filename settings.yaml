@@ -12,10 +12,10 @@ BINARY:
         - TinyMegaI2C
         - RV8803Tiny
 
-    # The deatils yopu can find:
-    # arduino-cli board details -b FQBN
-    # e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
-    # More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
+# The deatils yopu can find:
+# arduino-cli board details -b FQBN
+# e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
+# More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
 MICROCONTROLLER:
     # Edit this parameters for your needs
     CORE: megaTinyCore:megaavr:atxy7
