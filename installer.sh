@@ -51,7 +51,7 @@ process_list() {
     # clear
 
     echo ""
-    echo -e "${YELLOW}Proceed? [Y/n] ${RESET}"
+    echo -e "${YELLOW} Proceed to next step? [Y/n] ${RESET}"
     read -r -p "  > " input
     case $input in
     [yY])
@@ -67,6 +67,7 @@ process_list() {
       ;;
     esac
   done
+  clear
 }
 
 SETTING_FILE_NAME=settings.yaml
@@ -81,7 +82,6 @@ SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
 # Show the list and task to do
 clear
 process_list
-sleep 5
 
 # ---- Pre-checks ---- #
 clear
@@ -95,7 +95,6 @@ if [ -f "$SETTINGS_FILE" ]; then
   # Show the updated list and task to do
   settings_found_loaded=true
   process_list
-
 else
   echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
   # Show the updated list and task to do
