@@ -5,6 +5,7 @@ BINARY:
     CORES:
         LINK:
             - http://drazzy.com/package_drazzy.com_index.json
+            - http://dattasaurabh.com
         SEARCH_TERM:
             - megaTinyCore
     LIBS: 
