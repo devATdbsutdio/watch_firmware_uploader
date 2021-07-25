@@ -75,7 +75,7 @@ BANNER="
 PORT_STAT="PORT: $PORT"
 LAST_PULL=$(<"$LAST_PULL_INFO_FILE")
 PULL_STAT="LAST PULL: $LAST_PULL"
-LAST_BURN="--"
+LAST_BURN="[x]"
 BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
 BOTT_STAT="$PORT_STAT  $PULL_STAT  $BURN_STAT"
 
@@ -115,8 +115,7 @@ while true; do
   read -r -p "  > " input
   case $input in
   [pP])
-    LAST_PULL="⇅"
-    PULL_STAT="PULLING $LAST_PULL ..."
+    LAST_PULL="[↻]"
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -128,7 +127,6 @@ while true; do
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
     LAST_PULL="$current_date_time"
-    PULL_STAT="LAST PULL: $LAST_PULL"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
     sleep 2
@@ -160,8 +158,7 @@ while true; do
     "${UPLOAD_CMD[@]}"
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
-    LAST_BURN="✓"
-    BURN_STAT="UPLOADED: $LAST_BURN"
+    LAST_BURN="[✓]"
     show_header_and_footer
     sleep 2
     clear
