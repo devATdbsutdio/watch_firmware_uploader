@@ -6,11 +6,12 @@ SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
 
 FIRMWARE_REPO_DIR=$HOME/clock_firmware_production
 FIRMWARE_DIR=$FIRMWARE_REPO_DIR/clock
-last_pull_info_file=$HOME/last_pull.txt
+LAST_PULL_INFO_FILE=$HOME/last_pull.txt
 
 # ymal_parser="/usr/bin/which yq"
+ymal_parse=$HOME/bin/yq
 
-BIN=$("$HOME"/bin/yq e '.BINARY.LOCATION' "$SETTINGS_FILE")
+ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
 CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
 CHIP=$("$HOME"/bin/yq e '.MICROCONTROLLER.CHIP' "$SETTINGS_FILE")
 CLOCK=$("$HOME"/bin/yq e '.MICROCONTROLLER.CLOCK' "$SETTINGS_FILE")
@@ -25,7 +26,7 @@ PORT="--"
 PROGRAMMER=$("$HOME"/bin/yq e '.MICROCONTROLLER.PROGRAMMER' "$SETTINGS_FILE")
 FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
 
-UPLOAD_CMD=("$BIN" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
+UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
 
 echo "${UPLOAD_CMD[@]}"
 
@@ -53,7 +54,7 @@ BANNER="
 "
 
 PORT_STAT="PORT: $PORT"
-LAST_PULL=$(<"$last_pull_info_file")
+LAST_PULL=$(<"$LAST_PULL_INFO_FILE")
 PULL_STAT="LAST PULL: $LAST_PULL"
 LAST_BURN="--"
 BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
@@ -94,22 +95,21 @@ while true; do
   read -r -p "  > " input
   case $input in
   [pP])
-    # -------- CURR CHECK AREA -------
     LAST_PULL="pulling now..."
     show_header_and_footer
 
-    echo ""$FIRMWARE_REPO_DIR" && git pull"
-    cd "$FIRMWARE_REPO_DIR" && git pull && cd $HOME
+    echo "EXECUTING: $FIRMWARE_REPO_DIR && git pull"
+    cd "$FIRMWARE_REPO_DIR" && git pull
+    cd "$HOME" || return
     sleep 2
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
     LAST_PULL="$current_date_time"
     # save curr time stamp
-    echo "$LAST_PULL" >"$last_pull_info_file"
+    echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
     sleep 2
     clear
-    # -------- CURR CHECK AREA -------
     ;;
   [sS])
     show_header_and_footer
@@ -126,8 +126,9 @@ while true; do
     LAST_BURN="Uploading now..."
     show_header_and_footer
 
+    echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
-    ${UPLOAD_CMD[@]}
+    "${UPLOAD_CMD[@]}"
 
     burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="Last burnt at $burn_date_time"
