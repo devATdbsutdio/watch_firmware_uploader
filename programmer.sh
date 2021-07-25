@@ -102,7 +102,7 @@ show_header_and_footer() {
   echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
-  tput cup 10 0
+  tput cup 11 0
 }
 
 echo "Staring now ... "
@@ -115,7 +115,7 @@ while true; do
   read -r -p "  > " input
   case $input in
   [pP])
-    LAST_PULL="[↻]"
+    LAST_PULL="[pulling..]"
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -146,8 +146,7 @@ while true; do
     clear
     ;;
   [uU])
-    LAST_BURN="➔"
-    BURN_STAT="UPLOADING: $LAST_BURN"
+    LAST_BURN="->"
     show_header_and_footer
 
     echo "EXECUTING:"
@@ -158,7 +157,7 @@ while true; do
     "${UPLOAD_CMD[@]}"
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
-    LAST_BURN="[✓]"
+    LAST_BURN="[DONE]"
     show_header_and_footer
     sleep 2
     clear
