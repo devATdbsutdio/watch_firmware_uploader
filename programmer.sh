@@ -1,16 +1,14 @@
 #!/bin/bash
 
-BLACK='\033[0;30m'
+
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
-WHITE='\033[0;37m'
 RESET='\033[0m'
 WHOLE_LINE_YELLOW='\x1b[43;30m'
 WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
 HEIGHT=$(tput lines)
-WIDTH=$(tput cols)
 
 set_window (){
     # Create a virtual window that is two lines smaller at the bottom.
@@ -92,7 +90,7 @@ do
  LAST_PULL="$current_date_time"
  # save curr time stamp
  echo "$LAST_PULL" > $last_pull_info_file
- sleep 2
+ sleep 2
  clear
  ;;
   [sS])
