@@ -12,6 +12,7 @@ cli_installed=false
 cli_init_file_created=false
 cores_installed=false
 libs_installed=false
+firm_wares_cloned=false
 
 process_list() {
   while true; do
@@ -30,25 +31,28 @@ process_list() {
     fi
 
     if [ $cli_init_file_created = true ]; then
-      echo -e "${GREEN} [2] cli init file created${RESET}"
+      echo -e "${GREEN} [3] cli init file created${RESET}"
     else
-      echo -e "${RED} [2] cli init file created${RESET}"
+      echo -e "${RED} [3] cli init file created${RESET}"
     fi
 
     if [ $cores_installed = true ]; then
-      echo -e "${GREEN} [3] Listed cores are installed${RESET}"
+      echo -e "${GREEN} [4] Listed cores are installed${RESET}"
     else
-      echo -e "${RED} [3] Listed cores are installed${RESET}"
+      echo -e "${RED} [4] Listed cores are installed${RESET}"
     fi
 
     if [ $libs_installed = true ]; then
-      echo -e "${GREEN}[ 4] Listed libs are installed${RESET}"
+      echo -e "${GREEN}[5] Listed libs are installed${RESET}"
     else
-      echo -e "${RED} [4] Listed libs are installed${RESET}"
+      echo -e "${RED} [5] Listed libs are installed${RESET}"
     fi
-    # TBD clone repository
-    # sleep 10
-    # clear
+
+    if [ $firm_wares_cloned = true ]; then
+      echo -e "${GREEN}[6] Firmwares are cloned${RESET}"
+    else
+      echo -e "${RED} [6] Firmwares are cloned${RESET}"
+    fi
 
     echo ""
     echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
@@ -179,23 +183,20 @@ else
 fi
 
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
-# CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
-# ARDUINO=$HOME/bin/arduino-cli
 echo " "
-
 for CORE_URL in "${CORE_URLS[@]}"; do
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 2
+    echo " "
     echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
     echo " "
     #   sleep 5
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo "$ADD_CORE_URL"
+    echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
     $ADD_CORE_URL
-    # $ARDUINO config add board_manager.additional_urls $CORE_URL
   fi
 done
 
@@ -208,19 +209,6 @@ sleep 10
 
 cli_init_file_created=true
 process_list
-
-# ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-
-# if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-#   echo "$CORE_URL already exists in config file"
-#   sleep 2
-# else
-#   echo "$CORE_URL doesn't exist in config file!"
-#   sleep 2
-#   echo "Adding $CORE_URL to config file"
-#   sleep 2
-#   $ADD_CORE_URL
-# fi
 
 # # ---- Install the megaTinyCore ---- #
 # SEARCH_CMD="$ARDUINO core search $CORE"
