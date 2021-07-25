@@ -117,7 +117,7 @@ while true; do
 
     IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
-      PORT="$port"
+      PORT=$port
       PORT_STAT="PORT: $PORT"
       break
     done
