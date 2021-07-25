@@ -9,6 +9,7 @@ RESET='\033[0m'
 
 settings_found_loaded=false
 cli_installed=false
+cli_init_file_created=false
 cores_installed=false
 libs_installed=false
 
@@ -19,12 +20,21 @@ process_list() {
     echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
   else
     echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
+    echo -e "${RED}         -- QUITTING !${RESET}"
+    sleep 5
+    exit 1
   fi
 
   if [ $cli_installed = true ]; then
     echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
   else
     echo -e "${RED} [2] arduino-cli is installed${RESET}"
+  fi
+
+  if [ $cli_init_file_created = true ]; then
+    echo -e "${GREEN} [2] cli init file created${RESET}"
+  else
+    echo -e "${RED} [2] cli init file created${RESET}"
   fi
 
   if [ $cores_installed = true ]; then
@@ -39,6 +49,8 @@ process_list() {
     echo -e "${RED} [4] Listed libs are installed${RESET}"
   fi
   # TBD clone repository
+  sleep 5
+  clear
 }
 
 SETTING_FILE_NAME=settings.yaml
@@ -59,29 +71,22 @@ sleep 5
 clear
 sleep 1
 echo ""
-echo -e "${YELLOW}>> Loading settings ...${RESET}"
+echo -e "${YELLOW} Loading settings ...${RESET}"
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
   sleep 3
-
   # Show the updated list and task to do
-  clear
   settings_found_loaded=true
   process_list
-  sleep 5
+
 else
   echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
-
   # Show the updated list and task to do
-  clear
   settings_found_loaded=false
   process_list
-  sleep 5
-
-  echo -e "${RED}QUITTING !${RESET}"
-  exit 1
 fi
+
 # -------------------- #
 CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
 BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
@@ -94,25 +99,25 @@ CORE_COMB=megaTinyCore:megaavr
 LIB_LIST=(TinyMegaI2C RV8803Tiny)
 
 # ---- Install arduino-cli ---- #
-sleep 1
-echo -e "${GREEN} In $SETTING_FILE_NAME, target base directory is:${RESET} $BIN_BASE_DIR"
+sleep 2
+echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
 echo ""
-sleep 1
-echo -e "${YELLOW}>> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
-sleep 1
+sleep 2
+echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+sleep 2
 mkdir -p -- "$BIN_BASE_DIR"/bin
 cd "$BIN_BASE_DIR"/bin || exit
 echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
-sleep 1
+sleep 2
 echo ""
-echo -e "${YELLOW}>> Downloading arduino-cli...${RESET}"
+echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
 echo ""
-sleep 1
+sleep 2
 wget "$CLI_DOWNLOAD_LINK"
 echo -e "${GREEN}  Download finished!${RESET}"
-sleep 1
+sleep 2
 echo ""
-echo -e "${YELLOW}>> Unzipping...${RESET}"
+echo -e "${YELLOW}> Unzipping...${RESET}"
 tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
 rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
 echo ""
@@ -124,13 +129,15 @@ echo "" && echo ""
 echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
 echo "---------------------------"
-sleep 4
+sleep 5
 # go back to the home directory
 cd "$HOME" || return
 
+cli_installed=true
+process_list
+
 # ---- Create Arduino-cli init file [if it doesn't exist]---- #
-echo "" && echo ""
-echo -e "${YELLOW}>> Looking for arduino-cli config file...${RESET}"
+echo -e "${YELLOW} Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED}  It doesn't exist!${RESET}"
   sleep 2
@@ -151,6 +158,9 @@ else
   echo "---------------------------"
 fi
 sleep 2
+
+cli_init_file_created=true
+process_list
 
 # # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
