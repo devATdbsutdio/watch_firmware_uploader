@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # # ---- color info ---- #
-# GREEN='\033[0;32m'
-# YELLOW='\033[0;33m'
-# RED='\033[0;31m'
-# RESET='\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+RESET='\033[0m'
 # # -------------------- #
 
 # settings_found_loaded=false
