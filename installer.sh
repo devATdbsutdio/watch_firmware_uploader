@@ -204,7 +204,7 @@ process_list
 
 # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 for url in "${CORE_URLS[@]}"; do
-  echo "url"
+  echo "$url"
 done
 
 # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
