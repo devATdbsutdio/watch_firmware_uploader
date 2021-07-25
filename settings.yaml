@@ -1,6 +1,6 @@
 BINARY:
     # This is written by imnstaller.sh
-    LOCATION: $HOME/bin/arduino-cli
+    LOCATION: home/pi/bin/arduino-cli
 
 MICROCONTROLLER:
     # Edit this parameters for your needs
@@ -18,4 +18,4 @@ MICROCONTROLLER:
 
 FIRMWARE:
     # This is written by installer.sh
-    DIR: $HOME/clock_firmware_production/clock
+    DIR: /home/pi/clock_firmware_production/clock
