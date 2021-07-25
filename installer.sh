@@ -45,8 +45,8 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 # ---- Install arduino-cli ---- #
 sleep 1
 echo ""
-echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR{RESET}"
-while [[ ! "$(cd "$BIN_BASE_DIR")" ]]; do
+echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR${RESET}"
+while [ "$(cd "$BIN_BASE_DIR")" -eq 0 ]; do
   echo ""
   echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
   mkdir "$BIN_BASE_DIR"
@@ -73,82 +73,82 @@ echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
 #   echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
 # fi
 
-sleep 2
-echo -e "${YELLOW}Making \"bin\" directory...{RESET}"
-mkdir bin
-sleep 2
-echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
-cd "$BIN_BASE_DIR"/bin || return
-sleep 2
-echo "Downloading arduino-cli..."
-echo ""
-sleep 2
-wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
-echo "Download finished!"
-sleep 2
-echo "Unzipping..."
-tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm arduino-cli_latest_Linux_ARMv7.tar.gz
-rm LICENSE.txt
-echo "arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
-ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
-# ** Entry cli's location in settings.yaml
-$ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
-sleep 2
-# go back to the home directory
-cd "$HOME" || return
+# sleep 2
+# echo -e "${YELLOW}Making \"bin\" directory...{RESET}"
+# mkdir bin
+# sleep 2
+# echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
+# cd "$BIN_BASE_DIR"/bin || return
+# sleep 2
+# echo "Downloading arduino-cli..."
+# echo ""
+# sleep 2
+# wget https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
+# echo "Download finished!"
+# sleep 2
+# echo "Unzipping..."
+# tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+# rm arduino-cli_latest_Linux_ARMv7.tar.gz
+# rm LICENSE.txt
+# echo "arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
+# ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+# # ** Entry cli's location in settings.yaml
+# $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
+# sleep 2
+# # go back to the home directory
+# cd "$HOME" || return
 
-# ---- Create Arduino-cli init file [if it doesn't exist]---- #
-echo ""
-[ ! -f "$CONFIG_FILE" ] && "$ARDUINO" config init && echo "There is Config file now!"
-sleep 2
+# # ---- Create Arduino-cli init file [if it doesn't exist]---- #
+# echo ""
+# [ ! -f "$CONFIG_FILE" ] && "$ARDUINO" config init && echo "There is Config file now!"
+# sleep 2
 
-# ---- Add in board's manager additonal urls for MegaTinyCore ---- #
-ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+# # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
+# ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
 
-if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-  echo "$CORE_URL already exists in config file"
-  sleep 2
-else
-  echo "$CORE_URL doesn't exist in config file!"
-  sleep 2
-  echo "Adding $CORE_URL to config file"
-  sleep 2
-  $ADD_CORE_URL
-fi
+# if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+#   echo "$CORE_URL already exists in config file"
+#   sleep 2
+# else
+#   echo "$CORE_URL doesn't exist in config file!"
+#   sleep 2
+#   echo "Adding $CORE_URL to config file"
+#   sleep 2
+#   $ADD_CORE_URL
+# fi
 
-# ---- Install the megaTinyCore ---- #
-SEARCH_CMD="$ARDUINO core search $CORE"
-CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
+# # ---- Install the megaTinyCore ---- #
+# SEARCH_CMD="$ARDUINO core search $CORE"
+# CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
 
-echo ""
-echo "Searching $CORE..."
+# echo ""
+# echo "Searching $CORE..."
 
-if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
-  echo "Core found. Installing now ..."
-  sleep 2
-  $CORE_INSTALL_CMD
-  echo ""
-elif [[ "$($SEARCH_CMD)" =~ "No" ]]; then
-  echo "No such Core !"
-  echo ""
-  sleep 2
-fi
+# if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
+#   echo "Core found. Installing now ..."
+#   sleep 2
+#   $CORE_INSTALL_CMD
+#   echo ""
+# elif [[ "$($SEARCH_CMD)" =~ "No" ]]; then
+#   echo "No such Core !"
+#   echo ""
+#   sleep 2
+# fi
 
-# ---- Install the necessary libraries  ---- #
-LIBSEARCH_CMD="$ARDUINO lib search"
-LIBINSTALL_CMD="$ARDUINO lib install"
+# # ---- Install the necessary libraries  ---- #
+# LIBSEARCH_CMD="$ARDUINO lib search"
+# LIBINSTALL_CMD="$ARDUINO lib install"
 
-for LIB in "${LIB_LIST[@]}"; do
-  echo "Searching $LIB in Library manager..."
-  if [[ "$($LIBSEARCH_CMD "$LIB" --names)" == *$LIB* ]]; then
-    echo "Library found in Library Manager Repo!)"
-    sleep 2
-    $LIBINSTALL_CMD "$LIB"
-  else
-    echo "$LIB library not found!"
-  fi
-done
+# for LIB in "${LIB_LIST[@]}"; do
+#   echo "Searching $LIB in Library manager..."
+#   if [[ "$($LIBSEARCH_CMD "$LIB" --names)" == *$LIB* ]]; then
+#     echo "Library found in Library Manager Repo!)"
+#     sleep 2
+#     $LIBINSTALL_CMD "$LIB"
+#   else
+#     echo "$LIB library not found!"
+#   fi
+# done
 
 # ---- git clone the firmware source code ---- #
 # cd "$HOME" || return
