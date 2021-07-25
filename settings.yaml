@@ -1,7 +1,11 @@
 BINARY:
-    # This is written by imnstaller.sh
+    # This is written by "installer.sh"
     LOCATION: /home/pi/bin/arduino-cli
 
+    # The deatils yopu can find:
+    # arduino-cli board details -b FQBN
+    # e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
+    # More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
 MICROCONTROLLER:
     # Edit this parameters for your needs
     CORE: megaTinyCore:megaavr:atxy7
@@ -17,5 +21,5 @@ MICROCONTROLLER:
     PROGRAMMER: pyupdi
 
 FIRMWARE:
-    # This is written by installer.sh
+    # This is written by "installer.sh"
     DIR: /home/pi/clock_firmware_production/clock
