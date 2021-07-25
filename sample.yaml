@@ -1,0 +1,21 @@
+BINARY:
+    # This is written by imnstaller.sh
+    LOCATION: $HOME/bin/arduino-cli
+
+MICROCONTROLLER:
+    # Edit this parameters for your needs
+    CORE: megaTinyCore:megaavr:atxy7
+    CHIP: 1607
+    CLOCK: 5internal
+    BOD: 1v8
+    BODMODE: disabled
+    EEPROM_SAVE: enable
+    MILLIS: enabled
+    RESET_PIN: UPDI
+    STARTUP_TIME: 0
+    UARTV: skip
+    PROGRAMMER: pyupdi
+
+FIRMWARE:
+    # This is written by installer.sh
+    DIR: $HOME/clock_firmware_production/clock
