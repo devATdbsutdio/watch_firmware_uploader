@@ -1,13 +1,14 @@
 #!/bin/bash
 
-echo "Loading settings ..."
-sleep 1
+SETTING_FILE_NAME=ssettings.yaml
 
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
-SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
-LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
+SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
+LAST_PULL_INFO_FILE=$HOME/last_pull.txt
 
+echo "Loading settings ..."
+sleep 1
 if [ -f "$LAST_PULL_INFO_FILE" ]; then
   echo "Last pull request info exists!"
 else
@@ -15,14 +16,13 @@ else
 fi
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo "$SETTINGS_FILE exists!"
+  echo "TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!"
   sleep 5
 else
-  echo "SETTINGS FILE doesn't seem to exist! Quitiing"
+  echo "TARGET SETTINGS () doesn't seem to exist in: $SETTINGS_DIR . Quitting!"
   sleep 5
   exit 1
 fi
-
 echo "Applying Settings ..."
 sleep 1
 
