@@ -97,10 +97,9 @@ while true; do
     show_header_and_footer
 
     echo ""$FIRMWARE_REPO_DIR" && git pull"
-    cd "$FIRMWARE_REPO_DIR" && git pull
-    cd "$HOME"
+    cd "$FIRMWARE_REPO_DIR" && git pull && cd "$HOME"
     sleep 2
-    # -------- CURR CHECK AREA -------
+
     # get current time stamp
     current_date_time="$(date +"%Y-%m-%d %T")"
     # show curr time stamp
@@ -109,6 +108,7 @@ while true; do
     echo "$LAST_PULL" >"$last_pull_info_file"
     sleep 5
     clear
+    # -------- CURR CHECK AREA -------
     ;;
   [sS])
     show_header_and_footer
