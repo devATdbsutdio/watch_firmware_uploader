@@ -46,16 +46,35 @@ LIB_LIST=(TinyMegaI2C RV8803Tiny)
 sleep 1
 echo ""
 echo -e "${YELLOW}Going to base directory: $BIN_BASE_DIR{RESET}"
-if [[ ! "$(cd "$BIN_BASE_DIR")" ]]; then
+while [[ ! "$(cd "$BIN_BASE_DIR")" ]]; do
   echo ""
   echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
-  sleep 2
   mkdir "$BIN_BASE_DIR"
-  cd "$BIN_BASE_DIR" || return
-fi
-# cd "$BIN_BASE_DIR" || return
+  sleep 1
+  echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
+done
+echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
+
+# if [[ ! "$(cd "$BIN_BASE_DIR")" ]]; then
+#   echo ""
+#   echo -e "${RED}$BIN_BASE_DIR Doesn't exist.${RESET} Creating now ..."
+#   mkdir "$BIN_BASE_DIR"
+#   sleep 1
+#   echo -e "${YELLOW}Entering base Directory:${RESET} cd $BIN_BASE_DIR"
+#   if [[ "$(cd "$BIN_BASE_DIR")" ]]; then
+#     echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
+#   else
+#     echo -e "${RED}  Can not enter $BIN_BASE_DIR"
+#     echo -e "QUITTING NOW!${RESET}"
+#     sleep 2
+#     exit 1
+#   fi
+# else
+#   echo -e "${GREEN}  IN $BIN_BASE_DIR now.${RESET}"
+# fi
+
 sleep 2
-echo "${YELLOW}Making \"bin\" directory...{RESET}"
+echo -e "${YELLOW}Making \"bin\" directory...{RESET}"
 mkdir bin
 sleep 2
 echo "Going to bin directory: $BIN_BASE_DIR/bin ..."
