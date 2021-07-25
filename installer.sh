@@ -193,11 +193,9 @@ CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo "> $CORE_URL"
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-    echo "$CORE_URL already exists in config file"
-  #   sleep 5
+    echo "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
-    echo "$CORE_URL doesn't exist in config file!"
-  #   sleep 5
+    echo "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
   #   echo "Adding $CORE_URL to config file"
   #   sleep 5
   # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
