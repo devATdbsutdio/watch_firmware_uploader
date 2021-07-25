@@ -73,7 +73,11 @@ show_header_and_footer() {
   # Move cursor to last line in your screen
   tput cup "$HEIGHT" 0
 
-  # BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+  PORT_STAT="PORT: $PORT"
+  PULL_STAT="LAST PULL: $LAST_PULL"
+  BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
+  BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+
   echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
 
   # Move cursor to home position, back in virtual window
