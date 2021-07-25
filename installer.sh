@@ -14,40 +14,59 @@ cores_installed=false
 libs_installed=false
 
 process_list() {
-  clear
-  echo -e "${RESET}PROCESS STATUS:${RESET}"
-  if [ $settings_found_loaded = true ]; then
-    echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
-  else
-    echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
-  fi
+  while true; do
+    clear
+    echo -e "${RESET}PROCESS STATUS:${RESET}"
+    if [ $settings_found_loaded = true ]; then
+      echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
+    else
+      echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
+    fi
 
-  if [ $cli_installed = true ]; then
-    echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
-  else
-    echo -e "${RED} [2] arduino-cli is installed${RESET}"
-  fi
+    if [ $cli_installed = true ]; then
+      echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
+    else
+      echo -e "${RED} [2] arduino-cli is installed${RESET}"
+    fi
 
-  if [ $cli_init_file_created = true ]; then
-    echo -e "${GREEN} [2] cli init file created${RESET}"
-  else
-    echo -e "${RED} [2] cli init file created${RESET}"
-  fi
+    if [ $cli_init_file_created = true ]; then
+      echo -e "${GREEN} [2] cli init file created${RESET}"
+    else
+      echo -e "${RED} [2] cli init file created${RESET}"
+    fi
 
-  if [ $cores_installed = true ]; then
-    echo -e "${GREEN} [3] Listed cores are installed${RESET}"
-  else
-    echo -e "${RED} [3] Listed cores are installed${RESET}"
-  fi
+    if [ $cores_installed = true ]; then
+      echo -e "${GREEN} [3] Listed cores are installed${RESET}"
+    else
+      echo -e "${RED} [3] Listed cores are installed${RESET}"
+    fi
 
-  if [ $libs_installed = true ]; then
-    echo -e "${GREEN}[ 4] Listed libs are installed${RESET}"
-  else
-    echo -e "${RED} [4] Listed libs are installed${RESET}"
-  fi
-  # TBD clone repository
-  sleep 10
-  clear
+    if [ $libs_installed = true ]; then
+      echo -e "${GREEN}[ 4] Listed libs are installed${RESET}"
+    else
+      echo -e "${RED} [4] Listed libs are installed${RESET}"
+    fi
+    # TBD clone repository
+    # sleep 10
+    # clear
+
+    echo ""
+    echo -e "${YELLOW}Proceed? [Y/n] ${RESET}"
+    read -r -p "  > " input
+    case $input in
+    [yY])
+      break
+      ;;
+    [nN])
+      echo "QUITTING..."
+      sleep 2
+      exit 1
+      ;;
+    *)
+      echo "Invalid input"
+      ;;
+    esac
+  done
 }
 
 SETTING_FILE_NAME=settings.yaml
