@@ -197,11 +197,13 @@ for CORE_URL in "${CORE_URLS[@]}"; do
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 2
-    echo "${YELLOW}Adding $CORE_URL to config file${RESET}"
+    echo -e "${YELLOW}Adding $CORE_URL to config file${RESET}"
     #   sleep 5
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
     echo "$ADD_CORE_URL"
+    "$ADD_CORE_URL"
   fi
+  # arduino-cli core update-index
 done
 # sleep 10
 # cli_init_file_created=true
