@@ -56,15 +56,16 @@ echo -e "${YELLOW}Downloading arduino-cli...${RESET}"
 echo ""
 sleep 1
 wget "$CLI_DOWNLOAD_LINK"
-echo -e "${GREEN}  Download finished!{RESET}"
+echo -e "${GREEN}  Download finished!${RESET}"
 sleep 1
 echo ""
 echo -e "${YELLOW}Unzipping...${RESET}"
 tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
 rm arduino-cli_latest_Linux_ARMv7.tar.gz
 rm LICENSE.txt
-echo -e "${GREEN}  arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
 echo ""
+echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+echo "" && echo ""
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Update cli's location in settings.yaml
 $ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
@@ -72,10 +73,25 @@ sleep 1
 # go back to the home directory
 cd "$HOME" || return
 
-# # ---- Create Arduino-cli init file [if it doesn't exist]---- #
-# echo ""
-# [ ! -f "$CONFIG_FILE" ] && "$ARDUINO" config init && echo "There is Config file now!"
-# sleep 2
+# ---- Create Arduino-cli init file [if it doesn't exist]---- #
+echo ""
+echo -e "${YELLOW}Looking for arduino-cli config file...${RESET}"
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "${RED}  It doesn't exist!${RESET}"
+  sleep 1
+  echo "${YELLOW}  Creating now..${RESET}"
+  echo ""
+  "$ARDUINO" config init
+  sleep 1
+  echo ""
+  "$ARDUINO" config dump
+else
+  echo "${GREEn}  It exists!${RESET}"
+  sleep 1
+  echo ""
+  "$ARDUINO" config dump
+fi
+sleep 1
 
 # # ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
