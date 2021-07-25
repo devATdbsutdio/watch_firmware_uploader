@@ -10,31 +10,33 @@ RESET='\033[0m'
 settings_found_loaded=false
 cli_installed=false
 cores_installed=false
-ibs_installed=false
+libs_installed=false
 
 process_list() {
+  clear
+  echo -e "${RESET}PROCESS STATUS:${RESET}"
   if [ $settings_found_loaded = true ]; then
-    echo -e "${GREEN}Settings File Located and Loaded${RESET}"
+    echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
   else
-    echo -e "${RED}settings.yaml located and Loaded${RESET}"
+    echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
   fi
 
   if [ $cli_installed = true ]; then
-    echo -e "${GREEN}arduino-cli is installed${RESET}"
+    echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
   else
-    echo -e "${RED}arduino-cli is installed${RESET}"
+    echo -e "${RED} [2] arduino-cli is installed${RESET}"
   fi
 
   if [ $cores_installed = true ]; then
-    echo -e "${GREEN}Listed cores are installed${RESET}"
+    echo -e "${GREEN} [3] Listed cores are installed${RESET}"
   else
-    echo -e "${RED}Listed cores are installed${RESET}"
+    echo -e "${RED} [3] Listed cores are installed${RESET}"
   fi
 
   if [ $libs_installed = true ]; then
-    echo -e "${GREEN}listed libs are installed${RESET}"
+    echo -e "${GREEN}[ 4] Listed libs are installed${RESET}"
   else
-    echo -e "${RED}listed libs are installed${RESET}"
+    echo -e "${RED} [4] Listed libs are installed${RESET}"
   fi
   # TBD clone repository
 }
