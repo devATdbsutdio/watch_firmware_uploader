@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# # ---- color info ---- #
+# ---- color info ---- #
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 RESET='\033[0m'
-# # -------------------- #
+# -------------------- #
 
 # settings_found_loaded=false
 # cli_installed=false
@@ -197,11 +197,13 @@ for CORE_URL in "${CORE_URLS[@]}"; do
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 2
-    echo -e "${YELLOW}Adding $CORE_URL to config file${RESET}"
+    echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
+    echo " "
     #   sleep 5
-    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo "$ADD_CORE_URL"
-    "$ADD_CORE_URL"
+    # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    # echo "$ADD_CORE_URL"
+    # $ADD_CORE_URL
+    $ARDUINO config add board_manager.additional_urls $CORE_URL
   fi
   # arduino-cli core update-index
 done
