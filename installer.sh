@@ -102,18 +102,18 @@ sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
 
-  CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
-  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
-  # CORE_URLS=$($ymal_parseyq e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE")
-  CORE_URLS=(http://drazzy.com/package_drazzy.com_index.json)
-  ARDUINO=""
-  CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
+  # CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
+  # BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
+  # # CORE_URLS=$($ymal_parseyq e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE")
+  # CORE_URLS=(http://drazzy.com/package_drazzy.com_index.json)
+  # ARDUINO=""
+  # CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
 
-  CORE=megaTinyCore
-  CORE_COMB=megaTinyCore:megaavr
-  LIB_LIST=(TinyMegaI2C RV8803Tiny)
+  # CORE=megaTinyCore
+  # CORE_COMB=megaTinyCore:megaavr
+  # LIB_LIST=(TinyMegaI2C RV8803Tiny)
 
-  sleep 3
+  # sleep 3
   # Show the updated list and task to do
   settings_found_loaded=true
   process_list
