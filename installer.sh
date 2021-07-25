@@ -44,7 +44,7 @@ rm LICENSE.txt
 echo "arduino-cli installed in $BIN_BASE_DIR/bin/arduino-cli"
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Entry cli's location in settings.yaml
-$ymal_parse e ".BINARY.LOCATION |= $ARDUINO" "$SETTINGS_FILE"
+$ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
 
 sleep 4
 # go back to the home directory
