@@ -45,37 +45,11 @@ WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 
 HEIGHT=$(tput lines)
 
-set_window (){
-    # Create a virtual window that is two lines smaller at the bottom.
-    tput csr 0 $(( HEIGHT-2 ))
-}
-
-
-PORT_STAT="PORT: $PORT"
-LAST_PULL=$(<"$last_pull_info_file")
-PULL_STAT="LAST PULL: $LAST_PULL"
-LAST_BURN=""
-BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
-BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
-
-footer_status () {
-    # Move cursor to last line in your screen
-    tput cup "$HEIGHT" 0;
-
-    BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
-    echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
-    
-    # sleep 5
-
-    # Move cursor to home position, back in virtual window
-    tput cup 17 0
-}
-
 
 BANNER="
    __ _                                       
   / _(_)_ __ _ __ _____      ____ _ _ __ ___  
- | |_| | '__| '_ \` _ \ \ /\ / / _\` | '__/ _ \ 
+ | |_| | '__| '_ \` _ \ \ /\ / / _\` | '__/ _ \
  |  _| | |  | | | | | \ V  V / (_| | | |  __/ 
  |_| |_|_|  |_| |_| |_|\_/\_/ \__,_|_|  \___| 
   _   _ _ __ | | ___   __ _  __| | ___ _ __   
@@ -85,6 +59,22 @@ BANNER="
        |_|
 "
 
+
+
+PORT_STAT="PORT: $PORT"
+LAST_PULL=$(<"$last_pull_info_file")
+PULL_STAT="LAST PULL: $LAST_PULL"
+LAST_BURN="--"
+BURN_STAT="FIRMWARE BURN STAT: $LAST_BURN"
+BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+
+
+
+set_window (){
+    # Create a virtual window that is two lines smaller at the bottom.
+    tput csr 0 $(( HEIGHT-2 ))
+}
+
 show_header_and_footer (){
   clear 
 
@@ -93,7 +83,14 @@ show_header_and_footer (){
   echo -e "${YELLOW} PRESS [ S ] THEN [ ENTER ] -> SELECT UPLOAD PORT [ YOUR DEVICE SHOULD BE C ONNECTED FOR THIS STEP ]."
   echo -e "${YELLOW} PRESS [ U ] THEN [ ENTER ] -> UPLOAD FIRMWARE [ YOUR DEVICE SHOULD BE CONNECTED FOR THIS STEP ].${RESET}" && echo " "
 
-  footer_status
+ # Move cursor to last line in your screen
+  tput cup "$HEIGHT" 0;
+
+  BOTT_STAT="$PORT_STAT | $PULL_STAT | $BURN_STAT"
+  echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
+
+  # Move cursor to home position, back in virtual window
+  tput cup 17 0
 }
 
 
@@ -136,11 +133,8 @@ do
  LAST_BURN="Uploading now..."
  show_header_and_footer
 
- sleep 20
- 
  echo "${UPLOAD_CMD[@]}" 
  ${UPLOAD_CMD[@]}
-
  
  burn_date_time="$(date +"%Y-%m-%d %T")"
  LAST_BURN="Last burnt at $burn_date_time"
