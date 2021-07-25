@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SETTING_FILE_NAME=settings.yaml
+SETTING_FILE_NAME=ssettings.yaml
 
 # ymal_parse=$("which yq") #used for parsing setting file
 ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
@@ -8,7 +8,7 @@ ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
-LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
+LAST_PULL_INFO_FILE=$HOME/last_pull.txt
 
 # ---- color info ---- #
 GREEN='\033[0;32m'
@@ -32,10 +32,11 @@ else
 fi
 sleep 4
 if [ -f "$SETTINGS_FILE" ]; then
-  echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE exists!${RESET}"
+  echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
   sleep 5
 else
-  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!${RESET}"
+  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/ . Quitting!"
+  echo -e "QUITTING !${RESET}"
   sleep 5
   exit 1
 fi
@@ -64,9 +65,9 @@ UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage
 # ----------------------------------------------------------- #
 
 BANNER="
----------------------
-| FIRMARE UPLOADER. |
----------------------
+----------------------
+|  FIRMARE UPLOADER  |
+----------------------
 > CURRENT FIRMWARE: $FIRMWARE_DIR
 "
 
