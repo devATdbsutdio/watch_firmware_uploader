@@ -8,7 +8,7 @@ I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
 CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
 ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
 
-IFS=$'\n' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
+CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
 
 for CORE_URL in ${CORE_URLS[*]}; do
 	if grep -q "$CORE_URL" "$CONFIG_FILE"; then
