@@ -192,6 +192,7 @@ while true; do
     if [[ "$find_bin_cmd" ]]; then
       echo -e "arduino-cli is present in $cli_path"
       # if it is present, well then move on
+      BIN_BASE_DIR=$cli_path
       cli_present=true
       sleep 3
       break
@@ -229,22 +230,22 @@ if [ ! $cli_present ]; then
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
-  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
-  ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
-
-  # ** Update cli's location in programmer_settings.yaml
-  echo ""
-  echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
-  echo ""
-  sleep 2
-  # ---- TEST ---- [TBD **]
-  echo "---------------------------"
-  $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
-  echo "---------------------------"
-  sleep 10
-  # go back to the home directory
-  cd "$HOME" || return
+  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"$()
 fi
+
+ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+# ** Update cli's location in programmer_settings.yaml
+echo ""
+echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+echo ""
+sleep 2
+echo "---------------------------"
+$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
+echo "---------------------------"
+sleep 10
+# go back to the home directory
+cd "$HOME" || return
+
 cli_installed=true
 process_list
 
