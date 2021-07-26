@@ -126,7 +126,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   sleep 2
   echo ""
-  echo -e "${YELLOW}  arduni-cli path mentioned in settings file: $BIN_BASE_DIR/bin/ ${RESET}"
+  echo -e "${YELLOW}  arduni-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo -e "${BLUE}  CORE URLS:${RESET}"
@@ -174,22 +174,25 @@ fi
 #   check path: if binary is there:
 #   if path is wrong: loop back as there was no binary in path
 
+cli_present=false
+
 while true; do
   read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in ? [Y/n]: "${RESET}")" answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
+    cli_present=false
     break
     ;;
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
-    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH \(/\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
+    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH \(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
     # using find command check if the binary truely exists in the provided path
     find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
     if [[ "$find_bin_cmd" ]]; then
       echo -e "arduino-cli is present in $cli_path"
       # if it is present, well then move on
-      BIN_BASE_DIR=$cli_path
+      cli_present=true
       sleep 3
       break
     else
@@ -203,44 +206,45 @@ while true; do
   esac
 done
 
-sleep 1
-echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
-echo ""
-sleep 2
-echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
-sleep 2
-mkdir -p -- "$BIN_BASE_DIR"/bin
-cd "$BIN_BASE_DIR"/bin || exit
-echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
-echo ""
-sleep 2
-wget "$CLI_DOWNLOAD_LINK"
-echo -e "${GREEN}  Download finished!${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Unzipping...${RESET}"
-tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
-echo ""
-echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
-ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+if [ ! $cli_present ]; then
+  sleep 1
+  echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+  echo ""
+  sleep 2
+  echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+  sleep 2
+  mkdir -p -- "$BIN_BASE_DIR"/bin
+  cd "$BIN_BASE_DIR"/bin || exit
+  echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
+  sleep 2
+  echo ""
+  echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
+  echo ""
+  sleep 2
+  wget "$CLI_DOWNLOAD_LINK"
+  echo -e "${GREEN}  Download finished!${RESET}"
+  sleep 2
+  echo ""
+  echo -e "${YELLOW}> Unzipping...${RESET}"
+  tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+  rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
+  echo ""
+  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+  ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
-# ** Update cli's location in programmer_settings.yaml
-echo ""
-echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
-echo ""
-sleep 2
-# ---- TEST ---- [TBD **]
-echo "---------------------------"
-$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
-echo "---------------------------"
-sleep 10
-# go back to the home directory
-cd "$HOME" || return
-
+  # ** Update cli's location in programmer_settings.yaml
+  echo ""
+  echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+  echo ""
+  sleep 2
+  # ---- TEST ---- [TBD **]
+  echo "---------------------------"
+  $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
+  echo "---------------------------"
+  sleep 10
+  # go back to the home directory
+  cd "$HOME" || return
+fi
 cli_installed=true
 process_list
 
