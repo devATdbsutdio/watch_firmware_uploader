@@ -192,7 +192,7 @@ while true; do
       read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
       # using find command check if the binary truely exists in the provided path
       find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
-      if [ ! "$find_bin_cmd" = "$cli_path" ]; then
+      if [[ ! "$find_bin_cmd" == "$cli_path" ]]; then
         echo -e "${RED} arduino-cli is NOT present in${RESET} $cli_path"
         sleep 3
       else
