@@ -123,6 +123,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   # LIB_LIST=($($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
 
+  sleep 2
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo -e "${BLUE}  CORE URLS:${RESET}"
@@ -135,12 +136,14 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${BLUE}  CORES:${RESET}"
   for CORE in "${CORES[@]}"; do
+    c=$((c + 1))
     echo -e "  [$c] $CORE"
   done
   c=0
   echo ""
   echo -e "${BLUE}  LIBRARIES:${RESET}"
   for LIB in "${LIB_LIST[@]}"; do
+    c=$((c + 1))
     echo -e "  [$c] $LIB"
   done
   c=0
