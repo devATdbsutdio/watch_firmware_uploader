@@ -214,7 +214,7 @@ while true; do
   esac
 done
 
-if [ ! $cli_present ]; then
+if [ "$cli_present" = false ]; then
   sleep 1
   echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
