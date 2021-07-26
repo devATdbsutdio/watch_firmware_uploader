@@ -1,4 +1,5 @@
 # Table of contents
 
-* [clock\_uploader\_machine](README.md)
+* [Clock Uploader Machine](README.md)
+* [System pre-requisites](system-pre-requisites.md)
 
