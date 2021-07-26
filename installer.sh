@@ -219,29 +219,26 @@ fi
 echo " "
 echo -e "${YELLOW}> Adding found core links from settings in arduino's config...${RESET}"
 sleep 2
-echo " "
 for CORE_URL in "${CORE_URLS[@]}"; do
+  echo " "
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 2
-    echo " "
     echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
-    echo " "
     sleep 2
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
     echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
     $ADD_CORE_URL
   fi
 done
-
 echo "---------------------------"
 "$ARDUINO" config dump
 echo "---------------------------"
+sleep 1
 $ARDUINO core update-index
-
-sleep 10
+sleep 4
 
 cli_init_file_created=true
 process_list
