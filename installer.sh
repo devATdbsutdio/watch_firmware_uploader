@@ -225,14 +225,14 @@ for CORE_URL in "${CORE_URLS[@]}"; do
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
-    # sleep 2
-    # echo " "
-    # echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
-    # echo " "
-    # #   sleep 5
-    # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    # echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
-    # $ADD_CORE_URL
+    sleep 2
+    echo " "
+    echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
+    echo " "
+    sleep 2
+    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
+    $ADD_CORE_URL
   fi
 done
 
