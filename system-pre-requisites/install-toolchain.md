@@ -39,5 +39,26 @@ programmer_settings.yaml
 programmer.sh
 ```
 
+### Installer settings:
 
+```bash
+yq e installer_settings.yaml # ** yq yaml parse must be installed for next steps as well.
+```
+
+```bash
+BINARY:
+    # arduino-cli binary download link
+    LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
+    # base dir where /bin/arduino-cli willbe installed
+    BASE: /home/pi/test
+    CORES: # links for board cores you want to install 
+        LINK: # these will be appended in arduino-cli's config file
+            - http://drazzy.com/package_drazzy.com_index.json
+            - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+        CORE_NAMES: # names of cores you want to install 
+            - megaTinyCore:megaavr
+LIBS: # 3rd-party libraries you want to install
+    - TinyMegaI2C
+    - RV8803Tiny
+```
 
