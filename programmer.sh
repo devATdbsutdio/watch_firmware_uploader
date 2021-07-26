@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SETTING_FILE_NAME=settings.yaml
+SETTING_FILE_NAME=programmer_settings.yaml
 
 # ymal_parse=$("which yq") #used for parsing setting file
 ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file

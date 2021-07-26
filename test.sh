@@ -30,3 +30,7 @@ UPLOAD_CMD=("$BIN" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$B
 
 
 "${UPLOAD_CMD[@]}"
+
+array2=()      # No elements . . . "array2" is empty.
+echo "Elements in array2:  ${array2[@]}"
+echo "Number of elements in array2 = ${#array2[*]}"  # 0

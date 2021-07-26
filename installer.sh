@@ -7,10 +7,31 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
+# ymal_parse=$("which yq") #used for parsing setting file
+ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+
+# ------- values top be prased from settings file ------- #
+CLI_DOWNLOAD_LINK=""
+BIN_BASE_DIR=""
+CORE_URLS=()
+ARDUINO=""
+CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
+CORES=() # array of FQBN cores like [megaTinyCore:megaavr, ...]
+LIB_LIST=()
+
+I_SETTING_FILE_NAME=installer_settings.yaml
+P_SETTING_FILE_NAME=programmer_settings.yaml
+
+FULL_PATH=$(realpath "$0")
+SETTINGS_DIR=$(dirname "$FULL_PATH")
+
+I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
+P_SETTINGS_FILE=$SETTINGS_DIR/$P_SETTING_FILE_NAME
+
 settings_found_loaded=false
 cli_installed=false
 cli_init_file_created=false
-cores_installed=false
+core_install_count=0
 libs_installed=false
 firm_wares_cloned=false
 
@@ -21,13 +42,13 @@ process_list() {
     if [ $settings_found_loaded = true ]; then
       echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
     else
-      echo -e "${RED} [1] settings.yaml located and Loaded${RESET}"
+      echo -e "${RED} [1] settings.yaml located  Loaded${RESET}"
     fi
 
     if [ $cli_installed = true ]; then
       echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
     else
-      echo -e "${RED} [2] arduino-cli is installed${RESET}"
+      echo -e "${RED} [2] arduino-cli is NOT installed${RESET}"
     fi
 
     if [ $cli_init_file_created = true ]; then
@@ -36,10 +57,12 @@ process_list() {
       echo -e "${RED} [3] cli init file created${RESET}"
     fi
 
-    if [ $cores_installed = true ]; then
+    if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
       echo -e "${GREEN} [4] Listed cores are installed${RESET}"
+    elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
+      echo -e "${YELLOW} [4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
     else
-      echo -e "${RED} [4] Listed cores are installed${RESET}"
+      echo -e "${RED} [4] Listed cores are NOT installed${RESET}"
     fi
 
     if [ $libs_installed = true ]; then
@@ -74,52 +97,31 @@ process_list() {
   clear
 }
 
-# ------- values top be prased from settings file ------- #
-CLI_DOWNLOAD_LINK=""
-BIN_BASE_DIR=""
-CORE_URLS=""
-ARDUINO=""
-CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
-CORE=megaTinyCore
-CORE_COMB=megaTinyCore:megaavr
-LIB_LIST=(TinyMegaI2C RV8803Tiny)
-
-SETTING_FILE_NAME=settings.yaml
-
-# ymal_parse=$("which yq") #used for parsing setting file
-ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
-
-FULL_PATH=$(realpath "$0")
-SETTINGS_DIR=$(dirname "$FULL_PATH")
-SETTINGS_FILE=$SETTINGS_DIR/$SETTING_FILE_NAME
-
 # Show the list and task to do
 clear
 process_list
 
-# ---- Pre-checks ---- #
+# -------- Pre-checks ------- #
 clear
 sleep 1
 echo -e "${YELLOW}> Loading settings ...${RESET}"
 sleep 1
-if [ -f "$SETTINGS_FILE" ]; then
-  echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
+if [ -f "$I_SETTINGS_FILE" ]; then
+  echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
-  CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$SETTINGS_FILE")
-  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$SETTINGS_FILE")
-  CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$SETTINGS_FILE"))
-  ARDUINO=""
-
-  CORE=megaTinyCore
-  CORE_COMB=megaTinyCore:megaavr
-  LIB_LIST=(TinyMegaI2C RV8803Tiny)
+  CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")
+  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
+  CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
+  CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
+  # LIB_LIST=(TinyMegaI2C RV8803Tiny)
+  LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
 
   sleep 4
   # Show the updated list and task to do
   settings_found_loaded=true
   process_list
 else
-  echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+  echo -e "${RED}TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
   # Show the updated list and task to do
   settings_found_loaded=false
   process_list
@@ -127,8 +129,7 @@ else
   sleep 5
   exit 1
 fi
-
-# -------------------- #
+# ----------------------------- #
 
 # ---- Install arduino-cli ---- #
 sleep 1
@@ -155,11 +156,14 @@ rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
 echo ""
 echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
-# ** Update cli's location in settings.yaml
-echo -e "${GREEN}  Updated setting.yaml with arduino-cli's location${RESET}"
+
+# ** Update cli's location in programmer_settings.yaml
+echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo "" && echo ""
+sleep 2
+# ---- TEST ---- [TBD **]
 echo "---------------------------"
-$ymal_parse e ".BINARY.LOCATION |= \"$ARDUINO\"" "$SETTINGS_FILE"
+$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
 sleep 10
 # go back to the home directory
@@ -168,7 +172,7 @@ cd "$HOME" || return
 cli_installed=true
 process_list
 
-# ---- Create Arduino-cli init file [if it doesn't exist]---- #
+# ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
 echo -e "${YELLOW}> Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED}  It doesn't exist!${RESET}"
@@ -181,8 +185,6 @@ else
   echo -e "${GREEN}  It exists!${RESET}"
   sleep 2
 fi
-
-# ---- Add in board's manager additonal urls for MegaTinyCore ---- #
 echo " "
 for CORE_URL in "${CORE_URLS[@]}"; do
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
@@ -209,24 +211,27 @@ sleep 10
 
 cli_init_file_created=true
 process_list
+# ---------------------------------------------------------------- #
 
-# # ---- Install the megaTinyCore ---- #
-# SEARCH_CMD="$ARDUINO core search $CORE"
-# CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
-
-# echo ""
-# echo "Searching $CORE..."
-
-# if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
-#   echo "Core found. Installing now ..."
-#   sleep 2
-#   $CORE_INSTALL_CMD
-#   echo ""
-# elif [[ "$($SEARCH_CMD)" =~ "No" ]]; then
-#   echo "No such Core !"
-#   echo ""
-#   sleep 2
-# fi
+# -------------------- Install the megaTinyCore ------------------ #
+for CORE in "${CORES[@]}"; do
+  echo ""
+  echo -e "${YELLOW}> Searching $CORE...${RESET}"
+  SEARCH_CMD="$ARDUINO core search $CORE"
+  if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
+    echo -e "${GREEN} Core found. Installing now ...${RESET}"
+    CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
+    sleep 2
+    $CORE_INSTALL_CMD
+    core_install_count+=1
+    echo " "
+  else
+    echo -e "${RED} No such Core !${RESET}"
+    sleep 2
+  fi
+done
+process_list
+# ---------------------------------------------------------------- #
 
 # # ---- Install the necessary libraries  ---- #
 # LIBSEARCH_CMD="$ARDUINO lib search"
