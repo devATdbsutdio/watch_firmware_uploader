@@ -189,8 +189,9 @@ echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-c
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 # ** Update cli's location in programmer_settings.yaml
+echo ""
 echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
-echo "" && echo ""
+echo ""
 sleep 2
 # ---- TEST ---- [TBD **]
 echo "---------------------------"
@@ -244,14 +245,14 @@ cli_init_file_created=true
 process_list
 # ---------------------------------------------------------------- #
 
-# -------------------- Install the megaTinyCore ------------------ #
+# -------------------- Install the Cores ------------------ #
 for CORE in "${CORES[@]}"; do
   echo ""
   echo -e "${YELLOW}> Searching $CORE...${RESET}"
   SEARCH_CMD="$ARDUINO core search $CORE"
   if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
     echo -e "${GREEN} Core found. Installing now ...${RESET}"
-    CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
+    CORE_INSTALL_CMD="$ARDUINO core install $CORE"
     sleep 2
     $CORE_INSTALL_CMD
     core_install_count=$((core_install_count + 1))

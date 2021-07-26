@@ -12,6 +12,8 @@ echo "$CONFIG_FILE"
 ymal_parse="$(/usr/bin/which yq)" #used for parsing settings.yaml file
 echo "$ymal_parse"
 
+ARDUINO=/home/pi/test/bin/arduino-cli
+
 # IFS=$'\n' CORE_URLS=(read -a $($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE"))
 IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")
 
@@ -34,3 +36,23 @@ echo "size of array: ${#CORE_URLS[*]}"
 # 		$ADD_CORE_URL
 # 	fi
 # done
+
+IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
+
+for CORE in "${CORES[@]}"; do
+	echo ""
+	echo -e "> Searching $CORE..."
+	SEARCH_CMD="$ARDUINO core search $CORE"
+	if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
+		echo -e " Core found. Installing now ..."
+		CORE_INSTALL_CMD="$ARDUINO core install $CORE"
+		sleep 2
+		$CORE_INSTALL_CMD
+		core_install_count=$((core_install_count + 1))
+		echo " "
+	else
+		echo -e "${RED} No such Core !${RESET}"
+		sleep 2
+	fi
+done
+process_list
