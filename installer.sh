@@ -193,7 +193,7 @@ while true; do
       echo -e "user provided path: $cli_path"
       sleep 2
       # using find command check if the binary truely exists in the provided path
-      if [ ! -f "$$cli_path" ]; then
+      if [ -f "$cli_path" ]; then
         echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
         # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
