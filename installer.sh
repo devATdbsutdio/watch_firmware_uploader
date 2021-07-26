@@ -8,7 +8,6 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
-# ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
 ymal_parse="$(/usr/bin/which yq)" #used for parsing setting file
 
 # ------- values top be prased from settings file ------- #
@@ -102,7 +101,7 @@ process_list() {
 clear
 process_list
 
-# -------- Pre-checks ------- #
+# -------- Read data in from settings file ------- #
 clear
 sleep 1
 echo -e "${YELLOW}> Loading settings ...${RESET}"
@@ -164,44 +163,44 @@ fi
 # ----------------------------- #
 
 # ---- Install arduino-cli ---- #
-# sleep 1
-# echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
-# echo ""
-# sleep 2
-# echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
-# sleep 2
-# mkdir -p -- "$BIN_BASE_DIR"/bin
-# cd "$BIN_BASE_DIR"/bin || exit
-# echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
-# sleep 2
-# echo ""
-# echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
-# echo ""
-# sleep 2
-# wget "$CLI_DOWNLOAD_LINK"
-# echo -e "${GREEN}  Download finished!${RESET}"
-# sleep 2
-# echo ""
-# echo -e "${YELLOW}> Unzipping...${RESET}"
-# tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-# rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
-# echo ""
-# echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+sleep 1
+echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+echo ""
+sleep 2
+echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+sleep 2
+mkdir -p -- "$BIN_BASE_DIR"/bin
+cd "$BIN_BASE_DIR"/bin || exit
+echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
+sleep 2
+echo ""
+echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
+echo ""
+sleep 2
+wget "$CLI_DOWNLOAD_LINK"
+echo -e "${GREEN}  Download finished!${RESET}"
+sleep 2
+echo ""
+echo -e "${YELLOW}> Unzipping...${RESET}"
+tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
+echo ""
+echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 # ** Update cli's location in programmer_settings.yaml
-# echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo "" && echo ""
 sleep 2
 # ---- TEST ---- [TBD **]
 echo "---------------------------"
-# $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
+$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
-# sleep 10
+sleep 10
 # go back to the home directory
 cd "$HOME" || return
 
-# cli_installed=true
+cli_installed=true
 process_list
 
 # ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
@@ -226,14 +225,14 @@ for CORE_URL in "${CORE_URLS[@]}"; do
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
-    sleep 2
-    echo " "
-    echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
-    echo " "
-    #   sleep 5
-    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
-    $ADD_CORE_URL
+    # sleep 2
+    # echo " "
+    # echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
+    # echo " "
+    # #   sleep 5
+    # ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    # echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
+    # $ADD_CORE_URL
   fi
 done
 
