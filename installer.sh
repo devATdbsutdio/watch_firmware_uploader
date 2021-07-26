@@ -138,7 +138,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
     echo -e "$c $LIB"
   done
 
-  sleep 4
+  sleep 10
   # Show the updated list and task to do
   settings_found_loaded=true
   process_list
