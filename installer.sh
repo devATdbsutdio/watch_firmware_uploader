@@ -126,19 +126,24 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo -e "${BLUE}  CORE URLS:${RESET}"
+  c=0
   for CORE_URL in ${CORE_URLS[*]}; do
-    echo -e "    $CORE_URL"
+    c=$((c + 1))
+    echo -e "  [$c] $CORE_URL"
   done
+  c=0
   echo ""
   echo -e "${BLUE}  CORES:${RESET}"
   for CORE in "${CORES[@]}"; do
-    echo -e "    $CORE"
+    echo -e "  [$c] $CORE"
   done
+  c=0
   echo ""
   echo -e "${BLUE}  LIBRARIES:${RESET}"
   for LIB in "${LIB_LIST[@]}"; do
-    echo -e "    $LIB"
+    echo -e "  [$c] $LIB"
   done
+  c=0
 
   sleep 10
   # Show the updated list and task to do
