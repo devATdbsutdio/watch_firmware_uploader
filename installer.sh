@@ -119,7 +119,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "Found settings:"
   c=0
   echo -e "CORE URLS:"
-  for CORE_URL in "${CORE_URLS[@]}"; do
+  for CORE_URL in "${CORE_URLS[*]}"; do
     c=$((c + 1))
     echo -e "$c $CORE_URL"
   done
