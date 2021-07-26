@@ -80,7 +80,8 @@ process_list() {
     echo ""
     # echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
     # read -r -p "  > " input
-    read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input
+    read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
+    # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
     case $input in
     [yY])
       break
