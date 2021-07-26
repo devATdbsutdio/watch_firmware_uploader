@@ -45,6 +45,8 @@ programmer.sh
 yq e installer_settings.yaml # ** yq yaml parse must be installed for next steps as well.
 ```
 
+Here you can edit to your needs. 
+
 ```bash
 BINARY:
     # arduino-cli binary download link
@@ -56,7 +58,7 @@ BINARY:
             - http://drazzy.com/package_drazzy.com_index.json
             - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
         CORE_NAMES: # names of cores you want to install 
-            - megaTinyCore:megaavr
+            - megaTinyCore:megaavr # Notes I have used full FQBN here
 LIBS: # 3rd-party libraries you want to install
     - TinyMegaI2C
     - RV8803Tiny
