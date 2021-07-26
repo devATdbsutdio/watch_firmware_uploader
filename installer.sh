@@ -111,10 +111,10 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
-  CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
-  CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
+  IFS=$' ' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
+  IFS=$' ' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
   # LIB_LIST=(TinyMegaI2C RV8803Tiny)
-  LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
+  IFS=$' ' LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
 
   sleep 4
   # Show the updated list and task to do
