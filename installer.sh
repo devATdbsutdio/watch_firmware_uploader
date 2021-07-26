@@ -54,7 +54,7 @@ process_list() {
     if [ $cli_init_file_created = true ]; then
       echo -e "${GREEN} [STEP 3] cli init file created${RESET}"
     else
-      echo -e "${RED} [STEP 3] cli init file created${RESET}"
+      echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
     fi
 
     if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
@@ -68,18 +68,16 @@ process_list() {
     if [ $libs_installed = true ]; then
       echo -e "${GREEN}[STEP 5] Listed libs are installed${RESET}"
     else
-      echo -e "${RED} [STEP 5] Listed libs are installed${RESET}"
+      echo -e "${RED} [STEP 5] Listed libs are NOT installed${RESET}"
     fi
 
     if [ $firm_wares_cloned = true ]; then
       echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
     else
-      echo -e "${RED} [STEP 6] Firmwares are cloned${RESET}"
+      echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
     fi
 
     echo ""
-    # echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
-    # read -r -p "  > " input
     read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
     # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
     case $input in
