@@ -9,12 +9,13 @@ echo "$I_SETTINGS_FILE"
 
 CONFIG_FILE="$HOME"/.arduino15/arduino-cli.yaml
 echo "$CONFIG_FILE"
-ymal_parse="$HOME"/bin/yq #used for parsing settings.yaml file
+ymal_parse="$(/usr/bin/which yq)" #used for parsing settings.yaml file
 echo "$ymal_parse"
 
-IFS=$'\t' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
+# IFS=$'\n' CORE_URLS=(read -a $($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE"))
+IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")
 
-echo "size of array: ${#CORE_URLS[@]}"
+echo "size of array: ${#CORE_URLS[*]}"
 
 # cd $HOME
 

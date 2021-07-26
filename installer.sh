@@ -7,8 +7,8 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
-# ymal_parse=$("which yq") #used for parsing setting file
-ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+# ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
+ymal_parse="$(/usr/bin/which yq)" #used for parsing setting file
 
 # ------- values top be prased from settings file ------- #
 CLI_DOWNLOAD_LINK=""
@@ -109,28 +109,31 @@ sleep 1
 if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
-  CLI_DOWNLOAD_LINK=$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
-  IFS=$'\t' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
-  IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
-  # IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
+
+  # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE"))
+  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")
+
+  # IFS=$'\t' CORES=($($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE"))
+  IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
+
   # LIB_LIST=(TinyMegaI2C RV8803Tiny)
-  LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
+  # LIB_LIST=($($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE"))
+  IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
 
   echo -e "Found settings:"
   echo -e "CORE URLS:"
-  for CORE_URL in "${CORE_URLS[*]}"; do
+  for CORE_URL in ${CORE_URLS[*]}; do
     echo -e "$CORE_URL"
   done
   echo ""
   echo -e "CORES:"
-  c=0
   for CORE in "${CORES[@]}"; do
     echo -e "$CORE"
   done
   echo ""
   echo -e "LIBRARIES:"
-  c=0
   for LIB in "${LIB_LIST[@]}"; do
     echo -e "$LIB"
   done
@@ -274,7 +277,7 @@ process_list
 # cd "$HOME" || return
 # git clone https://github.com/dattasaurabh82/clock_firmware_production.git
 
-for CORE_URL in "${CORE_URLS[*]}"; do
+for CORE_URL in ${CORE_URLS[*]}; do
   if grep -q "$CORE_URL" /home/pi/.arduino15/arduino-cli.yaml; then
     echo -e "$CORE_URL already exists in config file"
   else
@@ -282,7 +285,7 @@ for CORE_URL in "${CORE_URLS[*]}"; do
     sleep 2
     echo -e "Adding $CORE_URL to config file"
     sleep 2
-    $ARDUINO=/home/pi/test/bin/arduino-cli
+    ARDUINO=/home/pi/test/bin/arduino-cli
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
     echo "$ADD_CORE_URL"
     echo ""
