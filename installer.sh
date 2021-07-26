@@ -32,7 +32,7 @@ settings_found_loaded=false
 cli_installed=false
 cli_init_file_created=false
 core_install_count=0
-libs_installed=false
+lib_install_count=0
 firm_wares_cloned=false
 
 process_list() {
@@ -65,10 +65,12 @@ process_list() {
       echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
     fi
 
-    if [ $libs_installed = true ]; then
-      echo -e "${GREEN}[STEP 5] Listed libs are installed${RESET}"
+    if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
+      echo -e "${GREEN} [STEP 5] Listed libraries are installed${RESET}"
+    elif [ ! $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
+      echo -e "${YELLOW}[STEP 5] Some libraries are installed${RESET}.Check ardunio-cli config!"
     else
-      echo -e "${RED} [STEP 5] Listed libs are NOT installed${RESET}"
+      echo -e "${RED} [STEP 5] Listed libraries are NOT installed${RESET}"
     fi
 
     if [ $firm_wares_cloned = true ]; then
@@ -245,18 +247,19 @@ cli_init_file_created=true
 process_list
 # ---------------------------------------------------------------- #
 
-# -------------------- Install the Cores ------------------ #
+# ----------------------- Install the Cores ---------------------- #
 for CORE in "${CORES[@]}"; do
   echo ""
   echo -e "${YELLOW}> Searching $CORE...${RESET}"
   SEARCH_CMD="$ARDUINO core search $CORE"
   if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
-    echo -e "${GREEN} Core found. Installing now ...${RESET}"
+    echo -e "${GREEN}  Core found. Installing now ...${RESET}"
     CORE_INSTALL_CMD="$ARDUINO core install $CORE"
     sleep 2
-    $CORE_INSTALL_CMD
-    core_install_count=$((core_install_count + 1))
     echo " "
+    $CORE_INSTALL_CMD
+    echo " "
+    core_install_count=$((core_install_count + 1))
   else
     echo -e "${RED} No such Core !${RESET}"
     sleep 2
@@ -265,37 +268,29 @@ done
 process_list
 # ---------------------------------------------------------------- #
 
-# # ---- Install the necessary libraries  ---- #
-# LIBSEARCH_CMD="$ARDUINO lib search"
-# LIBINSTALL_CMD="$ARDUINO lib install"
+# --------------- Install the necessary libraries  --------------- #
+LIBINSTALL_CMD="$ARDUINO lib install"
 
-# for LIB in "${LIB_LIST[@]}"; do
-#   echo "Searching $LIB in Library manager..."
-#   if [[ "$($LIBSEARCH_CMD "$LIB" --names)" == *$LIB* ]]; then
-#     echo "Library found in Library Manager Repo!)"
-#     sleep 2
-#     $LIBINSTALL_CMD "$LIB"
-#   else
-#     echo "$LIB library not found!"
-#   fi
-# done
+for LIB in "${LIB_LIST[@]}"; do
+  echo ""
+  echo -e "${YELLOW}> Searching $LIB in Library manager....${RESET}"
+  LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
+  if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
+    echo -e "${GREEN}  Library found in Library Manager Repo!${RESET})"
+    sleep 2
+    echo " "
+    LIBINSTALL_CMD="$ARDUINO lib install $LIB"
+    $LIBINSTALL_CMD
+    echo " "
+    lib_install_count=$((lib_install_count + 1))
+  else
+    echo -e "${RED}. $LIB library not found!${RESET}"
+    sleep 2
+  fi
+done
+process_list
+# ---------------------------------------------------------------- #
 
 # ---- git clone the firmware source code ---- #
 # cd "$HOME" || return
 # git clone https://github.com/dattasaurabh82/clock_firmware_production.git
-
-for CORE_URL in ${CORE_URLS[*]}; do
-  if grep -q "$CORE_URL" /home/pi/.arduino15/arduino-cli.yaml; then
-    echo -e "$CORE_URL already exists in config file"
-  else
-    echo -e "$CORE_URL doesn't exist in config file!"
-    sleep 2
-    echo -e "Adding $CORE_URL to config file"
-    sleep 2
-    ARDUINO=/home/pi/test/bin/arduino-cli
-    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo "$ADD_CORE_URL"
-    echo ""
-    $ADD_CORE_URL
-  fi
-done
