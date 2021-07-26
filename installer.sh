@@ -194,7 +194,7 @@ while true; do
       echo -e "user provided path: $cli_path, $len"
       sleep 2
       # using find command check if the binary truely exists in the provided path
-      find_bin_cmd="find / -type f -wholename \"*$cli_path\" 2>/dev/null"
+      find_bin_cmd=$"find / -type f -wholename \"*$cli_path\" 2>/dev/null"
       echo "$find_bin_cmd"
       if [ "$find_bin_cmd" == "$cli_path" ]; then
         echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
