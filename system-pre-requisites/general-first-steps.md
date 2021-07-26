@@ -56,23 +56,31 @@ $ sudo usermod -a -G dialout <USER>
 $ sudo usermod -a -G dialout pi
 ```
 
-### 
+Finally:
+
+```bash
+$ sudo reboot
+```
+
+System is ready for next steps. 🤓
 
 ### 
 
 ### Extra configuration for screen: 
 
-So I have been using, for this terminal a [**4" square display from wave-share**](https://www.waveshare.com/4inch-dpi-lcd-c.htm). It is not a must to have but if you want it as well, the instructions to set-up pi for the display can be found on their [**wiki**](https://www.waveshare.com/wiki/4inch_DPI_LCD_%28C%29)**.** 
+So I will be using, for this terminal, the [**4" square display from wave-share**](https://www.waveshare.com/4inch-dpi-lcd-c.htm). It is not a must to have but if you want it as well, the instructions to set-up the PI for the display can be found on the [**wiki**](https://www.waveshare.com/wiki/4inch_DPI_LCD_%28C%29)**.** 
 
-> NOTE: I'm not going to be using touch functionality of this screen as for the OS I'm using raspbian Lite  with terminal \[ ! GUI desktop \]. As an alternative I will be using a custom keyboard attached to it. So I will be skipping the touch setup for this.
+> NOTE: I'm not going to be using touch functionality for this screen as the OS I'm using is raspbian Lite   terminal version. For inputs I will be using a custom keyboard attached to it. So I will be skipping the touch setup for this.
 
 ![ 4&quot; square display from wave-share](../.gitbook/assets/screenshot-2021-07-26-at-7.36.36-pm.png)
 
-At the end of the `/boot/config.txt` add the following:
+Edit `/boot/config.txt` :
 
 ```bash
 $ sudo nano /boot/config.txt
 ```
+
+At the end of the file, add the following:
 
 ```bash
 gpio=0-9=a2
@@ -93,7 +101,7 @@ dtoverlay=waveshare-4dpic-4b
 #Note: For Raspberry Pi 4, you need to comment out dtoverlay=vc4-fkms-V3D.
 ```
 
-Download the ****[**4inch DPI LCD \(C\) DTBO file**](https://www.waveshare.com/w/upload/0/03/4DPIC_DTBO.zip) and extract _3 dtbo files._
+Download the ****[**4inch DPI LCD \(C\) DTBO file**](https://www.waveshare.com/w/upload/0/03/4DPIC_DTBO.zip)**s** and extract them_._ There will be 3 .dtbo files.
 
 ```bash
 $ mkdir -p -- Downloads # creates download folder, if it doesn't exist
@@ -111,9 +119,29 @@ $ ls
 Copy the above three files to the overlays directory `/boot/overlays/`
 
 ```bash
-# if your download folder doesn't have any other .dtbo files, 
-# you can do the following:
+# if your extraction directory doesn't have any other .dtbo files, 
+# you can simply do the following:
 
 $ cp *.dtbo /boot/overlays/
 ```
+
+To rotate the display,  edit: `/boot/config.txt`:
+
+```bash
+$ sudo nano /boot/config.txt
+```
+
+Add the following:
+
+```bash
+display_rotate=1 #1：90；2: 180； 3: 270
+```
+
+Finally:
+
+```bash
+sudo reboot
+```
+
+
 
