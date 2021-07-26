@@ -177,6 +177,7 @@ fi
 cli_present=false
 
 while true; do
+  echo ""
   read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in ? [Y/n]: "${RESET}")" answer
   case $answer in
   [y/Y])
@@ -186,22 +187,22 @@ while true; do
     ;;
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
-    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH \(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
+    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
     # using find command check if the binary truely exists in the provided path
     find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
     if [[ "$find_bin_cmd" ]]; then
-      echo -e "arduino-cli is present in $cli_path"
+      echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
       # if it is present, well then move on
       BIN_BASE_DIR=$cli_path
       cli_present=true
       sleep 3
       break
     else
-      echo -e "arduino-cli is NOT present in $cli_path"
+      echo -e "${RED} arduino-cli is NOT present in${RESET} $cli_path"
     fi
     ;;
   *)
-    echo "Invalid input. Try again in 3 sec!"
+    echo -e "${RED} Invalid input.${RESET} Try again in 3 sec!"
     sleep 3
     ;;
   esac
@@ -239,6 +240,7 @@ echo ""
 echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo ""
 sleep 2
+# test- TBD
 echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
