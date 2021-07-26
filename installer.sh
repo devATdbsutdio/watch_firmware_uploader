@@ -188,17 +188,22 @@ while true; do
     ;;
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
-    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
-    # using find command check if the binary truely exists in the provided path
-    find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
-    while [ ! "$find_bin_cmd" = "$cli_path" ]; do
-      echo -e "${RED} arduino-cli is NOT present in${RESET} $cli_path"
+    while true; do
+      read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
+      # using find command check if the binary truely exists in the provided path
+      find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
+      if [ ! "$find_bin_cmd" = "$cli_path" ]; then
+        echo -e "${RED} arduino-cli is NOT present in{RESET} $cli_path"
+        sleep 3
+      else
+        echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
+        # if it is present, well then move on
+        BIN_BASE_DIR=$cli_path
+        cli_present=true
+        sleep 3
+        break
+      fi
     done
-    echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
-    # if it is present, well then move on
-    BIN_BASE_DIR=$cli_path
-    cli_present=true
-    sleep 3
     break
     ;;
   *)
