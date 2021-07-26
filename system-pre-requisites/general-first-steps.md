@@ -6,10 +6,6 @@ description: >-
 
 # General First steps ↓
 
-## Download pre-built binary
-
-## Install Manually:
-
 Update and upgrade the system \(if you haven't done already so\): 
 
 ```
