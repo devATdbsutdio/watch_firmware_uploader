@@ -126,7 +126,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   sleep 2
   echo ""
-  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo -e "${GREEN}  FOUND SETTINGS:${RESET}"
   echo ""
   echo -e "${BLUE}  ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
   echo ""
@@ -191,7 +191,7 @@ while true; do
     read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
     # using find command check if the binary truely exists in the provided path
     find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
-    while [ ! "$find_bin_cmd" = $cli_path ]; do
+    while [ ! "$find_bin_cmd" = "$cli_path" ]; do
       echo -e "${RED} arduino-cli is NOT present in${RESET} $cli_path"
     done
     echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
@@ -200,7 +200,6 @@ while true; do
     cli_present=true
     sleep 3
     break
-    else
     ;;
   *)
     echo -e "${RED} Invalid input.${RESET} Try again in 3 sec!"
