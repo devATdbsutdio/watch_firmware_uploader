@@ -126,9 +126,10 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   sleep 2
   echo ""
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo ""
   echo -e "${YELLOW}  arduni-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
   echo ""
-  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo -e "${BLUE}  CORE URLS:${RESET}"
   c=0
   for CORE_URL in ${CORE_URLS[*]}; do
@@ -190,7 +191,7 @@ while true; do
     read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
     # using find command check if the binary truely exists in the provided path
     find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
-    if [[ "$find_bin_cmd" ]]; then
+    if [[ "$find_bin_cmd" = $cli_path ]]; then
       echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
       # if it is present, well then move on
       BIN_BASE_DIR=$cli_path
