@@ -113,9 +113,9 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
   IFS=$'\t' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
   IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
-  IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
+  # IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
   # LIB_LIST=(TinyMegaI2C RV8803Tiny)
-  IFS=$'\t' LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
+  LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
 
   echo -e "Found settings:"
   echo -e "CORE URLS:"
@@ -151,44 +151,44 @@ fi
 # ----------------------------- #
 
 # ---- Install arduino-cli ---- #
-sleep 1
-echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
-echo ""
-sleep 2
-echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
-sleep 2
-mkdir -p -- "$BIN_BASE_DIR"/bin
-cd "$BIN_BASE_DIR"/bin || exit
-echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
-echo ""
-sleep 2
-wget "$CLI_DOWNLOAD_LINK"
-echo -e "${GREEN}  Download finished!${RESET}"
-sleep 2
-echo ""
-echo -e "${YELLOW}> Unzipping...${RESET}"
-tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
-rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
-echo ""
-echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+# sleep 1
+# echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+# echo ""
+# sleep 2
+# echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+# sleep 2
+# mkdir -p -- "$BIN_BASE_DIR"/bin
+# cd "$BIN_BASE_DIR"/bin || exit
+# echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
+# sleep 2
+# echo ""
+# echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
+# echo ""
+# sleep 2
+# wget "$CLI_DOWNLOAD_LINK"
+# echo -e "${GREEN}  Download finished!${RESET}"
+# sleep 2
+# echo ""
+# echo -e "${YELLOW}> Unzipping...${RESET}"
+# tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+# rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
+# echo ""
+# echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 # ** Update cli's location in programmer_settings.yaml
-echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+# echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo "" && echo ""
 sleep 2
 # ---- TEST ---- [TBD **]
 echo "---------------------------"
-$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
+# $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
-sleep 10
+# sleep 10
 # go back to the home directory
 cd "$HOME" || return
 
-cli_installed=true
+# cli_installed=true
 process_list
 
 # ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
@@ -273,3 +273,19 @@ process_list
 # ---- git clone the firmware source code ---- #
 # cd "$HOME" || return
 # git clone https://github.com/dattasaurabh82/clock_firmware_production.git
+
+for CORE_URL in "${CORE_URLS[*]}"; do
+  if grep -q "$CORE_URL" /home/pi/.arduino15/arduino-cli.yaml; then
+    echo -e "$CORE_URL already exists in config file"
+  else
+    echo -e "$CORE_URL doesn't exist in config file!"
+    sleep 2
+    echo -e "Adding $CORE_URL to config file"
+    sleep 2
+    $ARDUINO=/home/pi/test/bin/arduino-cli
+    ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+    echo "$ADD_CORE_URL"
+    echo ""
+    $ADD_CORE_URL
+  fi
+done

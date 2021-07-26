@@ -1,36 +1,27 @@
 #!/bin/bash
 
-# prints the name of the script
-#echo $0
-
-# prints the absolute path of the script 
+I_SETTING_FILE_NAME=installer_settings.yaml
 FULL_PATH=$(realpath "$0")
-
-# prints the dir of the script
 SETTINGS_DIR=$(dirname "$FULL_PATH")
-SETTINGS_FILE=$SETTINGS_DIR/settings.yaml
+I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
 
+CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
+ymal_parse=$HOME/bin/yq #used for parsing settings.yaml file
 
-BIN=$("$HOME"/bin/yq e '.BINARY.LOCATION' "$SETTINGS_FILE")
-CORE=$("$HOME"/bin/yq e '.MICROCONTROLLER.CORE' "$SETTINGS_FILE")
-CHIP=$("$HOME"/bin/yq e '.MICROCONTROLLER.CHIP' "$SETTINGS_FILE")
-CLOCK=$("$HOME"/bin/yq e '.MICROCONTROLLER.CLOCK' "$SETTINGS_FILE")
-BOD=$("$HOME"/bin/yq e '.MICROCONTROLLER.BOD' "$SETTINGS_FILE")
-BODMODE=$("$HOME"/bin/yq e '.MICROCONTROLLER.BODMODE' "$SETTINGS_FILE")
-EEPROM_SAVE=$("$HOME"/bin/yq e '.MICROCONTROLLER.EEPROM_SAVE' "$SETTINGS_FILE")
-MILLIS=$("$HOME"/bin/yq e '.MICROCONTROLLER.MILLIS' "$SETTINGS_FILE")
-RESET_PIN=$("$HOME"/bin/yq e '.MICROCONTROLLER.RESET_PIN' "$SETTINGS_FILE")
-STARTUP_TIME=$("$HOME"/bin/yq e '.MICROCONTROLLER.STARTUP_TIME' "$SETTINGS_FILE")
-UARTV=$("$HOME"/bin/yq e '.MICROCONTROLLER.UARTV' "$SETTINGS_FILE")
-PORT="/dev/ttyUSB0"
-PROGRAMMER=$("$HOME"/bin/yq e '.MICROCONTROLLER.PROGRAMMER' "$SETTINGS_FILE")
-FIRMWARE_DIR=$("$HOME"/bin/yq e '.FIRMWARE.DIR' "$SETTINGS_FILE")
+IFS=$'\n' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
 
-UPLOAD_CMD=("$BIN" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t) 
-
-
-"${UPLOAD_CMD[@]}"
-
-array2=()      # No elements . . . "array2" is empty.
-echo "Elements in array2:  ${array2[@]}"
-echo "Number of elements in array2 = ${#array2[*]}"  # 0
+for CORE_URL in ${CORE_URLS[*]}; do
+	if grep -q "$CORE_URL" "$CONFIG_FILE"; then
+		echo -e "$CORE_URL already exists in config file"
+	else
+		echo -e "$CORE_URL doesn't exist in config file!"
+		sleep 2
+		echo -e "Adding $CORE_URL to config file"
+		sleep 2
+		ARDUINO=/home/pi/test/bin/arduino-cli
+		ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
+		echo "$ADD_CORE_URL"
+		echo ""
+		$ADD_CORE_URL
+	fi
+done
