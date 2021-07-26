@@ -113,29 +113,26 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
   IFS=$'\t' CORE_URLS=("$($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")")
   IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
+  IFS=$'\t' CORES=("$($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")")
   # LIB_LIST=(TinyMegaI2C RV8803Tiny)
   IFS=$'\t' LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
 
   echo -e "Found settings:"
-  c=0
   echo -e "CORE URLS:"
   for CORE_URL in "${CORE_URLS[*]}"; do
-    c=$((c + 1))
-    echo -e "$c $CORE_URL"
+    echo -e "$CORE_URL"
   done
   echo ""
   echo -e "CORES:"
   c=0
   for CORE in "${CORES[@]}"; do
-    c=$((c + 1))
-    echo -e "$c $CORE"
+    echo -e "$CORE"
   done
   echo ""
   echo -e "LIBRARIES:"
   c=0
   for LIB in "${LIB_LIST[@]}"; do
-    c=$((c + 1))
-    echo -e "$c $LIB"
+    echo -e "$LIB"
   done
 
   sleep 10
