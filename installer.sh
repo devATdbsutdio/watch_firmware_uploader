@@ -116,6 +116,28 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   # LIB_LIST=(TinyMegaI2C RV8803Tiny)
   IFS=$' ' LIB_LIST=("$($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")")
 
+  echo -e "Found settings:"
+  c=0
+  echo -e "CORE URLS:"
+  for CORE_URL in "${CORE_URLS[@]}"; do
+    c=$((c + 1))
+    echo -e "$c $CORE_URL"
+  done
+  echo ""
+  echo -e "CORES:"
+  c=0
+  for CORE in "${CORES[@]}"; do
+    c=$((c + 1))
+    echo -e "$c $CORE"
+  done
+  echo ""
+  echo -e "LIBRARIES:"
+  c=0
+  for LIB in "${LIB_LIST[@]}"; do
+    c=$((c + 1))
+    echo -e "$c $LIB"
+  done
+
   sleep 4
   # Show the updated list and task to do
   settings_found_loaded=true
@@ -185,6 +207,9 @@ else
   echo -e "${GREEN}  It exists!${RESET}"
   sleep 2
 fi
+echo " "
+echo -e "${YELLOW}> Adding found core links from settings in arduino's config...${RESET}"
+sleep 2
 echo " "
 for CORE_URL in "${CORE_URLS[@]}"; do
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
