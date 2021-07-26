@@ -152,7 +152,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   done
   c=0
 
-  sleep 10
+  sleep 5
   # Show the updated list and task to do
   settings_found_loaded=true
   process_list
@@ -194,6 +194,7 @@ while true; do
       sleep 2
       # using find command check if the binary truely exists in the provided path
       find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
+      echo "$find_bin_cmd"
       if [ "$find_bin_cmd" == "$cli_path" ]; then
         echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
         # if it is present, well then move on
