@@ -223,7 +223,7 @@ for CORE in "${CORES[@]}"; do
     CORE_INSTALL_CMD="$ARDUINO core install $CORE_COMB"
     sleep 2
     $CORE_INSTALL_CMD
-    core_install_count+=1
+    core_install_count=$((core_install_count + 1))
     echo " "
   else
     echo -e "${RED} No such Core !${RESET}"
