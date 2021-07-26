@@ -287,6 +287,12 @@ for CORE_URL in "${CORE_URLS[@]}"; do
     $ADD_CORE_URL
   fi
 done
+echo " "
+echo -e "${YELLOW}> Enabling unsafe install of libraries from git ...${RESET}"
+ENABLE_UNSAFE_INSTALL="$ARDUINO config set library.enable_unsafe_install true"
+$ENABLE_UNSAFE_INSTALL
+echo -e "${RED}Enabled unsafe install of libraries from git${RESET}"
+echo " "
 echo "---------------------------"
 "$ARDUINO" config dump
 echo "---------------------------"
