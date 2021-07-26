@@ -40,46 +40,47 @@ process_list() {
     clear
     echo -e "${RESET}PROCESS STATUS:${RESET}"
     if [ $settings_found_loaded = true ]; then
-      echo -e "${GREEN} [1] Settings File Located and Loaded${RESET}"
+      echo -e "${GREEN} [STEP 1] Settings File Located and Loaded${RESET}"
     else
-      echo -e "${RED} [1] settings.yaml located  Loaded${RESET}"
+      echo -e "${RED} [STEP 1] settings.yaml located  Loaded${RESET}"
     fi
 
     if [ $cli_installed = true ]; then
-      echo -e "${GREEN} [2] arduino-cli is installed${RESET}"
+      echo -e "${GREEN} [STEP 2] arduino-cli is installed${RESET}"
     else
-      echo -e "${RED} [2] arduino-cli is NOT installed${RESET}"
+      echo -e "${RED} [STEP 2] arduino-cli is NOT installed${RESET}"
     fi
 
     if [ $cli_init_file_created = true ]; then
-      echo -e "${GREEN} [3] cli init file created${RESET}"
+      echo -e "${GREEN} [STEP 3] cli init file created${RESET}"
     else
-      echo -e "${RED} [3] cli init file created${RESET}"
+      echo -e "${RED} [STEP 3] cli init file created${RESET}"
     fi
 
     if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${GREEN} [4] Listed cores are installed${RESET}"
+      echo -e "${GREEN} [STEP 4] Listed cores are installed${RESET}"
     elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${YELLOW} [4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
+      echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
     else
-      echo -e "${RED} [4] Listed cores are NOT installed${RESET}"
+      echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
     fi
 
     if [ $libs_installed = true ]; then
-      echo -e "${GREEN}[5] Listed libs are installed${RESET}"
+      echo -e "${GREEN}[STEP 5] Listed libs are installed${RESET}"
     else
-      echo -e "${RED} [5] Listed libs are installed${RESET}"
+      echo -e "${RED} [STEP 5] Listed libs are installed${RESET}"
     fi
 
     if [ $firm_wares_cloned = true ]; then
-      echo -e "${GREEN}[6] Firmwares are cloned${RESET}"
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
     else
-      echo -e "${RED} [6] Firmwares are cloned${RESET}"
+      echo -e "${RED} [STEP 6] Firmwares are cloned${RESET}"
     fi
 
     echo ""
-    echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
-    read -r -p "  > " input
+    # echo -e "${YELLOW}  Proceed to next step? [Y/n] ${RESET}"
+    # read -r -p "  > " input
+    read -p "  Proceed to next step? [Y/n]: " input
     case $input in
     [yY])
       break
