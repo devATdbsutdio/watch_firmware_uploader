@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # ---- color info ---- #
-GREEN='\033[0;32m'
+BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
 RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
@@ -122,20 +123,21 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   # LIB_LIST=($($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
 
-  echo -e "Found settings:"
-  echo -e "CORE URLS:"
+  echo ""
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo -e "${BLUE}  CORE URLS:${RESET}"
   for CORE_URL in ${CORE_URLS[*]}; do
-    echo -e "$CORE_URL"
+    echo -e "    $CORE_URL"
   done
   echo ""
-  echo -e "CORES:"
+  echo -e "${BLUE}  CORES:${RESET}"
   for CORE in "${CORES[@]}"; do
-    echo -e "$CORE"
+    echo -e "    $CORE"
   done
   echo ""
-  echo -e "LIBRARIES:"
+  echo -e "${BLUE}  LIBRARIES:${RESET}"
   for LIB in "${LIB_LIST[@]}"; do
-    echo -e "$LIB"
+    echo -e "    $LIB"
   done
 
   sleep 10
