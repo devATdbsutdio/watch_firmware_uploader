@@ -126,6 +126,8 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   sleep 2
   echo ""
+  echo -e "${YELLOW}  arduni-cli path mentioned in settings file: $BIN_BASE_DIR/bin/ ${RESET}"
+  echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo -e "${BLUE}  CORE URLS:${RESET}"
   c=0
@@ -165,6 +167,42 @@ fi
 # ----------------------------- #
 
 # ---- Install arduino-cli ---- #
+# TBD:
+# Install? Y/N
+# if yes, then break
+# if no: ask for installed path (Are you sure?):
+#   check path: if binary is there:
+#   if path is wrong: loop back as there was no binary in path
+
+while true; do
+  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in ? [Y/n]: "${RESET}")" answer
+  case $answer in
+  [y/Y])
+    # move on and use the settings file provided path to install arduino-cli
+    break
+    ;;
+  [n/N])
+    #  ask user to provide absolute path of the arduino-cli bin
+    read -r -p "$(echo -e "${RED}" Please provide arduino-cli absolute PATH \(/\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
+    # using find command check if the binary truely exists in the provided path
+    find_bin_cmd="$(which find) / -type f -wholename \"*$cli_path\" 2>/dev/null"
+    if [[ "$find_bin_cmd" ]]; then
+      echo -e "arduino-cli is present in $cli_path"
+      # if it is present, well then move on
+      BIN_BASE_DIR=$cli_path
+      sleep 3
+      break
+    else
+      echo -e "arduino-cli is NOT present in $cli_path"
+    fi
+    ;;
+  *)
+    echo "Invalid input. Try again in 3 sec!"
+    sleep 3
+    ;;
+  esac
+done
+
 sleep 1
 echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
 echo ""
@@ -250,7 +288,7 @@ process_list
 # ----------------------- Install the Cores ---------------------- #
 for CORE in "${CORES[@]}"; do
   echo ""
-  echo -e "${YELLOW}> Searching $CORE...${RESET}"
+  echo -e "${YELLOW}> Searching $CORE ...${RESET}"
   SEARCH_CMD="$ARDUINO core search $CORE"
   if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
     echo -e "${GREEN}  Core found. Installing now ...${RESET}"
@@ -273,7 +311,7 @@ LIBINSTALL_CMD="$ARDUINO lib install"
 
 for LIB in "${LIB_LIST[@]}"; do
   echo ""
-  echo -e "${YELLOW}> Searching $LIB in Library manager....${RESET}"
+  echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
   LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
   if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
     echo -e "${GREEN}  Library found in Library Manager Repo!${RESET})"

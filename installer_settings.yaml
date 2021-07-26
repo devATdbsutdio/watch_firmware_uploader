@@ -1,7 +1,7 @@
 BINARY:
     # arduino-cli binary download link
     LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
-    # base dir where /bin/arduino-cli willbe installed
+    # base dir where /bin/arduino-cli will be installed
     BASE: /home/pi/test
     CORES: # links for board cores you want to install 
         LINK: # these will be appended in arduino-cli's config file
@@ -10,9 +10,11 @@ BINARY:
         CORE_NAMES: # names of cores you want to install. Note that I have used full FQBN here
             - megaTinyCore:megaavr 
             - esp32:esp32
+
 LIBS: # 3rd-party libraries you want to install
     - TinyMegaI2C
     - RV8803Tiny
+
 # FIRMWARE: # firmware that is to be uplaoded, here goes the location details for it
 #     REPO_BASE: /home/pi
 #     REPO: /home/pi/clock_firmware_production
