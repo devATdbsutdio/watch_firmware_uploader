@@ -6,7 +6,7 @@ description: Making the Raspbain system Ready
 
 ### Tested System:
 
-**Raspberry PI 3B+ running raspbian**
+**Raspberry PI 3B+ running raspbian OS Lite**
 
 ```text
   `.::///+:/-.        --///+//-:``    pi@firmwareuploader
@@ -36,14 +36,9 @@ description: Making the Raspbain system Ready
 
 
 
-### 
+### Hardware wise:
 
-### 3. Optional Installs:
-
-**For remote management etc.**  
-
-* [ ] Install [**ngrok**](https://ngrok.com/) \(or something else \) for port forwarding
-* [ ] Ansible and related workbook if needed
+![](../.gitbook/assets/screenshot-2021-07-26-at-7.32.15-pm.png)
 
 
 
