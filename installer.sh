@@ -187,7 +187,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo ""
-  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/arduino-cli"
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
   echo ""
   echo -e "${BLUE} CORE URLS:${RESET}"
   c=0
