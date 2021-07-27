@@ -1,4 +1,7 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Introduction](README.md)
+* [Preparing the system](system-pre-requisites/README.md)
+  * [General First steps ↓](system-pre-requisites/general-first-steps.md)
+  * [Install toolchain](system-pre-requisites/install-toolchain.md)
 
