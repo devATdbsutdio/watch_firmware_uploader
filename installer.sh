@@ -159,7 +159,7 @@ sleep 1
 if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
-  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINKS' "$I_SETTINGS_FILE")"
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
 
   # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE"))
@@ -280,7 +280,7 @@ if [ "$cli_present" = false ]; then
   echo ""
   echo -e "${YELLOW} Unzipping...${RESET}"
   # [TBD] tar use absolute path
-  tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+  $tar_parse -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
   echo -e "${GREEN} \"arduino-cli\" installed in:${RESET} $BIN_BASE_DIR"
