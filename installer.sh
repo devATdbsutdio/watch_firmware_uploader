@@ -277,7 +277,7 @@ case "$BIN_BASE_DIR" in
   BIN_BASE_DIR=$BIN_BASE_DIR/
   ;;
 esac
-ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+ARDUINO=$BIN_BASE_DIRbin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
