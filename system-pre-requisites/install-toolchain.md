@@ -64,11 +64,3 @@ LIBS: # 3rd-party libraries you want to install
     - RV8803Tiny
 ```
 
-Run the Installer:
-
-```bash
-$ ./installer.sh
-```
-
-The outputs will be self explanatory. 🤓
-
