@@ -51,34 +51,34 @@ process_list() {
     fi
 
     if [ $cli_installed = true ]; then
-      echo -e "${GREEN} [STEP 2] arduino-cli is now installed/asigned${RESET}"
+      echo -e "${GREEN} [STEP 2] \"arduino-cli\" is now installed/asigned${RESET}"
     else
       if [ $steps = 0 ] || [ $steps = 1 ]; then
-        echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Check?${RESET}"
+        echo -e "${RED} [STEP 2] \"arduino-cli\" location not assigned. It may not be installed as well. Check?${RESET}"
       else
-        echo -e "${RED} [STEP 2] arduino-cli location not installed${RESET}"
+        echo -e "${RED} [STEP 2] \"arduino-cli\" potentially not installed${RESET}"
       fi
     fi
 
     if [ $cli_init_file_created = true ]; then
-      echo -e "${GREEN} [STEP 3] Made sure arduino-cli config file is there${RESET}"
+      echo -e "${GREEN} [STEP 3] Made sure arduino-cli's config file is there${RESET}"
     else
       if [ $steps = 0 ] || [ $steps = 2 ]; then
-        echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Check?${RESET}"
+        echo -e "${RED} [STEP 3] Not sure if arduino-cli's config file is there or not! Check?${RESET}"
       else
-        echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
+        echo -e "${RED} [STEP 3] arduino-cli's config file could not be created!${RESET}"
       fi
     fi
 
     if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${GREEN} [STEP 4] Listed cores are installed${RESET}"
+      echo -e "${GREEN} [STEP 4] All the listed cores (from provided settings) must have been installed!${RESET}"
     elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
       echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
     else
       if [ $steps = 0 ] || [ $steps = 3 ]; then
-        echo -e "${RED} [STEP 4] Not sure if Listed cores are installed. Check?${RESET}"
+        echo -e "${RED} [STEP 4] Not sure if Listed cores (from provided settings) are installed! Check?${RESET}"
       else
-        echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
+        echo -e "${RED} [STEP 4] None of the Listed cores (from provided settings) are installed!${RESET}"
       fi
     fi
 
@@ -322,10 +322,10 @@ process_list
 # ----------------------- Install the Cores ---------------------- #
 for CORE in "${CORES[@]}"; do
   echo ""
-  echo -e "${YELLOW}> Searching $CORE ...${RESET}"
+  echo -e "${YELLOW} Searching $CORE ...${RESET}"
   SEARCH_CMD="$ARDUINO core search $CORE"
   if [[ ! "$($SEARCH_CMD)" =~ "No" ]]; then
-    echo -e "${GREEN}  Core found. Installing now ...${RESET}"
+    echo -e "${GREEN} Core found. Installing now ...${RESET}"
     CORE_INSTALL_CMD="$ARDUINO core install $CORE"
     sleep 2
     echo " "
@@ -347,7 +347,7 @@ LIBINSTALL_CMD=""
 lib_install_count=0
 for LIB in "${LIB_LIST[@]}"; do
   echo ""
-  echo -e "${YELLOW}> Parsing Libraries list from the settings file ...${RESET}"
+  echo -e "${YELLOW} Parsing Libraries list from the settings file ...${RESET}"
   sleep 2
   if [[ $LIB = *"https:"* ]]; then
     # parse the end of the git link to get lib's name
@@ -356,9 +356,9 @@ for LIB in "${LIB_LIST[@]}"; do
     IDX_OF_DOT=$((LIB_NAME_LEN_WITH_GIT - 4))
     LIB_NAME=${LIB_NAME:0:$IDX_OF_DOT}
 
-    echo -e "${BLUE}  $LIB_NAME src is from a git link${RESET}"
+    echo -e "${BLUE} $LIB_NAME src is from a git link${RESET}"
     echo " "
-    echo -e "${YELLOW}> Installing $LIB_NAME from git ...${RESET}"
+    echo -e "${YELLOW} Installing $LIB_NAME from git ...${RESET}"
     LIBINSTALL_CMD="$ARDUINO lib install --git-url $LIB"
     $LIBINSTALL_CMD
     echo " "
@@ -366,19 +366,19 @@ for LIB in "${LIB_LIST[@]}"; do
     lib_install_count=$((lib_install_count + 1))
 
   else
-    echo "${BLUE}  $LIB is a pure lib name${RESET}"
+    echo "${BLUE} $LIB is a pure lib name${RESET}"
 
     LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
     LIBINSTALL_CMD="$ARDUINO lib install $LIB"
 
-    echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
+    echo -e "${YELLOW} Searching $LIB in Library manager ...${RESET}"
 
     LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
 
     if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
-      echo -e "${GREEN}  $LIB found in Library Manager!${RESET}"
+      echo -e "${GREEN} $LIB found in Library Manager!${RESET}"
       sleep 2
-      echo -e "${YELLOW}> Installing $LIB from Library Manager ...${RESET}"
+      echo -e "${YELLOW} Installing $LIB from Library Manager ...${RESET}"
       LIBINSTALL_CMD="$ARDUINO lib install $LIB"
       $LIBINSTALL_CMD
       echo " "
@@ -386,13 +386,16 @@ for LIB in "${LIB_LIST[@]}"; do
       lib_install_count=$((lib_install_count + 1))
 
     else
-      echo -e "${RED}  $LIB not found in Library Manager!${RESET}"
+      echo -e "${RED} $LIB not found in Library Manager!${RESET}"
       echo " "
       sleep 2
     fi
   fi
 done
+# reset lib installation counter
 lib_install_count=0
+# incerement step count
+steps=$((steps + 1))
 process_list
 # ---------------------------------------------------------------- #
 
