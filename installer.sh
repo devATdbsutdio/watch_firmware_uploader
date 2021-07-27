@@ -203,8 +203,9 @@ while true; do
       read -r -p "$(echo -e "${RED}" Assuming arduino-cli is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} user provided path:${RESET} $cli_path"
       sleep 2
+      ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
       # using find command check if the binary truely exists in the provided path
-      if [ -f "$cli_path/bin/arduino-cli" ]; then
+      if [ -f "$ARDUINO" ]; then
         echo -e "${GREEN} arduino-cli is present in:${RESET} $cli_path"
         # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
