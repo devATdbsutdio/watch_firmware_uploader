@@ -253,7 +253,7 @@ while true; do
         ;;
       esac
 
-      ARDUINO=$cli_pathbin/arduino-cli
+      ARDUINO="$cli_path"bin/arduino-cli
 
       # using find command check if the binary truely exists in the provided path
       if [ -f "$ARDUINO" ]; then
@@ -277,14 +277,14 @@ while true; do
   esac
 done
 
-ARDUINO=$BIN_BASE_DIRbin/arduino-cli
+ARDUINO="$BIN_BASE_DIR"bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
   echo -e "${YELLOW} Installing \"arduino-cli\" in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIRbin"
+  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd \"$BIN_BASE_DIR\"bin"
   sleep 2
   mkdir -p -- "$BIN_BASE_DIR"bin
   cd "$BIN_BASE_DIR"bin || exit
