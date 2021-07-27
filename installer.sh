@@ -257,7 +257,7 @@ fi
 
 # ** Update cli's location in programmer_settings.yaml
 echo ""
-echo -e "${YELLOW}  Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+echo -e "${YELLOW} Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo ""
 sleep 2
 echo "---------------------------"
@@ -272,40 +272,40 @@ steps=$((steps + 1))
 process_list
 
 # ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
-echo -e "${YELLOW}> Looking for arduino-cli config file...${RESET}"
+echo -e "${YELLOW} Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED}  It doesn't exist!${RESET}"
   sleep 5
-  echo -e "${YELLOW}  Creating now..${RESET}"
+  echo -e "${YELLOW} Creating now..${RESET}"
   echo ""
   "$ARDUINO" config init
   sleep 5
 else
-  echo -e "${GREEN}  It exists!${RESET}"
+  echo -e "${GREEN} It exists!${RESET}"
   sleep 5
 fi
 echo " "
-echo -e "${YELLOW}> Adding found core links from settings in arduino's config...${RESET}"
+echo -e "${YELLOW} Adding found core links from settings in arduino's config...${RESET}"
 sleep 5
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo " "
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
-    echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
+    echo -e " $CORE_URL ${GREEN}already exists in config file${RESET}"
   else
-    echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
+    echo -e " $CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 5
-    echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
+    echo -e " ${GREEN}Adding $CORE_URL to config file${RESET}"
     sleep 5
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
+    echo -e " ${YELLOW} EXECUTING:${RESET} $ADD_CORE_URL"
     $ADD_CORE_URL
   fi
 done
 echo " "
-echo -e "${YELLOW}> Enabling unsafe install of libraries from git ...${RESET}"
+echo -e "${YELLOW} Enabling unsafe install of libraries from git ...${RESET}"
 ENABLE_UNSAFE_INSTALL="$ARDUINO config set library.enable_unsafe_install true"
 $ENABLE_UNSAFE_INSTALL
-echo -e "${RED}Enabled unsafe install of libraries from git!${RESET}"
+echo -e " ${RED}Enabled unsafe install of libraries from git!${RESET}"
 echo " "
 echo "---------------------------"
 "$ARDUINO" config dump
