@@ -161,7 +161,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
-  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
+  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
   case "$BIN_BASE_DIR" in
   */)
     echo "has slash"
@@ -253,7 +253,7 @@ while true; do
         ;;
       esac
 
-      ARDUINO=$cli_path/bin/arduino-cli
+      ARDUINO=$cli_pathbin/arduino-cli
 
       # using find command check if the binary truely exists in the provided path
       if [ -f "$ARDUINO" ]; then
@@ -287,7 +287,7 @@ if [ "$cli_present" = false ]; then
   echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIRbin"
   sleep 2
   mkdir -p -- "$BIN_BASE_DIR"bin
-  cd "$BIN_BASE_DIR"/bin || exit
+  cd "$BIN_BASE_DIR"bin || exit
   echo -e "${GREEN} IN $BIN_BASE_DIR/bin now${RESET}"
   sleep 2
   echo ""
