@@ -122,11 +122,6 @@ process_list() {
     #   echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
     # fi
 
-    if [ $steps = 5 ]; then
-      #  we have reached the end
-      on_finish_setup
-    fi
-
     echo ""
     read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
     # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
@@ -145,6 +140,12 @@ process_list() {
     esac
   done
   clear
+
+  # THE END
+  if [ $steps = 5 ]; then
+    #  we have reached the end
+    on_finish_setup
+  fi
 }
 
 # Show the list and task to do
@@ -221,7 +222,7 @@ cli_present=false
 
 while true; do
   echo ""
-  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
+  read -e -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
