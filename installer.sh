@@ -54,7 +54,7 @@ process_list() {
       echo -e "${GREEN} [STEP 2] arduino-cli is now installed/asigned${RESET}"
     else
       if [ $steps = 0 ] || [ $steps = 1 ]; then
-        echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Test?${RESET}"
+        echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Check?${RESET}"
       else
         echo -e "${RED} [STEP 2] arduino-cli location not installed${RESET}"
       fi
@@ -64,7 +64,7 @@ process_list() {
       echo -e "${GREEN} [STEP 3] Made sure arduino-cli config file is there${RESET}"
     else
       if [ $steps = 0 ] || [ $steps = 2 ]; then
-        echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Test?${RESET}"
+        echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Check?${RESET}"
       else
         echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
       fi
@@ -75,7 +75,11 @@ process_list() {
     elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
       echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
     else
-      echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
+      if [ $steps = 0 ] || [ $steps = 3 ]; then
+        echo -e "${RED} [STEP 4] Not usre if Listed cores are installed. Check?${RESET}"
+      else
+        echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
+      fi
     fi
 
     if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
