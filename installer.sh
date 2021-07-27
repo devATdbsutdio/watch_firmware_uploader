@@ -73,21 +73,25 @@ process_list() {
     if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
       echo -e "${GREEN} [STEP 4] All the listed cores (from provided settings) must have been installed!${RESET}"
     elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
+      echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Consult ardunio-cli config!"
     else
       if [ $steps = 0 ] || [ $steps = 3 ]; then
-        echo -e "${RED} [STEP 4] Not sure if Listed cores (from provided settings) are installed! Check?${RESET}"
+        echo -e "${RED} [STEP 4] Not sure if the listed cores (from provided settings) are installed! Check?${RESET}"
       else
-        echo -e "${RED} [STEP 4] None of the Listed cores (from provided settings) are installed!${RESET}"
+        echo -e "${RED} [STEP 4] None of the listed cores (from provided settings) are installed!${RESET}"
       fi
     fi
 
     if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
-      echo -e "${GREEN} [STEP 5] Listed libraries are installed${RESET}"
+      echo -e "${GREEN} [STEP 5] All the listed libraries (from provided settings) must have been installed!${RESET}"
     elif [ ! $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
-      echo -e "${YELLOW}[STEP 5] Some libraries are installed${RESET}.Check ardunio-cli config!"
+      echo -e "${YELLOW}[STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
     else
-      echo -e "${RED} [STEP 5] Listed libraries are NOT installed${RESET}"
+      if [ $steps = 0 ] || [ $steps = 4 ]; then
+        echo -e "${RED} [STEP 4] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
+      else
+        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+      fi
     fi
 
     if [ $firm_wares_cloned = true ]; then
@@ -366,7 +370,7 @@ for LIB in "${LIB_LIST[@]}"; do
     lib_install_count=$((lib_install_count + 1))
 
   else
-    echo "${BLUE} $LIB is a pure lib name${RESET}"
+    echo -e "${BLUE} $LIB is a pure lib name${RESET}"
 
     LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
     LIBINSTALL_CMD="$ARDUINO lib install $LIB"
@@ -396,6 +400,7 @@ done
 lib_install_count=0
 # incerement step count
 steps=$((steps + 1))
+
 process_list
 # ---------------------------------------------------------------- #
 
