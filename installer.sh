@@ -222,7 +222,8 @@ cli_present=false
 
 while true; do
   echo ""
-  read -e -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
+  # read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
+  read -e -p " Install arduino-cli in $BIN_BASE_DIR/bin? [Y/n]: " answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
