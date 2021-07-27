@@ -280,7 +280,7 @@ if [ "$cli_present" = false ]; then
   echo ""
   echo -e "${YELLOW} Unzipping...${RESET}"
   # [TBD] tar use absolute path
-  $tar_parse -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+  tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
   echo -e "${GREEN} \"arduino-cli\" installed in:${RESET} $BIN_BASE_DIR"
