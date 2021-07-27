@@ -168,13 +168,6 @@ fi
 # ----------------------------- #
 
 # ---- Install arduino-cli ---- #
-# TBD:
-# Install? Y/N
-# if yes, then break
-# if no: ask for installed path (Are you sure?):
-#   check path: if binary is there:
-#   if path is wrong: loop back as there was no binary in path
-
 cli_present=false
 
 while true; do
@@ -234,6 +227,7 @@ if [ "$cli_present" = false ]; then
   sleep 2
   echo ""
   echo -e "${YELLOW}> Unzipping...${RESET}"
+  # [TBD] tar use absolute path
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
@@ -246,7 +240,6 @@ echo ""
 echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo ""
 sleep 2
-# test- TBD
 echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
@@ -323,28 +316,84 @@ for CORE in "${CORES[@]}"; do
   fi
 done
 process_list
+lib_install_count=0
 # ---------------------------------------------------------------- #
 
 # --------------- Install the necessary libraries  --------------- #
-LIBINSTALL_CMD="$ARDUINO lib install"
+# LIBINSTALL_CMD="$ARDUINO lib install"
+# for LIB in "${LIB_LIST[@]}"; do
+#   # if core has https://, it's a git link, modify the install command
+#   # arduino-cli lib install --git-url https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
+#   # else proceed
+#   # arduino-cli lib install libname
+#   echo ""
+#   echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
+#   LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
+#   if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
+#     echo -e "${GREEN}  Library found in Library Manager Repo!${RESET})"
+#     sleep 2
+#     echo " "
+#     LIBINSTALL_CMD="$ARDUINO lib install $LIB"
+#     $LIBINSTALL_CMD
+#     echo " "
+#     lib_install_count=$((lib_install_count + 1))
+#   else
+#     echo -e "${RED}. $LIB library not found!${RESET}"
+#     sleep 2
+#   fi
+# done
+# lib_install_count=0
+# process_list
 
+LIBINSTALL_CMD=""
 for LIB in "${LIB_LIST[@]}"; do
   echo ""
-  echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
-  LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
-  if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
-    echo -e "${GREEN}  Library found in Library Manager Repo!${RESET})"
-    sleep 2
+  echo -e "${YELLOW}> Parsing Libraries list from the settings file ...${RESET}"
+  sleep 2
+  if [[ $LIB = *"https:"* ]]; then
+    # parse the end of the git link to get lib's name
+    LIB_NAME=$(echo "$LIB" | cut -d'/' -f 5)
+    LIB_NAME_LEN_WITH_GIT=${#LIB_NAME}
+    IDX_OF_DOT=$((LIB_NAME_LEN_WITH_GIT - 4))
+    LIB_NAME=${LIB_NAME:0:$IDX_OF_DOT}
+
+    echo -e "${BLUE}  $LIB_NAME src is from a git link${RESET}"
     echo " "
-    LIBINSTALL_CMD="$ARDUINO lib install $LIB"
+    echo -e "${YELLOW}> Installing $LIB_NAME from git ...${RESET}"
+    LIBINSTALL_CMD="$ARDUINO lib install --git-url $LIB"
     $LIBINSTALL_CMD
     echo " "
+
     lib_install_count=$((lib_install_count + 1))
+
   else
-    echo -e "${RED}. $LIB library not found!${RESET}"
-    sleep 2
+    echo "${BLUE}  $LIB is a pure lib name${RESET}"
+
+    LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
+    LIBINSTALL_CMD="$ARDUINO lib install $LIB"
+
+    echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
+
+    LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
+
+    if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
+      echo -e "${GREEN}  $LIB found in Library Manager!${RESET}"
+      sleep 2
+      echo -e "${YELLOW}> Installing $LIB from Library Manager ...${RESET}"
+      LIBINSTALL_CMD="$ARDUINO lib install $LIB"
+      $LIBINSTALL_CMD
+      echo " "
+
+      lib_install_count=$((lib_install_count + 1))
+
+    else
+      echo -e "${RED}  $LIB not found in Library Manager!${RESET}"
+      echo " "
+      sleep 2
+    fi
   fi
 done
+lib_install_count=0
 process_list
 # ---------------------------------------------------------------- #
 

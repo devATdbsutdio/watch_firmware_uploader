@@ -1,0 +1,38 @@
+BINARY:
+    LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
+    BASE: /home/pi/test
+    LOCATION: /home/pi/bin/arduino-cli
+    CORES:
+        LINK:
+            - http://drazzy.com/package_drazzy.com_index.json
+            - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+        SEARCH_TERM:
+            - megaTinyCore
+    LIBS: 
+        - TinyMegaI2C
+        - RV8803Tiny
+
+
+FIRMWARE:
+    REPO_BASE: /home/pi
+    REPO: /home/pi/clock_firmware_production
+    DIR: /home/pi/clock_firmware_production/clock
+
+
+# The deatils yopu can find:
+# arduino-cli board details -b FQBN
+# e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
+# More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
+MICROCONTROLLER:
+    # Edit this parameters for your needs
+    CORE: megaTinyCore:megaavr:atxy7
+    CHIP: 1607
+    CLOCK: 5internal
+    BOD: 1v8
+    BODMODE: disabled
+    EEPROM_SAVE: enable
+    MILLIS: enabled
+    RESET_PIN: UPDI
+    STARTUP_TIME: 0
+    UARTV: skip
+    PROGRAMMER: pyupdi

@@ -12,6 +12,7 @@ BINARY:
             - esp32:esp32
 
 LIBS: # 3rd-party libraries you want to install
+    - https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
     - TinyMegaI2C
     - RV8803Tiny
 
