@@ -4,19 +4,19 @@ BINARY:
     # base dir where /bin/arduino-cli will be installed
     BASE: /home/pi/test
     CORES: # links for board cores you want to install 
-        LINK: # these will be appended in arduino-cli's config file
+        LINKS: # these will be appended in arduino-cli's config file
             - http://drazzy.com/package_drazzy.com_index.json
             - https://dl.espressif.com/dl/package_esp32_index.json
         CORE_NAMES: # names of cores you want to install. Note that I have used full FQBN here
             - megaTinyCore:megaavr 
             - esp32:esp32
 
-LIBS: # 3rd-party libraries you want to install
+LIBS: # 3rd-party libraries you want to install (can be both names or git links)
     - https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
     - TinyMegaI2C
     - RV8803Tiny
 
-# FIRMWARE: # firmware that is to be uplaoded, here goes the location details for it
-#     REPO_BASE: /home/pi
-#     REPO: /home/pi/clock_firmware_production
-#     DIR: /home/pi/clock_firmware_production/clock
+FIRMWARE: 
+    # firmware/s, that needs to be cloned goes here
+    LINKS:
+        - https://github.com/dattasaurabh82/clock_firmware_production.git

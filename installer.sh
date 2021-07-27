@@ -9,6 +9,7 @@ RESET='\033[0m'
 # -------------------- #
 
 ymal_parse="$(/usr/bin/which yq)" #used for parsing setting file
+tar_parse="$(/usr/bin/which tar)"
 
 # ------- values top be prased from settings file ------- #
 CLI_DOWNLOAD_LINK=""
@@ -33,8 +34,29 @@ cli_installed=false
 cli_init_file_created=false
 core_install_count=0
 lib_install_count=0
-firm_wares_cloned=false
+# firm_wares_cloned=false
 steps=0
+
+on_finish_setup() {
+  # we have reached the end, hoping all the installations were done and setup were done correctly
+  clear
+  read -r -p "$(echo -e "${GREEN}" All Set! REBOOT NOW [Y/n]: "${RESET}")" reboot
+  case $reboot in
+  [y/Y])
+    # reboot [TBD]
+    ;;
+  [n/N])
+    sleep 1
+    clear
+    exit 1
+    ;;
+  *)
+    echo -e "${RED} Invalid input. Try Again!${RESET}"
+    sleep 1
+    ;;
+  esac
+
+}
 
 process_list() {
   while true; do
@@ -88,16 +110,21 @@ process_list() {
       echo -e "${YELLOW}[STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
     else
       if [ $steps = 0 ] || [ $steps = 4 ]; then
-        echo -e "${RED} [STEP 4] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
+        echo -e "${RED} [STEP 5] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
       else
         echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
       fi
     fi
 
-    if [ $firm_wares_cloned = true ]; then
-      echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
-    else
-      echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
+    # if [ $firm_wares_cloned = true ]; then
+    #   echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
+    # else
+    #   echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
+    # fi
+
+    if [ $steps = 5 ]; then
+      #  we have reached the end
+      on_finish_setup
     fi
 
     echo ""
@@ -132,11 +159,11 @@ sleep 1
 if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
-  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINKS' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
 
-  # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE"))
-  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")
+  # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE"))
+  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
 
   # IFS=$'\t' CORES=($($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
@@ -204,7 +231,7 @@ while true; do
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
     while true; do
-      read -r -p "$(echo -e "${RED}" Assuming arduino-cli is already installed, please provide the absolute PATH":${RESET} ")" cli_path
+      read -r -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} User provided path:${RESET} $cli_path"
       sleep 2
       ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
@@ -253,7 +280,7 @@ if [ "$cli_present" = false ]; then
   echo ""
   echo -e "${YELLOW} Unzipping...${RESET}"
   # [TBD] tar use absolute path
-  tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
+  $tar_parse -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
   echo -e "${GREEN} \"arduino-cli\" installed in:${RESET} $BIN_BASE_DIR"
@@ -261,7 +288,7 @@ fi
 
 # ** Update cli's location in programmer_settings.yaml
 echo ""
-echo -e "${YELLOW} Updating \"programmer_setting.yaml\ with arduino-cli's location${RESET}"
+echo -e "${YELLOW} Updating \"programmer_setting.yaml\" with arduino-cli's location${RESET}"
 echo ""
 sleep 2
 echo "---------------------------"
@@ -286,7 +313,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
   sleep 5
 else
   echo -e "${GREEN} It exists!${RESET}"
-  sleep 5
+  sleep 2
 fi
 echo " "
 echo -e "${YELLOW} Adding found core links from settings in arduino's config...${RESET}"
@@ -314,7 +341,7 @@ echo " "
 echo "---------------------------"
 # "$ARDUINO" config dump
 # echo " "
-$ymal_parse e $HOME/.arduino15/arduino-cli.yaml
+$ymal_parse e "$HOME"/.arduino15/arduino-cli.yaml
 echo "---------------------------"
 sleep 5
 $ARDUINO core update-index
@@ -343,6 +370,8 @@ for CORE in "${CORES[@]}"; do
     sleep 2
   fi
 done
+echo ""
+$ARDUINO core upgrade
 
 steps=$((steps + 1))
 process_list
