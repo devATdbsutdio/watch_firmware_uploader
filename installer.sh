@@ -161,15 +161,17 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
-  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
+  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
   case "$BIN_BASE_DIR" in
   */)
     echo "has slash"
     ;;
   *)
+    echo "doesn't have slash. Adding /"
     BIN_BASE_DIR=$BIN_BASE_DIR/
     ;;
   esac
+  echo "$BIN_BASE_DIR"
 
   # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
@@ -185,7 +187,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo ""
-  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ($BIN_BASE_DIR)bin/arduino-cli"
   echo ""
   echo -e "${BLUE} CORE URLS:${RESET}"
   c=0
