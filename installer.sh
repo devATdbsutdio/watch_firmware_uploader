@@ -76,7 +76,7 @@ process_list() {
       echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Check ardunio-cli config!"
     else
       if [ $steps = 0 ] || [ $steps = 3 ]; then
-        echo -e "${RED} [STEP 4] Not usre if Listed cores are installed. Check?${RESET}"
+        echo -e "${RED} [STEP 4] Not sure if Listed cores are installed. Check?${RESET}"
       else
         echo -e "${RED} [STEP 4] Listed cores are NOT installed${RESET}"
       fi
@@ -204,7 +204,7 @@ while true; do
       echo -e "${BLUE} user provided path:${RESET} $cli_path"
       sleep 2
       # using find command check if the binary truely exists in the provided path
-      if [ -f "$cli_path" ]; then
+      if [ -f "$cli_path/bin/arduino-cli" ]; then
         echo -e "${GREEN} arduino-cli is present in:${RESET} $cli_path"
         # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
