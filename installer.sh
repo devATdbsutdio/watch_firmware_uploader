@@ -44,22 +44,30 @@ process_list() {
       echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
     else
       if [ steps = 0 ]; then
-        echo -e "${RED} [STEP 1] Load \"installer_settings.yaml\"${RESET}"
+        echo -e "${RED} [STEP 1] Must try to load \"installer_settings.yaml\" before anything else. Do it?${RESET}"
       else
         echo -e "${RED} [STEP 1] \"installer_settings.yaml\" Not Loaded${RESET}"
       fi
     fi
 
     if [ $cli_installed = true ]; then
-      echo -e "${GREEN} [STEP 2] arduino-cli is installed${RESET}"
+      echo -e "${GREEN} [STEP 2] arduino-cli is now installed/asigned${RESET}"
     else
-      echo -e "${RED} [STEP 2] arduino-cli is NOT installed${RESET}"
+      if [ steps = 0 ]; then
+        echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Test?${RESET}"
+      else
+        echo -e "${RED} [STEP 2] arduino-cli location not installed${RESET}"
+      fi
     fi
 
     if [ $cli_init_file_created = true ]; then
-      echo -e "${GREEN} [STEP 3] cli init file created${RESET}"
+      echo -e "${GREEN} [STEP 3] Made sure arduino-cli config file is there${RESET}"
     else
-      echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
+      if [ steps = 0 ]; then
+        echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Test?${RESET}"
+      else
+        echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
+      fi
     fi
 
     if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
@@ -255,6 +263,7 @@ sleep 10
 cd "$HOME" || return
 
 cli_installed=true
+steps=$((steps + 1))
 process_list
 
 # ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
@@ -301,6 +310,7 @@ $ARDUINO core update-index
 sleep 5
 
 cli_init_file_created=true
+steps=$((steps + 1))
 process_list
 # ---------------------------------------------------------------- #
 
@@ -322,37 +332,14 @@ for CORE in "${CORES[@]}"; do
     sleep 2
   fi
 done
+
+steps=$((steps + 1))
 process_list
-lib_install_count=0
 # ---------------------------------------------------------------- #
 
 # --------------- Install the necessary libraries  --------------- #
-# LIBINSTALL_CMD="$ARDUINO lib install"
-# for LIB in "${LIB_LIST[@]}"; do
-#   # if core has https://, it's a git link, modify the install command
-#   # arduino-cli lib install --git-url https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
-#   # else proceed
-#   # arduino-cli lib install libname
-#   echo ""
-#   echo -e "${YELLOW}> Searching $LIB in Library manager ...${RESET}"
-#   LIBSEARCH_CMD="$ARDUINO lib search $LIB --names"
-#   if [[ "$($LIBSEARCH_CMD)" == *$LIB* ]]; then
-#     echo -e "${GREEN}  Library found in Library Manager Repo!${RESET})"
-#     sleep 2
-#     echo " "
-#     LIBINSTALL_CMD="$ARDUINO lib install $LIB"
-#     $LIBINSTALL_CMD
-#     echo " "
-#     lib_install_count=$((lib_install_count + 1))
-#   else
-#     echo -e "${RED}. $LIB library not found!${RESET}"
-#     sleep 2
-#   fi
-# done
-# lib_install_count=0
-# process_list
-
 LIBINSTALL_CMD=""
+lib_install_count=0
 for LIB in "${LIB_LIST[@]}"; do
   echo ""
   echo -e "${YELLOW}> Parsing Libraries list from the settings file ...${RESET}"
