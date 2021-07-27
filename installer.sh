@@ -161,7 +161,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
-  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
+  BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
   case "$BIN_BASE_DIR" in
   */)
     echo "has slash"
