@@ -187,7 +187,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo ""
-  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}bin/arduino-cli"
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/arduino-cli"
   echo ""
   echo -e "${BLUE} CORE URLS:${RESET}"
   c=0
@@ -232,7 +232,7 @@ cli_present=false
 
 while true; do
   echo ""
-  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "${BIN_BASE_DIR}"bin? [Y/n]: "${RESET}")" answer
+  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "${BIN_BASE_DIR}"? [Y/n]: "${RESET}")" answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
@@ -240,7 +240,7 @@ while true; do
     break
     ;;
   [n/N])
-    #  ask user to provide absolute path of the arduino-cli bin
+    #  ask user to provide absolute path of the arduino-cli binary
     while true; do
       read -e -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} User provided path:${RESET} $cli_path"
@@ -256,7 +256,7 @@ while true; do
         ;;
       esac
 
-      ARDUINO="$cli_path"bin/arduino-cli
+      ARDUINO=${cli_path}arduino-cli
       echo "SEARCH PATH: $ARDUINO"
 
       # using find command check if the binary truely exists in the provided path
@@ -281,18 +281,18 @@ while true; do
   esac
 done
 
-ARDUINO="$BIN_BASE_DIR"bin/arduino-cli
+ARDUINO=${BIN_BASE_DIR}arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
   echo -e "${YELLOW} Installing \"arduino-cli\" in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd ${BIN_BASE_DIR}bin"
+  echo -e "${YELLOW} Entering Directory:${RESET} cd ${BIN_BASE_DIR}"
   sleep 2
-  mkdir -p -- "${BIN_BASE_DIR}"bin
-  cd "$BIN_BASE_DIR"bin || exit
-  echo -e "${GREEN} IN ${BIN_BASE_DIR}bin now${RESET}"
+  mkdir -p -- "$BIN_BASE_DIR"
+  cd "$BIN_BASE_DIR" || exit
+  echo -e "${GREEN} IN ${BIN_BASE_DIR} now${RESET}"
   sleep 2
   echo ""
   echo -e "${YELLOW} Downloading \"arduino-cli\"...${RESET}"
