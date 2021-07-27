@@ -43,7 +43,7 @@ process_list() {
     if [ $settings_found_loaded = true ]; then
       echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
     else
-      if [ steps = 0 ]; then
+      if [ $steps = 0 ]; then
         echo -e "${RED} [STEP 1] Must try to load \"installer_settings.yaml\" before anything else. Do it?${RESET}"
       else
         echo -e "${RED} [STEP 1] \"installer_settings.yaml\" Not Loaded${RESET}"
@@ -53,7 +53,7 @@ process_list() {
     if [ $cli_installed = true ]; then
       echo -e "${GREEN} [STEP 2] arduino-cli is now installed/asigned${RESET}"
     else
-      if [ steps = 0 ]; then
+      if [ $steps = 0 ]; then
         echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Test?${RESET}"
       else
         echo -e "${RED} [STEP 2] arduino-cli location not installed${RESET}"
@@ -63,7 +63,7 @@ process_list() {
     if [ $cli_init_file_created = true ]; then
       echo -e "${GREEN} [STEP 3] Made sure arduino-cli config file is there${RESET}"
     else
-      if [ steps = 0 ]; then
+      if [ $steps = 0 ]; then
         echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Test?${RESET}"
       else
         echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
