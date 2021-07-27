@@ -162,25 +162,17 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
+  # -- Add "/" at the end of PATH if it doesn't exist
   case "$BIN_BASE_DIR" in
-  */)
-    # echo "has slash"
-    ;;
+  */) ;;
+
   *)
-    # echo "doesn't have slash. Adding /"
     BIN_BASE_DIR=$BIN_BASE_DIR/
     ;;
   esac
-  echo "$BIN_BASE_DIR"
 
-  # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
-
-  # IFS=$'\t' CORES=($($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
-
-  # LIB_LIST=(TinyMegaI2C RV8803Tiny)
-  # LIB_LIST=($($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
 
   sleep 2
@@ -245,7 +237,7 @@ while true; do
       read -e -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} User provided path:${RESET} $cli_path"
       sleep 2
-      # [TBD] check for slash, if not add
+      # -- Check for slash, if it is not there; add
       case "$cli_path" in
       */)
         # echo "has slash"
@@ -256,19 +248,17 @@ while true; do
         ;;
       esac
 
-      ARDUINO=${cli_path}arduino-cli
-      echo "SEARCH PATH: $ARDUINO"
-
-      # using find command check if the binary truely exists in the provided path
-      if [ -f "$ARDUINO" ]; then
+      SP=${cli_path}arduino-cli
+      # using find command to check if the binary truely exists in the provided path
+      if [ -f "$SP" ]; then
         echo -e "${GREEN} \"arduino-cli\" is present in:${RESET} $cli_path"
-        # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
         cli_present=true
         sleep 3
         break
       else
         echo -e "${RED} \"arduino-cli\" is NOT present in${RESET} $cli_path"
+        # [TBD] - check again or download?
         sleep 3
       fi
     done
@@ -303,7 +293,6 @@ if [ "$cli_present" = false ]; then
   sleep 2
   echo ""
   echo -e "${YELLOW} Unzipping...${RESET}"
-  # [TBD] tar use absolute path
   $tar_parse -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
@@ -349,10 +338,10 @@ for CORE_URL in "${CORE_URLS[@]}"; do
   else
     echo -e " $CORE_URL ${RED}doesn't exist in config file!${RESET}"
     sleep 5
-    echo -e " ${GREEN}Adding $CORE_URL to config file${RESET}"
+    echo -e "${GREEN} Adding $CORE_URL to config file${RESET}"
     sleep 5
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
-    echo -e " ${YELLOW} EXECUTING:${RESET} $ADD_CORE_URL"
+    echo -e "${YELLOW} EXECUTING:${RESET} $ADD_CORE_URL"
     $ADD_CORE_URL
   fi
 done
