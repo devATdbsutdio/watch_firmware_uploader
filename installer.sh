@@ -162,6 +162,14 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
+  case "$BIN_BASE_DIR" in
+  */)
+    echo "has slash"
+    ;;
+  *)
+    BIN_BASE_DIR=$BIN_BASE_DIR/
+    ;;
+  esac
 
   # IFS=$'\t' CORE_URLS=($($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE"))
   IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
@@ -269,14 +277,6 @@ while true; do
   esac
 done
 
-case "$BIN_BASE_DIR" in
-*/)
-  echo "has slash"
-  ;;
-*)
-  BIN_BASE_DIR=$BIN_BASE_DIR/
-  ;;
-esac
 ARDUINO=$BIN_BASE_DIRbin/arduino-cli
 
 if [ "$cli_present" = false ]; then
@@ -284,9 +284,9 @@ if [ "$cli_present" = false ]; then
   echo -e "${YELLOW} Installing \"arduino-cli\" in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIRbin"
   sleep 2
-  mkdir -p -- "$BIN_BASE_DIR"/bin
+  mkdir -p -- "$BIN_BASE_DIR"bin
   cd "$BIN_BASE_DIR"/bin || exit
   echo -e "${GREEN} IN $BIN_BASE_DIR/bin now${RESET}"
   sleep 2
