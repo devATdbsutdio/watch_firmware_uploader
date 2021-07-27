@@ -127,10 +127,10 @@ process_list
 # -------- Read data in from settings file ------- #
 clear
 sleep 1
-echo -e "${YELLOW}> Loading settings ...${RESET}"
+echo -e "${YELLOW} Loading settings ...${RESET}"
 sleep 1
 if [ -f "$I_SETTINGS_FILE" ]; then
-  echo -e "${GREEN}  TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
+  echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
 
   CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
   BIN_BASE_DIR=$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")
@@ -147,29 +147,29 @@ if [ -f "$I_SETTINGS_FILE" ]; then
 
   sleep 2
   echo ""
-  echo -e "${GREEN}  FOUND SETTINGS:${RESET}"
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo ""
-  echo -e "${BLUE}  ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} $BIN_BASE_DIR/bin/arduino-cli"
   echo ""
-  echo -e "${BLUE}  CORE URLS:${RESET}"
+  echo -e "${BLUE} CORE URLS:${RESET}"
   c=0
   for CORE_URL in ${CORE_URLS[*]}; do
     c=$((c + 1))
-    echo -e "  [$c] $CORE_URL"
+    echo -e " [$c] $CORE_URL"
   done
   c=0
   echo ""
-  echo -e "${BLUE}  CORES:${RESET}"
+  echo -e "${BLUE} CORES:${RESET}"
   for CORE in "${CORES[@]}"; do
     c=$((c + 1))
-    echo -e "  [$c] $CORE"
+    echo -e " [$c] $CORE"
   done
   c=0
   echo ""
-  echo -e "${BLUE}  LIBRARIES:${RESET}"
+  echo -e "${BLUE} LIBRARIES:${RESET}"
   for LIB in "${LIB_LIST[@]}"; do
     c=$((c + 1))
-    echo -e "  [$c] $LIB"
+    echo -e " [$c] $LIB"
   done
   c=0
 
@@ -178,7 +178,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   settings_found_loaded=true
 
 else
-  echo -e "${RED}TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+  echo -e "${RED} TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
   # Show the updated list and task to do
   settings_found_loaded=false
   echo -e "${RED} QUITTING in 5 sec !${RESET}"
