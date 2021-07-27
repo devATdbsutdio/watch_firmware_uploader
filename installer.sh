@@ -34,15 +34,20 @@ cli_init_file_created=false
 core_install_count=0
 lib_install_count=0
 firm_wares_cloned=false
+steps=0
 
 process_list() {
   while true; do
     clear
     echo -e "${RESET}PROCESS STATUS:${RESET}"
     if [ $settings_found_loaded = true ]; then
-      echo -e "${GREEN} [STEP 1] Settings File Located and Loaded${RESET}"
+      echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
     else
-      echo -e "${RED} [STEP 1] settings.yaml located  Loaded${RESET}"
+      if [ steps = 0 ]; then
+        echo -e "${RED} [STEP 1] Load \"installer_settings.yaml\"${RESET}"
+      else
+        echo -e "${RED} [STEP 1] \"installer_settings.yaml\" Not Loaded${RESET}"
+      fi
     fi
 
     if [ $cli_installed = true ]; then
@@ -155,17 +160,18 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   sleep 1
   # Show the updated list and task to do
   settings_found_loaded=true
-  process_list
+
 else
   echo -e "${RED}TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
   # Show the updated list and task to do
   settings_found_loaded=false
-  process_list
   echo -e "${RED} QUITTING in 5 sec !${RESET}"
   sleep 5
   exit 1
 fi
 # ----------------------------- #
+steps=$((steps + 1))
+process_list
 
 # ---- Install arduino-cli ---- #
 cli_present=false
@@ -211,24 +217,24 @@ ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
-  echo -e "${YELLOW}> Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+  echo -e "${YELLOW}  Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW}> Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+  echo -e "${YELLOW}  Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
   sleep 2
   mkdir -p -- "$BIN_BASE_DIR"/bin
   cd "$BIN_BASE_DIR"/bin || exit
   echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
   sleep 2
   echo ""
-  echo -e "${YELLOW}> Downloading arduino-cli...${RESET}"
+  echo -e "${YELLOW}  Downloading arduino-cli...${RESET}"
   echo ""
   sleep 2
   wget "$CLI_DOWNLOAD_LINK"
   echo -e "${GREEN}  Download finished!${RESET}"
   sleep 2
   echo ""
-  echo -e "${YELLOW}> Unzipping...${RESET}"
+  echo -e "${YELLOW}  Unzipping...${RESET}"
   # [TBD] tar use absolute path
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
@@ -238,7 +244,7 @@ fi
 
 # ** Update cli's location in programmer_settings.yaml
 echo ""
-echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+echo -e "${YELLOW}  Updating programmer_setting.yaml with arduino-cli's location${RESET}"
 echo ""
 sleep 2
 echo "---------------------------"
