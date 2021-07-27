@@ -183,7 +183,7 @@ while true; do
     #  ask user to provide absolute path of the arduino-cli bin
     while true; do
       read -r -p "$(echo -e "${RED}" Assuming arduino-cli is already installed, please provide the absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
-      echo -e "user provided path: $cli_path"
+      echo -e "${BLUE} user provided path:${RESET} $cli_path"
       sleep 2
       # using find command check if the binary truely exists in the provided path
       if [ -f "$cli_path" ]; then
@@ -254,27 +254,27 @@ process_list
 echo -e "${YELLOW}> Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED}  It doesn't exist!${RESET}"
-  sleep 2
+  sleep 5
   echo -e "${YELLOW}  Creating now..${RESET}"
   echo ""
   "$ARDUINO" config init
-  sleep 2
+  sleep 5
 else
   echo -e "${GREEN}  It exists!${RESET}"
-  sleep 2
+  sleep 5
 fi
 echo " "
 echo -e "${YELLOW}> Adding found core links from settings in arduino's config...${RESET}"
-sleep 2
+sleep 5
 for CORE_URL in "${CORE_URLS[@]}"; do
   echo " "
   if grep -q "$CORE_URL" "$CONFIG_FILE"; then
     echo -e "$CORE_URL ${GREEN}already exists in config file${RESET}"
   else
     echo -e "$CORE_URL ${RED}doesn't exist in config file!${RESET}"
-    sleep 2
+    sleep 5
     echo -e "${GREEN}Adding $CORE_URL to config file${RESET}"
-    sleep 2
+    sleep 5
     ADD_CORE_URL="$ARDUINO config add board_manager.additional_urls $CORE_URL"
     echo -e "${YELLOW}> EXECUTING:${RESET} $ADD_CORE_URL"
     $ADD_CORE_URL
