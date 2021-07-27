@@ -34,7 +34,7 @@ cli_installed=false
 cli_init_file_created=false
 core_install_count=0
 lib_install_count=0
-# firm_wares_cloned=false
+firm_wares_cloned=false
 steps=0
 
 on_finish_setup() {
@@ -116,11 +116,11 @@ process_list() {
       fi
     fi
 
-    # if [ $firm_wares_cloned = true ]; then
-    #   echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
-    # else
-    #   echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
-    # fi
+    if [ $firm_wares_cloned = true ]; then
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
+    else
+      echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
+    fi
 
     echo ""
     read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
