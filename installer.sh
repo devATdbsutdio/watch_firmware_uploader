@@ -53,7 +53,7 @@ process_list() {
     if [ $cli_installed = true ]; then
       echo -e "${GREEN} [STEP 2] arduino-cli is now installed/asigned${RESET}"
     else
-      if [ $steps = 0 ]; then
+      if [ $steps = 0 ] || [ $steps = 1 ]; then
         echo -e "${RED} [STEP 2] arduino-cli location not assigned. It may not be installed as well. Test?${RESET}"
       else
         echo -e "${RED} [STEP 2] arduino-cli location not installed${RESET}"
@@ -63,7 +63,7 @@ process_list() {
     if [ $cli_init_file_created = true ]; then
       echo -e "${GREEN} [STEP 3] Made sure arduino-cli config file is there${RESET}"
     else
-      if [ $steps = 0 ]; then
+      if [ $steps = 0 ] || [ $steps = 2 ]; then
         echo -e "${RED} [STEP 3] Not sure if arduino-cli config is there or not! Test?${RESET}"
       else
         echo -e "${RED} [STEP 3] cli init file NOT created${RESET}"
