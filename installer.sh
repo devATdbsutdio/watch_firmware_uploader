@@ -187,7 +187,7 @@ while true; do
       sleep 2
       # using find command check if the binary truely exists in the provided path
       if [ -f "$cli_path" ]; then
-        echo -e "${GREEN} arduino-cli is present in${RESET} $cli_path"
+        echo -e "${GREEN} arduino-cli is present in:${RESET} $cli_path"
         # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
         cli_present=true
@@ -284,14 +284,14 @@ echo " "
 echo -e "${YELLOW}> Enabling unsafe install of libraries from git ...${RESET}"
 ENABLE_UNSAFE_INSTALL="$ARDUINO config set library.enable_unsafe_install true"
 $ENABLE_UNSAFE_INSTALL
-echo -e "${RED}Enabled unsafe install of libraries from git${RESET}"
+echo -e "${RED}Enabled unsafe install of libraries from git!${RESET}"
 echo " "
 echo "---------------------------"
 "$ARDUINO" config dump
 echo "---------------------------"
-sleep 1
+sleep 5
 $ARDUINO core update-index
-sleep 4
+sleep 5
 
 cli_init_file_created=true
 process_list
