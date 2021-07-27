@@ -164,10 +164,10 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
   case "$BIN_BASE_DIR" in
   */)
-    echo "has slash"
+    # echo "has slash"
     ;;
   *)
-    echo "doesn't have slash. Adding /"
+    # echo "doesn't have slash. Adding /"
     BIN_BASE_DIR=$BIN_BASE_DIR/
     ;;
   esac
@@ -187,7 +187,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
   echo ""
-  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ($BIN_BASE_DIR)bin/arduino-cli"
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}bin/arduino-cli"
   echo ""
   echo -e "${BLUE} CORE URLS:${RESET}"
   c=0
@@ -232,7 +232,7 @@ cli_present=false
 
 while true; do
   echo ""
-  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
+  read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "${BIN_BASE_DIR}"bin? [Y/n]: "${RESET}")" answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
@@ -248,14 +248,16 @@ while true; do
       # [TBD] check for slash, if not add
       case "$cli_path" in
       */)
-        echo "has slash"
+        # echo "has slash"
         ;;
       *)
+        # echo "doesn't have have slash"
         cli_path=$cli_path/
         ;;
       esac
 
       ARDUINO="$cli_path"bin/arduino-cli
+      echo "SEARCH PATH: $ARDUINO"
 
       # using find command check if the binary truely exists in the provided path
       if [ -f "$ARDUINO" ]; then
@@ -286,11 +288,11 @@ if [ "$cli_present" = false ]; then
   echo -e "${YELLOW} Installing \"arduino-cli\" in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd \"$BIN_BASE_DIR\"bin"
+  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd ${BIN_BASE_DIR}bin"
   sleep 2
-  mkdir -p -- "$BIN_BASE_DIR"bin
+  mkdir -p -- "${BIN_BASE_DIR}"bin
   cd "$BIN_BASE_DIR"bin || exit
-  echo -e "${GREEN} IN $BIN_BASE_DIR/bin now${RESET}"
+  echo -e "${GREEN} IN ${BIN_BASE_DIR}bin now${RESET}"
   sleep 2
   echo ""
   echo -e "${YELLOW} Downloading \"arduino-cli\"...${RESET}"
