@@ -182,7 +182,7 @@ while true; do
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
     while true; do
-      read -r -p "$(echo -e "${RED}" Assuming arduino-cli is already installed, please provide the absolute PATH"${RESET}" "${BLUE}"\(e.g.:\<DIR\>/bin/arduino-cli\): "${RESET}")" cli_path
+      read -r -p "$(echo -e "${RED}" Assuming arduino-cli is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} user provided path:${RESET} $cli_path"
       sleep 2
       # using find command check if the binary truely exists in the provided path
@@ -206,6 +206,8 @@ while true; do
     ;;
   esac
 done
+
+ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
@@ -231,10 +233,9 @@ if [ "$cli_present" = false ]; then
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
-  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR/bin/arduino-cli"$()
+  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR"
 fi
 
-ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 # ** Update cli's location in programmer_settings.yaml
 echo ""
 echo -e "${YELLOW}> Updating programmer_setting.yaml with arduino-cli's location${RESET}"
