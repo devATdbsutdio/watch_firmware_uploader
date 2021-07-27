@@ -210,14 +210,14 @@ while true; do
       ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
       # using find command check if the binary truely exists in the provided path
       if [ -f "$ARDUINO" ]; then
-        echo -e "${GREEN} arduino-cli is present in:${RESET} $cli_path"
+        echo -e "${GREEN} \"arduino-cli\" is present in:${RESET} $cli_path"
         # if it is present, well then move on
         BIN_BASE_DIR=$cli_path
         cli_present=true
         sleep 3
         break
       else
-        echo -e "${RED} arduino-cli is NOT present in${RESET} $cli_path"
+        echo -e "${RED} \"arduino-cli\" is NOT present in${RESET} $cli_path"
         sleep 3
       fi
     done
@@ -234,7 +234,7 @@ ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
-  echo -e "${YELLOW} Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+  echo -e "${YELLOW} Installing \"arduino-cli\" in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
   echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
@@ -244,7 +244,7 @@ if [ "$cli_present" = false ]; then
   echo -e "${GREEN} IN $BIN_BASE_DIR/bin now${RESET}"
   sleep 2
   echo ""
-  echo -e "${YELLOW} Downloading arduino-cli...${RESET}"
+  echo -e "${YELLOW} Downloading \"arduino-cli\"...${RESET}"
   echo ""
   sleep 2
   wget "$CLI_DOWNLOAD_LINK"
@@ -256,12 +256,12 @@ if [ "$cli_present" = false ]; then
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
-  echo -e "${GREEN} arduino-cli installed in:${RESET} $BIN_BASE_DIR"
+  echo -e "${GREEN} \"arduino-cli\" installed in:${RESET} $BIN_BASE_DIR"
 fi
 
 # ** Update cli's location in programmer_settings.yaml
 echo ""
-echo -e "${YELLOW} Updating programmer_setting.yaml with arduino-cli's location${RESET}"
+echo -e "${YELLOW} Updating \"programmer_setting.yaml\ with arduino-cli's location${RESET}"
 echo ""
 sleep 2
 echo "---------------------------"
@@ -276,7 +276,7 @@ steps=$((steps + 1))
 process_list
 
 # ------ Create arduino-cli config file and add board's in it [if it doesn't exist]------ #
-echo -e "${YELLOW} Looking for arduino-cli config file...${RESET}"
+echo -e "${YELLOW} Looking for arduino-cli's config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
   echo -e "${RED} It doesn't exist!${RESET}"
   sleep 5
