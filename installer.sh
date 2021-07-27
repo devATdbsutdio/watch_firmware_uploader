@@ -223,7 +223,6 @@ cli_present=false
 while true; do
   echo ""
   read -r -p "$(echo -e "${YELLOW}" Install arduino-cli in "$BIN_BASE_DIR"/bin? [Y/n]: "${RESET}")" answer
-  # read -e -p " Install arduino-cli in $BIN_BASE_DIR/bin? [Y/n]: " answer
   case $answer in
   [y/Y])
     # move on and use the settings file provided path to install arduino-cli
@@ -233,10 +232,21 @@ while true; do
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
     while true; do
-      read -e -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
+      read -r -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} User provided path:${RESET} $cli_path"
       sleep 2
-      ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
+      # [TBD] check for slash, if not add
+      case "$cli_path" in
+      */)
+        echo "has slash"
+        ;;
+      *)
+        cli_path=$cli_path/
+        ;;
+      esac
+
+      ARDUINO=$cli_path/bin/arduino-cli
+
       # using find command check if the binary truely exists in the provided path
       if [ -f "$ARDUINO" ]; then
         echo -e "${GREEN} \"arduino-cli\" is present in:${RESET} $cli_path"
@@ -259,6 +269,14 @@ while true; do
   esac
 done
 
+case "$BIN_BASE_DIR" in
+*/)
+  echo "has slash"
+  ;;
+*)
+  BIN_BASE_DIR=$BIN_BASE_DIR/
+  ;;
+esac
 ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
