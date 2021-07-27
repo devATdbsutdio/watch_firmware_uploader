@@ -200,7 +200,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   done
   c=0
 
-  sleep 1
+  sleep 10
   # Show the updated list and task to do
   settings_found_loaded=true
 
