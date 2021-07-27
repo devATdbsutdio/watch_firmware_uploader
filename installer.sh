@@ -232,7 +232,7 @@ while true; do
   [n/N])
     #  ask user to provide absolute path of the arduino-cli bin
     while true; do
-      read -r -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
+      read -e -p "$(echo -e "${RED}" Assuming \"arduino-cli\" is already installed, please provide the absolute PATH":${RESET} ")" cli_path
       echo -e "${BLUE} User provided path:${RESET} $cli_path"
       sleep 2
       # [TBD] check for slash, if not add
