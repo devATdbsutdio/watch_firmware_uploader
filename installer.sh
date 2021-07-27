@@ -234,29 +234,29 @@ ARDUINO=$BIN_BASE_DIR/bin/arduino-cli
 
 if [ "$cli_present" = false ]; then
   sleep 1
-  echo -e "${YELLOW}  Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
+  echo -e "${YELLOW} Installing arduino-cli in target base directory:${RESET} $BIN_BASE_DIR"
   echo ""
   sleep 2
-  echo -e "${YELLOW}  Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
+  echo -e "${YELLOW} Entering <base>/bin Directory:${RESET} cd $BIN_BASE_DIR/bin"
   sleep 2
   mkdir -p -- "$BIN_BASE_DIR"/bin
   cd "$BIN_BASE_DIR"/bin || exit
-  echo -e "${GREEN}  IN $BIN_BASE_DIR/bin now${RESET}"
+  echo -e "${GREEN} IN $BIN_BASE_DIR/bin now${RESET}"
   sleep 2
   echo ""
-  echo -e "${YELLOW}  Downloading arduino-cli...${RESET}"
+  echo -e "${YELLOW} Downloading arduino-cli...${RESET}"
   echo ""
   sleep 2
   wget "$CLI_DOWNLOAD_LINK"
-  echo -e "${GREEN}  Download finished!${RESET}"
+  echo -e "${GREEN} Download finished!${RESET}"
   sleep 2
   echo ""
-  echo -e "${YELLOW}  Unzipping...${RESET}"
+  echo -e "${YELLOW} Unzipping...${RESET}"
   # [TBD] tar use absolute path
   tar -xvzf arduino-cli_latest_Linux_ARMv7.tar.gz
   rm arduino-cli_latest_Linux_ARMv7.tar.gz && rm LICENSE.txt
   echo ""
-  echo -e "${GREEN}  arduino-cli installed in:${RESET} $BIN_BASE_DIR"
+  echo -e "${GREEN} arduino-cli installed in:${RESET} $BIN_BASE_DIR"
 fi
 
 # ** Update cli's location in programmer_settings.yaml
@@ -275,10 +275,10 @@ cli_installed=true
 steps=$((steps + 1))
 process_list
 
-# ------ Create Arduino-cli init file and add board's in it [if it doesn't exist]------ #
+# ------ Create arduino-cli config file and add board's in it [if it doesn't exist]------ #
 echo -e "${YELLOW} Looking for arduino-cli config file...${RESET}"
 if [ ! -f "$CONFIG_FILE" ]; then
-  echo -e "${RED}  It doesn't exist!${RESET}"
+  echo -e "${RED} It doesn't exist!${RESET}"
   sleep 5
   echo -e "${YELLOW} Creating now..${RESET}"
   echo ""
@@ -309,7 +309,7 @@ echo " "
 echo -e "${YELLOW} Enabling unsafe install of libraries from git ...${RESET}"
 ENABLE_UNSAFE_INSTALL="$ARDUINO config set library.enable_unsafe_install true"
 $ENABLE_UNSAFE_INSTALL
-echo -e " ${RED}Enabled unsafe install of libraries from git!${RESET}"
+echo -e "${RED} Enabled unsafe install of libraries from git!${RESET}"
 echo " "
 echo "---------------------------"
 # "$ARDUINO" config dump
@@ -353,7 +353,7 @@ LIBINSTALL_CMD=""
 lib_install_count=0
 for LIB in "${LIB_LIST[@]}"; do
   echo ""
-  echo -e "${YELLOW} Parsing Libraries list from the settings file ...${RESET}"
+  echo -e "${YELLOW} Parsing libraries list from the settings file ...${RESET}"
   sleep 2
   if [[ $LIB = *"https:"* ]]; then
     # parse the end of the git link to get lib's name
@@ -398,13 +398,13 @@ for LIB in "${LIB_LIST[@]}"; do
     fi
   fi
 done
-# reset lib installation counter
-lib_install_count=0
 # incerement step count
 steps=$((steps + 1))
 
 process_list
 # ---------------------------------------------------------------- #
+# reset lib installation counter
+lib_install_count=0
 
 # ---- git clone the firmware source code ---- #
 # cd "$HOME" || return
