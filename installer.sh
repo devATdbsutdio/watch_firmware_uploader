@@ -476,7 +476,7 @@ cd "$HOME"/Arduino/sketchbook || return
 
 i=0
 for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
-  $git_parse clone git_clone_link
+  $git_parse clone "$git_clone_link"
   # enter the path in programmer settings
   # parse the end of the git link to get sketch's dir name
   SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
