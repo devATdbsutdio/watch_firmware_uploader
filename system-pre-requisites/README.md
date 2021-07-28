@@ -4,9 +4,7 @@ description: Making the Raspbain system Ready
 
 # Preparing the system
 
-
-### Tested System:
-
+## Tested System:
 
 **Raspberry PI 3B+ running raspbian OS Lite**
 
@@ -36,7 +34,7 @@ description: Making the Raspbain system Ready
              `.-::::-`
 ```
 
-
-### Hardware wise:
+## Hardware wise:
 
 ![](../.gitbook/assets/screenshot-2021-07-26-at-7.32.15-pm.png)
+
