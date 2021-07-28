@@ -6,7 +6,7 @@ description: >-
 
 # Introduction
 
-## Backstory:
+## Back-story:
 
 So when I work on projects, where typically I would program my Arduino based applications on either the **Arduino IDE**, or in **Visual Studio Code** \( with [Platform IO](https://platformio.org/) setup \) or in **Vim** \( with [arduino-cli](https://arduino.github.io/arduino-cli/latest/) setup \), I would of course use my main machine to do so where everything is configured correctly. I would test the HW under WIP from there as well.
 
@@ -27,7 +27,7 @@ The arduino-cli API is awesome and well designed for automation but to install e
 
 ## Overview:
 
-![](.gitbook/assets/programming_gif.gif)
+![](.gitbook/assets/programming_gif%20%281%29.gif)
 
 So I sat down and wrote a shell script, in pure bash \(why? why not?\), with raspberry PI in mind as the SBC for such a host system and this is what it is all about:
 
