@@ -503,7 +503,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   echo -e "${YELLOW} Entering this location PATH in${RESET} $P_SETTING_FILE_NAME ..."
 
   # Enter it in settings
-  $ymal_parse e ".FIRMWARE = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
+  $ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
   echo -e "${GREEN} DONE!${RESET}"
   echo " "
   echo "-------------------"
