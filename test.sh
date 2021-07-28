@@ -148,6 +148,6 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	echo -e " Entering this location PATH in $P_SETTING_FILE_NAME"
 
 	# Enter it in settings
-	i=$((i + 1))
 	$ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
+	i=$((i + 1))
 done

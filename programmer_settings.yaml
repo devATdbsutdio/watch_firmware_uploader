@@ -2,7 +2,7 @@ BINARY:
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
 
-# The deatils yopu can find:
+# The deatils you can find:
 # arduino-cli board details -b FQBN
 # e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
 # More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
