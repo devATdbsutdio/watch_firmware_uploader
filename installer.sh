@@ -19,6 +19,7 @@ ARDUINO=""
 CONFIG_FILE=$HOME/.arduino15/arduino-cli.yaml
 CORES=() # array of FQBN cores like [megaTinyCore:megaavr, ...]
 LIB_LIST=()
+FIRMWARE_LINKS=()
 
 I_SETTING_FILE_NAME=installer_settings.yaml
 P_SETTING_FILE_NAME=programmer_settings.yaml
@@ -183,6 +184,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
   IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
   IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
 
   sleep 2
   echo ""
@@ -209,6 +211,13 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   for LIB in "${LIB_LIST[@]}"; do
     c=$((c + 1))
     echo -e " [$c] $LIB"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} FIRMWARE REPOS:${RESET}"
+  for git in "${FIRMWARE_LINKS[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $git"
   done
   c=0
 
@@ -461,5 +470,7 @@ process_list
 lib_install_count=0
 
 # ---- git clone the firmware source code ---- #
-# cd "$HOME" || return
-# git clone https://github.com/dattasaurabh82/clock_firmware_production.git
+cd "$HOME" || return
+mkdir -p -- "Arduino/sketchbook"
+cd "$HOME"/Arduino/sketchbook || return
+git clone https://github.com/dattasaurabh82/clock_firmware_production.git
