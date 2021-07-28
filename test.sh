@@ -130,6 +130,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
 
 	firmware_loc=$sketchbook_loc$SKETCH_NAME
+	echo "$firmware_loc"
 
 	# TBD, if sketch already exists, git pull
 	if [ -f "$firmware_loc" ]; then
@@ -138,14 +139,14 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 		echo -e " [$i] Cloning $git_clone_link to $sketchbook_loc"
 	fi
 
-	$git_parse clone "$git_clone_link"
-	# enter the path in programmer settings
+	# $git_parse clone "$git_clone_link"
+	# # enter the path in programmer settings
 
-	echo -e " Firmware-$i installed in: $firmware_loc"
-	sleep 1
-	echo -e " Entering this location in $P_SETTING_FILE_NAME"
+	# echo -e " Firmware-$i installed in: $firmware_loc"
+	# sleep 1
+	# echo -e " Entering this location in $P_SETTING_FILE_NAME"
 
-	# Enter it in settings
-	i=$((i + 1))
-	$ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
+	# # Enter it in settings
+	# i=$((i + 1))
+	# $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
 done
