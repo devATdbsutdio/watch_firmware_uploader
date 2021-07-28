@@ -141,9 +141,12 @@ process_list() {
       break
       ;;
     [nN])
-      echo "QUITTING..."
-      sleep 2
-      exit 1
+      # Do not quit if you do not want to install libraries. :] Your choice
+      if [ ! "$STEP" = 5 ]; then
+        echo "QUITTING..."
+        sleep 2
+        exit 1
+      fi
       ;;
     *)
       echo "Invalid input"
@@ -470,32 +473,47 @@ process_list
 lib_install_count=0
 
 # ---- git clone the firmware source code ---- #
-cd "$HOME" || return
-mkdir -p -- "Arduino/sketchbook"
-cd "$HOME"/Arduino/sketchbook || return
+sketchbook_loc="${HOME}/Arduino/sketchbook/"
+echo -e "${YELLOW} Entering sketchbook location by:${RESET} cd $sketchbook_loc"
+mkdir -p -- "$sketchbook_loc"
+cd "$sketchbook_loc" || return
 
 i=0
+echo -e "${YELLOW} Parsing the git links ... ${RESET}"
 for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
-  $git_parse clone "$git_clone_link"
-  # enter the path in programmer settings
   # parse the end of the git link to get sketch's dir name
   SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
   SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
   IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
   SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
-  #  enter it in settings
-  i=$((i + 1))
-  firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
-  # https://unix.stackexchange.com/questions/338781/is-it-possible-to-modify-a-yml-file-via-shell-script
-  $ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
-  # Show updated file
+
+  firmware_loc=$sketchbook_loc$SKETCH_NAME
+
+  # TBD, if sketch already exists, git pull
+  if [ -d "$firmware_loc" ]; then
+    echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
+    echo " "
+    cd "$firmware_loc" && $git_parse pull
+  else
+    echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
+    $git_parse clone "$git_clone_link"
+  fi
+  cd "$HOME" || return
+
+  # enter the path in programmer settings
+  echo -e "${GREEN} Firmware-$i is now in system at:${RESET} $firmware_loc"
+  sleep 1
+  echo -e "${YELLOW} Entering this location PATH in${RESET} $P_SETTING_FILE_NAME ..."
+
+  # Enter it in settings
+  $ymal_parse e ".FIRMWARE = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
+  echo -e "${GREEN} DONE!${RESET}"
+  echo " "
+  echo "-------------------"
   $ymal_parse e "$P_SETTINGS_FILE"
+  echo "-------------------"
+  i=$((i + 1))
 done
-
-# parse the end of the git link to get sketch's dir name
-
-#
-cd "$HOME" || return
 firm_wares_cloned=true
 next_step
 process_list
