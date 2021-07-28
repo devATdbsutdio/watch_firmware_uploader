@@ -17,13 +17,14 @@ Well with [arduino-cli](https://arduino.github.io/arduino-cli/latest/) you can s
 But if you have many systems, you have to do the following first:
 
 1. [Install arduino-cli](https://arduino.github.io/arduino-cli/latest/installation/) on all those or only one such systems.
-2. Configure the system with your specific arduino-cli build environment parameters like necessary boards info, library info, sketch info etc. 
+2. Configure the system with your specific `arduino-cli` build environment parameters like necessary boards info, library info, sketch info in configuration etc.
 3. Transfer your firmware to some location on that CD machine \(firmware sounds fancy 🤓,  we would use sketch\)
 4. Then some how ssh or use Ansible or gRPC to execute all the previous commands also handle sketch uploads. 
 
-The setup sounds a bit exhaustive for such CI/CD pipeline.  🤔
+The arduino-cli API is awesome and well designed for automation but to install everything on multiple systems is a bit tenuous 😞  and then I thought, while I'm on it, would be also possible to setup the systems with my specific configurations like my boards and my libraries etc. 
 
-So I sat and wrote down . 
+So I sat and wrote down a script and this is what it is all about:
 
-1. A installer script that would install 
+1. A installation settings YAML file where I can specify:
+   1. 
 
