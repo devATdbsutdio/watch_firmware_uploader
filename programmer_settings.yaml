@@ -21,6 +21,5 @@ MICROCONTROLLER:
     PROGRAMMER: pyupdi
 
 FIRMWARE:
-    REPO_BASE: /home/pi
-    REPO: /home/pi/clock_firmware_production
-    DIR: /home/pi/clock_firmware_production/clock
+    SKETCHES:
+        -

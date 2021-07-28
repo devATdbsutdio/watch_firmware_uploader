@@ -1,18 +1,21 @@
 #!/bin/bash
 
 I_SETTING_FILE_NAME=installer_settings.yaml
+P_SETTING_FILE_NAME=programmer_settings.yaml
 FULL_PATH=$(realpath "$0")
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
+P_SETTINGS_FILE=$SETTINGS_DIR/$P_SETTING_FILE_NAME
 
 echo "$I_SETTINGS_FILE"
 
-CONFIG_FILE="$HOME"/.arduino15/arduino-cli.yaml
-echo "$CONFIG_FILE"
+# CONFIG_FILE="$HOME"/.arduino15/arduino-cli.yaml
+# echo "$CONFIG_FILE"
 ymal_parse="$(/usr/bin/which yq)" #used for parsing settings.yaml file
-echo "$ymal_parse"
+# echo "$ymal_parse"
+git_parse="$(/usr/bin/which git)"
 
-ARDUINO="$(which /usr/local/bin/arduino-cli)"
+# ARDUINO="$(which /usr/local/bin/arduino-cli)"
 
 # IFS=$'\n' CORE_URLS=(read -a $($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE"))
 # IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINK[]' "$I_SETTINGS_FILE")
@@ -99,12 +102,34 @@ ARDUINO="$(which /usr/local/bin/arduino-cli)"
 # 	fi
 # done
 
-next_step() {
-	echo ""
-	read -r -p "$(echo -e "${YELLOW}" Press any key to continue: "${RESET}")" next
-	case next in
-	*) ;;
-	esac
-}
+# next_step() {
+# 	echo ""
+# 	read -r -p "$(echo -e "${YELLOW}" Press any key to continue: "${RESET}")" next
+# 	case next in
+# 	*) ;;
+# 	esac
+# }
 
-next_step
+# next_step
+
+FIRMWARE_LINKS=()
+IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
+
+cd "$HOME" || return
+mkdir -p -- "Arduino/sketchbook"
+cd "$HOME"/Arduino/sketchbook || return
+
+i=0
+for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+	$git_parse clone git_clone_link
+	# enter the path in programmer settings
+	# parse the end of the git link to get sketch's dir name
+	SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
+	SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
+	IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
+	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
+	#  enter it in settings
+	i=$((i + 1))
+	firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
+	$ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
+done

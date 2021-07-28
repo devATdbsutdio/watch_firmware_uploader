@@ -10,6 +10,7 @@ RESET='\033[0m'
 
 ymal_parse="$(/usr/bin/which yq)" #used for parsing setting file
 tar_parse="$(/usr/bin/which tar)"
+git_parse="$(/usr/bin/which git)"
 
 # ------- values top be prased from settings file ------- #
 CLI_DOWNLOAD_LINK=""
@@ -127,9 +128,9 @@ process_list() {
     fi
 
     if [ $firm_wares_cloned = true ]; then
-      echo -e "${GREEN}[STEP 6] Firmwares are cloned${RESET}"
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
     else
-      echo -e "${RED} [STEP 6] Firmwares are NOT cloned${RESET}"
+      echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
     fi
 
     echo ""
@@ -215,16 +216,13 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   c=0
   echo ""
   echo -e "${BLUE} FIRMWARE REPOS:${RESET}"
-  for git in "${FIRMWARE_LINKS[@]}"; do
+  for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
     c=$((c + 1))
-    echo -e " [$c] $git"
+    echo -e " [$c] $git_clone_link"
   done
   c=0
 
-  # sleep 10
-  # Show the updated list and task to do
   settings_found_loaded=true
-
 else
   echo -e "${RED} TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
   # Show the updated list and task to do
@@ -473,4 +471,26 @@ lib_install_count=0
 cd "$HOME" || return
 mkdir -p -- "Arduino/sketchbook"
 cd "$HOME"/Arduino/sketchbook || return
-git clone https://github.com/dattasaurabh82/clock_firmware_production.git
+
+i=0
+for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+  $git_parse clone git_clone_link
+  # enter the path in programmer settings
+  # parse the end of the git link to get sketch's dir name
+  SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
+  SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
+  IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
+  SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
+  #  enter it in settings
+  i=$((i + 1))
+  firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
+  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$Sfirmware_loc\"" "$P_SETTINGS_FILE"
+done
+
+# parse the end of the git link to get sketch's dir name
+
+#
+cd "$HOME" || return
+firm_wares_cloned=true
+next_step
+process_list
