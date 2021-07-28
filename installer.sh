@@ -190,8 +190,6 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   sleep 2
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
-  # Trick: copy programmer settiongs file from repo to $HOME
-  cp "$P_SETTINGS_FILE" "$HOME"
   echo ""
   echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
   echo ""
@@ -486,6 +484,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   #  enter it in settings
   i=$((i + 1))
   firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
+  # https://unix.stackexchange.com/questions/338781/is-it-possible-to-modify-a-yml-file-via-shell-script
   $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
 done
 
@@ -496,3 +495,4 @@ cd "$HOME" || return
 firm_wares_cloned=true
 next_step
 process_list
+#
