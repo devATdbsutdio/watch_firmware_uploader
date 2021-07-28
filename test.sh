@@ -133,7 +133,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	echo "$firmware_loc"
 
 	# TBD, if sketch already exists, git pull
-	if [ -f "$firmware_loc" ]; then
+	if [ -d "$firmware_loc" ]; then
 		echo " File already exists"
 	else
 		echo -e " [$i] Cloning $git_clone_link to $sketchbook_loc"
