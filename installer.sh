@@ -141,12 +141,9 @@ process_list() {
       break
       ;;
     [nN])
-      # Do not quit if you do not want to install libraries. :] Your choice
-      if [[ "$STEP" -ne 5 ]]; then
-        echo "QUITTING..."
-        sleep 2
-        exit 1
-      fi
+      echo "QUITTING..."
+      sleep 1
+      exit 1
       ;;
     *)
       echo "Invalid input"
