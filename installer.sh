@@ -153,7 +153,7 @@ process_list() {
   clear
 
   # THE END
-  if [ $steps = 5 ]; then
+  if [ $steps = 6 ]; then
     #  we have reached the end
     on_finish_setup
   fi
@@ -324,12 +324,12 @@ sleep 2
 echo "---------------------------"
 $ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
-sleep 10
 # go back to the home directory
 cd "$HOME" || return
 
 cli_installed=true
 steps=$((steps + 1))
+next_step
 process_list
 
 # ------ Create arduino-cli config file and add board's in it [if it doesn't exist]------ #
