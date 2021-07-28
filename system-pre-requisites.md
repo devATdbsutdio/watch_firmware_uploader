@@ -2,13 +2,11 @@
 description: Making the Raspbain system Ready
 ---
 
-# Preparing the system
-
+# System pre-requisites
 
 ### Tested System:
 
-
-**Raspberry PI 3B+ running raspbian OS Lite**
+**Raspberry PI 3B+ running raspbian**
 
 ```text
   `.::///+:/-.        --///+//-:``    pi@firmwareuploader
@@ -37,6 +35,26 @@ description: Making the Raspbain system Ready
 ```
 
 
-### Hardware wise:
 
-![](../.gitbook/assets/screenshot-2021-07-26-at-7.32.15-pm.png)
+### 1. General First steps:
+
+* [x] Updated System. `sudo apt-get update -y`
+* [x] Upgraded System. `sudo apt-get update -y`
+* [x] Add user to the dial out group for serial port access without root. `sudo usermod -a -G dialout pi`
+* [x] Install git `sudo apt-get install git -y`
+* [x] Check Python3 install \(By default it should be\) `python3 --version`
+* [x] Install Pip3 \(It doesn't come bundled in Raspbian\) `sudo apt-get install python3-pip -y`
+
+### 2. Specific Installs:
+
+* [ ] Install .`yaml` parser **yq**
+
+### 3. Optional Installs:
+
+**For remote management etc.**  
+
+* [ ] Install [**ngrok**](https://ngrok.com/) \(or something else \) for port forwarding
+* [ ] Ansible and related workbook if needed
+
+
+

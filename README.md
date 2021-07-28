@@ -4,6 +4,7 @@ description: README
 
 # Introduction
 
+
 ## Scripts for installing tools and configuring a raspberry pi to make assembly-line style mass firmware uploading to Arduino based micros.
 
 ## Back-story: 
@@ -37,4 +38,5 @@ So I sat down and wrote a shell script, in pure bash \(why? why not?\), with ras
 2. The installer script will parse the file and do all the magic setup for you with prompts for you watch permit and watch each step with very informative STDOUT.
 
 3. It will also prepare another YAML file with necessary inputs needed, using which one can customise or make their own Continuous Integration Deployment. I will provide an example usage. 
+
 

@@ -1,23 +1,6 @@
 BINARY:
-    LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
     BASE: /home/pi/test
     LOCATION: /home/pi/bin/arduino-cli
-    CORES:
-        LINK:
-            - http://drazzy.com/package_drazzy.com_index.json
-            - https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-        SEARCH_TERM:
-            - megaTinyCore
-    LIBS: 
-        - TinyMegaI2C
-        - RV8803Tiny
-
-
-FIRMWARE:
-    REPO_BASE: /home/pi
-    REPO: /home/pi/clock_firmware_production
-    DIR: /home/pi/clock_firmware_production/clock
-
 
 # The deatils yopu can find:
 # arduino-cli board details -b FQBN
@@ -36,3 +19,8 @@ MICROCONTROLLER:
     STARTUP_TIME: 0
     UARTV: skip
     PROGRAMMER: pyupdi
+
+FIRMWARE:
+    REPO_BASE: /home/pi
+    REPO: /home/pi/clock_firmware_production
+    DIR: /home/pi/clock_firmware_production/clock
