@@ -487,7 +487,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   i=$((i + 1))
   firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
   # https://unix.stackexchange.com/questions/338781/is-it-possible-to-modify-a-yml-file-via-shell-script
-  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
+  $ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
   # Show updated file
   $ymal_parse e "$P_SETTINGS_FILE"
 done
