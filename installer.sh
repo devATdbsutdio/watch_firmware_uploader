@@ -37,6 +37,15 @@ lib_install_count=0
 firm_wares_cloned=false
 steps=0
 
+next_step() {
+  echo ""
+  read -r -p "$(echo -e "${YELLOW}" Press any key to continue: "${RESET}")" next
+  case $next in
+  *) ;;
+
+  esac
+}
+
 on_finish_setup() {
   # we have reached the end, hoping all the installations were done and setup were done correctly
   clear
@@ -203,7 +212,7 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   done
   c=0
 
-  sleep 10
+  # sleep 10
   # Show the updated list and task to do
   settings_found_loaded=true
 
@@ -217,6 +226,7 @@ else
 fi
 # ----------------------------- #
 steps=$((steps + 1))
+next_step
 process_list
 
 # ---- Install arduino-cli ---- #
@@ -358,10 +368,11 @@ $ymal_parse e "$HOME"/.arduino15/arduino-cli.yaml
 echo "---------------------------"
 sleep 5
 $ARDUINO core update-index
-sleep 5
+# sleep 5
 
 cli_init_file_created=true
 steps=$((steps + 1))
+next_step
 process_list
 # ---------------------------------------------------------------- #
 
@@ -387,6 +398,7 @@ echo ""
 $ARDUINO core upgrade
 
 steps=$((steps + 1))
+next_step
 process_list
 # ---------------------------------------------------------------- #
 
@@ -442,7 +454,7 @@ for LIB in "${LIB_LIST[@]}"; do
 done
 # incerement step count
 steps=$((steps + 1))
-
+next_step
 process_list
 # ---------------------------------------------------------------- #
 # reset lib installation counter
