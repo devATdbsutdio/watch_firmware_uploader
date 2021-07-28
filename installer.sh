@@ -127,7 +127,7 @@ process_list() {
       fi
     fi
 
-    if [ $firm_wares_cloned = true ]; then
+    if [ $firm_wares_cloned = true ] && [ ! $lib_install_count = 0 ]; then
       echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
     else
       echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
