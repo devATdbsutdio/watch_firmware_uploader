@@ -190,6 +190,8 @@ if [ -f "$I_SETTINGS_FILE" ]; then
   sleep 2
   echo ""
   echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  # Trick: copy programmer settiongs file from repo to $HOME
+  cp "$P_SETTINGS_FILE" "$HOME"
   echo ""
   echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
   echo ""
