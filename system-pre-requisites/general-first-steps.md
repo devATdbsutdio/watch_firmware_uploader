@@ -4,7 +4,7 @@ description: >-
   the main installer later
 ---
 
-# General First steps ↓
+# 1. General First steps ↓
 
 Update and upgrade the system \(if you haven't done already so\):
 

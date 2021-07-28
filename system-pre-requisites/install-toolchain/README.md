@@ -39,13 +39,13 @@ programmer_settings.yaml
 programmer.sh
 ```
 
-### Installer settings:
+## Installer settings:
 
 ```bash
 yq e installer_settings.yaml # ** yq yaml parse must be installed for next steps as well.
 ```
 
-Here you can edit to your needs. 
+Here you can edit to your needs.
 
 ```bash
 BINARY:
