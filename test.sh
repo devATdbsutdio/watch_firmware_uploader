@@ -123,9 +123,6 @@ cd "$sketchbook_loc" || return
 i=0
 echo -e " Parsing the git links:"
 for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
-	echo -e " [$i] Cloing $git_clone_link to $sketchbook_loc"
-	$git_parse clone "$git_clone_link"
-	# enter the path in programmer settings
 	# parse the end of the git link to get sketch's dir name
 	SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
 	SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
@@ -133,6 +130,16 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
 
 	firmware_loc=$sketchbook_loc$SKETCH_NAME
+
+	# TBD, if sketch already exists, git pull
+	if [ -f "$firmware_loc" ]; then
+		echo " File already exists"
+	else
+		echo -e " [$i] Cloning $git_clone_link to $sketchbook_loc"
+	fi
+
+	$git_parse clone "$git_clone_link"
+	# enter the path in programmer settings
 
 	echo -e " Firmware-$i installed in: $firmware_loc"
 	sleep 1
