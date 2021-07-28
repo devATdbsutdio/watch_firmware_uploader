@@ -115,12 +115,15 @@ git_parse="$(/usr/bin/which git)"
 FIRMWARE_LINKS=()
 IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
 
-cd "$HOME" || return
-mkdir -p -- "Arduino/sketchbook"
-cd "$HOME"/Arduino/sketchbook || return
+sketchbook_loc="${HOME}/Arduino/sketchbook/"
+echo -e " Entering sketchbook location by: cd $sketchbook_loc"
+mkdir -p -- "$sketchbook_loc"
+cd "$sketchbook_loc" || return
 
 i=0
+echo -e " Parsing the git links:"
 for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+	echo -e " [$i] Cloing $git_clone_link to $sketchbook_loc"
 	$git_parse clone "$git_clone_link"
 	# enter the path in programmer settings
 	# parse the end of the git link to get sketch's dir name
@@ -128,8 +131,14 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
 	IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
 	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
-	#  enter it in settings
+
+	firmware_loc=$sketchbook_loc$SKETCH_NAME
+
+	echo -e " Firmware-$i installed in: $firmware_loc"
+	sleep 1
+	echo -e " Entering this location in $P_SETTING_FILE_NAME"
+
+	# Enter it in settings
 	i=$((i + 1))
-	firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
 	$ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
 done
