@@ -322,7 +322,7 @@ echo -e "${YELLOW} Updating \"programmer_setting.yaml\" with arduino-cli's locat
 echo ""
 sleep 2
 echo "---------------------------"
-$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
+$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" -i "$P_SETTINGS_FILE"
 echo "---------------------------"
 # go back to the home directory
 cd "$HOME" || return
@@ -485,7 +485,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   i=$((i + 1))
   firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
   # https://unix.stackexchange.com/questions/338781/is-it-possible-to-modify-a-yml-file-via-shell-script
-  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
+  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
 done
 
 # parse the end of the git link to get sketch's dir name
@@ -495,4 +495,4 @@ cd "$HOME" || return
 firm_wares_cloned=true
 next_step
 process_list
-#
+#FIRMWARE
