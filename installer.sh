@@ -30,7 +30,6 @@ SETTINGS_DIR=$(dirname "$FULL_PATH")
 
 I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
 P_SETTINGS_FILE=$SETTINGS_DIR/$P_SETTING_FILE_NAME
-CP_SETTINGS_FILE=$HOME/$P_SETTING_FILE_NAME
 
 settings_found_loaded=false
 cli_installed=false
@@ -325,7 +324,7 @@ echo -e "${YELLOW} Updating \"programmer_setting.yaml\" with arduino-cli's locat
 echo ""
 sleep 2
 echo "---------------------------"
-$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$CP_SETTINGS_FILE"
+$ymal_parse e ".BINARY.LOCATION = \"$ARDUINO\"" "$P_SETTINGS_FILE"
 echo "---------------------------"
 # go back to the home directory
 cd "$HOME" || return
@@ -487,7 +486,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   #  enter it in settings
   i=$((i + 1))
   firmware_loc="$HOME/Arduino/sketchbook/$SKETCH_NAME"
-  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$CP_SETTINGS_FILE"
+  $ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
 done
 
 # parse the end of the git link to get sketch's dir name
