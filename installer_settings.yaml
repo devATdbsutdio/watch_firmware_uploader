@@ -2,7 +2,7 @@ BINARY:
     # arduino-cli binary download link
     LINK: https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Linux_ARMv7.tar.gz
     # base dir where /bin/arduino-cli will be installed
-    BASE: /home/pi/test/bin
+    BASE: /home/pi/bin
     CORES: # links for board cores you want to install 
         LINKS: # these will be appended in arduino-cli's config file
             - http://drazzy.com/package_drazzy.com_index.json
