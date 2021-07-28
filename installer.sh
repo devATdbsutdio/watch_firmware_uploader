@@ -118,7 +118,7 @@ process_list() {
     if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
       echo -e "${GREEN} [STEP 5] All the listed libraries (from provided settings) must have been installed!${RESET}"
     elif [ ! $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
-      echo -e "${YELLOW}[STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
+      echo -e "${YELLOW} [STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
     else
       if [ $steps = 0 ] || [ $steps = 4 ]; then
         echo -e "${RED} [STEP 5] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
@@ -515,6 +515,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   i=$((i + 1))
 done
 firm_wares_cloned=true
+steps=$((steps + 1))
 next_step
 process_list
 #FIRMWARE
