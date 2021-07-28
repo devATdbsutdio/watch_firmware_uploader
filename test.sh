@@ -149,5 +149,5 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 
 	# Enter it in settings
 	i=$((i + 1))
-	$ymal_parse e ".FIRMWARE.SKETCHES[i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
+	$ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" "$P_SETTINGS_FILE"
 done
