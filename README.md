@@ -19,12 +19,22 @@ But if you have many systems, you have to do the following first:
 1. [Install arduino-cli](https://arduino.github.io/arduino-cli/latest/installation/) on all those or only one such systems.
 2. Configure the system with your specific `arduino-cli` build environment parameters like necessary boards info, library info, sketch info in configuration etc.
 3. Transfer your firmware to some location on that CD machine \(firmware sounds fancy 🤓,  we would use sketch\)
-4. Then some how ssh or use Ansible or gRPC to execute all the previous commands also handle sketch uploads. 
+4. Then some how `ssh` or use `Ansible` or `gRPC` to execute all the previous commands also handle sketch uploads. 
 
 The arduino-cli API is awesome and well designed for automation but to install everything on multiple systems is a bit tenuous 😞  and then I thought, while I'm on it, would be also possible to setup the systems with my specific configurations like my boards and my libraries etc. 
 
-So I sat and wrote down a script and this is what it is all about:
+## Overview:
 
-1. A installation settings YAML file where I can specify:
-   1. 
+So I sat down and wrote a shell script, in pure bash \(why? why not?\), with raspberry PI in mind as the SBC for such a host system and this is what it is all about:
+
+ 1. It will have an installation settings YAML file where one can specify:
+
+1. Where you would like to install the arduino-cli binary on your raspberry pi system.
+2. Which boards and HW platforms you want to install.
+3. Which libraries \(as needed by your production firmware \).
+4. Which firmwares sketch you would like to clone and fetch etc. 
+
+2. The installer script will parse the file and do all the magic setup for you with prompts for you watch permit and watch each step with very informative STDOUT.
+
+3. It will also prepare another YAML file with necessary inputs needed, using which one can customise or make their own Continuous Integration Deployment. I will provide an example usage.     
 
