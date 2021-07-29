@@ -22,3 +22,4 @@ MICROCONTROLLER:
 
 FIRMWARE:
     SKETCHES:
+        - home/pi/Arduino/sketchbook/clock_firmware_production
