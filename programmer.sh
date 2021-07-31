@@ -128,7 +128,7 @@ while true; do
     LAST_PULL="$current_date_time"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
-    sleep 2
+    sleep 10
     clear
     ;;
   [sS])
