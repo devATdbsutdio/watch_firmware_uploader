@@ -55,7 +55,7 @@ sleep 10
 # ---- Assiging arduino-cli parameters from settings file ---- #
 ARDUINO=$($ymal_parse e '.BINARY.LOCATION' "$SETTINGS_FILE")
 
-TARGET_NAME=$($ymal_parse e '.MICROCONTROLLER.TARGET.NAME' "$SETTINGS_FILE")
+TARGET_NAME="$($ymal_parse e '.MICROCONTROLLER.TARGET.NAME' "$SETTINGS_FILE")"
 
 CORE=$($ymal_parse e '.MICROCONTROLLER.TARGET.CORE' "$SETTINGS_FILE")
 
