@@ -90,7 +90,7 @@ banner() {
 
 show_header() {
   # Move cursor to 1st line in your screen
-  tput cup 0 0
+  # tput cup 0 0
 
   clear
   echo ""
@@ -99,7 +99,7 @@ show_header() {
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
-  tput cup 14 0
+  # tput cup 14 0
 }
 
 echo "Staring now ... "
