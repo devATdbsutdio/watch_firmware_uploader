@@ -81,12 +81,14 @@ UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage
 FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
 
 BANNER="
-
+---------------------------------------------
 ${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME
 ${YELLOW}PULL STAT:${RESET}\t$LAST_PULL
 ${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME
-${YELLOW}UPLOAD PORT:${RESET}\t$PORT
-${YELLOW}TOTAL UPLOADS:${RESET}\t$LAST_BURN
+${YELLOW}UPLOAD PORT:${RESET}\t${BLUE}$PORT${RESET}
+${YELLOW}TOTAL UPLOADS:${RESET}\t${BLUE}$LAST_BURN${RESET}
+---------------------------------------------
+
 "
 
 show_header() {
@@ -99,7 +101,7 @@ show_header() {
   echo -e "$BANNER" && echo ""
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
-  echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo " "
+  echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
 }
 
 echo "Staring now ... "
