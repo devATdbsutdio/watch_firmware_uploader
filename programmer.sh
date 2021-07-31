@@ -118,8 +118,8 @@ while true; do
     show_header
 
     echo "EXECUTING:"
-    echo " cd $FIRMWARE_REPO_DIR && git pull "
-    cd "$FIRMWARE_REPO_DIR" && git pull
+    echo " cd $FIRMWARE_DIR && git pull "
+    cd "$FIRMWARE_DIR" && git pull
     cd "$HOME" || return
     sleep 2
     # get current time stamp
@@ -133,8 +133,7 @@ while true; do
     ;;
   [sS])
     show_header
-
-    IFS=$'\n' ports=($(find /dev/tty*))
+    IFS=$'\n' ports=($(find /dev/ttyUSB*))
     select port in "${ports[@]}"; do
       PORT=$port
       PORT_STAT="PORT: $PORT"
