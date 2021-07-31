@@ -1,5 +1,5 @@
 BINARY:
-    LOCATION: /home/pi/test/bin/arduino-cli
+    LOCATION: /home/pi/bin/arduino-cli
 
 # The deatils you can find:
 # arduino-cli board details -b FQBN
