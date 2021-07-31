@@ -126,7 +126,7 @@ while true; do
   read -r -p "  > " input
   case $input in
   [pP])
-    LAST_PULL="[pulling..]"
+    LAST_PULL="${GREEN}[pulling..]${RESET}"
     show_header
 
     echo "EXECUTING A GIT PULL IN FIRMWARE DIRECTORY ..."
@@ -140,12 +140,12 @@ while true; do
     LAST_PULL="$current_date_time"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
-    sleep 5
+    # sleep 5
     clear
     ;;
   [sS])
     show_header
-    IFS=$'\n' read -r -d '' -a ports < <(find /dev/tty*)
+    IFS=$'\n' read -r -d '' -a ports < <(find /dev/ttyUSB*)
     # IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
       PORT=$port
