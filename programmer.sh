@@ -10,7 +10,7 @@ LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ---- color info ---- #
 GREEN='\033[0;32m'
-BLUE='\033[0;34m'
+# BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 RESET='\033[0m'
@@ -73,12 +73,12 @@ LAST_BURN="[x]"
 PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
 
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
-FIRM_WARE_NAME="$(basename $FIRMWARE_DIR)"
+FIRM_WARE_NAME="$(basename "$FIRMWARE_DIR")"
 UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
 
 # ----------------------------------------------------------- #
 
-FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
+# FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
 
 BANNER="
 ${YELLOW}---------------------------------------------${RESET}
@@ -92,9 +92,9 @@ ${YELLOW}---------------------------------------------${RESET}
 "
 
 show_header() {
-  PORT=$PORT
-  LAST_PULL=$LAST_PULL
-  LAST_BURN=$LAST_BURN
+  # PORT=$PORT
+  # LAST_PULL=$LAST_PULL
+  # LAST_BURN=$LAST_BURN
 
   clear
 
@@ -133,7 +133,8 @@ while true; do
     ;;
   [sS])
     show_header
-    IFS=$'\n' ports=($(find /dev/tty*))
+    IFS=$'\n' read -r -d '' -a ports < <(find /dev/tty*)
+    # IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
       PORT=$port
       # update the upload command with the port
