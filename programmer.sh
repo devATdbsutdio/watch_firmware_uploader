@@ -36,19 +36,19 @@ fi
 
 # PULL_STAT="LAST PULL: $LAST_PULL"
 
-sleep 1
+sleep 5
 
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
-  sleep 1
+  sleep 5
 else
   echo -e "${RED}TARGET SETTINGS file $SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/"
   echo -e "QUITTING !${RESET}"
-  sleep 1
+  sleep 5
   exit 1
 fi
 echo -e "${YELLOW}Applying Settings ...${RESET}"
-sleep 3
+sleep 10
 
 # -------------------- #
 
