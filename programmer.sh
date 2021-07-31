@@ -90,7 +90,7 @@ banner() {
 
 show_header() {
   # Move cursor to 1st line in your screen
-  # tput cup 0 0
+  tput cup 0 0
 
   clear
   echo ""
