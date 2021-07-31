@@ -100,7 +100,6 @@ show_header() {
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
 
-  Move cursor to home position, back in virtual window
   tput cup 14 0
 }
 
