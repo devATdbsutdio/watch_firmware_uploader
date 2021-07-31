@@ -1,5 +1,4 @@
 BINARY:
-    BASE: /home/pi/test
     LOCATION: /home/pi/test/bin/arduino-cli
 
 # The deatils you can find:
@@ -8,17 +7,20 @@ BINARY:
 # More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
 MICROCONTROLLER:
     # Edit this parameters for your needs
-    CORE: megaTinyCore:megaavr:atxy7
-    CHIP: 1607
-    CLOCK: 5internal
-    BOD: 1v8
-    BODMODE: disabled
-    EEPROM_SAVE: enable
-    MILLIS: enabled
-    RESET_PIN: UPDI
-    STARTUP_TIME: 0
-    UARTV: skip
-    PROGRAMMER: pyupdi
+    TARGET: 
+        NAME: ATTINY1607 # just a nice name for usage in UI
+        CORE: megaTinyCore:megaavr:atxy7
+    FUSES:
+        CHIP: 1607
+        CLOCK: 5internal
+        BOD: 1v8
+        BODMODE: disabled
+        EEPROM_SAVE: enable
+        MILLIS: enabled
+        RESET_PIN: UPDI
+        STARTUP_TIME: 0
+        UARTV: skip
+        PROGRAMMER: pyupdi
 
 FIRMWARE:
     SKETCHES:

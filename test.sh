@@ -151,3 +151,29 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 	$ymal_parse e ".FIRMWARE = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
 	i=$((i + 1))
 done
+
+# ------------------------------------------
+# HEIGHT=$(tput lines)
+# set_window() {
+# 	# Create a virtual window that is two lines smaller at the bottom.
+# 	tput csr 0 $((HEIGHT - 2))
+# }
+# show_header_and_footer() {
+# 	clear
+# 	echo -e "${YELLOW}$BANNER${RESET}" && echo ""
+# 	echo -e "${YELLOW} [S] = SELECT UPLOAD PORT${RESET}"
+# 	echo -e "${YELLOW} [P] = GET LATEST FIRMWARE${RESET}"
+# 	echo -e "${YELLOW} [U] = UPLOAD FIRMWARE${RESET}" && echo " "
+
+# 	# Move cursor to last line in your screen
+# 	tput cup "$HEIGHT" 0
+
+# 	PORT_STAT="PORT: $PORT"
+# 	PULL_STAT="LAST PULL: $LAST_PULL"
+# 	BURN_STAT="UPLOAD: $LAST_BURN"
+# 	BOTT_STAT="$PORT_STAT  $PULL_STAT  $BURN_STAT"
+
+# 	# echo -e "${WHOLE_LINE_YELLOW}$BOTT_STAT${WHOLE_LINE_RESET}"
+# 	Move cursor to home position, back in virtual window
+# 	tput cup 11 0
+# }
