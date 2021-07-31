@@ -99,7 +99,7 @@ show_header() {
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
-
+  cup
   tput cup 14 0
 }
 
@@ -107,6 +107,7 @@ echo "Staring now ... "
 
 while true; do
   clear
+  tput csr 14 0
 
   show_header
 
