@@ -64,7 +64,7 @@ UARTV=$($ymal_parse e '.MICROCONTROLLER.FUSES.UARTV' "$SETTINGS_FILE")
 PORT="[x]"
 LAST_BURN="[x]"
 PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
-
+# [TBD] it's hardcoded now. Make a selector later
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
 FIRM_WARE_NAME="$(basename "$FIRMWARE_DIR")"
 
@@ -136,7 +136,7 @@ while true; do
 
     "${UPLOAD_CMD[@]}"
 
-    sleep 5
+    sleep 2
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
