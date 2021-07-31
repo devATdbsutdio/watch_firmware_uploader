@@ -100,7 +100,7 @@ show_header() {
 
   clear
 
-  echo -e "$BANNER" && echo ""
+  echo -e "$BANNER" && echo "$PORT"
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
