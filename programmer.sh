@@ -138,7 +138,7 @@ while true; do
       PORT=$port
       # update the upload command with the port
       # UPLOAD_CMD[7]=$port
-      # break
+      break
     done
     clear
     ;;
