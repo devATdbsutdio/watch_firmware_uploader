@@ -136,10 +136,9 @@ while true; do
     IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
       PORT=$port
-      PORT_STAT="PORT: $PORT"
       # update the upload command with the port
-      UPLOAD_CMD[7]=$port
-      break
+      # UPLOAD_CMD[7]=$port
+      # break
     done
     clear
     ;;
