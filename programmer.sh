@@ -133,7 +133,7 @@ while true; do
     ;;
   [sS])
     show_header
-    IFS=$'\n' ports=($(find /dev/ttyUSB*))
+    IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
       PORT=$port
       PORT_STAT="PORT: $PORT"
