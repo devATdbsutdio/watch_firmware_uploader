@@ -117,7 +117,7 @@ while true; do
     LAST_PULL="[pulling..]"
     show_header
 
-    # echo "EXECUTING:"
+    echo "EXECUTING A GIT PULL IN FIRMWARE DIRECTORY ..."
     # echo " cd $FIRMWARE_DIR && git pull "
     cd "$FIRMWARE_DIR" && git pull
     cd "$HOME" || return
@@ -128,7 +128,7 @@ while true; do
     LAST_PULL="$current_date_time"
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
-    sleep 10
+    sleep 5
     clear
     ;;
   [sS])
