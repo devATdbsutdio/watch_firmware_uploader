@@ -10,17 +10,13 @@ LAST_PULL_INFO_FILE=$HOME/.last_pull.txt
 
 # ---- color info ---- #
 GREEN='\033[0;32m'
-# BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 RESET='\033[0m'
-# WHOLE_LINE_YELLOW='\x1b[43;30m'
-# WHOLE_LINE_RESET='\x1b[K\x1b[0m'
 # -------------------- #
 
 # ---- Pre-checks ---- #
 LAST_PULL=0
-# PULL_STAT="LAST PULL: $LAST_PULL"
 
 clear
 echo ""
@@ -34,9 +30,6 @@ else
   echo -e "${RED}No \"last pull request\" info found!${RESET}"
   LAST_PULL=0
 fi
-
-# PULL_STAT="LAST PULL: $LAST_PULL"
-# sleep 1
 
 if [ -f "$SETTINGS_FILE" ]; then
   echo -e "${GREEN}TARGET SETTINGS EXIST IN: $SETTINGS_FILE${RESET}"
@@ -74,22 +67,11 @@ PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
 
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
 FIRM_WARE_NAME="$(basename "$FIRMWARE_DIR")"
-UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
 
+# UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
+FULL_FQBN_WITH_FUSES="$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV"
+UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
 # ----------------------------------------------------------- #
-
-# FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
-
-# BANNER="
-# ${YELLOW}---------------------------------------------${RESET}
-# ${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME
-# ${YELLOW}PULL STAT:${RESET}\t$LAST_PULL
-# ${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME
-# ${YELLOW}UPLOAD PORT:${RESET}\t${GREEN}$PORT${RESET}
-# ${YELLOW}TOTAL UPLOADS:${RESET}\t${GREEN}$LAST_BURN${RESET}
-# ${YELLOW}---------------------------------------------${RESET}
-# "
-
 banner() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo -e "${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME"
@@ -101,12 +83,6 @@ banner() {
 }
 
 show_header() {
-  # PORT=$PORT
-  # LAST_PULL=$LAST_PULL
-  # LAST_BURN=$LAST_BURN
-
-  # BANNER=$BANNER
-
   clear
   echo ""
   banner
@@ -128,10 +104,7 @@ while true; do
   [pP])
     LAST_PULL="${GREEN}[pulling..]${RESET}"
     show_header
-
-    echo "EXECUTING A GIT PULL IN FIRMWARE DIRECTORY ..."
-    # echo " cd $FIRMWARE_DIR && git pull "
-    cd "$FIRMWARE_DIR" && git pull
+    cd "$FIRMWARE_DIR" && git checkout master && git up
     cd "$HOME" || return
     sleep 2
     # get current time stamp
@@ -146,7 +119,6 @@ while true; do
   [sS])
     show_header
     IFS=$'\n' read -r -d '' -a ports < <(find /dev/ttyUSB*)
-    # IFS=$'\n' ports=($(find /dev/tty*))
     select port in "${ports[@]}"; do
       PORT=$port
       # update the upload command with the port
@@ -156,7 +128,7 @@ while true; do
     clear
     ;;
   [uU])
-    LAST_BURN="->"
+    LAST_BURN="Uploading..."
     show_header
 
     echo "EXECUTING:"
@@ -164,7 +136,7 @@ while true; do
 
     # sleep 30
 
-    "${UPLOAD_CMD[@]}"
+    # "${UPLOAD_CMD[@]}"
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
