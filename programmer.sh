@@ -80,27 +80,37 @@ UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage
 
 # FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
 
-BANNER="
-${YELLOW}---------------------------------------------${RESET}
-${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME
-${YELLOW}PULL STAT:${RESET}\t$LAST_PULL
-${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME
-${YELLOW}UPLOAD PORT:${RESET}\t${GREEN}$PORT${RESET}
-${YELLOW}TOTAL UPLOADS:${RESET}\t${GREEN}$LAST_BURN${RESET}
-${YELLOW}---------------------------------------------${RESET}
+# BANNER="
+# ${YELLOW}---------------------------------------------${RESET}
+# ${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME
+# ${YELLOW}PULL STAT:${RESET}\t$LAST_PULL
+# ${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME
+# ${YELLOW}UPLOAD PORT:${RESET}\t${GREEN}$PORT${RESET}
+# ${YELLOW}TOTAL UPLOADS:${RESET}\t${GREEN}$LAST_BURN${RESET}
+# ${YELLOW}---------------------------------------------${RESET}
+# "
 
-"
+banner() {
+  echo -e "${YELLOW}---------------------------------------------${RESET}"
+  echo -e "${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME"
+  echo -e "${YELLOW}PULL STAT:${RESET}\t$LAST_PULL"
+  echo -e "${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME"
+  echo -e "${YELLOW}UPLOAD PORT:${RESET}\t${GREEN}$PORT${RESET}"
+  echo -e "${YELLOW}TOTAL UPLOADS:${RESET}\t${GREEN}$LAST_BURN${RESET}"
+  echo -e "${YELLOW}---------------------------------------------${RESET}"
+}
 
 show_header() {
-  PORT=$PORT
-  LAST_PULL=$LAST_PULL
-  LAST_BURN=$LAST_BURN
+  # PORT=$PORT
+  # LAST_PULL=$LAST_PULL
+  # LAST_BURN=$LAST_BURN
 
-  BANNER=$BANNER
+  # BANNER=$BANNER
 
   clear
-
-  echo -e "$BANNER" && echo "$PORT"
+  echo ""
+  banner
+  echo ""
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
@@ -140,7 +150,7 @@ while true; do
     select port in "${ports[@]}"; do
       PORT=$port
       # update the upload command with the port
-      # UPLOAD_CMD[7]=$port
+      UPLOAD_CMD[7]=$port
       break
     done
     clear
