@@ -92,9 +92,11 @@ ${YELLOW}---------------------------------------------${RESET}
 "
 
 show_header() {
-  # PORT=$PORT
-  # LAST_PULL=$LAST_PULL
-  # LAST_BURN=$LAST_BURN
+  PORT=$PORT
+  LAST_PULL=$LAST_PULL
+  LAST_BURN=$LAST_BURN
+
+  BANNER=$BANNER
 
   clear
 
