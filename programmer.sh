@@ -81,13 +81,13 @@ UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage
 FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
 
 BANNER="
----------------------------------------------
+${YELLOW}---------------------------------------------${RESET}
 ${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME
 ${YELLOW}PULL STAT:${RESET}\t$LAST_PULL
 ${YELLOW}TARGET UC:${RESET}\t$TARGET_NAME
-${YELLOW}UPLOAD PORT:${RESET}\t${BLUE}$PORT${RESET}
-${YELLOW}TOTAL UPLOADS:${RESET}\t${BLUE}$LAST_BURN${RESET}
----------------------------------------------
+${YELLOW}UPLOAD PORT:${RESET}\t${GREEN}$PORT${RESET}
+${YELLOW}TOTAL UPLOADS:${RESET}\t${GREEN}$LAST_BURN${RESET}
+${YELLOW}---------------------------------------------${RESET}
 
 "
 
