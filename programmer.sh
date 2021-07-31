@@ -104,7 +104,7 @@ while true; do
   [pP])
     LAST_PULL="${GREEN}[pulling..]${RESET}"
     show_header
-    cd "$FIRMWARE_DIR" && git checkout master && git up
+    cd "$FIRMWARE_DIR" && git checkout main && git up
     cd "$HOME" || return
     sleep 2
     # get current time stamp
@@ -134,7 +134,7 @@ while true; do
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
 
-    # sleep 30
+    sleep 30
 
     # "${UPLOAD_CMD[@]}"
 
