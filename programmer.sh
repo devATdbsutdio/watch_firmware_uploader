@@ -117,8 +117,8 @@ while true; do
     LAST_PULL="[pulling..]"
     show_header
 
-    echo "EXECUTING:"
-    echo " cd $FIRMWARE_DIR && git pull "
+    # echo "EXECUTING:"
+    # echo " cd $FIRMWARE_DIR && git pull "
     cd "$FIRMWARE_DIR" && git pull
     cd "$HOME" || return
     sleep 2
