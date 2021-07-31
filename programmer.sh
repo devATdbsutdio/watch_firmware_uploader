@@ -106,7 +106,7 @@ echo "Staring now ... "
 
 while true; do
   clear
-  tput csr 14 0
+  # tput csr 14 0
 
   show_header
 

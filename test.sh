@@ -1,19 +1,19 @@
 #!/bin/bash
 
-I_SETTING_FILE_NAME=installer_settings.yaml
-P_SETTING_FILE_NAME=programmer_settings.yaml
-FULL_PATH=$(realpath "$0")
-SETTINGS_DIR=$(dirname "$FULL_PATH")
-I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
-P_SETTINGS_FILE=$SETTINGS_DIR/$P_SETTING_FILE_NAME
+# I_SETTING_FILE_NAME=installer_settings.yaml
+# P_SETTING_FILE_NAME=programmer_settings.yaml
+# FULL_PATH=$(realpath "$0")
+# SETTINGS_DIR=$(dirname "$FULL_PATH")
+# I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
+# P_SETTINGS_FILE=$SETTINGS_DIR/$P_SETTING_FILE_NAME
 
 # echo "$I_SETTINGS_FILE"
 
 # CONFIG_FILE="$HOME"/.arduino15/arduino-cli.yaml
 # echo "$CONFIG_FILE"
-ymal_parse="$(/usr/bin/which yq)" #used for parsing settings.yaml file
+# ymal_parse="$(/usr/bin/which yq)" #used for parsing settings.yaml file
 # echo "$ymal_parse"
-git_parse="$(/usr/bin/which git)"
+# git_parse="$(/usr/bin/which git)"
 
 # ARDUINO="$(which /usr/local/bin/arduino-cli)"
 
@@ -112,51 +112,51 @@ git_parse="$(/usr/bin/which git)"
 
 # next_step
 
-FIRMWARE_LINKS=()
-IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
+# FIRMWARE_LINKS=()
+# IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
 
-sketchbook_loc="${HOME}/Arduino/sketchbook/"
-echo -e " Entering sketchbook location by: cd $sketchbook_loc"
-mkdir -p -- "$sketchbook_loc"
-cd "$sketchbook_loc" || return
+# sketchbook_loc="${HOME}/Arduino/sketchbook/"
+# echo -e " Entering sketchbook location by: cd $sketchbook_loc"
+# mkdir -p -- "$sketchbook_loc"
+# cd "$sketchbook_loc" || return
 
-i=0
-echo -e " Parsing the git links:"
-for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
-	# parse the end of the git link to get sketch's dir name
-	SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
-	SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
-	IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
-	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
+# i=0
+# echo -e " Parsing the git links:"
+# for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+# 	# parse the end of the git link to get sketch's dir name
+# 	SKETCH_NAME=$(echo "$git_clone_link" | cut -d'/' -f 5)
+# 	SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
+# 	IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
+# 	SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
 
-	firmware_loc=$sketchbook_loc$SKETCH_NAME
+# 	firmware_loc=$sketchbook_loc$SKETCH_NAME
 
-	# TBD, if sketch already exists, git pull
-	if [ -d "$firmware_loc" ]; then
-		echo -e " File already exists. So pulling..."
-		echo " "
-		cd "$firmware_loc" && $git_parse pull
-	else
-		echo -e " [$i] Cloning $git_clone_link to $sketchbook_loc"
-		$git_parse clone "$git_clone_link"
-	fi
-	cd "$HOME" || return
+# 	# TBD, if sketch already exists, git pull
+# 	if [ -d "$firmware_loc" ]; then
+# 		echo -e " File already exists. So pulling..."
+# 		echo " "
+# 		cd "$firmware_loc" && $git_parse pull
+# 	else
+# 		echo -e " [$i] Cloning $git_clone_link to $sketchbook_loc"
+# 		$git_parse clone "$git_clone_link"
+# 	fi
+# 	cd "$HOME" || return
 
-	# enter the path in programmer settings
-	echo -e " Firmware-$i installed in: $firmware_loc"
-	sleep 1
-	echo -e " Entering this location PATH in $P_SETTING_FILE_NAME"
+# 	# enter the path in programmer settings
+# 	echo -e " Firmware-$i installed in: $firmware_loc"
+# 	sleep 1
+# 	echo -e " Entering this location PATH in $P_SETTING_FILE_NAME"
 
-	# Enter it in settings
-	$ymal_parse e ".FIRMWARE = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
-	i=$((i + 1))
-done
+# 	# Enter it in settings
+# 	$ymal_parse e ".FIRMWARE = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
+# 	i=$((i + 1))
+# done
 
 # ------------------------------------------
 # HEIGHT=$(tput lines)
 # set_window() {
-# 	# Create a virtual window that is two lines smaller at the bottom.
-# 	tput csr 0 $((HEIGHT - 2))
+# 	# Create a virtual window that is 14 lines smaller at the bottom.
+# 	tput csr 0 $((HEIGHT - 14))
 # }
 # show_header_and_footer() {
 # 	clear
@@ -177,3 +177,53 @@ done
 # 	Move cursor to home position, back in virtual window
 # 	tput cup 11 0
 # }
+
+get_size() {
+	set -- $(stty size)
+	LINES=$1
+	COLUMNS=$2
+}
+set_nonscrolling_line() {
+	get_size
+	case "$1" in
+	t | to | top)
+		non_scroll_line=0
+		first_scrolling_line=1
+		scroll_region="1 $((LINES - 1))"
+		;;
+	b | bo | bot | bott | botto | bottom)
+		first_scrolling_line=0
+		scroll_region="0 $((LINES - 2))"
+		non_scroll_line="$((LINES - 1))"
+		;;
+	*)
+		echo 'error: first argument must be "top" or "bottom"'
+		exit 1
+		;;
+	esac
+	clear
+	tput csr "$scroll_region"
+	tput cup "$non_scroll_line" 0
+	printf %s "$2"
+	tput cup "$first_scrolling_line" 0
+}
+reset_scrolling() {
+	get_size
+	clear
+	tput csr 0 $((LINES - 1))
+}
+
+# Set up the scrolling region and write into the non-scrolling line
+set_nonscrolling_line "$1" "$2"
+shift 2
+
+# Run something that writes into the scolling region
+"$@"
+ec=$?
+
+# Reset the scrolling region
+printf %s 'Press ENTER to reset scrolling (will clear screen)'
+read a_line
+reset_scrolling
+
+exit "$ec"
