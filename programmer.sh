@@ -68,10 +68,16 @@ PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
 FIRM_WARE_NAME="$(basename "$FIRMWARE_DIR")"
 
-# UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
 FULL_FQBN_WITH_FUSES="$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV"
 UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
 # ----------------------------------------------------------- #
+
+# HEIGHT=$(tput lines)
+# set_window() {
+#   # Create a virtual window that is 14 lines smaller at the bottom.
+#   tput csr 0 $((HEIGHT - 14))
+# }
+
 banner() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo -e "${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME"
@@ -83,6 +89,9 @@ banner() {
 }
 
 show_header() {
+  # Move cursor to 1st line in your screen
+  tput cup 0 0
+
   clear
   echo ""
   banner
@@ -90,6 +99,9 @@ show_header() {
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
+
+  Move cursor to home position, back in virtual window
+  tput cup 14 0
 }
 
 echo "Staring now ... "
