@@ -134,9 +134,9 @@ while true; do
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
 
-    sleep 30
+    "${UPLOAD_CMD[@]}"
 
-    # "${UPLOAD_CMD[@]}"
+    sleep 5
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
