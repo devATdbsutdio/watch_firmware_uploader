@@ -72,7 +72,7 @@ LAST_BURN="[x]"
 PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
 
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
-
+FIRM_WARE_NAME="$(basename $FIRMWARE_DIR)"
 UPLOAD_CMD=("$ARDUINO" compile -b "$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV" "$FIRMWARE_DIR" -u -p $PORT -P "$PROGRAMMER" -t)
 
 # ----------------------------------------------------------- #
@@ -82,7 +82,7 @@ FUSE_SETTING_UI="$($ymal_parse e '.MICROCONTROLLER.FUSES[]' "$SETTINGS_FILE")"
 BANNER="
 
   ${YELLOW}ARDUINO:${RESET} $ARDUINO
-  ${YELLOW}SKETCH:${RESET} $FIRMWARE_DIR
+  ${YELLOW}SKETCH:${RESET} $FIRM_WARE_NAME
   ${YELLOW}PULL STAT:${RESET} $LAST_PULL
 
   ${YELLOW}TARGET:${RESET} $TARGET_NAME
