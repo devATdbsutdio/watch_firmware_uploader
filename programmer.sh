@@ -104,15 +104,15 @@ while true; do
   # get_size
   clear
   # Save cursor position
-  tput sc
+  # tput sc
   # Add a new line
-  tput il 1
+  # tput il 1
   # Change scroll region to exclude the first 14 lines
-  tput csr 0 0
+  tput csr 0 14
   # Move cursor to top line
   tput cup 14 0
   # Clear to the end of the line
-  tput el
+  # tput el
 
   show_header
 
