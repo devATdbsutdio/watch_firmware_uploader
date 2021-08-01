@@ -100,6 +100,8 @@ show_header() {
 
 echo "Staring now ... "
 
+HEIGHT=$(tput lines)
+
 while true; do
   clear
   # move the cursor to the top of the window
@@ -108,8 +110,7 @@ while true; do
   show_header
 
   # define the scorllable window
-  tput csr 0 "$($(tput lines) - 14)"
-  # tput cup 15 0
+  tput csr 0 $((HEIGHT - 14))
 
   read -r -p "  > " input
   case $input in
