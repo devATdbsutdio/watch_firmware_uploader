@@ -72,12 +72,6 @@ FULL_FQBN_WITH_FUSES="$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmo
 UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
 # ----------------------------------------------------------- #
 
-# HEIGHT=$(tput lines)
-# set_window() {
-#   # Create a virtual window that is 14 lines smaller at the bottom.
-#   tput csr 0 $((HEIGHT - 14))
-# }
-
 banner() {
   clear
   echo -e "${YELLOW}---------------------------------------------${RESET}"
@@ -89,13 +83,25 @@ banner() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
 }
 
+# get_size() {
+#   set -- $(stty size)
+#   LINES=$1
+#   COLUMNS=$2
+
+#   echo "$LINES"
+#   echo "$COLUMNS"
+# }
+# get_size
+
+HEIGHT=$(tput lines)
+
 show_header() {
   clear
 
   # define the scorllable window
-  tput csr 0 $((HEIGHT - 10))
+  # tput csr 0 $((HEIGHT - 10))
   # move the cursor to the top of the window
-  tput cup 0 0
+  # tput cup 0 0
 
   banner
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
@@ -104,12 +110,10 @@ show_header() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo ""
 
-  tput cup 10 0
+  # tput cup 10 0
 }
 
 echo "Staring now ... "
-
-HEIGHT=$(tput lines)
 
 while true; do
   show_header
@@ -155,7 +159,7 @@ while true; do
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
-    show_header
+    # show_header
     sleep 1
     # clear
     ;;
