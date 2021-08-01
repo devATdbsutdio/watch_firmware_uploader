@@ -110,7 +110,7 @@ while true; do
   # Change scroll region to exclude the first 14 lines
   tput csr 0 14
   # Move cursor to top line
-  tput cup 0 0
+  tput cup 14 0
   # Clear to the end of the line
   tput el
 
