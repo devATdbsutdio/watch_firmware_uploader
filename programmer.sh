@@ -89,6 +89,7 @@ banner() {
 }
 
 show_header() {
+  echo ""
   banner
   echo ""
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
