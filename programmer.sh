@@ -90,12 +90,17 @@ banner() {
 }
 
 show_header() {
+  # move the cursor to the top of the window
+  tput cup 0 0
+
   banner
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE"
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo ""
+
+  tput cup 11 0
 }
 
 echo "Staring now ... "
@@ -107,18 +112,13 @@ while true; do
   # define the scorllable window
   tput csr 0 $((HEIGHT - 10))
 
-  # move the cursor to the top of the window
-  tput cup 0 0
-
   show_header
-
-  tput cup 11 0
 
   read -r -p "  > " input
   case $input in
   [pP])
     LAST_PULL="${GREEN}[pulling..]${RESET}"
-    # show_header
+    show_header
     cd "$FIRMWARE_DIR" && git checkout main && git up
     cd "$HOME" || return
     sleep 2
@@ -132,7 +132,7 @@ while true; do
     # clear
     ;;
   [sS])
-    # show_header
+    show_header
     IFS=$'\n' read -r -d '' -a ports < <(find /dev/ttyUSB*)
     select port in "${ports[@]}"; do
       PORT=$port
@@ -144,7 +144,7 @@ while true; do
     ;;
   [uU])
     LAST_BURN="Uploading..."
-    # show_header
+    show_header
 
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
@@ -155,7 +155,7 @@ while true; do
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
-    # show_header
+    show_header
     sleep 1
     # clear
     ;;
