@@ -104,12 +104,16 @@ show_header() {
 
 echo "Staring now ... "
 
-HEIGHT=$(tput lines)
+get_size() {
+  set -- $(stty size)
+  LINES=$1
+  COLUMNS=$2
+}
 
 while true; do
+  get_size
   clear
-
-  tput csr 0 $((HEIGHT - 14))
+  tput csr 0 1
 
   show_header
 
@@ -166,3 +170,11 @@ while true; do
     ;;
   esac
 done
+
+reset_scrolling() {
+  get_size
+  clear
+  tput csr 0 $((LINES - 1))
+}
+
+reset_scrolling
