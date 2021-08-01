@@ -89,8 +89,6 @@ banner() {
 }
 
 show_header() {
-  clear
-  echo ""
   banner
   echo ""
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
@@ -101,19 +99,16 @@ show_header() {
 echo "Staring now ... "
 
 while true; do
-  # get_size
   clear
-  # Save cursor position
-  # tput sc
-  # Add a new line
-  # tput il 1
-  # Change scroll region to exclude the first 14 lines
-  tput csr 0 14
-  # Move cursor to top line
-  tput cup 14 0
-  # Clear to the end of the line
-  # tput el
 
+  # w=$(tput cols)
+  # h=$(tput lines)
+  # lines=$(( $h/2 ))
+  lines=2
+  clear
+  for I in 'seq 1 $lines'; do
+    echo
+  done
   show_header
 
   # Restore cursor position
