@@ -89,9 +89,6 @@ banner() {
 }
 
 show_header() {
-  # Move cursor to 1st line in your screen
-  # tput cup 0 0
-
   clear
   echo ""
   banner
@@ -99,24 +96,28 @@ show_header() {
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
-
-  # tput cup 14 0
 }
 
 echo "Staring now ... "
 
-# get_size() {
-#   set -- $(stty size)
-#   LINES=$1
-#   COLUMNS=$2
-# }
-
 while true; do
   # get_size
   clear
-  # tput csr 0 0
+  # Save cursor position
+  tput sc
+  # Add a new line
+  tput il 1
+  # Change scroll region to exclude the first 14 lines
+  tput csr 14 0
+  # Move cursor to top line
+  tput cup 0 0
+  # Clear to the end of the line
+  tput el
 
   show_header
+
+  # Restore cursor position
+  tput rc
 
   read -r -p "  > " input
   case $input in
@@ -173,6 +174,11 @@ while true; do
 done
 
 # ---------------
+# get_size() {
+#   set -- $(stty size)
+#   LINES=$1
+#   COLUMNS=$2
+# }
 # reset_scrolling() {
 #   get_size
 #   clear
