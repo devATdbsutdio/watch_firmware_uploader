@@ -104,11 +104,11 @@ while true; do
   # w=$(tput cols)
   # h=$(tput lines)
   # lines=$(( $h/2 ))
-  lines=2
-  clear
-  for I in 'seq 1 $lines'; do
-    echo
-  done
+  # lines=2
+  # clear
+  # for I in 'seq 1 $lines'; do
+  #   echo
+  # done
   show_header
 
   read -r -p "  > " input
