@@ -183,6 +183,7 @@ get_size() {
 	LINES=$1
 	COLUMNS=$2
 }
+get_size
 echo "$LINES"
 echo "$COLUMNS"
 
