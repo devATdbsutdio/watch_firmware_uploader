@@ -101,15 +101,11 @@ echo "Staring now ... "
 
 while true; do
   clear
+  # define the scorllable window
+  tput csr 0 $((HEIGHT - 14))
+  # move the cursor to teh top of the window
+  tput cup 0 0
 
-  # w=$(tput cols)
-  # h=$(tput lines)
-  # lines=$(( $h/2 ))
-  # lines=2
-  # clear
-  # for I in 'seq 1 $lines'; do
-  #   echo
-  # done
   show_header
 
   read -r -p "  > " input
