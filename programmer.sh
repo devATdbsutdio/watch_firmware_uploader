@@ -171,10 +171,17 @@ while true; do
   esac
 done
 
+# ---------------
 reset_scrolling() {
   get_size
   clear
   tput csr 0 $((LINES - 1))
 }
 
+# Reset the scrolling region
+printf %s 'Press ENTER to reset scrolling (will clear screen)'
+read a_line
 reset_scrolling
+
+ec=$?
+exit "$ec"
