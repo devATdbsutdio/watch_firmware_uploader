@@ -90,6 +90,8 @@ banner() {
 }
 
 show_header() {
+  # define the scorllable window
+  tput csr 0 $((HEIGHT - 10))
   # move the cursor to the top of the window
   tput cup 0 0
 
@@ -100,7 +102,7 @@ show_header() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo ""
 
-  tput cup 11 0
+  tput cup 10 0
 }
 
 echo "Staring now ... "
@@ -109,9 +111,6 @@ HEIGHT=$(tput lines)
 
 while true; do
   clear
-  # define the scorllable window
-  tput csr 0 $((HEIGHT - 10))
-
   show_header
 
   read -r -p "  > " input
