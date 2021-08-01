@@ -90,10 +90,11 @@ banner() {
 
 show_header() {
   banner
-  echo ""
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
-  echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
+  echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE"
+  echo -e "${YELLOW}---------------------------------------------${RESET}"
+  echo ""
 }
 
 echo "Staring now ... "
