@@ -79,6 +79,7 @@ UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p 
 # }
 
 banner() {
+  clear
   echo -e "${YELLOW}---------------------------------------------${RESET}"
   echo -e "${YELLOW}FIRMWARE:${RESET}\t$FIRM_WARE_NAME"
   echo -e "${YELLOW}PULL STAT:${RESET}\t$LAST_PULL"
