@@ -111,9 +111,6 @@ while true; do
   done
   show_header
 
-  # Restore cursor position
-  tput rc
-
   read -r -p "  > " input
   case $input in
   [pP])
