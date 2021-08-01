@@ -116,7 +116,7 @@ while true; do
   case $input in
   [pP])
     LAST_PULL="${GREEN}[pulling..]${RESET}"
-    show_header
+    # show_header
     cd "$FIRMWARE_DIR" && git checkout main && git up
     cd "$HOME" || return
     sleep 2
@@ -127,10 +127,10 @@ while true; do
     # save curr time stamp
     echo "$LAST_PULL" >"$LAST_PULL_INFO_FILE"
     # sleep 5
-    clear
+    # clear
     ;;
   [sS])
-    show_header
+    # show_header
     IFS=$'\n' read -r -d '' -a ports < <(find /dev/ttyUSB*)
     select port in "${ports[@]}"; do
       PORT=$port
@@ -138,11 +138,11 @@ while true; do
       UPLOAD_CMD[7]=$port
       break
     done
-    clear
+    # clear
     ;;
   [uU])
     LAST_BURN="Uploading..."
-    show_header
+    # show_header
 
     echo "EXECUTING:"
     echo "${UPLOAD_CMD[@]}"
@@ -153,15 +153,15 @@ while true; do
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
-    show_header
+    # show_header
     sleep 1
-    clear
+    # clear
     ;;
   *)
     # -- [TBD] show invalid input status
     show_header
     sleep 2
-    clear
+    # clear
     ;;
   esac
 done
