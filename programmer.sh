@@ -112,7 +112,7 @@ while true; do
 
   show_header
 
-  tput cup 12 0
+  tput cup 11 0
 
   read -r -p "  > " input
   case $input in
