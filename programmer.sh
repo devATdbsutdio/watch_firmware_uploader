@@ -110,7 +110,7 @@ while true; do
   show_header
 
   # define the scorllable window
-  tput csr 0 $((HEIGHT - 14))
+  tput csr 0 $((HEIGHT - 10))
 
   read -r -p "  > " input
   case $input in
