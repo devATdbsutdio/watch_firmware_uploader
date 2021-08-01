@@ -90,6 +90,8 @@ banner() {
 }
 
 show_header() {
+  clear
+
   # define the scorllable window
   tput csr 0 $((HEIGHT - 10))
   # move the cursor to the top of the window
@@ -110,7 +112,6 @@ echo "Staring now ... "
 HEIGHT=$(tput lines)
 
 while true; do
-  clear
   show_header
 
   read -r -p "  > " input
