@@ -13,10 +13,11 @@ BINARY:
 
 LIBS: # 3rd-party libraries you want to install (can be both names or git links)
     - https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
-    - TinyMegaI2C
+    - TinyMegaI2C   
     - RV8803Tiny
 
 FIRMWARE: 
     # firmware/s, that needs to be cloned goes here
     LINKS:
-        - https://github.com/dattasaurabh82/clock_firmware_production.git
+        - git@github.com:dattasaurabh82/clock_firmware_production.git
+        # - https://github.com/dattasaurabh82/clock_firmware_production.git
