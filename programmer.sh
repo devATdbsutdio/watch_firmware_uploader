@@ -149,12 +149,12 @@ while true; do
 
     "${UPLOAD_CMD[@]}"
 
-    sleep 2
+    sleep 1
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
     show_header
-    sleep 2
+    sleep 1
     clear
     ;;
   *)
