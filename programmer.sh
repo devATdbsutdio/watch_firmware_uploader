@@ -104,13 +104,15 @@ HEIGHT=$(tput lines)
 
 while true; do
   clear
+  # define the scorllable window
+  tput csr 0 $((HEIGHT - 10))
+
   # move the cursor to the top of the window
   tput cup 0 0
 
   show_header
 
-  # define the scorllable window
-  tput csr 0 $((HEIGHT - 10))
+  # tput cup 14 0
 
   read -r -p "  > " input
   case $input in
