@@ -90,7 +90,7 @@ banner() {
 
 show_header() {
   # Move cursor to 1st line in your screen
-  tput cup 0 0
+  # tput cup 0 0
 
   clear
   echo ""
@@ -99,21 +99,22 @@ show_header() {
   echo -e "${YELLOW}[S]${RESET} SELECT \"UPLOADING PORT\""
   echo -e "${YELLOW}[P]${RESET} GET THE LATEST FIRMWARE"
   echo -e "${YELLOW}[U]${RESET} UPLOAD THE FIRMWARE" && echo ""
-  tput cup 14 0
+
+  # tput cup 14 0
 }
 
 echo "Staring now ... "
 
-get_size() {
-  set -- $(stty size)
-  LINES=$1
-  COLUMNS=$2
-}
+# get_size() {
+#   set -- $(stty size)
+#   LINES=$1
+#   COLUMNS=$2
+# }
 
 while true; do
-  get_size
+  # get_size
   clear
-  tput csr 0 1
+  # tput csr 0 0
 
   show_header
 
@@ -172,16 +173,16 @@ while true; do
 done
 
 # ---------------
-reset_scrolling() {
-  get_size
-  clear
-  tput csr 0 $((LINES - 1))
-}
+# reset_scrolling() {
+#   get_size
+#   clear
+#   tput csr 0 $((LINES - 1))
+# }
 
-# Reset the scrolling region
-printf %s 'Press ENTER to reset scrolling (will clear screen)'
-read a_line
-reset_scrolling
+# # Reset the scrolling region
+# printf %s 'Press ENTER to reset scrolling (will clear screen)'
+# read a_line
+# reset_scrolling
 
-ec=$?
-exit "$ec"
+# ec=$?
+# exit "$ec"
