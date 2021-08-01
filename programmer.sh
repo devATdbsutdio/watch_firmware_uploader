@@ -102,13 +102,14 @@ echo "Staring now ... "
 
 while true; do
   clear
+  # define the scorllable window
+  tput csr 0 $($(tput lines) - 14)
+
   # move the cursor to the top of the window
   tput cup 0 0
 
   show_header
 
-  # define the scorllable window
-  tput csr 0 $((HEIGHT - 14))
   tput cup 15 0
 
   read -r -p "  > " input
