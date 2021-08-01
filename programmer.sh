@@ -108,7 +108,7 @@ while true; do
   show_header
 
   # define the scorllable window
-  tput csr 0 $($(tput lines) - 14)
+  tput csr 0 "$($(tput lines) - 14)"
   # tput cup 15 0
 
   read -r -p "  > " input
