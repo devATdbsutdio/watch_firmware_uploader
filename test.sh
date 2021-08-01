@@ -183,51 +183,51 @@ get_size() {
 	LINES=$1
 	COLUMNS=$2
 }
-get_size
-echo "$LINES"
-echo "$COLUMNS"
+# get_size
+# echo "$LINES"
+# echo "$COLUMNS"
 
-# set_nonscrolling_line() {
-# 	get_size
-# 	case "$1" in
-# 	t | to | top)
-# 		non_scroll_line=0
-# 		first_scrolling_line=1
-# 		scroll_region="1 $((LINES - 1))"
-# 		;;
-# 	b | bo | bot | bott | botto | bottom)
-# 		first_scrolling_line=0
-# 		scroll_region="0 $((LINES - 2))"
-# 		non_scroll_line="$((LINES - 1))"
-# 		;;
-# 	*)
-# 		echo 'error: first argument must be "top" or "bottom"'
-# 		exit 1
-# 		;;
-# 	esac
-# 	clear
-# 	tput csr "$scroll_region"
-# 	tput cup "$non_scroll_line" 0
-# 	printf %s "$2"
-# 	tput cup "$first_scrolling_line" 0
-# }
-# reset_scrolling() {
-# 	get_size
-# 	clear
-# 	tput csr 0 $((LINES - 1))
-# }
+set_nonscrolling_line() {
+	get_size
+	case "$1" in
+	t | to | top)
+		non_scroll_line=0
+		first_scrolling_line=1
+		scroll_region="1 $((LINES - 1))"
+		;;
+	b | bo | bot | bott | botto | bottom)
+		first_scrolling_line=0
+		scroll_region="0 $((LINES - 2))"
+		non_scroll_line="$((LINES - 1))"
+		;;
+	*)
+		echo 'error: first argument must be "top" or "bottom"'
+		exit 1
+		;;
+	esac
+	clear
+	tput csr "$scroll_region"
+	tput cup "$non_scroll_line" 0
+	printf %s "$2"
+	tput cup "$first_scrolling_line" 0
+}
+reset_scrolling() {
+	get_size
+	clear
+	tput csr 0 $((LINES - 1))
+}
 
-# # Set up the scrolling region and write into the non-scrolling line
-# set_nonscrolling_line "$1" "$2"
-# shift 2
+# Set up the scrolling region and write into the non-scrolling line
+set_nonscrolling_line "$1" "$2"
+shift 2
 
-# # Run something that writes into the scolling region
-# "$@"
-# ec=$?
+# Run something that writes into the scolling region
+"$@"
+ec=$?
 
-# # Reset the scrolling region
-# printf %s 'Press ENTER to reset scrolling (will clear screen)'
-# read a_line
-# reset_scrolling
+# Reset the scrolling region
+printf %s 'Press ENTER to reset scrolling (will clear screen)'
+read a_line
+reset_scrolling
 
-# exit "$ec"
+exit "$ec"
