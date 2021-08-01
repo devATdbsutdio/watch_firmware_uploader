@@ -137,7 +137,7 @@ while true; do
     ;;
   [sS])
     show_header
-    IFS=$'\n' read -r -d '' -a ports < <(find /dev/ttyUSB*)
+    IFS=$'\n' read -r -d 'select a number: ' -a ports < <(find /dev/ttyUSB*)
     select port in "${ports[@]}"; do
       PORT=$port
       # update the upload command with the port
