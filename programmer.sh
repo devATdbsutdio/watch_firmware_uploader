@@ -161,8 +161,12 @@ while true; do
     sleep 2
 
     # Shoiw the gif
+    loop=0
     clear
-    "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=256fgbg "$HOME"/Pictures/26dI.gif
+    while [ $loop -lt 4 ]; do
+      "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=256fgbg "$HOME"/Pictures/y8.gif
+      loop="expr $loop + 1"
+    done
     clear
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
