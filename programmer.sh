@@ -163,9 +163,10 @@ while true; do
     # Shoiw the gif
     l=0
     clear
-    while [ $l -le 4 ]; do
+    while [ $l -le 10 ]; do
       # clear
-      "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=256fgbg "$HOME"/Pictures/y8.gif
+      "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=nocolor "$HOME"/Pictures/y8.gif
+      # "$HOME"/.local/bin/gif-for-cli "$HOME"/Pictures/1aFh.gif
       l=$((l + 1))
     done
     clear
