@@ -164,21 +164,47 @@ while true; do
 
     sleep 2
 
-    # Show the gif
-    # if arg is e
-    # if gif-for-cli exists in path
-    # if gif exists in path
-    get_size
-    l=0
-    clear
-    while [ $l -le 10 ]; do
-      # clear
-      "$gif_player" --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$GIF"
-      l=$((l + 1))
-    done
-    clear
-    # else if arg is d
+    # --- Show the gif
     # if no args: disable gif by default
+    showGIF=false
+    gifPlayerInstalled=false
+    gifExists=false
+    # if arg is e/d
+    if [[ "$*" = *e* ]]; then
+      showGIF=true
+    elif [[ "$*" = *d* ]]; then
+      showGIF=false
+    else
+      showGIF=false
+    fi
+    # if gif-for-cli exists in path
+    if [ -f "$gif_player" ]; then
+      gifPlayerInstalled=true
+    else
+      gifPlayerInstalled=false
+    fi
+    # if gif exists in path
+    if [ -f "$GIF" ]; then
+      gifExists=true
+    else
+      gifExists=false
+    fi
+    if [ "$showGIF" = true ]; then
+      if [ "$gifPlayerInstalled" = true ]; then
+        if [ "$gifExists" = true ]; then
+          # only then play the gif after code uplaoding
+          get_size
+          l=0
+          clear
+          while [ $l -le 10 ]; do
+            # clear
+            "$gif_player" --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$GIF"
+            l=$((l + 1))
+          done
+          clear
+        fi
+      fi
+    fi
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
