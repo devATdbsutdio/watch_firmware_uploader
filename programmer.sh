@@ -85,17 +85,13 @@ banner() {
   echo -e "${YELLOW}---------------------------------------------${RESET}"
 }
 
-# get_size() {
-#   set -- $(stty size)
-#   LINES=$1
-#   COLUMNS=$2
-
-#   echo "$LINES"
-#   echo "$COLUMNS"
-# }
-# get_size
-
-# HEIGHT=$(tput lines)
+get_size() {
+  set -- $(stty size)
+  ROWS=$1
+  COLUMNS=$2
+  # echo "$ROWS"
+  # echo "$COLUMNS"
+}
 
 show_header() {
   clear
@@ -160,16 +156,20 @@ while true; do
 
     sleep 2
 
-    # Shoiw the gif
+    # Show the gif
+    # if arg is e
+    # if gif-for-cli exists in path
+    get_size
     l=0
     clear
     while [ $l -le 10 ]; do
       # clear
-      "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=nocolor "$HOME"/Pictures/y8.gif
-      # "$HOME"/.local/bin/gif-for-cli "$HOME"/Pictures/1aFh.gif
+      "$HOME"/.local/bin/gif-for-cli --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$HOME"/Pictures/y8.gif
       l=$((l + 1))
     done
     clear
+    # else if arg is d
+    # if no args: disable gif by default
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
