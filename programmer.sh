@@ -61,8 +61,10 @@ MILLIS=$($ymal_parse e '.MICROCONTROLLER.FUSES.MILLIS' "$SETTINGS_FILE")
 RESET_PIN=$($ymal_parse e '.MICROCONTROLLER.FUSES.RESET_PIN' "$SETTINGS_FILE")
 STARTUP_TIME=$($ymal_parse e '.MICROCONTROLLER.FUSES.STARTUP_TIME' "$SETTINGS_FILE")
 UARTV=$($ymal_parse e '.MICROCONTROLLER.FUSES.UARTV' "$SETTINGS_FILE")
+
 PORT="[x]"
 LAST_BURN="[x]"
+
 PROGRAMMER=$($ymal_parse e '.MICROCONTROLLER.FUSES.PROGRAMMER' "$SETTINGS_FILE")
 # [TBD] it's hardcoded now. Make a selector later
 FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
@@ -93,7 +95,7 @@ banner() {
 # }
 # get_size
 
-HEIGHT=$(tput lines)
+# HEIGHT=$(tput lines)
 
 show_header() {
   clear
@@ -156,7 +158,12 @@ while true; do
 
     "${UPLOAD_CMD[@]}"
 
-    sleep 1
+    sleep 2
+
+    # Shoiw the gif
+    clear
+    "$HOME"/.local/bin/gif-for-cli --rows 21 --cols 45 --display-mode=256fgbg "$HOME"/Pictures/26dI.gif
+    clear
 
     # burn_date_time="$(date +"%Y-%m-%d %T")"
     LAST_BURN="[DONE]"
