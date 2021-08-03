@@ -520,6 +520,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
 done
 firm_wares_cloned=true
 steps=$((steps + 1))
+
 next_step
 process_list
 #FIRMWARE

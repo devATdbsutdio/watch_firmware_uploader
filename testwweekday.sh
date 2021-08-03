@@ -12,5 +12,6 @@ time="$h:$m:$s:$w:$d:$m:$y"
 # echo "$time"
 
 SERIAL_PORT=/dev/tty.usbserial-A10KHTRO
-echo -e "$time\n" >$SERIAL_PORT
+
+# echo -e "$time\n" >$SERIAL_PORT
 # /dev/tty.usbserial-A10KHTRO
