@@ -15,6 +15,14 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
+# ---- gif info ---- #
+FULL_PATH=$(realpath "$0")
+SCRIPT_DIR=$(dirname "$FULL_PATH")
+GIF_DIR=$SCRIPT_DIR/Assets
+GIF=$GIF_DIR/y8.gif
+gif_player="$HOME"/.local/bin/gif-for-cli
+# -------------------- #
+
 # ---- Pre-checks ---- #
 LAST_PULL=0
 
@@ -159,12 +167,13 @@ while true; do
     # Show the gif
     # if arg is e
     # if gif-for-cli exists in path
+    # if gif exists in path
     get_size
     l=0
     clear
     while [ $l -le 10 ]; do
       # clear
-      "$HOME"/.local/bin/gif-for-cli --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$HOME"/Pictures/y8.gif
+      "$gif_player" --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$GIF"
       l=$((l + 1))
     done
     clear
