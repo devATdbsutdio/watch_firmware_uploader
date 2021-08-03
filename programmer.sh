@@ -169,7 +169,7 @@ while true; do
     showGIF=false
     gifPlayerInstalled=false
     gifExists=false
-    # if arg is e/d
+    # if ext arg is e/d
     if [[ "$*" = *e* ]]; then
       showGIF=true
     elif [[ "$*" = *d* ]]; then
@@ -196,7 +196,7 @@ while true; do
           get_size
           l=0
           clear
-          while [ $l -le 10 ]; do
+          while [ $l -le 5 ]; do
             # clear
             "$gif_player" --rows "$ROWS" --cols "$COLUMNS" --display-mode=nocolor "$GIF"
             l=$((l + 1))
