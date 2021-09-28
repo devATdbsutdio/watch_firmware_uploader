@@ -78,9 +78,9 @@ while True:
             elif x == 'B':
                 print('DOWN')
     elif c == '\r':
-    	print('>' + c)
-        # print([line])
+    	# print('>' + c)
+        print([line])
         line = ''
-        c = ''
+        # c = ''
     else:
         line += c
