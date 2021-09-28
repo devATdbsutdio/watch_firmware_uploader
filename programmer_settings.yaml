@@ -25,3 +25,4 @@ MICROCONTROLLER:
 FIRMWARE:
     SKETCHES:
         - /home/pi/Arduino/sketchbook/clock_firmware_production
+        - /home/pi/Arduino/sketchbook/clock_firmware_production/Tests/components_check_HW_firmware

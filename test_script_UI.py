@@ -7,7 +7,11 @@ import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+# -- LOCAL MODULE IMPORTS -- #
+import preloads as pl
+
 # npyscreen.disableColor()
+# npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
 
 # UI main function which is used to draw the terminal UI
 def main():
@@ -31,7 +35,7 @@ class App(npyscreen.NPSApp):
             name="FIRMWARES",
             relx=2,
             rely=2,
-            max_width=30,
+            max_width=40,
             height=4
             #  max_height=terminal_dimensions()[0] - 10
         )
