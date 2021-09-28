@@ -44,7 +44,7 @@ class App(npyscreen.NPSApp):
             relx=2,
             rely=2,
             max_width=46,
-            height=11
+            height=12
             #  max_height=terminal_dimensions()[0] - 10
         )
         # Serial port list display widget
@@ -55,7 +55,7 @@ class App(npyscreen.NPSApp):
             relx=50,
             rely=2,
             max_width=37,
-            height=11
+            height=12
             #  max_height=terminal_dimensions()[0] - 10
         )
 
