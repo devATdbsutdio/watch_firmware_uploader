@@ -41,6 +41,7 @@ def watch_kbd():
 				port_selection_active
 				port_selection_active = not port_selection_active
 				# print(port_selection_active)
+			# else if key is not 0-9 or ENTER or U
 
 			string = ''
 		else:

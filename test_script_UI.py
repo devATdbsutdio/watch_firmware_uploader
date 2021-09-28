@@ -52,7 +52,7 @@ class App(npyscreen.NPSApp):
             Column,
             color="DEFAULT",
             name="SERIAL PORTS",
-            relx=48,
+            relx=50,
             rely=2,
             max_width=35,
             height=11
