@@ -66,8 +66,8 @@ class App(npyscreen.NPSApp):
                 "[1] PRODUCTION:",
                 "",
                 "** Press 0 / 1 to make the TEST / PRODUCTION",
-                "   code base as the current uploadable", 
-                "   firmware, respectively.",
+                "   code base respectively, as the current ", 
+                "   uploadable firmware.",
                 "** For example, select the TEST code as the",
                 "   uploadable firmware when checking the HW",
                 "   components."
@@ -81,15 +81,16 @@ class App(npyscreen.NPSApp):
 
 
             serial_ports_panel.values = [
-                "UPDI  PORT:",
-                "DEBUG PORT:",
+                "UPDI UPLOAD PORT: ",
+                "SERIAL DEBUG PORT:",
                 "",
                 "",
-                "",
-                "** The UPDI port is Fixed!",
-                "** Attach the Serial Port of",
-                "   the watch and press \"S\"",
-                "   to select the DEBUG port."
+                "** The UPDI UPLOAD PORT is Fixed and", 
+                "   can't be changed here!",
+                "** SERIAL DEBUG PORT = Serial port on",
+                "   your watch Module.",
+                "** Press \"S\" Key to re-assign",
+                "   SERIAL DEBUG PORT."
             ]
 
             form.display()
