@@ -5,8 +5,9 @@ import sys
 import npyscreen
 import os
 
-npyscreen.disableColor()
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+# npyscreen.disableColor()
 
 # UI main function which is used to draw the terminal UI
 def main():
@@ -18,10 +19,16 @@ class App(npyscreen.NPSApp):
     def main(self):
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT")
 
+        # FIRMWARE LIST
+        # SERIAL PORT LIST
+        # OPERATION INFO
+        # SERIAL & PROCESS INFO MONITOR
+        # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
+
         # Android device stat board
-        general_info_panel = form.add(
+        firmware_sel_panel = form.add(
             Column,
-            name="GENERAL INFO",
+            name="FIRMWARES",
             relx=2,
             rely=2,
             max_width=30,
@@ -31,9 +38,9 @@ class App(npyscreen.NPSApp):
 
         # watch the form and update values
         while True:
-            general_info_panel.values = [
-                "CURR FIRMWARE:",
-                "PULL STAT:",
+            firmware_sel_panel.values = [
+                "TEST:",
+                "PRODUCTION:",
                 "TARGET UC:",
                 "UPLOAD PORT:",
                 "DEBUG PORT:",
@@ -45,7 +52,7 @@ class App(npyscreen.NPSApp):
 
 class Column(npyscreen.BoxTitle):
     def resize(self):
-        self.max_height = int(0.13 * terminal_dimensions()[0])
+        self.max_height = int(0.73 * terminal_dimensions()[0])
 
 
 def terminal_dimensions():
