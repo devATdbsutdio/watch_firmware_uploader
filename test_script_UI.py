@@ -52,7 +52,7 @@ class App(npyscreen.NPSApp):
             Column,
             color="DEFAULT",
             name="SERIAL PORTS",
-            relx=50,
+            relx=49,
             rely=2,
             max_width=37,
             height=12
@@ -65,12 +65,12 @@ class App(npyscreen.NPSApp):
                 "[0] TEST  CODE:",
                 "[1] PRODUCTION:",
                 "",
-                "** Press 0 / 1 to make the TEST / PRODUCTION",
-                "   code base respectively, as the current ", 
-                "   uploadable firmware.",
-                "** For example, select the TEST code as the",
-                "   uploadable firmware when checking the HW",
-                "   components."
+                "* Press 0 / 1 to make the TEST / PRODUCTION",
+                "  code base respectively, as the current ", 
+                "  uploadable firmware.",
+                "* For example, select the TEST code as the",
+                "  uploadable firmware when checking the HW",
+                "  components."
             ]
             
             # Serial port widget when active ...
@@ -85,12 +85,12 @@ class App(npyscreen.NPSApp):
                 "SERIAL DEBUG PORT:",
                 "",
                 "",
-                "** The UPDI UPLOAD PORT is Fixed and", 
-                "   can't be changed here!",
-                "** SERIAL DEBUG PORT = Serial port on",
-                "   your watch Module.",
-                "** Press \"S\" Key to re-assign",
-                "   SERIAL DEBUG PORT."
+                "* The UPDI UPLOAD PORT is Fixed!",
+                "* Press \"S\" Key to enable /",
+                "disable DEBUG PORT change.", 
+                "* Use NUM keys to select a PORT.",
+                "* SERIAL DEBUG PORT = Serial",
+                "port on the watch module.",
             ]
 
             form.display()

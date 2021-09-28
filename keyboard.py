@@ -37,6 +37,12 @@ def watch_kbd():
 		elif c == '\r':
 			print(string)
 
+			if string == '0' and not port_selection_active:
+				# assign test code as the firmware to be uploaded
+				m=1
+			if string == '1' and not port_selection_active:
+				# assign production code as the firmware to be uploaded
+				n=1
 			if string == 's':
 				port_selection_active
 				port_selection_active = not port_selection_active
