@@ -51,14 +51,14 @@
 #     main()
 
 
-import keyboard  # using module keyboard
-while True:  # making a loop
-    try:  # used try so that if user pressed other than the given key error will not be shown
-        if keyboard.is_pressed('q'):  # if key 'q' is pressed 
-            print('You Pressed A Key!')
-            break  # finishing the loop
-    except:
-        break  # if user pressed a key other than the given key the loop will break
+# import keyboard  # using module keyboard
+# while True:  # making a loop
+#     try:  # used try so that if user pressed other than the given key error will not be shown
+#         if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+#             print('You Pressed A Key!')
+#             break  # finishing the loop
+#     except:
+#         break  # if user pressed a key other than the given key the loop will break
 
 # from pynput import keyboard
 
@@ -91,3 +91,25 @@ while True:  # making a loop
 
 # while True:
 #     s = 1
+
+from key_getter import KeyGetter
+import time
+
+def test1(): # Test with block=False
+    print('test1')
+
+    k = KeyGetter()
+    try:
+        while True:
+            if k.kbhit():
+                print('Got', repr(k.getch(False)))
+                # print('Got', repr(k.getch(False)))
+            else:
+                print('Nothing')
+
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        pass
+    print(input('Enter something:'))
+
+test1()
