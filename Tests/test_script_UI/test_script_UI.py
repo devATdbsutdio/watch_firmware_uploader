@@ -24,7 +24,7 @@ class App(npyscreen.NPSApp):
             name="GENERAL INFO",
             relx=2,
             rely=2,
-            max_width=40,
+            max_width=30,
             height=8
             #  max_height=terminal_dimensions()[0] - 10
         )
@@ -45,7 +45,7 @@ class App(npyscreen.NPSApp):
 
 class Column(npyscreen.BoxTitle):
     def resize(self):
-        self.max_height = int(0.73 * terminal_dimensions()[0])
+        self.max_height = int(0.13 * terminal_dimensions()[0])
 
 
 def terminal_dimensions():
