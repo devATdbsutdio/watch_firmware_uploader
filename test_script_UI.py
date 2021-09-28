@@ -25,7 +25,6 @@ class App(npyscreen.NPSApp):
 
         # FIRMWARE LIST
         # SERIAL PORT LIST
-        # OPERATION INFO
         # SERIAL & PROCESS INFO MONITOR
         # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
 
@@ -45,8 +44,8 @@ class App(npyscreen.NPSApp):
             name="SERIAL PORTS",
             relx=52,
             rely=2,
-            max_width=30,
-            height=4
+            max_width=40,
+            height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
 
@@ -56,17 +55,24 @@ class App(npyscreen.NPSApp):
                 "[0] TEST  CODE:",
                 "[1] PRODUCTION:",
                 "",
-                " ** Press 0 / 1 to make the TEST / PRODUCTION",
-                "    code base as the current uploadable", 
-                "    firmware, respectively",
-                " ** For example, select the TEST code as the",
-                "    uploadable firmware when checking the HW",
-                "    components"
+                "** Press 0 / 1 to make the TEST / PRODUCTION",
+                "   code base as the current uploadable", 
+                "   firmware, respectively.",
+                "** For example, select the TEST code as the",
+                "   uploadable firmware when checking the HW",
+                "   components."
             ]
 
             serial_ports_panel.values = [
-                "DEBUG PORT:",
                 "UPDI  PORT:",
+                "DEBUG PORT:",
+                "",
+                "",
+                "",
+                "** The UPDI port is Fixed!",
+                "** Attach the Serial Port of",
+                "   the watch and press \"S\"",
+                "   to select the DEBUG port."
             ]
 
             form.display()
