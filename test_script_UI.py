@@ -36,7 +36,7 @@ class App(npyscreen.NPSApp):
             name="FIRMWARES",
             relx=2,
             rely=2,
-            max_width=50,
+            max_width=45,
             height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
@@ -44,9 +44,9 @@ class App(npyscreen.NPSApp):
         serial_ports_panel = form.add(
             Column,
             name="SERIAL PORTS",
-            relx=52,
+            relx=47,
             rely=2,
-            max_width=40,
+            max_width=35,
             height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
