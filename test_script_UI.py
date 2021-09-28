@@ -43,7 +43,7 @@ class App(npyscreen.NPSApp):
             name="FIRMWARES",
             relx=2,
             rely=2,
-            max_width=45,
+            max_width=46,
             height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
