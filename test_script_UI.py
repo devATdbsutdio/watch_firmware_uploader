@@ -29,13 +29,23 @@ class App(npyscreen.NPSApp):
         # SERIAL & PROCESS INFO MONITOR
         # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
 
-        # Android device stat board
+        # Firmware list display widget
         firmware_sel_panel = form.add(
             Column,
             name="FIRMWARES",
             relx=2,
             rely=2,
-            max_width=40,
+            max_width=50,
+            height=11
+            #  max_height=terminal_dimensions()[0] - 10
+        )
+        # Serial port list display widget
+        serial_ports_panel = form.add(
+            Column,
+            name="SERIAL PORTS",
+            relx=52,
+            rely=2,
+            max_width=30,
             height=4
             #  max_height=terminal_dimensions()[0] - 10
         )
@@ -43,8 +53,20 @@ class App(npyscreen.NPSApp):
         # watch the form and update values
         while True:
             firmware_sel_panel.values = [
-                "TEST:",
-                "PRODUCTION:",
+                "[0] TEST  CODE:",
+                "[1] PRODUCTION:",
+                "",
+                " ** Press 0 / 1 to make the TEST / PRODUCTION",
+                "    code base as the current uploadable", 
+                "    firmware, respectively",
+                " ** For example, select the TEST code as the",
+                "    uploadable firmware when checking the HW",
+                "    components"
+            ]
+
+            serial_ports_panel.values = [
+                "DEBUG PORT:",
+                "UPDI  PORT:",
             ]
 
             form.display()
