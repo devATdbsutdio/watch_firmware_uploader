@@ -31,10 +31,10 @@ class App(npyscreen.NPSApp):
     def main(self):
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT")
 
-        # FIRMWARE LIST
-        # SERIAL PORT LIST
-        # SERIAL & PROCESS INFO MONITOR
+        # FIRMWARE LIST (p to pull and u to upload)
+        # SERIAL PORT LIST (port changing mechanism)
         # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
+        # SERIAL & PROCESS INFO MONITOR
 
         # Firmware list display widget
         firmware_sel_panel = form.add(
