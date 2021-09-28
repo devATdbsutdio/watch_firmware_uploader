@@ -32,7 +32,7 @@ class App(npyscreen.NPSApp):
             relx=2,
             rely=2,
             max_width=30,
-            height=8
+            height=4
             #  max_height=terminal_dimensions()[0] - 10
         )
 
@@ -41,10 +41,6 @@ class App(npyscreen.NPSApp):
             firmware_sel_panel.values = [
                 "TEST:",
                 "PRODUCTION:",
-                "TARGET UC:",
-                "UPLOAD PORT:",
-                "DEBUG PORT:",
-                "TOTAL UPLOADS:"
             ]
 
             form.display()
