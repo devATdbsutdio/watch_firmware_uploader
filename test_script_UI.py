@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -- GLOBAL IMPORTS -- #
 import threading
 import curses
@@ -8,7 +10,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # -- LOCAL MODULE IMPORTS -- #
-import preloads as pl
+# import preloads as pl
 
 # npyscreen.disableColor()
 # npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
@@ -48,6 +50,13 @@ class App(npyscreen.NPSApp):
             height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
+
+        # m1 = form.add(Column, name="Main Menu", shortcut="s")
+        # m1.addItemsFromList([
+        #     "0",
+        #     "1",
+        #     "2"
+        # ])
 
         # watch the form and update values
         while True:
