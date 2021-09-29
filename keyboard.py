@@ -1,7 +1,7 @@
 import threading
 import vars
 
-port_selection_active = False
+
 # spl_key = False
 
 
@@ -28,7 +28,6 @@ def getchar():
 
 def watch_kbd():
 	string=''
-	global port_selection_active
 
 	while True:
 		c = getchar()
@@ -37,23 +36,45 @@ def watch_kbd():
 			break
 		elif c == '\r':
 			# print(string)
-			if string == '0' and not port_selection_active:
+			if string == '0' and not vars.port_selection_active:
 				# assign test code as the firmware to be uploaded
 				vars.curr_firmwa_num = 0
+				vars.curr_firmware_name = vars.test_firmware_name
+				vars.curr_firmware_path = vars.test_firmware_path
 				# update the visual highlither variable for UI
 				vars.ui_highlight_test_firmware = "> "
 				vars.ui_highlight_prod_firmware = "  "
-			if string == '1' and not port_selection_active:
+			elif string == '0' and vars.port_selection_active:
+				# assign current debug port as the current port
+				vars.curr_serial_debug_port = vars.serial_debug_ports[0]
+				# update the visual highlither variable for UI
+				vars.ui_highlight_ser_port_0 = "> "
+				vars.ui_highlight_ser_port_1 = "  "
+			
+			if string == '1' and not vars.port_selection_active:
 				# assign production code as the firmware to be uploaded
 				vars.curr_firmware_num = 1
+				vars.curr_firmware_name = vars.prod_firmware_name
+				vars.curr_firmware_path = vars.prod_firmware_path
 				# update the visual highlither variable for UI
 				vars.ui_highlight_test_firmware = "  "
 				vars.ui_highlight_prod_firmware = "> "
+			elif string == '1' and vars.port_selection_active:
+				# assign current debug port as the current port
+				vars.curr_serial_debug_port = vars.serial_debug_ports[1]
+				# update the visual highlither variable for UI
+				vars.ui_highlight_ser_port_0 = "  "
+				vars.ui_highlight_ser_port_1 = "> "
+			
 			if string == 's':
-				port_selection_active
-				port_selection_active = not port_selection_active
+				vars.port_selection_active = not vars.port_selection_active
 				# print(port_selection_active)
-			# else if key is not 0-9 or ENTER or U
+			elif string == 'p':
+				s=1
+				# pull latest firmware
+			elif string == 'u':	
+				s=1
+				# upload current firmware (whcih ever it is, prod or test)
 
 			string = ''
 		else:
