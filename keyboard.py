@@ -1,4 +1,5 @@
 import threading
+import vars
 
 port_selection_active = False
 # spl_key = False
@@ -35,14 +36,19 @@ def watch_kbd():
 		if c == EOT or c == EOC or c == ESC:
 			break
 		elif c == '\r':
-			print(string)
-
+			# print(string)
 			if string == '0' and not port_selection_active:
 				# assign test code as the firmware to be uploaded
-				m=1
+				vars.curr_firmwa_num = 0
+				# update the visual highlither variable for UI
+				vars.ui_highlight_test_firmware = "> "
+				vars.ui_highlight_prod_firmware = "  "
 			if string == '1' and not port_selection_active:
 				# assign production code as the firmware to be uploaded
-				n=1
+				vars.curr_firmware_num = 1
+				# update the visual highlither variable for UI
+				vars.ui_highlight_test_firmware = "  "
+				vars.ui_highlight_prod_firmware = "> "
 			if string == 's':
 				port_selection_active
 				port_selection_active = not port_selection_active

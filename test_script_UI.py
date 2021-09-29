@@ -15,7 +15,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # -- LOCAL MODULE IMPORTS -- #
-# import preloads as pl
+import vars
 import keyboard as kbd
 
 # npyscreen.disableColor()
@@ -31,7 +31,7 @@ class App(npyscreen.NPSApp):
     def main(self):
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT")
 
-        # FIRMWARE LIST (p to pull and u to upload)
+        # FIRMWARE LIST (p to pull and u  upload)
         # SERIAL PORT LIST (port changing mechanism)
         # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
         # SERIAL & PROCESS INFO MONITOR
@@ -62,8 +62,8 @@ class App(npyscreen.NPSApp):
         # watch the form and update values
         while True:
             firmware_sel_panel.values = [
-                "[0] TEST  CODE:",
-                "[1] PRODUCTION:",
+                vars.ui_highlight_test_firmware + " [0] TEST  CODE: " + " ",
+                vars.ui_highlight_prod_firmware + " [1] PRODUCTION: " + " ",
                 "",
                 "* Press 0 / 1 to make the TEST / PRODUCTION",
                 "  code base respectively, as the current ", 
@@ -72,13 +72,13 @@ class App(npyscreen.NPSApp):
                 "  uploadable firmware when checking the HW",
                 "  components."
             ]
+
             
             # Serial port widget when active ...
             if kbd.port_selection_active == True:
                 serial_ports_panel.color="IMPORTANT"
             else:
                 serial_ports_panel.color="DEFAULT"
-
 
             serial_ports_panel.values = [
                 "UPDI UPLOAD PORT: ",
