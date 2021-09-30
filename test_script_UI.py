@@ -18,6 +18,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import vars
 import keyboard as kbd
 import serialport_manager as spm
+import logger
 
 # npyscreen.disableColor()
 # npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
@@ -28,9 +29,27 @@ def main():
     app.run()
 
 
+
+class BufferPagerBox(npyscreen.BoxTitle):
+    _contained_widget = npyscreen.BufferPager
+    def clearBuffer(self):
+        return self.entry_widget.clearBuffer()
+
+    def buffer(self, *args, **values):
+        return self.entry_widget.buffer(*args, **values)
+
+
+
 class App(npyscreen.NPSApp):
     def main(self):
-        form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT")
+        term_dims = curses.initscr().getmaxyx()
+        height = int(term_dims[0])
+        width = int(term_dims[1])
+
+        logger.log([height])
+
+        form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT", lines=height)
+        
 
         # FIRMWARE LIST (p to pull and u  upload)
         # SERIAL PORT LIST (port changing mechanism)
@@ -45,7 +64,7 @@ class App(npyscreen.NPSApp):
             relx=2,
             rely=2,
             max_width=46,
-            height=13
+            height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
         # Serial port list display widget
@@ -56,7 +75,7 @@ class App(npyscreen.NPSApp):
             relx=49,
             rely=2,
             max_width=37,
-            height=13
+            height=11
             #  max_height=terminal_dimensions()[0] - 10
         )
         # current setting and general info panel
@@ -65,34 +84,41 @@ class App(npyscreen.NPSApp):
             color="DEFAULT",
             name="CURRENT SETTINGS AND INFO",
             relx=2,
-            rely=15,
-            max_width=84,
-            height=4
+            rely=13,
+            max_width=46,
+            height=7
         )
         # std out monitor:
+        # std_out_panel = form.add(
+        #     Column,
+        #     color="DEFAULT",
+        #     name="PROCESS OUTPUT MONITOR",
+        #     relx=49,
+        #     rely=13,
+        #     max_width=37,
+        #     height=16
+        # )
+
+        output_pos_y = 20
         std_out_panel = form.add(
-            Column,
-            color="DEFAULT",
-            name="PROCESS OUTPUT MONITOR",
-            relx=2,
-            rely=19,
-            max_width=84,
-            height=10
+            BufferPagerBox, 
+            name='PROCESS OUTPUT MONITOR', 
+            rely=output_pos_y, 
+            height=9,
+            editable=False, 
+            color='WARNING'
         )
 
         # watch the form and update values
         while True:
             firmware_sel_panel.values = [
-                vars.ui_highlight_test_firmware + " [0] TEST  CODE: " + vars.test_firmware_name,
-                vars.ui_highlight_prod_firmware + " [1] PRODUCTION: " + vars.prod_firmware_name,
-                "",
-                "* Press 0 / 1 to make the TEST/PRODUCTION",
-                "  code base respectively, as the current ", 
-                "  uploadable firmware.",
-                "* For example, select the TEST code as",
-                "  uploadable firmware when checking HW",
-                "  components.",
                 "* Press \"P\" to pull latest firmwares.",
+                "",
+                vars.ui_highlight_test_firmware + " [0] : " + vars.test_firmware_name,
+                vars.ui_highlight_prod_firmware + " [1] : " + vars.prod_firmware_name,
+                "",
+                "* Press 0 / 1 to select between TEST",
+                "  and PRODUCTION firmwares",
                 "* Press \"U\" to upload current firmware."
             ]
 
@@ -107,9 +133,7 @@ class App(npyscreen.NPSApp):
                 "UPDI:    " + vars.updi_port,
                 "DEBUG: " + vars.ui_highlight_ser_port_0 + vars.serial_debug_ports[0],
                 "       " + vars.ui_highlight_ser_port_1 + vars.serial_debug_ports[1],
-                "",
                 "* The UPDI PORT is Fixed!",
-                "",
                 "* Press \"S\" Key to enable or",
                 "disable DEBUG PORT change.", 
                 "* Use NUM keys to select a PORT.",
@@ -117,10 +141,15 @@ class App(npyscreen.NPSApp):
                 "port on the watch module.",
             ]
 
-            setting_and_info_panel .values =[
-                "CURRENT FIRMWARE: " + vars.curr_firmware_name + "   TARGET CHIP: " + "will come from settings ymal",
-                "TOTAL UPLOADS: " + "refer ext file" + "   DUBUG AVAILABLE AT: " + vars.curr_serial_debug_port
+            setting_and_info_panel.values =[
+                "FIRMWARE: " + vars.curr_firmware_name,
+                "CHIP: " + vars.target_name,
+                "UPLOADS: " + "refer ext file",
+                "PULL: " + "refer ext file",
+                "DUBUG AT: " + vars.curr_serial_debug_port
             ]
+
+            std_out_panel.buffer(["HW" ], scroll_end=True)
 
             form.display()
 

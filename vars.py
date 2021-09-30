@@ -1,4 +1,54 @@
+logfile = 'log'
 
+'''
+-- LOADING SETTINGS FILE --
+'''
+import yaml as yp
+import time
+import sys
+
+settings = """
+- 'EMPTY'
+"""
+
+settings_file = 'programmer_settings.yaml'
+print("Loading settings...")
+time.sleep(2)
+
+try:
+	with open(settings_file, 'r') as file:
+		programmer_settings = yp.safe_load(file)
+	settings = programmer_settings
+	print('Successfully loaded the ' + settings_file)
+	# time.sleep(5)
+	# sys.exit(1)
+except Exception as e:
+	print(e)
+	print('\n\n')
+	print('Make sure you have the ' + settings_file + ' in the same directory.')
+	time.sleep(1)
+	print('I couldn\'t find it')
+	time.sleep(1)
+	print('Quitting in 2 sec...')
+	time.sleep(2)
+	sys.exit(1)
+
+
+# print(settings)
+# print(settings['MICROCONTROLLER']['TARGET']['NAME'])
+# time.sleep(1)
+# sys.exit(1)
+
+
+target_name = settings['MICROCONTROLLER']['TARGET']['NAME']
+test_firmware_path = settings['FIRMWARE']['SKETCHES'][1]
+test_firmware_name = test_firmware_path.rsplit('/', 1)[1]
+prod_firmware_path = settings['FIRMWARE']['SKETCHES'][0]
+prod_firmware_name = prod_firmware_path.rsplit('/', 1)[1]
+
+git_pull_cmd = ["whoami"]
+upload_cmd = ["ls", "-l"]
+# ------------------------------
 
 app_launched = True
 
@@ -15,10 +65,7 @@ ui_highlight_prod_firmware = ">/[SPACE]"
 curr_firmware_num = 0
 ui_highlight_test_firmware = "> "
 ui_highlight_prod_firmware = "  "
-test_firmware_name = "test"
-test_firmware_path = ""
-prod_firmware_name = "prod"
-prod_firmware_path = ""
+
 curr_firmware_name = test_firmware_name
 curr_firmware_path = test_firmware_path
 

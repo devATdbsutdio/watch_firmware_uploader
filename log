@@ -1,0 +1,189 @@
+INFO:root:rm: .log: No such file or directory
+
+INFO:root:rm: .log: No such file or directory
+
+INFO:root:rm: .log: No such file or directory
+
+INFO:root:rm: .log: No such file or directory
+
+INFO:root:rm: .log: No such file or directory
+
+INFO:root:OK!
+INFO:root:saurabhdatta
+
+INFO:root:OK!
+INFO:root:saurabhdatta
+
+INFO:root:OK!
+INFO:root:total 136
+
+INFO:root:drwxr-xr-x  3 saurabhdatta  staff     96 Aug  4 01:12 Assets
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   3225 Jul 28 23:34 README.md
+
+INFO:root:drwxr-xr-x  9 saurabhdatta  staff    288 Sep 30 19:00 __pycache__
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    463 Sep 30 19:00 executer.py
+
+INFO:root:-rwxr--r--  1 saurabhdatta  staff  15684 Aug  4 01:20 installer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1028 Aug  1 23:06 installer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2426 Sep 30 19:00 keyboard.py
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff    325 Sep 30 19:00 log
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    609 Sep 30 18:59 logger.py
+
+INFO:root:-rwxr--r--@ 1 saurabhdatta  staff   6340 Aug  4 02:08 programmer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    865 Sep 29 19:22 programmer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1836 Sep 29 19:30 serialport_manager.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   4063 Sep 29 19:42 test_script_UI.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    468 Sep 30 18:26 test_test.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2002 Sep 30 18:52 vars.py
+
+INFO:root:OK!
+INFO:root:saurabhdatta
+
+INFO:root:OK!
+INFO:root:total 136
+
+INFO:root:drwxr-xr-x  3 saurabhdatta  staff     96 Aug  4 01:12 Assets
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   3225 Jul 28 23:34 README.md
+
+INFO:root:drwxr-xr-x  9 saurabhdatta  staff    288 Sep 30 19:02 __pycache__
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    463 Sep 30 19:01 executer.py
+
+INFO:root:-rwxr--r--  1 saurabhdatta  staff  15684 Aug  4 01:20 installer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1028 Aug  1 23:06 installer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2436 Sep 30 19:02 keyboard.py
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   1577 Sep 30 19:02 log
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    159 Sep 30 19:01 logger.py
+
+INFO:root:-rwxr--r--@ 1 saurabhdatta  staff   6340 Aug  4 02:08 programmer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    865 Sep 29 19:22 programmer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1836 Sep 29 19:30 serialport_manager.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   4063 Sep 29 19:42 test_script_UI.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    502 Sep 30 19:01 test_test.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2055 Sep 30 19:02 vars.py
+
+INFO:root:OK!
+INFO:root:saurabhdatta
+
+INFO:root:OK!
+INFO:root:total 136
+
+INFO:root:drwxr-xr-x  3 saurabhdatta  staff     96 Aug  4 01:12 Assets
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   3225 Jul 28 23:34 README.md
+
+INFO:root:drwxr-xr-x  9 saurabhdatta  staff    288 Sep 30 19:05 __pycache__
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    463 Sep 30 19:01 executer.py
+
+INFO:root:-rwxr--r--  1 saurabhdatta  staff  15684 Aug  4 01:20 installer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1028 Aug  1 23:06 installer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2385 Sep 30 19:03 keyboard.py
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   2829 Sep 30 19:06 log
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    159 Sep 30 19:01 logger.py
+
+INFO:root:-rwxr--r--@ 1 saurabhdatta  staff   6340 Aug  4 02:08 programmer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    865 Sep 29 19:22 programmer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1836 Sep 29 19:30 serialport_manager.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   4063 Sep 29 19:42 test_script_UI.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    502 Sep 30 19:01 test_test.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2055 Sep 30 19:03 vars.py
+
+INFO:root:OK!
+INFO:root:saurabhdatta
+
+INFO:root:OK!
+INFO:root:total 136
+
+INFO:root:drwxr-xr-x  3 saurabhdatta  staff     96 Aug  4 01:12 Assets
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   3225 Jul 28 23:34 README.md
+
+INFO:root:drwxr-xr-x  9 saurabhdatta  staff    288 Sep 30 19:05 __pycache__
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    463 Sep 30 19:01 executer.py
+
+INFO:root:-rwxr--r--  1 saurabhdatta  staff  15684 Aug  4 01:20 installer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1028 Aug  1 23:06 installer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2385 Sep 30 19:03 keyboard.py
+
+INFO:root:-rw-r--r--  1 saurabhdatta  staff   4081 Sep 30 19:06 log
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    159 Sep 30 19:01 logger.py
+
+INFO:root:-rwxr--r--@ 1 saurabhdatta  staff   6340 Aug  4 02:08 programmer.sh
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    865 Sep 29 19:22 programmer_settings.yaml
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   1836 Sep 29 19:30 serialport_manager.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   4063 Sep 29 19:42 test_script_UI.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff    502 Sep 30 19:01 test_test.py
+
+INFO:root:-rw-r--r--@ 1 saurabhdatta  staff   2055 Sep 30 19:03 vars.py
+
+INFO:root:OK!
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:29
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30
+INFO:root:30

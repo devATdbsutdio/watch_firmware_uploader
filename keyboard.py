@@ -1,5 +1,7 @@
 import threading
 import vars
+import executer as action
+import logger
 
 
 # spl_key = False
@@ -36,6 +38,7 @@ def watch_kbd():
 			break
 		elif c == '\r':
 			# print(string)
+			
 			if string == '0' and not vars.port_selection_active:
 				# assign test code as the firmware to be uploaded
 				vars.curr_firmwa_num = 0
@@ -68,13 +71,14 @@ def watch_kbd():
 			
 			if string == 's':
 				vars.port_selection_active = not vars.port_selection_active
-				# print(port_selection_active)
 			elif string == 'p':
-				s=1
 				# pull latest firmware
-			elif string == 'u':	
-				s=1
+				output = action.execute(vars.git_pull_cmd)
+				logger.log(output)
+			elif string == 'u':
 				# upload current firmware (whcih ever it is, prod or test)
+				output = action.execute(vars.upload_cmd)
+				logger.log(output)
 
 			string = ''
 		else:
