@@ -42,54 +42,78 @@
 
 
 
-import sys
-from subprocess import Popen, PIPE, STDOUT
+# import sys
+# from subprocess import Popen, PIPE, STDOUT
+# import time
 
-# def run_command(command):
-#     process = Popen(command, stdout=PIPE)
-#     while True:
-#         output = process.stdout.readline()
-#         if process.poll() is not None:
+# # def run_command(command):
+# #     process = Popen(command, stdout=PIPE)
+# #     while True:
+# #         output = process.stdout.readline()
+# #         if process.poll() is not None:
+# #             break
+# #         if output:
+# #             print(output.strip())
+# #     # rc = process.poll()
+# #     # print(rc)
+
+# # # print(run_command(["timeout", "5", "ping", "www.google.com"]))
+# # # run_command(["timeout", "5", "ping", "www.google.com"])
+# # run_command(["git", "up"])
+
+
+# def run_command(_cmd):
+#     # output_buff = [] # outputs are going to append to this list
+#     process = Popen(_cmd, stdout=PIPE, stderr=STDOUT)
+#     endTime=time.time()+2
+
+#     while process.poll() is None:
+#         if time.time() > endTime:
+#             exitcode = 1
+#             print(exitcode)
+#             print("Timed out!")
+#             process.kill()
 #             break
-#         if output:
-#             print(output.strip())
-#     # rc = process.poll()
-#     # print(rc)
+
+#         p_output = ""
+#         try:
+#             p_output = process.stdout.readline().decode('utf-8')
+#         except Exception as e:
+#             pass
+
+#         p_error = ""
+#         try:
+#             p_error = process.stderr.readline().decode('utf-8')
+#         except Exception as e:
+#             pass
+
+#         if p_output:
+#             print(p_output.strip())
+#             # vars.output_msg_buff.insert(0, p_output)
+#         if p_error:
+#             # vars.output_msg_buff.insert(0, p_error)
+#             print(p_error.strip())
+
+#     exitcode = process.poll()
+#     print(exitcode)
 
 # # print(run_command(["timeout", "5", "ping", "www.google.com"]))
-# # run_command(["timeout", "5", "ping", "www.google.com"])
-# run_command(["git", "up"])
+# run_command(["timeout", "5", "ping", "www.google.com"])
+# # run_command(["git", "up"])
 
 
-def run_command(_cmd):
-    # output_buff = [] # outputs are going to append to this list
-    process = Popen(_cmd, stdout=PIPE, stderr=STDOUT)
 
-    while process.poll() is None:
-        p_output = ""
-        try:
-            p_output = process.stdout.readline().decode('utf-8')
-        except Exception as e:
-            pass
+import vars
+import executer as action
+import logger
 
-        p_error = ""
-        try:
-            p_error = process.stderr.readline().decode('utf-8')
-        except Exception as e:
-            pass
+vars.updi_port = "updi_port"
 
-        if p_output:
-            print(p_output.strip())
-            # vars.output_msg_buff.insert(0, p_output)
-        if p_error:
-            # vars.output_msg_buff.insert(0, p_error)
-            print(p_error.strip())
+print(vars.upload_cmd)
+print(' '.join(vars.upload_cmd))
+logger.log(' '.join(vars.upload_cmd))
+logger.log("")
 
-    exitcode = process.poll()
-    print(exitcode)
-
-# print(run_command(["timeout", "5", "ping", "www.google.com"]))
-run_command(["timeout", "5", "ping", "www.google.com"])
-# run_command(["git", "up"])
+action.execute(vars.upload_cmd, 120)
 
 

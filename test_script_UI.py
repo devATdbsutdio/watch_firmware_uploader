@@ -104,7 +104,7 @@ class App(npyscreen.NPSApp):
             BufferPagerBox, 
             name='PROCESS OUTPUT MONITOR', 
             rely=output_pos_y, 
-            height=9,
+            height=14,
             editable=False, 
             color='WARNING'
         )
@@ -152,10 +152,6 @@ class App(npyscreen.NPSApp):
             if len(vars.output_msg_buff) >= 1:
                 std_out_panel.buffer(vars.output_msg_buff, scroll_end=True)
                 vars.output_msg_buff = []
-            # else:
-                # std_out_panel.buffer(["Nothing yet..."], scroll_end=True)
-            # std_out_panel.buffer(vars.output_msg_buff, scroll_end=True)
-
             
             form.display()
 

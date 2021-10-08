@@ -79,7 +79,8 @@ FIRMWARE_DIR=$($ymal_parse e '.FIRMWARE.SKETCHES[0]' "$SETTINGS_FILE")
 FIRM_WARE_NAME="$(basename "$FIRMWARE_DIR")"
 
 FULL_FQBN_WITH_FUSES="$CORE":chip="$CHIP",clock="$CLOCK",bodvoltage="$BOD",bodmode="$BODMODE",eesave="$EEPROM_SAVE",millis="$MILLIS",resetpin="$RESET_PIN",startuptime="$STARTUP_TIME",uartvoltage="$UARTV"
-UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
+# UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER" -t)
+UPLOAD_CMD=("$ARDUINO" compile -b "$FULL_FQBN_WITH_FUSES" "$FIRMWARE_DIR" -u -p "$PORT" -P "$PROGRAMMER")
 # ----------------------------------------------------------- #
 
 banner() {

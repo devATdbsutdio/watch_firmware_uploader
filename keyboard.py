@@ -1,7 +1,7 @@
 import threading
 import vars
 import executer as action
-
+import logger
 
 
 # spl_key = False
@@ -47,13 +47,15 @@ def watch_kbd():
 				# Update the visual highlither variable for UI
 				vars.ui_highlight_test_firmware = "> "
 				vars.ui_highlight_prod_firmware = "  "
+				# update the upload code command
+				vars.upload_cmd[4] = vars.curr_firmware_path
+				logger.log(' '.join(vars.upload_cmd))
 			elif string == '0' and vars.port_selection_active:
 				# Assign current debug port as the current port
 				vars.curr_serial_debug_port = vars.serial_debug_ports[0]
 				# Update the visual highlither variable for UI
 				vars.ui_highlight_ser_port_0 = "> "
 				vars.ui_highlight_ser_port_1 = "  "
-			
 			if string == '1' and not vars.port_selection_active:
 				# Assign production code as the firmware to be uploaded
 				vars.curr_firmware_num = 1
@@ -62,6 +64,9 @@ def watch_kbd():
 				# update the visual highlither variable for UI
 				vars.ui_highlight_test_firmware = "  "
 				vars.ui_highlight_prod_firmware = "> "
+				# update the upload code command
+				vars.upload_cmd[4] = vars.curr_firmware_path
+				logger.log(' '.join(vars.upload_cmd))
 			elif string == '1' and vars.port_selection_active:
 				# Assign current debug port as the current port
 				vars.curr_serial_debug_port = vars.serial_debug_ports[1]
@@ -73,10 +78,22 @@ def watch_kbd():
 				vars.port_selection_active = not vars.port_selection_active
 			elif string == 'p':
 				#--- Pull latest firmware ---#
-				action.execute(vars.git_pull_cmd)
+				# action.execute(["cmd_arg", "cmd_arg", ...], <timeout_value_in_sec>)
+				action.execute(vars.git_pull_cmd, 120)
+
+				# TBD: write curr time in pullrequest_log
 			elif string == 'u':
+				# TBD: open DEBUG serial port if it is not opened
+
 				#--- Upload current firmware (which ever it is (prod or test))
-				action.execute(vars.upload_cmd)
+				action.execute(vars.upload_cmd, 220)
+
+				# TBD: read serial monitor and print in receipts
+
+				# TBD: close DEBUG serial port if it is not opened
+				# logger.log("in Keyboard event still, close serial")
+
+				# TBD: write curr time in success_uploads_log
 
 
 			string = ''

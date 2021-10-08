@@ -1,5 +1,3 @@
-# [TBD] : time out for command execution
-
 import sys
 from subprocess import Popen, PIPE, STDOUT
 import vars
@@ -20,28 +18,49 @@ import time
 #     return output
 
 
-def execute(_cmd):
+def execute(_cmd, _timeout):
+    logger.log("\nCOMMAND: "+cmd_string)
+
     # Show raw cmd if set as "True" in vars.py
     if vars.show_raw_cmd:
+        # The _cmd is in list format (*must be)
         cmd_string = ' '.join(_cmd)
-        vars.output_msg_buff.insert(0, "CURR CMD: "+cmd_string+"\n")
-        vars.output_msg_buff.insert(0, "")
-        # show raw command in log file
-        logger.log("\nCOMMAND: "+cmd_string)
+        # Show raw cmd in UI widget
+        # TBD: with line wrap
 
     process = Popen(_cmd, stdout=PIPE, stderr=STDOUT)
+    endTime = time.time() + _timeout
+    new_line = ""
 
     while process.poll() is None:
-        p_output = ""
+        # - Timeout
+        if time.time() > endTime:
+            exitcode = 1
+            vars.output_msg_buff.insert(0, "Process timed out...")
+            logger.log("Process timed out...")
+            process.kill()
+            break
+
+        p_output_chars = ""
         try:
-            p_output = process.stdout.readline().decode('utf-8')
-            if p_output:
+            p_output_chars = process.stdout.read(1).decode('utf-8')
+            # We are not using readline() but read(1) 1 charat a time as
+            # we the arduino-cli upload command produces a progress bar, 
+            # something like: [=====]100%
+            # where the characters are thrown in 1 line, so readline() 
+            # produces weird visuals. 
+
+            if p_output_chars:
                 # - UI output
                 # output in UI windget window
-                vars.output_msg_buff.insert(0, p_output.strip())
+                if p_output_chars == '\n' or p_output_chars == '\r':
+                    vars.output_msg_buff.insert(0, new_line.strip())
+                    # - logging
+                    logger.log(new_line.strip())
 
-                # - logging
-                logger.log(p_output.strip())
+                    new_line = ""
+                else:
+                    new_line += p_output_chars
         except Exception as e:
             pass
 
@@ -58,12 +77,11 @@ def execute(_cmd):
         except Exception as e:
             pass
 
-    exitcode = process.poll()
-    # print(exitcode)
+    vars.exit_code = process.poll()
     # output in UI windget window
-    vars.output_msg_buff.insert(0, exitcode)
+    vars.output_msg_buff.insert(0, "EXIT_CODE: " + str(vars.exit_code))
     # create a gap in log file
-    logger.log("\n\n")
+    logger.log("EXIT_CODE: " + str(vars.exit_code)+"\n")
     
 
 # execute(["timeout", "5", "ping", "www.google.com"])
