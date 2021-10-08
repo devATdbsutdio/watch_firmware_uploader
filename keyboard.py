@@ -38,7 +38,6 @@ def watch_kbd():
 			break
 		elif c == '\r':
 			# print(string)
-
 			if string == '0' and not vars.port_selection_active:
 				# Assign test code as the firmware to be uploaded
 				vars.curr_firmwa_num = 0

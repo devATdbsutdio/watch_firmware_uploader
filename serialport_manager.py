@@ -65,6 +65,8 @@ def watch_ser_ports():
 			if vars.app_launched:
 				vars.updi_port = vars.serial_debug_ports[0]
 				vars.curr_serial_debug_port = vars.serial_debug_ports[1]
+				# update the upload command with the *correct fixed updi port 
+				vars.upload_cmd[7] = vars.updi_port
 				vars.app_launched = False
 		else:
 			break
