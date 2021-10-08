@@ -1,7 +1,7 @@
 import threading
 import vars
 import executer as action
-import logger
+
 
 
 # spl_key = False
@@ -40,22 +40,22 @@ def watch_kbd():
 			# print(string)
 
 			if string == '0' and not vars.port_selection_active:
-				# assign test code as the firmware to be uploaded
+				# Assign test code as the firmware to be uploaded
 				vars.curr_firmwa_num = 0
 				vars.curr_firmware_name = vars.test_firmware_name
 				vars.curr_firmware_path = vars.test_firmware_path
-				# update the visual highlither variable for UI
+				# Update the visual highlither variable for UI
 				vars.ui_highlight_test_firmware = "> "
 				vars.ui_highlight_prod_firmware = "  "
 			elif string == '0' and vars.port_selection_active:
-				# assign current debug port as the current port
+				# Assign current debug port as the current port
 				vars.curr_serial_debug_port = vars.serial_debug_ports[0]
-				# update the visual highlither variable for UI
+				# Update the visual highlither variable for UI
 				vars.ui_highlight_ser_port_0 = "> "
 				vars.ui_highlight_ser_port_1 = "  "
 			
 			if string == '1' and not vars.port_selection_active:
-				# assign production code as the firmware to be uploaded
+				# Assign production code as the firmware to be uploaded
 				vars.curr_firmware_num = 1
 				vars.curr_firmware_name = vars.prod_firmware_name
 				vars.curr_firmware_path = vars.prod_firmware_path
@@ -63,7 +63,7 @@ def watch_kbd():
 				vars.ui_highlight_test_firmware = "  "
 				vars.ui_highlight_prod_firmware = "> "
 			elif string == '1' and vars.port_selection_active:
-				# assign current debug port as the current port
+				# Assign current debug port as the current port
 				vars.curr_serial_debug_port = vars.serial_debug_ports[1]
 				# update the visual highlither variable for UI
 				vars.ui_highlight_ser_port_0 = "  "
@@ -72,40 +72,11 @@ def watch_kbd():
 			if string == 's':
 				vars.port_selection_active = not vars.port_selection_active
 			elif string == 'p':
-				#--- pull latest firmware ---#
-				# cmd action & ioutput
-				output = action.execute(vars.git_pull_cmd)
-
-				# - logging
-				logger.log(output)
-
-				# - UI output
-				# Show raw cmd if set as true in vars.py
-				curr_cmd_list = vars.git_pull_cmd
-				if vars.show_raw_cmd:
-					cmd_string = ' '.join(curr_cmd_list)
-					vars.output_msg_buff.insert(0, cmd_string)
-
-				# output in UI windget window
-				vars.output_msg_buff = output
-
+				#--- Pull latest firmware ---#
+				action.execute(vars.git_pull_cmd)
 			elif string == 'u':
-				# upload current firmware (whcih ever it is, prod or test)
-				# cmd action & ioutput
-				output = action.execute(vars.upload_cmd)
-
-				# - logging
-				logger.log(output)
-
-				# - UI output
-				# Show raw cmd if set as true in vars.py
-				curr_cmd_list = vars.upload_cmd
-				if vars.show_raw_cmd:
-					cmd_string = ' '.join(curr_cmd_list)
-					vars.output_msg_buff.insert(0, cmd_string)
-
-				# output in UI windget window
-				vars.output_msg_buff = output
+				#--- Upload current firmware (which ever it is (prod or test))
+				action.execute(vars.upload_cmd)
 
 
 			string = ''

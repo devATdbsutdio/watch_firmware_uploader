@@ -46,10 +46,11 @@ test_firmware_name = test_firmware_path.rsplit('/', 1)[1]
 prod_firmware_path = settings['FIRMWARE']['SKETCHES'][0]
 prod_firmware_name = prod_firmware_path.rsplit('/', 1)[1]
 
-git_pull_cmd = ["whoami"]
-upload_cmd = ["ls", "-l"]
+git_pull_cmd = ["git", "up"]
+# upload_cmd = ["timeout", "10", "ping", "www.google.com"]
+upload_cmd = ["timeout", "10", "ping", "www.google.com"]
 
-show_raw_cmd = False
+show_raw_cmd = True
 output_msg_buff = []
 output_msg = ""
 old_msg = ""
