@@ -103,17 +103,17 @@
 
 
 
-import vars
-import executer as action
-import logger
+# import vars
+# import executer as action
+# import logger
 
-vars.updi_port = "updi_port"
+# vars.updi_port = "updi_port"
 
-print(vars.upload_cmd)
-print(' '.join(vars.upload_cmd))
-logger.log(' '.join(vars.upload_cmd))
-logger.log("")
+# print(vars.upload_cmd)
+# print(' '.join(vars.upload_cmd))
+# logger.log(' '.join(vars.upload_cmd))
+# logger.log("")
 
-action.execute(vars.upload_cmd, 120)
+# action.execute(vars.upload_cmd, 120)
 
 

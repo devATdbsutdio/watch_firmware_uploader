@@ -62,13 +62,10 @@ UARTV = settings['MICROCONTROLLER']['FUSES']['UARTV']
 PROGRAMMER = settings['MICROCONTROLLER']['FUSES']['PROGRAMMER']
 
 
-show_raw_cmd = True
 output_msg_buff = []
 output_msg = ""
 old_msg = ""
 # ------------------------------
-
-app_launched = True
 
 '''
 -- CURRENT FIRMARE SELECTION VAR --
@@ -88,6 +85,7 @@ ui_highlight_prod_firmware = "  "
 curr_firmware_name = test_firmware_name
 curr_firmware_path = test_firmware_path
 
+
 '''
 -- Serial ports related vars --
 '''
@@ -95,14 +93,18 @@ port_selection_active = False
 kill_ser_port_watcher_thread = False
 serial_debug_ports = ['', '']
 
-# updi_port = serial_debug_ports[0]
-updi_port = "/dev/tty.usbserial-A5XK3RJT"
+updi_port = serial_debug_ports[0]
+# updi_port = "/dev/tty.usbserial-A5XK3RJT"
 curr_serial_debug_port = serial_debug_ports[1]
+last_serial_debug_port = curr_serial_debug_port
 
 ui_highlight_ser_port_0 = "  "
 ui_highlight_ser_port_1 = "> "
 # ui_highlight_ser_port_2 = "  "
 
+debug_channel_open = False
+debug_port_status = "Closed"
+test_data_read = False
 
 '''
 -- COMAMND CONSTRUCTORS --
@@ -136,3 +138,6 @@ upload_cmd = [
 # print("\n")
 # print(' '.join(upload_cmd))
 # time.sleep(10)
+
+
+app_launched = True

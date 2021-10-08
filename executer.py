@@ -19,14 +19,8 @@ import time
 
 
 def execute(_cmd, _timeout):
+    cmd_string = ' '.join(_cmd)
     logger.log("\nCOMMAND: "+cmd_string)
-
-    # Show raw cmd if set as "True" in vars.py
-    if vars.show_raw_cmd:
-        # The _cmd is in list format (*must be)
-        cmd_string = ' '.join(_cmd)
-        # Show raw cmd in UI widget
-        # TBD: with line wrap
 
     process = Popen(_cmd, stdout=PIPE, stderr=STDOUT)
     endTime = time.time() + _timeout
@@ -51,13 +45,12 @@ def execute(_cmd, _timeout):
             # produces weird visuals. 
 
             if p_output_chars:
-                # - UI output
-                # output in UI windget window
+                #- Output in UI windget window and Log [spl. method]
                 if p_output_chars == '\n' or p_output_chars == '\r':
+                    #- UI
                     vars.output_msg_buff.insert(0, new_line.strip())
-                    # - logging
+                    #- log
                     logger.log(new_line.strip())
-
                     new_line = ""
                 else:
                     new_line += p_output_chars
@@ -68,20 +61,19 @@ def execute(_cmd, _timeout):
         try:
             p_error = process.stderr.readline().decode('utf-8')
             if p_error:
-                # - UI output
+                #- UI
                 # output in UI windget window
                 vars.output_msg_buff.insert(0, p_error.strip())
-
-                # - logging
+                #- Log
                 logger.log(p_error.strip())
         except Exception as e:
             pass
 
     vars.exit_code = process.poll()
-    # output in UI windget window
+    #- UI - Output in UI windget window
     vars.output_msg_buff.insert(0, "EXIT_CODE: " + str(vars.exit_code))
-    # create a gap in log file
-    logger.log("EXIT_CODE: " + str(vars.exit_code)+"\n")
+    #- Log
+    logger.log("EXIT_CODE: "+str(vars.exit_code))
     
 
 # execute(["timeout", "5", "ping", "www.google.com"])

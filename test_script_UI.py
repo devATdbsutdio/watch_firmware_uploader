@@ -17,7 +17,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 # -- LOCAL MODULE IMPORTS -- #
 import vars
 import keyboard as kbd
-import serialport_manager as spm
 import logger
 
 # npyscreen.disableColor()
@@ -46,7 +45,7 @@ class App(npyscreen.NPSApp):
         height = int(term_dims[0])
         width = int(term_dims[1])
 
-        logger.log([height])
+        # logger.log([height])
 
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT", lines=height)
         
@@ -86,25 +85,15 @@ class App(npyscreen.NPSApp):
             relx=2,
             rely=13,
             max_width=46,
-            height=7
+            height=6
         )
         # std out monitor:
-        # std_out_panel = form.add(
-        #     Column,
-        #     color="DEFAULT",
-        #     name="PROCESS OUTPUT MONITOR",
-        #     relx=49,
-        #     rely=13,
-        #     max_width=37,
-        #     height=16
-        # )
-
-        output_pos_y = 20
+        output_pos_y = 19
         std_out_panel = form.add(
             BufferPagerBox, 
             name='PROCESS OUTPUT MONITOR', 
             rely=output_pos_y, 
-            height=14,
+            height=16,
             editable=False, 
             color='WARNING'
         )
@@ -144,9 +133,10 @@ class App(npyscreen.NPSApp):
             setting_and_info_panel.values =[
                 "FIRMWARE: " + vars.curr_firmware_name,
                 "CHIP: " + vars.target_name,
-                "UPLOADS: " + "refer ext file",
-                "PULL: " + "refer ext file",
-                "DUBUG AT: " + vars.curr_serial_debug_port
+                # "UPLOADS: " + "refer ext file",
+                # "PULL: " + "refer ext file",
+                "DUBUG AT: " + vars.curr_serial_debug_port,
+                "DUBUG PORT: " + vars.debug_port_status
             ]
 
             if len(vars.output_msg_buff) >= 1:
