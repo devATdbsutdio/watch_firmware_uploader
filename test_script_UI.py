@@ -149,8 +149,19 @@ class App(npyscreen.NPSApp):
                 "DUBUG AT: " + vars.curr_serial_debug_port
             ]
 
-            std_out_panel.buffer(["HW" ], scroll_end=True)
+            # if vars.output_msg != vars.old_msg:
+            #     std_out_panel.buffer([vars.output_msg, ], scroll_end=True)
+            #     vars.old_msg = vars.output_msg
 
+            if len(vars.output_msg_buff) >= 1:
+                std_out_panel.buffer(vars.output_msg_buff, scroll_end=True)
+                vars.output_msg_buff = []
+            # else:
+                # std_out_panel.buffer(["Nothing yet..."], scroll_end=True)
+            # std_out_panel.buffer(vars.output_msg_buff, scroll_end=True)
+
+
+            
             form.display()
 
 

@@ -48,6 +48,11 @@ prod_firmware_name = prod_firmware_path.rsplit('/', 1)[1]
 
 git_pull_cmd = ["whoami"]
 upload_cmd = ["ls", "-l"]
+
+show_raw_cmd = False
+output_msg_buff = []
+output_msg = ""
+old_msg = ""
 # ------------------------------
 
 app_launched = True

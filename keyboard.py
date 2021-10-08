@@ -38,7 +38,7 @@ def watch_kbd():
 			break
 		elif c == '\r':
 			# print(string)
-			
+
 			if string == '0' and not vars.port_selection_active:
 				# assign test code as the firmware to be uploaded
 				vars.curr_firmwa_num = 0
@@ -72,13 +72,41 @@ def watch_kbd():
 			if string == 's':
 				vars.port_selection_active = not vars.port_selection_active
 			elif string == 'p':
-				# pull latest firmware
+				#--- pull latest firmware ---#
+				# cmd action & ioutput
 				output = action.execute(vars.git_pull_cmd)
+
+				# - logging
 				logger.log(output)
+
+				# - UI output
+				# Show raw cmd if set as true in vars.py
+				curr_cmd_list = vars.git_pull_cmd
+				if vars.show_raw_cmd:
+					cmd_string = ' '.join(curr_cmd_list)
+					vars.output_msg_buff.insert(0, cmd_string)
+
+				# output in UI windget window
+				vars.output_msg_buff = output
+
 			elif string == 'u':
 				# upload current firmware (whcih ever it is, prod or test)
+				# cmd action & ioutput
 				output = action.execute(vars.upload_cmd)
+
+				# - logging
 				logger.log(output)
+
+				# - UI output
+				# Show raw cmd if set as true in vars.py
+				curr_cmd_list = vars.upload_cmd
+				if vars.show_raw_cmd:
+					cmd_string = ' '.join(curr_cmd_list)
+					vars.output_msg_buff.insert(0, cmd_string)
+
+				# output in UI windget window
+				vars.output_msg_buff = output
+
 
 			string = ''
 		else:
