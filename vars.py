@@ -35,6 +35,9 @@ except Exception as e:
 	time.sleep(2)
 	sys.exit(1)
 
+"""
+ALL THE VARIABLES TO BE USED ACROSS MODULES
+"""
 
 # print(settings)
 # print(settings['MICROCONTROLLER']['TARGET']['NAME'])

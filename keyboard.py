@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import threading
 import vars
 import executer as action
@@ -99,6 +101,7 @@ def watch_kbd():
 
 					# Open DEBUG serial port if it is not opened
 					vars.debug_channel_open = spm.open_serial_port(vars.curr_serial_debug_port)
+
 					if vars.debug_channel_open:
 						logger.log(" Serial Port is now open")
 						vars.output_msg_buff = ["Serial Port is now open"]
@@ -157,7 +160,7 @@ def watch_kbd():
 				# user pressed 0, so display is NOT working!
 				# show that in receipt printer
 				vars.test_data_read = False
-				
+
 			string = ''
 		else:
 			string += c
