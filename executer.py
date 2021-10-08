@@ -1,3 +1,5 @@
+# [TBD] : time out for command execution
+
 import sys
 from subprocess import Popen, PIPE, STDOUT
 import vars
@@ -66,3 +68,4 @@ def execute(_cmd):
 
 # execute(["timeout", "5", "ping", "www.google.com"])
 # execute(["git", "up"])
+
