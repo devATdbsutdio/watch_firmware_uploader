@@ -15,7 +15,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # -- LOCAL MODULE IMPORTS -- #
-import vars
+import global_vars as gv
 import keyboard as kbd
 import logger
 
@@ -103,8 +103,8 @@ class App(npyscreen.NPSApp):
             firmware_sel_panel.values = [
                 "* Press \"P\" to pull latest firmwares.",
                 "",
-                vars.ui_highlight_test_firmware + " [0] : " + vars.test_firmware_name,
-                vars.ui_highlight_prod_firmware + " [1] : " + vars.prod_firmware_name,
+                gv.ui_highlight_test_firmware + " [0] : " + gv.test_firmware_name,
+                gv.ui_highlight_prod_firmware + " [1] : " + gv.prod_firmware_name,
                 "",
                 "* Press 0 / 1 to select between TEST",
                 "  and PRODUCTION firmwares",
@@ -113,15 +113,15 @@ class App(npyscreen.NPSApp):
 
             
             # Serial port widget when active ...
-            if vars.port_selection_active == True:
+            if gv.port_selection_active == True:
                 serial_ports_panel.color="IMPORTANT"
             else:
                 serial_ports_panel.color="DEFAULT"
 
             serial_ports_panel.values = [
-                "UPDI:    " + vars.updi_port,
-                "DEBUG: " + vars.ui_highlight_ser_port_0 + vars.serial_debug_ports[0],
-                "       " + vars.ui_highlight_ser_port_1 + vars.serial_debug_ports[1],
+                "UPDI:    " + gv.updi_port,
+                "DEBUG: " + gv.ui_highlight_ser_port_0 + gv.serial_debug_ports[0],
+                "       " + gv.ui_highlight_ser_port_1 + gv.serial_debug_ports[1],
                 "* The UPDI PORT is Fixed!",
                 "* Press \"S\" Key to enable or",
                 "disable DEBUG PORT change.", 
@@ -131,17 +131,17 @@ class App(npyscreen.NPSApp):
             ]
 
             setting_and_info_panel.values =[
-                "FIRMWARE: " + vars.curr_firmware_name,
-                "CHIP: " + vars.target_name,
+                "FIRMWARE: " + gv.curr_firmware_name,
+                "CHIP: " + gv.target_name,
                 # "UPLOADS: " + "refer ext file",
                 # "PULL: " + "refer ext file",
-                "DUBUG AT: " + vars.curr_serial_debug_port,
-                "DUBUG PORT: " + vars.debug_port_status
+                "DUBUG AT: " + gv.curr_serial_debug_port,
+                "DUBUG PORT: " + gv.debug_port_status
             ]
 
-            if len(vars.output_msg_buff) >= 1:
-                std_out_panel.buffer(vars.output_msg_buff, scroll_end=True)
-                vars.output_msg_buff = []
+            if len(gv.output_msg_buff) >= 1:
+                std_out_panel.buffer(gv.output_msg_buff, scroll_end=True)
+                gv.output_msg_buff = []
             
             form.display()
 
@@ -160,5 +160,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        vars.kill_ser_port_watcher_thread = True
+        gv.kill_ser_port_watcher_thread = True
         sys.exit(1)

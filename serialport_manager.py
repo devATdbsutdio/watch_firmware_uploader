@@ -15,7 +15,7 @@ import time
 import sys
 import serial
 
-import vars
+import global_vars as gv
 import logger
 
 
@@ -37,9 +37,13 @@ def open_serial_port(_ser_port):
 		SER.open()
 		SER.flushInput()
 		SER.flushOutput()
-	except Exception as err:
+	# except Exception as err:
+	except serial.SerialException as err:
 		logger.log(err)
-		# pass
+	except TypeError as err:
+		SER.flushInput()
+		SER.flushOutput()
+		SER.close()
 
 	portopen = SER.isOpen()
 	return portopen
@@ -54,7 +58,8 @@ def close_serial_port():
 			SER.flushInput()
 			SER.flushOutput()
 			SER.close()
-		except Exception as err:
+		# except Exception as err:
+		except serial.SerialException as err:
 			logger.log(err)
 			# pass
 		serclosed = not SER.isOpen()
@@ -65,11 +70,11 @@ def close_serial_port():
 
 def get_ser_data_line():
 	'''Serial Read line method for reading cont. Arduino's serial println()'''
-	vars.test_data_read = False
+	gv.test_data_read = False
 	#- log file
 	logger.log(" Serial Read thread has started!")
 	# - UI
-	vars.output_msg_buff = ["Serial Read thread has started!"]
+	gv.output_msg_buff = ["Serial Read thread has started!"]
 	while True:
 		time.sleep(.001)
 		incoming_line = SER.readline()
@@ -84,12 +89,12 @@ def get_ser_data_line():
 		incoming_line = incoming_line.strip()
 		# uC dev board send "!" as a char to end the serial read
 		if incoming_line == "!":
-			vars.test_data_read = True
+			gv.test_data_read = True
 			break
 		#- log file
 		logger.log(incoming_line)
 		# - UI
-		vars.output_msg_buff = [incoming_line]
+		gv.output_msg_buff = [incoming_line]
 
 		# [TBD]
 		# time out if incoming string is nothing..
@@ -129,57 +134,56 @@ def filtered_ser_ports():
 
 
 
-CHECK_SER_NULL_ONCE = True
-CHECK_SER_VALID_ONCE = True
+
 
 def watch_ser_ports():
 	'''Watches and handles debug ports, hotswapping and assignments'''
-	global CHECK_SER_NULL_ONCE
-	global CHECK_SER_VALID_ONCE
+	ser_null_once = True
+	ser_valid_once = True
+
 	while True:
-		# vars.kill_ser_port_watcher_thread
-		# vars.serial_debug_ports
-		if not vars.kill_ser_port_watcher_thread:
-			vars.serial_debug_ports = filtered_ser_ports()
+		if not gv.kill_ser_port_watcher_thread:
+			gv.serial_debug_ports = filtered_ser_ports()
+
 			# sanity checks...
 			# This is to not open serial port if the port is unavailable
-			if len(vars.serial_debug_ports) < 2:
-				vars.serial_debug_ports.append("Null")
-				vars.curr_serial_debug_port = "Null"
+			if len(gv.serial_debug_ports) < 2:
+				gv.serial_debug_ports.append("Null")
+				gv.curr_serial_debug_port = "Null"
 
 				# close debug serial port if was open
-				if CHECK_SER_NULL_ONCE:
+				if ser_null_once:
 					if close_serial_port():
-						CHECK_SER_NULL_ONCE = False
-						CHECK_SER_VALID_ONCE = True
+						ser_null_once = False
+						ser_valid_once = True
 						#- log file
 						logger.log(" Disabled debug serial port opening scope")
 						# - UI
-						vars.output_msg_buff = ["Disabled debug serial port opening scope"]
+						gv.output_msg_buff = ["Disabled debug serial port opening scope"]
 			else:
-				if CHECK_SER_VALID_ONCE:
-					CHECK_SER_VALID_ONCE = False
-					CHECK_SER_NULL_ONCE = True
-					vars.curr_serial_debug_port = vars.last_serial_debug_port
+				if ser_valid_once:
+					ser_valid_once = False
+					ser_null_once = True
+					gv.curr_serial_debug_port = gv.last_serial_debug_port
 					#- log file
 					logger.log(" Chosen Debug Serial port will be available for usage")
 					#- UI
-					vars.output_msg_buff = ["Chosen Debug Serial port will be available for usage"]
+					gv.output_msg_buff = ["Chosen Debug Serial port will be available for usage"]
 
 			# Set the actual serial debug port to that current selected port
-			if SER.port != vars.curr_serial_debug_port:
-				SER.port = vars.curr_serial_debug_port
+			if SER.port != gv.curr_serial_debug_port:
+				SER.port = gv.curr_serial_debug_port
 
 			# on launch only once for assigning the current serial port info
-			if vars.app_launched:
-				vars.updi_port = vars.serial_debug_ports[0]
-				vars.curr_serial_debug_port = vars.serial_debug_ports[1]
-				vars.last_serial_debug_port = vars.curr_serial_debug_port
+			if gv.app_launched:
+				gv.updi_port = gv.serial_debug_ports[0]
+				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
+				gv.last_serial_debug_port = gv.curr_serial_debug_port
 				# Set the actual serial debug port to that current selected port
-				SER.port = vars.curr_serial_debug_port
+				SER.port = gv.curr_serial_debug_port
 				# update the upload command with the *correct fixed updi port
-				vars.upload_cmd[7] = vars.updi_port
-				vars.app_launched = False
+				gv.upload_cmd[7] = gv.updi_port
+				gv.app_launched = False
 		else:
 			break
 

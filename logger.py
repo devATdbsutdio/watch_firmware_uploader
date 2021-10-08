@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import logging
-import vars
+import global_vars as gv
 
-logging.basicConfig(filename=vars.logfile, level=logging.INFO,)
+logging.basicConfig(filename=gv.logfile, level=logging.INFO,)
 
 def log(_data):
     if(type(_data) is list):

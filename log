@@ -1,0 +1,9 @@
+INFO:root: Disabled debug serial port opening scope
+INFO:root:/usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+INFO:root:/usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+INFO:root: Chosen Debug Serial port will be available for usage
+INFO:root: Disabled debug serial port opening scope
+INFO:root: Chosen Debug Serial port will be available for usage
+INFO:root: Chosen Debug Serial port will be available for usage
+INFO:root: Disabled debug serial port opening scope
+INFO:root: Chosen Debug Serial port will be available for usage

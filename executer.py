@@ -2,7 +2,7 @@
 
 import sys
 from subprocess import Popen, PIPE, STDOUT
-import vars
+import global_vars as gv
 import logger
 import time
 
@@ -32,7 +32,7 @@ def execute(_cmd, _timeout):
         # - Timeout
         if time.time() > endTime:
             exitcode = 1
-            vars.output_msg_buff.insert(0, "Process timed out...")
+            gv.output_msg_buff.insert(0, "Process timed out...")
             logger.log("Process timed out...")
             process.kill()
             break
@@ -50,7 +50,7 @@ def execute(_cmd, _timeout):
                 #- Output in UI windget window and Log [spl. method]
                 if p_output_chars == '\n' or p_output_chars == '\r':
                     #- UI
-                    vars.output_msg_buff.insert(0, new_line.strip())
+                    gv.output_msg_buff.insert(0, new_line.strip())
                     #- log
                     logger.log(new_line.strip())
                     new_line = ""
@@ -65,17 +65,17 @@ def execute(_cmd, _timeout):
             if p_error:
                 #- UI
                 # output in UI windget window
-                vars.output_msg_buff.insert(0, p_error.strip())
+                gv.output_msg_buff.insert(0, p_error.strip())
                 #- Log
                 logger.log(p_error.strip())
         except Exception as e:
             pass
 
-    vars.exit_code = process.poll()
+    gv.exit_code = process.poll()
     #- UI - Output in UI windget window
-    vars.output_msg_buff.insert(0, "EXIT_CODE: " + str(vars.exit_code))
+    gv.output_msg_buff.insert(0, "EXIT_CODE: " + str(gv.exit_code))
     #- Log
-    logger.log("EXIT_CODE: "+str(vars.exit_code))
+    logger.log("EXIT_CODE: "+str(gv.exit_code))
     
 
 # execute(["timeout", "5", "ping", "www.google.com"])
