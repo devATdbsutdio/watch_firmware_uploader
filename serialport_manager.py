@@ -129,7 +129,7 @@ def filtered_ser_ports():
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
 		for port in raw_ports:
-			if port.startswith("/dev/tty.usbserial-A1") or port.startswith("/dev/tty.usbserial-A9"):
+			if port.startswith("/dev/tty.usbserial"):
 				usable_ports.append(port)
 	return usable_ports
 
