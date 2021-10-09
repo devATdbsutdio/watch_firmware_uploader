@@ -90,7 +90,6 @@ def watch_kbd():
 				#--- Pull latest firmware ---#
 				# action.execute(["cmd_arg", "cmd_arg", ...], <timeout_value_in_sec>)
 				action.execute(gv.git_pull_cmd, 120)
-
 				# TBD: write curr time in pullrequest_log
 			elif string == 'u':
 				#--- Upload current firmware (which ever it is (prod or test))

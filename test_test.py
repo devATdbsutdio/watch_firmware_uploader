@@ -117,3 +117,23 @@
 # action.execute(vars.upload_cmd, 120)
 
 
+from PIL import Image
+from thermalprinter import ThermalPrinter
+
+
+printer = ThermalPrinter(port='/dev/tty.usbserial-AC01O32Q')
+
+# Line feeds
+printer.feed(2)
+
+printer.out('Bold', bold=True)
+printer.out('Double height', double_height=True)
+printer.out('Double width', double_width=True)
+printer.out('Inverse', inverse=True)
+# printer.out('Rotate 90°', rotate=True, codepage=CodePage.ISO_8859_1)
+printer.out('Strike', strike=True)
+printer.out('Underline', underline=1)
+printer.out('Upside down', upside_down=True)
+
+# Line feeds
+printer.feed(6)

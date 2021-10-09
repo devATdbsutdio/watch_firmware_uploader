@@ -752,3 +752,4 @@ COMMAND: timeout 120 git up
 2021-10-09 20:47:28.938 INFO Chosen Debug Serial port will be available for usage
 2021-10-09 20:47:34.152 WARNING Disabled debug serial port opening scope
 2021-10-09 20:47:39.085 INFO Chosen Debug Serial port will be available for usage
+2021-10-09 23:47:09.937 INFO Chosen Debug Serial port will be available for usage
