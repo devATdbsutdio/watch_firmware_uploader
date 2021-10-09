@@ -1,59 +1,62 @@
 #!/usr/bin/env python
 
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-RED='\x1b[1;31m'
-RESET='\033[0m'
+'''
+MAIN npyscreen UI module showing all the processes. Based on npyscreen APP
+'''
 
 # -- GLOBAL IMPORTS -- #
-import threading
+import os
 import curses
 import sys
 import npyscreen
-import os
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 # -- LOCAL MODULE IMPORTS -- #
 import global_vars as gv
 import keyboard as kbd
-import logger
+
+
+GREEN = '\033[0;32m'
+YELLOW = '\033[0;33m'
+RED = '\x1b[1;31m'
+RESET = '\033[0m'
+
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Start the keyboard watcher that will implement key press detection and event based business logic
+kbd.start_thread()
 
 # npyscreen.disableColor()
 # npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
 
-# UI main function which is used to draw the terminal UI
+
 def main():
+    '''UI main function which is used to draw the terminal UI'''
     app = App()
     app.run()
 
 
-
 class BufferPagerBox(npyscreen.BoxTitle):
+    '''Object for the widget that will show realtime info of processes and alerts'''
     _contained_widget = npyscreen.BufferPager
-    def clearBuffer(self):
-        return self.entry_widget.clearBuffer()
+    def clear_buffer(self):
+        '''Clear's the iwdget's buffer, if needed'''
+        return self.entry_widget.clear_buffer()
 
     def buffer(self, *args, **values):
+        '''widget's buffer to be filled by realtime data'''
         return self.entry_widget.buffer(*args, **values)
 
 
 
 class App(npyscreen.NPSApp):
+    '''Mai App class holding all the widget windows'''
     def main(self):
+        ''' main app creator '''
         term_dims = curses.initscr().getmaxyx()
         height = int(term_dims[0])
-        width = int(term_dims[1])
-
-        # logger.log([height])
+        # width = int(term_dims[1])
 
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT", lines=height)
-        
-
-        # FIRMWARE LIST (p to pull and u  upload)
-        # SERIAL PORT LIST (port changing mechanism)
-        # GENERAL INFO (TARGET, CURR SW, TOTAL UPLOADS)
-        # SERIAL & PROCESS INFO MONITOR
 
         # Firmware list display widget
         firmware_sel_panel = form.add(
@@ -90,11 +93,11 @@ class App(npyscreen.NPSApp):
         # std out monitor:
         output_pos_y = 19
         std_out_panel = form.add(
-            BufferPagerBox, 
-            name='PROCESS OUTPUT MONITOR', 
-            rely=output_pos_y, 
+            BufferPagerBox,
+            name='PROCESS OUTPUT MONITOR',
+            rely=output_pos_y,
             height=16,
-            editable=False, 
+            editable=False,
             color='WARNING'
         )
 
@@ -111,12 +114,11 @@ class App(npyscreen.NPSApp):
                 "* Press \"U\" to upload current firmware."
             ]
 
-            
             # Serial port widget when active ...
-            if gv.port_selection_active == True:
-                serial_ports_panel.color="IMPORTANT"
+            if gv.port_selection_active is True:
+                serial_ports_panel.color = "IMPORTANT"
             else:
-                serial_ports_panel.color="DEFAULT"
+                serial_ports_panel.color = "DEFAULT"
 
             serial_ports_panel.values = [
                 "UPDI:    " + gv.updi_port,
@@ -124,13 +126,13 @@ class App(npyscreen.NPSApp):
                 "       " + gv.ui_highlight_ser_port_1 + gv.serial_debug_ports[1],
                 "* The UPDI PORT is Fixed!",
                 "* Press \"S\" Key to enable or",
-                "disable DEBUG PORT change.", 
+                "disable DEBUG PORT change.",
                 "* Use NUM keys to select a PORT.",
                 "* SERIAL DEBUG PORT = Serial",
                 "port on the watch module.",
             ]
 
-            setting_and_info_panel.values =[
+            setting_and_info_panel.values = [
                 "FIRMWARE: " + gv.curr_firmware_name,
                 "CHIP: " + gv.target_name,
                 # "UPLOADS: " + "refer ext file",
@@ -142,17 +144,20 @@ class App(npyscreen.NPSApp):
             if len(gv.output_msg_buff) >= 1:
                 std_out_panel.buffer(gv.output_msg_buff, scroll_end=True)
                 gv.output_msg_buff = []
-            
+
             form.display()
 
 
 class Column(npyscreen.BoxTitle):
+    '''Get necesary data for widget'''
     def resize(self):
+        '''Don;t know what to write'''
         self.max_height = int(0.73 * terminal_dimensions()[0])
 
 
 def terminal_dimensions():
-    return curses.initscr().getmaxyx()   
+    '''Getting terminal ncurses dimns as tuple for resizing'''
+    return curses.initscr().getmaxyx()
 
 
 

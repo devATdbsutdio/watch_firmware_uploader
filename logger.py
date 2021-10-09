@@ -1,14 +1,44 @@
-#!/usr/bin/env python
+'''
+Exposing easy logging levels through functions for other modules
+'''
 
 import logging
 import global_vars as gv
 
-logging.basicConfig(filename=gv.logfile, level=logging.INFO,)
+logging.basicConfig(filename=gv.logfile,
+                    format='%(asctime)s.%(msecs)03d %(levelname)s %(message)s',
+                    level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
-def log(_data):
-    if(type(_data) is list):
+def log_info(_data):
+    '''info logger for strings and lists'''
+    if isinstance(_data, list):
         for item in _data:
             logging.info(item)
-
-    if(type(_data) is str):
+    if isinstance(_data, str):
         logging.info(_data)
+
+
+def log_error(_data):
+    '''error logger for strings and lists'''
+    if isinstance(_data, list):
+        for item in _data:
+            logging.error(item)
+    if isinstance(_data, str):
+        logging.error(_data)
+
+
+def log_warning(_data):
+    '''warning logger for strings and lists'''
+    if isinstance(_data, list):
+        for item in _data:
+            logging.warning(item)
+    if isinstance(_data, str):
+        logging.warning(_data)
+
+def log_exception(_data):
+    '''exception logger for strings and lists'''
+    if isinstance(_data, list):
+        for item in _data:
+            logging.exception(item)
+    if isinstance(_data, str):
+        logging.exception(_data)

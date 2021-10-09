@@ -1,12 +1,17 @@
-logfile = 'log'
+'''All the variables goes here which will be exchanged between modules'''
+
+import time
+import sys
+import yaml as yp
+
+
+logfile = 'uploader_scpt.log'
 exit_code = 0
+
+
 '''
 -- LOADING SETTINGS FILE --
 '''
-import yaml as yp
-import time
-import sys
-
 settings = """
 - 'EMPTY'
 """
@@ -16,16 +21,22 @@ print("Loading settings...")
 time.sleep(2)
 
 try:
-	with open(settings_file, 'r') as file:
-		programmer_settings = yp.safe_load(file)
+	with open(settings_file, 'r') as setting_f:
+		programmer_settings = yp.safe_load(setting_f)
 	settings = programmer_settings
 	print('Successfully loaded the ' + settings_file)
 	print('\n')
 	print(yp.dump(programmer_settings))
 	print('\n')
 	time.sleep(2)
-except Exception as e:
-	print(e)
+except OSError as err:
+	print(err)
+	print('\n\n')
+	print('Quitting in 2 sec...')
+	time.sleep(2)
+	sys.exit(1)
+except IOError as err:
+	print(err)
 	print('\n\n')
 	print('Make sure you have the ' + settings_file + ' in the same directory.')
 	time.sleep(1)
@@ -35,14 +46,12 @@ except Exception as e:
 	time.sleep(2)
 	sys.exit(1)
 
-"""
-ALL THE VARIABLES TO BE USED ACROSS MODULES
-"""
 
-# print(settings)
-# print(settings['MICROCONTROLLER']['TARGET']['NAME'])
-# time.sleep(1)
-# sys.exit(1)
+
+
+'''
+-- ALL THE VARIABLES TO BE USED ACROSS MODULES --
+'''
 
 ARDUINO_CLI = settings['BINARY']['LOCATION']
 
@@ -53,7 +62,7 @@ prod_firmware_path = settings['FIRMWARE']['SKETCHES'][0]
 prod_firmware_name = prod_firmware_path.rsplit('/', 1)[1]
 
 CORE = settings['MICROCONTROLLER']['TARGET']['CORE']
-CHIP = settings['MICROCONTROLLER']['FUSES']['CHIP'] 
+CHIP = settings['MICROCONTROLLER']['FUSES']['CHIP']
 CLOCK = settings['MICROCONTROLLER']['FUSES']['CLOCK']
 BOD = settings['MICROCONTROLLER']['FUSES']['BOD']
 BODMODE = settings['MICROCONTROLLER']['FUSES']['BODMODE']
@@ -78,7 +87,7 @@ curr_firmware_num = 0/1
 
 ui_highlight_test_firmware = ">/[SPACE]"
 ui_highlight_prod_firmware = ">/[SPACE]"
-'>' = moves/updates in ui to point at which firmware is the current active 
+'>' = moves/updates in ui to point at which firmware is the current active
 firmware to be uploaded
 '''
 curr_firmware_num = 0
@@ -125,16 +134,16 @@ FULL_FQBN_WITH_FUSES = CORE +":chip="+str(CHIP)+",clock="+CLOCK+",bodvoltage="+B
 # upload_cmd = ["timeout", "10", "ping", "www.google.com"]
 
 upload_cmd = [
-	ARDUINO_CLI, 
-	"compile", 
-	"-b", 
-	FULL_FQBN_WITH_FUSES, 
-	curr_firmware_path, 
-	"-u", 
-	"-p", 
-	updi_port, 
-	"-P", 
-	PROGRAMMER
+	   ARDUINO_CLI,
+	   "compile",
+	   "-b",
+	   FULL_FQBN_WITH_FUSES,
+	   curr_firmware_path,
+	   "-u",
+	   "-p",
+	   updi_port,
+	   "-P",
+	   PROGRAMMER
 ]
 
 # print(upload_cmd)

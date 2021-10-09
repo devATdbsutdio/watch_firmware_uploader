@@ -1,45 +1,51 @@
-#!/usr/bin/env python
+'''
+key press based event handler (for business logic of operations in the modules)
+'''
+
+import time
+import sys
+import tty
+import termios
+
 
 import threading
 import global_vars as gv
 import executer as action
 import logger
 import serialport_manager as spm
-import time
+
 
 # spl_key = False
 
-
-import sys
-import tty
-import termios
 
 EOC = '\x03'  # CTRL+C
 EOT = '\x04'  # CTRL+D
 ESC = '\x1b'
 CSI = '['
 
-string = ''
+# string = ''
 
 def getchar():
-	fd = sys.stdin.fileno()
-	attr = termios.tcgetattr(fd)
+	'''gettingkey press characters OS irrespective'''
+	fdd = sys.stdin.fileno()
+	attr = termios.tcgetattr(fdd)
 	try:
-		tty.setraw(fd)
+		tty.setraw(fdd)
 		return sys.stdin.read(1)
 	finally:
-		termios.tcsetattr(fd, termios.TCSANOW, attr)
+		termios.tcsetattr(fdd, termios.TCSANOW, attr)
 
 
 def watch_kbd():
-	string=''
+	'''key press -> to business logic'''
+	string = ''
 
 	while True:
-		c = getchar()
+		char = getchar()
 
-		if c == EOT or c == EOC or c == ESC:
+		if char == EOT or char == EOC or char == ESC:
 			break
-		elif c == '\r':
+		elif char == '\r':
 			# print(string)
 			if string == '0' and not gv.port_selection_active:
 				# Assign test code as the firmware to be uploaded
@@ -51,7 +57,7 @@ def watch_kbd():
 				gv.ui_highlight_prod_firmware = "  "
 				# update the upload code command
 				gv.upload_cmd[4] = gv.curr_firmware_path
-				logger.log(' '.join(gv.upload_cmd))
+				logger.log_info(' '.join(gv.upload_cmd))
 			elif string == '0' and gv.port_selection_active:
 				# Assign current debug port as the current port
 				gv.curr_serial_debug_port = gv.serial_debug_ports[0]
@@ -69,7 +75,7 @@ def watch_kbd():
 				gv.ui_highlight_prod_firmware = "> "
 				# update the upload code command
 				gv.upload_cmd[4] = gv.curr_firmware_path
-				logger.log(' '.join(gv.upload_cmd))
+				logger.log_info(' '.join(gv.upload_cmd))
 			elif string == '1' and gv.port_selection_active:
 				# Assign current debug port as the current port
 				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
@@ -77,7 +83,7 @@ def watch_kbd():
 				# update the visual highlither variable for UI
 				gv.ui_highlight_ser_port_0 = "  "
 				gv.ui_highlight_ser_port_1 = "> "
-			
+
 			if string == 's':
 				gv.port_selection_active = not gv.port_selection_active
 			elif string == 'p':
@@ -89,82 +95,84 @@ def watch_kbd():
 			elif string == 'u':
 				#--- Upload current firmware (which ever it is (prod or test))
 				#  In UI, show that the "upload firmware" cmd will be executed
-				gv.output_msg_buff = ["Uploading current firmware: "+ gv.curr_firmware_name]					
+				gv.output_msg_buff = ["Uploading current firmware: "+ gv.curr_firmware_name]
 				action.execute(gv.upload_cmd, 220)
 
 				time.sleep(2)
 
 				#--- Open DEBUG serial port if it is not opened,
 				if gv.curr_serial_debug_port != "Null" and \
-					gv.curr_serial_debug_port != gv.updi_port and \
-					gv.debug_channel_open == False:
+					gv.curr_serial_debug_port is not gv.updi_port and \
+					gv.debug_channel_open is False:
 
 					# Open DEBUG serial port if it is not opened
 					gv.debug_channel_open = spm.open_serial_port(gv.curr_serial_debug_port)
 
 					if gv.debug_channel_open:
-						logger.log(" Serial Port is now open")
+						logger.log_info("Serial Port is now open")
 						gv.output_msg_buff = ["Serial Port is now open"]
 						gv.debug_port_status = "Open"
 					else:
 						gv.debug_port_status = "Closed"
-						logger.log(" Error Opening the Debug Serial Port!")
+						logger.log_error(" Error Opening the Debug Serial Port!")
 						gv.output_msg_buff = ["Error Opening the Debug Serial Port!"]
 
 				#--- Serial read write based on current firmware
 				if gv.curr_firmware_num == 0:
 					if gv.debug_channel_open:
 						# Read serial monitor and print in receipts
-						logger.log(" Reading serial data")
+						logger.log_info("Reading serial data")
 						gv.output_msg_buff = ["Serial Read thread has started!"]
 						spm.get_ser_data_line()
 					else:
-						#- log file 
-						logger.log([
-							" Debug Serial Port could not be opened", 
-							" So not starting Serial Read!"
-						])
+						#- log file
+						logger.log_error(["Debug Serial Port could not be opened",
+											             " So not starting Serial Read!"
+										             ])
 						#- UI
-						gv.output_msg_buff = [
-							"Debug Serial Port could not be opened", 
-							"So not starting Serial Read!"
-						]
+						gv.output_msg_buff = ["Debug Serial Port could not be opened",
+						                      "So not starting Serial Read!"
+						                     ]
 
 				if gv.curr_firmware_num == 1:
 					# TBD: Write curr Time Data when uC is awake:
 					if gv.debug_channel_open:
-						ct=1
+						ctt = 1
 					else:
-						ct=0
+						ctt = 0
 
 				#--- Close DEBUG serial port if it is opened
 				if spm.close_serial_port():
 					gv.debug_channel_open = False
 					gv.debug_port_status = "Closed"
-					logger.log(" Serial Port Closed")
+					logger.log_info("Serial Port Closed")
 				else:
 					gv.debug_channel_open = True
 					gv.debug_port_status = "Open"
-					logger.log(" Serial Port Error Closing")
+					logger.log_error("Serial Port Error Closing")
 
 
 			if string == '1' and gv.test_data_read:
 				# [TBD]
-				# Meaning data was read sucessfully and 
+				# Meaning data was read sucessfully and
 				# user pressed 1, so display is working!
 				# show that in receipt printer
 				gv.test_data_read = False
 			if string == '0' and gv.test_data_read:
 				# [TBD]
-				# Meaning data was NOT read and 
+				# Meaning data was NOT read and
 				# user pressed 0, so display is NOT working!
 				# show that in receipt printer
 				gv.test_data_read = False
 
 			string = ''
 		else:
-			string += c
+			string += char
 
 
-kbd_thread = threading.Thread(target=watch_kbd)
-kbd_thread.start()
+KBD_THREAD = threading.Thread(target=watch_kbd)
+
+
+def start_thread():
+	'''For starting the thread from main module'''
+	KBD_THREAD.start()

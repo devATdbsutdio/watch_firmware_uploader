@@ -1,0 +1,8 @@
+{
+  "words": {
+    "INFO": "color: green"
+  },
+  "lines": {
+    "INFO": "font-weight: bold;"
+  }
+}

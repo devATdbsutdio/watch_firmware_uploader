@@ -1,4 +1,4 @@
-"""
+'''
 Module for: MANAGING SERIAL PORT REALTED FUNCTIONs (as listyed below)
 1. Listing ports
 2. Opening ports
@@ -7,7 +7,7 @@ Module for: MANAGING SERIAL PORT REALTED FUNCTIONs (as listyed below)
 5. Reading from port (Reading data from test firmware)
 6. Writing to port (for tim e setting to clock module)
 7. Updating UI & logs
-"""
+'''
 
 import threading
 import glob
@@ -39,7 +39,7 @@ def open_serial_port(_ser_port):
 		SER.flushOutput()
 	# except Exception as err:
 	except serial.SerialException as err:
-		logger.log(err)
+		logger.log_exception(err)
 	except TypeError as err:
 		SER.flushInput()
 		SER.flushOutput()
@@ -60,7 +60,7 @@ def close_serial_port():
 			SER.close()
 		# except Exception as err:
 		except serial.SerialException as err:
-			logger.log(err)
+			logger.log_exception(err)
 			# pass
 		serclosed = not SER.isOpen()
 	else:
@@ -72,7 +72,7 @@ def get_ser_data_line():
 	'''Serial Read line method for reading cont. Arduino's serial println()'''
 	gv.test_data_read = False
 	#- log file
-	logger.log(" Serial Read thread has started!")
+	logger.log_info("Serial Read thread has started!")
 	# - UI
 	gv.output_msg_buff = ["Serial Read thread has started!"]
 	while True:
@@ -92,7 +92,7 @@ def get_ser_data_line():
 			gv.test_data_read = True
 			break
 		#- log file
-		logger.log(incoming_line)
+		logger.log_info(incoming_line)
 		# - UI
 		gv.output_msg_buff = [incoming_line]
 
@@ -133,6 +133,8 @@ def filtered_ser_ports():
 	return usable_ports
 
 
+# def write_to_port():
+
 
 
 
@@ -157,7 +159,7 @@ def watch_ser_ports():
 						ser_null_once = False
 						ser_valid_once = True
 						#- log file
-						logger.log(" Disabled debug serial port opening scope")
+						logger.log_warning("Disabled debug serial port opening scope")
 						# - UI
 						gv.output_msg_buff = ["Disabled debug serial port opening scope"]
 			else:
@@ -166,7 +168,7 @@ def watch_ser_ports():
 					ser_null_once = True
 					gv.curr_serial_debug_port = gv.last_serial_debug_port
 					#- log file
-					logger.log(" Chosen Debug Serial port will be available for usage")
+					logger.log_info("Chosen Debug Serial port will be available for usage")
 					#- UI
 					gv.output_msg_buff = ["Chosen Debug Serial port will be available for usage"]
 
