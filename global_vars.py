@@ -6,6 +6,10 @@ import yaml as yp
 
 
 logfile = 'uploader_scpt.log'
+
+log_server_uri = ""
+kill_web_log_watcher_thread = False
+
 exit_code = 0
 
 

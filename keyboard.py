@@ -101,8 +101,8 @@ def watch_kbd():
 
 				#--- Open DEBUG serial port if it is not opened,
 				if gv.curr_serial_debug_port != "Null" and \
-					gv.curr_serial_debug_port is not gv.updi_port and \
-					gv.debug_channel_open is False:
+					gv.curr_serial_debug_port != gv.updi_port and \
+					gv.debug_channel_open == False:
 
 					# Open DEBUG serial port if it is not opened
 					gv.debug_channel_open = spm.open_serial_port(gv.curr_serial_debug_port)
@@ -115,6 +115,10 @@ def watch_kbd():
 						gv.debug_port_status = "Closed"
 						logger.log_error(" Error Opening the Debug Serial Port!")
 						gv.output_msg_buff = ["Error Opening the Debug Serial Port!"]
+				else:
+					gv.output_msg_buff = ["Debug Port is same as UPDI port", "Change it!"]
+					logger.log_error(["Debug Port is same as UPDI port", "Change it!"])
+
 
 				#--- Serial read write based on current firmware
 				if gv.curr_firmware_num == 0:
@@ -126,7 +130,7 @@ def watch_kbd():
 					else:
 						#- log file
 						logger.log_error(["Debug Serial Port could not be opened",
-											             " So not starting Serial Read!"
+											             "So not starting Serial Read!"
 										             ])
 						#- UI
 						gv.output_msg_buff = ["Debug Serial Port could not be opened",

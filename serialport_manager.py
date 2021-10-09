@@ -124,11 +124,12 @@ def filtered_ser_ports():
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		for port in raw_ports:
+			# [TBD] printer port exclusion for thermal printer
 			if port.startswith("/dev/ttyUSB"):
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
 		for port in raw_ports:
-			if port.startswith("/dev/tty.usb"):
+			if port.startswith("/dev/tty.usbserial-A1") or port.startswith("/dev/tty.usbserial-A9"):
 				usable_ports.append(port)
 	return usable_ports
 
@@ -144,51 +145,50 @@ def watch_ser_ports():
 	ser_valid_once = True
 
 	while True:
-		if not gv.kill_ser_port_watcher_thread:
-			gv.serial_debug_ports = filtered_ser_ports()
-
-			# sanity checks...
-			# This is to not open serial port if the port is unavailable
-			if len(gv.serial_debug_ports) < 2:
-				gv.serial_debug_ports.append("Null")
-				gv.curr_serial_debug_port = "Null"
-
-				# close debug serial port if was open
-				if ser_null_once:
-					if close_serial_port():
-						ser_null_once = False
-						ser_valid_once = True
-						#- log file
-						logger.log_warning("Disabled debug serial port opening scope")
-						# - UI
-						gv.output_msg_buff = ["Disabled debug serial port opening scope"]
-			else:
-				if ser_valid_once:
-					ser_valid_once = False
-					ser_null_once = True
-					gv.curr_serial_debug_port = gv.last_serial_debug_port
-					#- log file
-					logger.log_info("Chosen Debug Serial port will be available for usage")
-					#- UI
-					gv.output_msg_buff = ["Chosen Debug Serial port will be available for usage"]
-
-			# Set the actual serial debug port to that current selected port
-			if SER.port != gv.curr_serial_debug_port:
-				SER.port = gv.curr_serial_debug_port
-
-			# on launch only once for assigning the current serial port info
-			if gv.app_launched:
-				gv.updi_port = gv.serial_debug_ports[0]
-				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
-				gv.last_serial_debug_port = gv.curr_serial_debug_port
-				# Set the actual serial debug port to that current selected port
-				SER.port = gv.curr_serial_debug_port
-				# update the upload command with the *correct fixed updi port
-				gv.upload_cmd[7] = gv.updi_port
-				gv.app_launched = False
-		else:
+		if gv.kill_ser_port_watcher_thread:
 			break
 
+		gv.serial_debug_ports = filtered_ser_ports()
+
+		# sanity checks...
+		# This is to not open serial port if the port is unavailable
+		if len(gv.serial_debug_ports) < 2:
+			gv.serial_debug_ports.append("Null")
+			gv.curr_serial_debug_port = "Null"
+
+			# close debug serial port if was open
+			if ser_null_once:
+				if close_serial_port():
+					ser_null_once = False
+					ser_valid_once = True
+					#- log file
+					logger.log_warning("Disabled debug serial port opening scope")
+					# - UI
+					gv.output_msg_buff = ["Disabled debug serial port opening scope"]
+		else:
+			if ser_valid_once:
+				ser_valid_once = False
+				ser_null_once = True
+				gv.curr_serial_debug_port = gv.last_serial_debug_port
+				#- log file
+				logger.log_info("Chosen Debug Serial port will be available for usage")
+				#- UI
+				gv.output_msg_buff = ["Chosen Debug Serial port will be available for usage"]
+
+		# Set the actual serial debug port to that current selected port
+		if SER.port != gv.curr_serial_debug_port:
+			SER.port = gv.curr_serial_debug_port
+
+		# on launch only once for assigning the current serial port info
+		if gv.app_launched:
+			gv.updi_port = gv.serial_debug_ports[0]
+			gv.curr_serial_debug_port = gv.serial_debug_ports[1]
+			gv.last_serial_debug_port = gv.curr_serial_debug_port
+			# Set the actual serial debug port to that current selected port
+			SER.port = gv.curr_serial_debug_port
+			# update the upload command with the *correct fixed updi port
+			gv.upload_cmd[7] = gv.updi_port
+			gv.app_launched = False
 
 
 DEBUG_SER_PORTS_WATCHER = threading.Thread(target=watch_ser_ports)

@@ -12,7 +12,7 @@ import npyscreen
 # -- LOCAL MODULE IMPORTS -- #
 import global_vars as gv
 import keyboard as kbd
-
+import get_log_uri
 
 GREEN = '\033[0;32m'
 YELLOW = '\033[0;33m'
@@ -24,6 +24,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Start the keyboard watcher that will implement key press detection and event based business logic
 kbd.start_thread()
+
+# Start the web log uri getting thread
+get_log_uri.start_thread()
 
 # npyscreen.disableColor()
 # npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
@@ -77,7 +80,7 @@ class App(npyscreen.NPSApp):
             relx=49,
             rely=2,
             max_width=37,
-            height=11
+            height=18
             #  max_height=terminal_dimensions()[0] - 10
         )
         # current setting and general info panel
@@ -88,15 +91,15 @@ class App(npyscreen.NPSApp):
             relx=2,
             rely=13,
             max_width=46,
-            height=6
+            height=7
         )
         # std out monitor:
-        output_pos_y = 19
+        output_pos_y = 20
         std_out_panel = form.add(
             BufferPagerBox,
             name='PROCESS OUTPUT MONITOR',
             rely=output_pos_y,
-            height=16,
+            height=15,
             editable=False,
             color='WARNING'
         )
@@ -124,12 +127,18 @@ class App(npyscreen.NPSApp):
                 "UPDI:    " + gv.updi_port,
                 "DEBUG: " + gv.ui_highlight_ser_port_0 + gv.serial_debug_ports[0],
                 "       " + gv.ui_highlight_ser_port_1 + gv.serial_debug_ports[1],
-                "* The UPDI PORT is Fixed!",
+                "PRINTER: " + "--",
+                " ",
+                " ",
                 "* Press \"S\" Key to enable or",
                 "disable DEBUG PORT change.",
                 "* Use NUM keys to select a PORT.",
+                " ",
                 "* SERIAL DEBUG PORT = Serial",
                 "port on the watch module.",
+                " ",
+                "* The UPDI PORT is Fixed!",
+                "* The PRINTER PORT is Fixed!",
             ]
 
             setting_and_info_panel.values = [
@@ -138,7 +147,8 @@ class App(npyscreen.NPSApp):
                 # "UPLOADS: " + "refer ext file",
                 # "PULL: " + "refer ext file",
                 "DUBUG AT: " + gv.curr_serial_debug_port,
-                "DUBUG PORT: " + gv.debug_port_status
+                "DUBUG PORT: " + gv.debug_port_status,
+                "LOG: " + gv.log_server_uri
             ]
 
             if len(gv.output_msg_buff) >= 1:
@@ -166,4 +176,5 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         gv.kill_ser_port_watcher_thread = True
+        gv.kill_web_log_watcher_thread = True
         sys.exit(1)
