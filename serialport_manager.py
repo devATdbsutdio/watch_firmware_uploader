@@ -91,9 +91,13 @@ def get_ser_data_line():
 		if incoming_line == "!":
 			gv.test_data_read = True
 			break
-		#- log file
+
+		#- Serial RXTX line check by comnfirming received flag
+		if incoming_line == 'SERIAL:1':
+			logger.log_info("Serial COM is okay!")
+			gv.output_msg_buff = ["Serial COM is okay!"]
+
 		logger.log_info(incoming_line)
-		# - UI
 		gv.output_msg_buff = [incoming_line]
 
 		# [TBD]
