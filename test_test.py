@@ -138,7 +138,9 @@
 # # Line feeds
 # printer.feed(6)
 
+from datetime import datetime
 
+print(datetime.today().weekday())
 
 
 

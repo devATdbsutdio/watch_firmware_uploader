@@ -1,9 +1,6 @@
 '''
 find log web server details and use in UI
 '''
-# TBD
-# if frontail is running
-# 
 
 import threading
 import time
@@ -77,7 +74,7 @@ def watch_log_server():
 	while True:
 		if gv.kill_web_log_watcher_thread:
 			break
-			
+
 		log_server_port = get_log_server_port(CMD_SEARCH_CMD)
 
 		if log_server_port == "0":

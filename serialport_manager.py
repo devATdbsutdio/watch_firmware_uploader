@@ -87,15 +87,20 @@ def get_ser_data_line():
 				incoming_line = (incoming_line.decode()+temp.decode()).encode()
 		incoming_line = incoming_line.decode()
 		incoming_line = incoming_line.strip()
-		# uC dev board send "!" as a char to end the serial read
-		if incoming_line == "!":
-			gv.test_data_read = True
-			break
 
 		#- Serial RXTX line check by comnfirming received flag
 		if incoming_line == 'SERIAL:1':
 			logger.log_info("Serial COM is okay!")
 			gv.output_msg_buff = ["Serial COM is okay!"]
+
+		#- uC dev board send "!" as a char to end the serial read
+		if incoming_line == "!":
+			gv.test_data_read = True
+			logger.log_info("Terminator received")
+			gv.output_msg_buff = ["Terminator received"]
+			break
+
+		
 
 		logger.log_info(incoming_line)
 		gv.output_msg_buff = [incoming_line]
@@ -103,6 +108,12 @@ def get_ser_data_line():
 		# [TBD]
 		# time out if incoming string is nothing..
 		# Meaning serial is not working..
+
+
+def write_to_port(_data):
+	logger.log_info("Sending " + str(_data.encode()) + " to uC")
+	gv.output_msg_buff = ["Sending " + str(_data.encode()) + " to uC"]
+	SER.write(_data.encode())               
 
 
 
@@ -116,7 +127,7 @@ def all_ser_ports():
 	elif sys.platform.startswith('darwin'):
 		ports = glob.glob('/dev/tty.*')
 	else:
-		ports = ['0', '0', '0']
+		ports = ['0', '0']
 	return ports
 
 
@@ -128,7 +139,6 @@ def filtered_ser_ports():
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		for port in raw_ports:
-			# [TBD] printer port exclusion for thermal printer
 			if port.startswith("/dev/ttyUSB"):
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
@@ -136,10 +146,6 @@ def filtered_ser_ports():
 			if port.startswith("/dev/tty.usbserial"):
 				usable_ports.append(port)
 	return usable_ports
-
-
-# def write_to_port():
-
 
 
 
