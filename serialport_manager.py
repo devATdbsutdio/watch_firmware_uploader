@@ -104,15 +104,15 @@ def get_ser_data_line():
 			# current time: in log and printer
 			break
 
+		#- Add incoming lines to a buffer array dict for thermal printer
+		gv.test_log_dict.append(incoming_line)
+
 		#- Remove header marker from serial data string
 		serial_log_str = incoming_line
 		if serial_log_str.startswith('[H]'):
 			serial_log_str = serial_log_str.replace('[H]', '')
 		logger.log_info(serial_log_str)
 		gv.output_msg_buff = [serial_log_str]
-		
-		#- Add incoming lines to a buffer array dict for thermal printer
-		gv.test_log_dict.append(incoming_line)
 
 		# [TBD]
 		# time out if incoming string is nothing..

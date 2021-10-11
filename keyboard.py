@@ -110,8 +110,8 @@ def watch_kbd():
 					gv.debug_channel_open = spm.open_serial_port(gv.curr_serial_debug_port)
 
 					if gv.debug_channel_open:
-						logger.log_info("Serial Port is now open")
-						gv.output_msg_buff = ["Serial Port is now open"]
+						logger.log_info(["", "Debug Serial Port is now open"])
+						gv.output_msg_buff = ["", "Debug Serial Port is now open"]
 						gv.debug_port_status = "Open"
 					else:
 						gv.debug_port_status = "Closed"
@@ -127,8 +127,9 @@ def watch_kbd():
 					if gv.debug_channel_open:
 						time.sleep(1)
 						# Add date time header in logs and printer outputs
-						logger.log_info("TEST STARTED AT: " + sys_clock.get_std_date_time())
+						logger.log_info(["","TEST STARTED AT: " + sys_clock.get_std_date_time()])
 						# TBD add to printer outputs
+						printer.print_text(gv.printer_port, ["", "TEST STARTED AT: " + sys_clock.get_std_date_time()])
 
 						# Read serial monitor and print in receipts
 						logger.log_info("Reading serial data")
@@ -136,13 +137,14 @@ def watch_kbd():
 						spm.get_ser_data_line()
 
 						# Once all the serial read finishes, print the serial logs to thermal printer
-						printer.print_text(gv.pringter_port, gv.test_log_dict)
+						gv.output_msg_buff = ["", "Printing Test result now!"]
+						printer.print_text(gv.printer_port, gv.test_log_dict)
 					else:
 						#- log file
-						logger.log_error(["Debug Serial Port could not be opened",
+						logger.log_error(["", "Debug Serial Port could not be opened",
 							                 "So not starting Serial Read!"])
 						#- UI
-						gv.output_msg_buff = ["Debug Serial Port could not be opened",
+						gv.output_msg_buff = ["", "Debug Serial Port could not be opened",
 						                      "So not starting Serial Read!"
 						                     ]
 
@@ -169,39 +171,19 @@ def watch_kbd():
 				if spm.close_serial_port():
 					gv.debug_channel_open = False
 					gv.debug_port_status = "Closed"
-					logger.log_info("Serial Port Closed")
-					gv.output_msg_buff = ["Serial Port Closed"]
+					logger.log_info(["", "Debug Serial Port Closed"])
+					gv.output_msg_buff = ["", "Debug Serial Port Closed"]
 					time.sleep(1)
 					# Add date time header in logs and printer outputs
 					logger.log_info("TEST ENDED AT: " + sys_clock.get_std_date_time())
-					# TBD add to printer outputs
-
 					time.sleep(1)
 					if gv.curr_firmware_num == 1:
 						gv.output_msg_buff = ["", "Hopefully correct time is set on watch!", ""]
 				else:
 					gv.debug_channel_open = True
 					gv.debug_port_status = "Open"
-					logger.log_error("Serial Port Error Closing")
-					gv.output_msg_buff = ["Serial Port Closed"]
-
-
-			if string == '1' and gv.test_data_read:
-				# Meaning data was read sucessfully and
-				# user pressed 1, so display is working!
-				# show that in receipt printer
-				logger.log_info("Operator said: DISPLAY WORKING!")
-				gv.output_msg_buff = ["Operator said: DISPLAY WORKING!"]
-				# print that TBD:
-				gv.test_data_read = False
-			if string == '0' and gv.test_data_read:
-				# Meaning data was NOT read and
-				# user pressed 0, so display is NOT working!
-				# show that in receipt printer
-				logger.log_info("Operator said: DISPLAY NOT WORKING!")
-				gv.output_msg_buff = ["Operator said: DISPLAY WORKING!"]
-				# Print that TBD:
-				gv.test_data_read = False
+					logger.log_error(["", "Debug Serial Port Error Closing"])
+					gv.output_msg_buff = ["", "Debug Serial Port Closed"]
 
 			string = ''
 		else:

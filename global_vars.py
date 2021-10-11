@@ -123,7 +123,7 @@ debug_port_status = "Closed"
 test_data_read = False
 
 test_log_dict = []
-pringter_port = '/dev/tty.usbserial-AI05HDSG'
+printer_port = '/dev/tty.usbserial-AI05HDSG'
 
 '''
 -- COMAMND CONSTRUCTORS --
