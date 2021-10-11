@@ -70,6 +70,9 @@ def close_serial_port():
 
 def get_ser_data_line():
 	'''Serial Read line method for reading cont. Arduino's serial println()'''
+
+	gv.test_log_dict = []
+
 	gv.test_data_read = False
 	#- log file
 	logger.log_info("Serial Read thread has started!")
@@ -98,16 +101,23 @@ def get_ser_data_line():
 			gv.test_data_read = True
 			logger.log_info("Terminator received")
 			gv.output_msg_buff = ["Terminator received"]
+			# current time: in log and printer
 			break
 
+		#- Remove header marker from serial data string
+		serial_log_str = incoming_line
+		if serial_log_str.startswith('[H]'):
+			serial_log_str = serial_log_str.replace('[H]', '')
+		logger.log_info(serial_log_str)
+		gv.output_msg_buff = [serial_log_str]
 		
-
-		logger.log_info(incoming_line)
-		gv.output_msg_buff = [incoming_line]
+		#- Add incoming lines to a buffer array dict for thermal printer
+		gv.test_log_dict.append(incoming_line)
 
 		# [TBD]
 		# time out if incoming string is nothing..
 		# Meaning serial is not working..
+
 
 
 def write_to_port(_data):
@@ -143,7 +153,7 @@ def filtered_ser_ports():
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
 		for port in raw_ports:
-			if port.startswith("/dev/tty.usbserial"):
+			if port.startswith("/dev/tty.usbserial") and not port.startswith("/dev/tty.usbserial-AI05"):
 				usable_ports.append(port)
 	return usable_ports
 

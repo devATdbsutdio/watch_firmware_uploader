@@ -14,7 +14,7 @@ import executer as action
 import logger
 import serialport_manager as spm
 import get_date_time as sys_clock
-
+import printer
 
 # spl_key = False
 
@@ -25,6 +25,8 @@ ESC = '\x1b'
 CSI = '['
 
 # string = ''
+
+serial_write_count = 20
 
 def getchar():
 	'''gettingkey press characters OS irrespective'''
@@ -48,7 +50,7 @@ def watch_kbd():
 			break
 		elif char == '\r':
 			# print(string)
-			if string == '0' and not gv.port_selection_active:
+			if string == '0' and not gv.port_selection_active and not gv.test_data_read:
 				# Assign test code as the firmware to be uploaded
 				gv.curr_firmware_num = 0
 				gv.curr_firmware_name = gv.test_firmware_name
@@ -66,7 +68,7 @@ def watch_kbd():
 				# Update the visual highlither variable for UI
 				gv.ui_highlight_ser_port_0 = "> "
 				gv.ui_highlight_ser_port_1 = "  "
-			if string == '1' and not gv.port_selection_active:
+			if string == '1' and not gv.port_selection_active and not gv.test_data_read:
 				# Assign production code as the firmware to be uploaded
 				gv.curr_firmware_num = 1
 				gv.curr_firmware_name = gv.prod_firmware_name
@@ -123,10 +125,18 @@ def watch_kbd():
 				#--- Serial read/write based on current firmware 0/1
 				if gv.curr_firmware_num == 0:
 					if gv.debug_channel_open:
+						time.sleep(1)
+						# Add date time header in logs and printer outputs
+						logger.log_info("TEST STARTED AT: " + sys_clock.get_std_date_time())
+						# TBD add to printer outputs
+
 						# Read serial monitor and print in receipts
 						logger.log_info("Reading serial data")
 						gv.output_msg_buff = ["Serial Read thread has started!"]
 						spm.get_ser_data_line()
+
+						# Once all the serial read finishes, print the serial logs to thermal printer
+						printer.print_text(gv.pringter_port, gv.test_log_dict)
 					else:
 						#- log file
 						logger.log_error(["Debug Serial Port could not be opened",
@@ -143,14 +153,13 @@ def watch_kbd():
 					# to the uC.
 					if gv.debug_channel_open:
 						logger.log_info("\nWill Start sending time data for RTC's time RESET")
-						gv.output_msg_buff = ["Will Start sending time data bursts over Serial",
-						                      "For the watch to use it for setting proper time.",
+						gv.output_msg_buff = ["Will shortly start sending time data bursts over Serial",
+						                      "for the watch to use it to set RTC's current time stamp.",
 						                      "Press the \"button\" on the watch for it to work"]
-						time.sleep(3)
+						time.sleep(5)
 
 						sending_process_counter = 0
 						while sending_process_counter < 20:
-							# TBD: get date time
 							spm.write_to_port(sys_clock.get_formatted_time())
 							sending_process_counter += 1
 							time.sleep(1)
@@ -162,6 +171,10 @@ def watch_kbd():
 					gv.debug_port_status = "Closed"
 					logger.log_info("Serial Port Closed")
 					gv.output_msg_buff = ["Serial Port Closed"]
+					time.sleep(1)
+					# Add date time header in logs and printer outputs
+					logger.log_info("TEST ENDED AT: " + sys_clock.get_std_date_time())
+					# TBD add to printer outputs
 
 					time.sleep(1)
 					if gv.curr_firmware_num == 1:
@@ -174,16 +187,20 @@ def watch_kbd():
 
 
 			if string == '1' and gv.test_data_read:
-				# [TBD]
 				# Meaning data was read sucessfully and
 				# user pressed 1, so display is working!
 				# show that in receipt printer
+				logger.log_info("Operator said: DISPLAY WORKING!")
+				gv.output_msg_buff = ["Operator said: DISPLAY WORKING!"]
+				# print that TBD:
 				gv.test_data_read = False
 			if string == '0' and gv.test_data_read:
-				# [TBD]
 				# Meaning data was NOT read and
 				# user pressed 0, so display is NOT working!
 				# show that in receipt printer
+				logger.log_info("Operator said: DISPLAY NOT WORKING!")
+				gv.output_msg_buff = ["Operator said: DISPLAY WORKING!"]
+				# Print that TBD:
 				gv.test_data_read = False
 
 			string = ''

@@ -2912,3 +2912,1352 @@ Will Start sending time data for RTC's time RESET
 2021-10-11 00:25:41.778 INFO Sending b'0:25:41:0:11:10:2021\n' to uC
 2021-10-11 00:25:42.784 INFO Sending b'0:25:42:0:11:10:2021\n' to uC
 2021-10-11 00:25:43.829 INFO Serial Port Closed
+2021-10-11 18:00:16.189 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 18:00:46.570 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 18:00:55.243 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:01:01.081 INFO Sketch uses 9659 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 18:01:01.096 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 18:01:01.229 INFO SerialUPDI
+2021-10-11 18:01:01.238 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 18:01:01.239 INFO Based on pymcuprog, with significant modifications
+2021-10-11 18:01:01.241 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 18:01:01.244 INFO Version 1.2.0 - June 2021
+2021-10-11 18:01:01.247 INFO Using serial port /dev/tty.usbserial-A5XK3RJT at 230400 baud.
+2021-10-11 18:01:01.252 INFO Target: attiny1607
+2021-10-11 18:01:01.263 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 18:01:01.265 INFO Action: write
+2021-10-11 18:01:01.274 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 18:01:02.513 INFO Pinging device...
+2021-10-11 18:01:03.756 INFO Ping response: 1E9423
+2021-10-11 18:01:03.759 INFO Setting fuse 0x2=0x2
+2021-10-11 18:01:03.759 INFO Writing literal values...
+2021-10-11 18:01:03.917 INFO Verifying literal values...
+2021-10-11 18:01:03.949 INFO Action took 0.19s
+2021-10-11 18:01:03.956 INFO Setting fuse 0x6=0x0
+2021-10-11 18:01:03.959 INFO Writing literal values...
+2021-10-11 18:01:04.113 INFO Verifying literal values...
+2021-10-11 18:01:04.140 INFO Action took 0.19s
+2021-10-11 18:01:04.141 INFO Setting fuse 0x8=0x0
+2021-10-11 18:01:04.143 INFO Writing literal values...
+2021-10-11 18:01:04.298 INFO Verifying literal values...
+2021-10-11 18:01:04.335 INFO Action took 0.19s
+2021-10-11 18:01:04.344 INFO Finished writing fuses.
+2021-10-11 18:01:04.350 INFO Chip/Bulk erase,
+2021-10-11 18:01:04.363 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 18:01:04.368 INFO Memory type flash is always erased
+2021-10-11 18:01:04.371 INFO Memory type lockbits is always erased
+2021-10-11 18:01:04.373 INFO ...
+2021-10-11 18:01:04.393 INFO Erased.
+2021-10-11 18:01:04.396 INFO Action took 0.06s
+2021-10-11 18:01:04.409 INFO Writing from hex file...
+2021-10-11 18:01:04.412 INFO Writing flash...
+2021-10-11 18:01:04.728 INFO [                                                  ]
+2021-10-11 18:01:04.926 INFO [=                                                 ] 4/151
+2021-10-11 18:01:05.129 INFO [==                                                ] 7/151
+2021-10-11 18:01:05.328 INFO [===                                               ] 10/151
+2021-10-11 18:01:05.529 INFO [====                                              ] 13/151
+2021-10-11 18:01:05.735 INFO [=====                                             ] 16/151
+2021-10-11 18:01:05.935 INFO [======                                            ] 19/151
+2021-10-11 18:01:06.138 INFO [=======                                           ] 22/151
+2021-10-11 18:01:06.335 INFO [========                                          ] 25/151
+2021-10-11 18:01:06.533 INFO [=========                                         ] 28/151
+2021-10-11 18:01:06.736 INFO [==========                                        ] 31/151
+2021-10-11 18:01:06.937 INFO [===========                                       ] 34/151
+2021-10-11 18:01:07.137 INFO [============                                      ] 37/151
+2021-10-11 18:01:07.354 INFO [=============                                     ] 40/151
+2021-10-11 18:01:07.539 INFO [==============                                    ] 43/151
+2021-10-11 18:01:07.745 INFO [===============                                   ] 46/151
+2021-10-11 18:01:07.954 INFO [================                                  ] 49/151
+2021-10-11 18:01:08.147 INFO [=================                                 ] 52/151
+2021-10-11 18:01:08.347 INFO [==================                                ] 55/151
+2021-10-11 18:01:08.557 INFO [===================                               ] 58/151
+2021-10-11 18:01:08.754 INFO [====================                              ] 61/151
+2021-10-11 18:01:08.948 INFO [=====================                             ] 64/151
+2021-10-11 18:01:09.149 INFO [======================                            ] 67/151
+2021-10-11 18:01:09.353 INFO [=======================                           ] 70/151
+2021-10-11 18:01:09.555 INFO [========================                          ] 73/151
+2021-10-11 18:01:09.755 INFO [=========================                         ] 76/151
+2021-10-11 18:01:09.957 INFO [==========================                        ] 79/151
+2021-10-11 18:01:10.157 INFO [===========================                       ] 82/151
+2021-10-11 18:01:10.360 INFO [============================                      ] 85/151
+2021-10-11 18:01:10.563 INFO [=============================                     ] 88/151
+2021-10-11 18:01:10.763 INFO [==============================                    ] 91/151
+2021-10-11 18:01:10.963 INFO [===============================                   ] 94/151
+2021-10-11 18:01:11.165 INFO [================================                  ] 97/151
+2021-10-11 18:01:11.366 INFO [=================================                 ] 100/151
+2021-10-11 18:01:11.568 INFO [==================================                ] 103/151
+2021-10-11 18:01:11.769 INFO [===================================               ] 106/151
+2021-10-11 18:01:11.971 INFO [====================================              ] 109/151
+2021-10-11 18:01:12.174 INFO [=====================================             ] 112/151
+2021-10-11 18:01:12.372 INFO [======================================            ] 115/151
+2021-10-11 18:01:12.577 INFO [=======================================           ] 118/151
+2021-10-11 18:01:12.775 INFO [========================================          ] 121/151
+2021-10-11 18:01:12.979 INFO [=========================================         ] 124/151
+2021-10-11 18:01:13.179 INFO [==========================================        ] 127/151
+2021-10-11 18:01:13.380 INFO [===========================================       ] 130/151
+2021-10-11 18:01:13.582 INFO [============================================      ] 133/151
+2021-10-11 18:01:13.784 INFO [=============================================     ] 136/151
+2021-10-11 18:01:13.982 INFO [==============================================    ] 139/151
+2021-10-11 18:01:14.194 INFO [===============================================   ] 142/151
+2021-10-11 18:01:14.393 INFO [================================================  ] 145/151
+2021-10-11 18:01:14.608 INFO [================================================= ] 148/151
+2021-10-11 18:01:14.612 INFO [==================================================] 151/151
+2021-10-11 18:01:14.613 INFO Action took 10.21s
+2021-10-11 18:01:14.618 INFO Verifying...
+2021-10-11 18:01:14.669 INFO [                                                  ]
+2021-10-11 18:01:14.725 INFO [==                                                ] 1/19
+2021-10-11 18:01:14.780 INFO [=====                                             ] 2/19
+2021-10-11 18:01:14.840 INFO [=======                                           ] 3/19
+2021-10-11 18:01:14.899 INFO [==========                                        ] 4/19
+2021-10-11 18:01:14.954 INFO [=============                                     ] 5/19
+2021-10-11 18:01:15.015 INFO [===============                                   ] 6/19
+2021-10-11 18:01:15.072 INFO [==================                                ] 7/19
+2021-10-11 18:01:15.129 INFO [=====================                             ] 8/19
+2021-10-11 18:01:15.190 INFO [=======================                           ] 9/19
+2021-10-11 18:01:15.250 INFO [==========================                        ] 10/19
+2021-10-11 18:01:15.304 INFO [============================                      ] 11/19
+2021-10-11 18:01:15.363 INFO [===============================                   ] 12/19
+2021-10-11 18:01:15.423 INFO [==================================                ] 13/19
+2021-10-11 18:01:15.479 INFO [====================================              ] 14/19
+2021-10-11 18:01:15.537 INFO [=======================================           ] 15/19
+2021-10-11 18:01:15.594 INFO [==========================================        ] 16/19
+2021-10-11 18:01:15.652 INFO [============================================      ] 17/19
+2021-10-11 18:01:15.704 INFO [===============================================   ] 18/19
+2021-10-11 18:01:15.708 INFO [==================================================] 19/19
+2021-10-11 18:01:15.727 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 18:01:15.743 INFO Action took 1.11s
+2021-10-11 18:01:15.780 INFO 
+2021-10-11 18:01:15.799 INFO EXIT_CODE: 0
+2021-10-11 18:01:17.831 INFO Serial Port is now open
+2021-10-11 18:02:40.808 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 18:02:46.617 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:02:51.535 INFO Sketch uses 9659 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 18:02:51.546 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 18:02:51.690 INFO SerialUPDI
+2021-10-11 18:02:51.696 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 18:02:51.699 INFO Based on pymcuprog, with significant modifications
+2021-10-11 18:02:51.705 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 18:02:51.716 INFO Version 1.2.0 - June 2021
+2021-10-11 18:02:51.717 INFO Using serial port /dev/tty.usbserial-A5XK3RJT at 230400 baud.
+2021-10-11 18:02:51.717 INFO Target: attiny1607
+2021-10-11 18:02:51.720 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 18:02:51.721 INFO Action: write
+2021-10-11 18:02:51.724 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 18:02:52.991 INFO Pinging device...
+2021-10-11 18:02:54.239 INFO Ping response: 1E9423
+2021-10-11 18:02:54.242 INFO Setting fuse 0x2=0x2
+2021-10-11 18:02:54.245 INFO Writing literal values...
+2021-10-11 18:02:54.393 INFO Verifying literal values...
+2021-10-11 18:02:54.451 INFO Action took 0.19s
+2021-10-11 18:02:54.455 INFO Setting fuse 0x6=0x0
+2021-10-11 18:02:54.464 INFO Writing literal values...
+2021-10-11 18:02:54.588 INFO Verifying literal values...
+2021-10-11 18:02:54.619 INFO Action took 0.19s
+2021-10-11 18:02:54.629 INFO Setting fuse 0x8=0x0
+2021-10-11 18:02:54.641 INFO Writing literal values...
+2021-10-11 18:02:54.789 INFO Verifying literal values...
+2021-10-11 18:02:54.808 INFO Action took 0.19s
+2021-10-11 18:02:54.811 INFO Finished writing fuses.
+2021-10-11 18:02:54.815 INFO Chip/Bulk erase,
+2021-10-11 18:02:54.815 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 18:02:54.820 INFO Memory type flash is always erased
+2021-10-11 18:02:54.820 INFO Memory type lockbits is always erased
+2021-10-11 18:02:54.821 INFO ...
+2021-10-11 18:02:54.876 INFO Erased.
+2021-10-11 18:02:54.876 INFO Action took 0.06s
+2021-10-11 18:02:54.885 INFO Writing from hex file...
+2021-10-11 18:02:54.888 INFO Writing flash...
+2021-10-11 18:02:55.205 INFO [                                                  ]
+2021-10-11 18:02:55.405 INFO [=                                                 ] 4/151
+2021-10-11 18:02:55.606 INFO [==                                                ] 7/151
+2021-10-11 18:02:55.808 INFO [===                                               ] 10/151
+2021-10-11 18:02:56.008 INFO [====                                              ] 13/151
+2021-10-11 18:02:56.218 INFO [=====                                             ] 16/151
+2021-10-11 18:02:56.414 INFO [======                                            ] 19/151
+2021-10-11 18:02:56.614 INFO [=======                                           ] 22/151
+2021-10-11 18:02:56.816 INFO [========                                          ] 25/151
+2021-10-11 18:02:57.016 INFO [=========                                         ] 28/151
+2021-10-11 18:02:57.219 INFO [==========                                        ] 31/151
+2021-10-11 18:02:57.422 INFO [===========                                       ] 34/151
+2021-10-11 18:02:57.620 INFO [============                                      ] 37/151
+2021-10-11 18:02:57.816 INFO [=============                                     ] 40/151
+2021-10-11 18:02:58.018 INFO [==============                                    ] 43/151
+2021-10-11 18:02:58.221 INFO [===============                                   ] 46/151
+2021-10-11 18:02:58.424 INFO [================                                  ] 49/151
+2021-10-11 18:02:58.621 INFO [=================                                 ] 52/151
+2021-10-11 18:02:58.826 INFO [==================                                ] 55/151
+2021-10-11 18:02:59.031 INFO [===================                               ] 58/151
+2021-10-11 18:02:59.226 INFO [====================                              ] 61/151
+2021-10-11 18:02:59.426 INFO [=====================                             ] 64/151
+2021-10-11 18:02:59.629 INFO [======================                            ] 67/151
+2021-10-11 18:02:59.826 INFO [=======================                           ] 70/151
+2021-10-11 18:03:00.028 INFO [========================                          ] 73/151
+2021-10-11 18:03:00.234 INFO [=========================                         ] 76/151
+2021-10-11 18:03:00.436 INFO [==========================                        ] 79/151
+2021-10-11 18:03:00.631 INFO [===========================                       ] 82/151
+2021-10-11 18:03:00.834 INFO [============================                      ] 85/151
+2021-10-11 18:03:01.038 INFO [=============================                     ] 88/151
+2021-10-11 18:03:01.233 INFO [==============================                    ] 91/151
+2021-10-11 18:03:01.438 INFO [===============================                   ] 94/151
+2021-10-11 18:03:01.640 INFO [================================                  ] 97/151
+2021-10-11 18:03:01.842 INFO [=================================                 ] 100/151
+2021-10-11 18:03:02.039 INFO [==================================                ] 103/151
+2021-10-11 18:03:02.240 INFO [===================================               ] 106/151
+2021-10-11 18:03:02.442 INFO [====================================              ] 109/151
+2021-10-11 18:03:02.645 INFO [=====================================             ] 112/151
+2021-10-11 18:03:02.843 INFO [======================================            ] 115/151
+2021-10-11 18:03:03.044 INFO [=======================================           ] 118/151
+2021-10-11 18:03:03.247 INFO [========================================          ] 121/151
+2021-10-11 18:03:03.446 INFO [=========================================         ] 124/151
+2021-10-11 18:03:03.647 INFO [==========================================        ] 127/151
+2021-10-11 18:03:03.846 INFO [===========================================       ] 130/151
+2021-10-11 18:03:04.050 INFO [============================================      ] 133/151
+2021-10-11 18:03:04.247 INFO [=============================================     ] 136/151
+2021-10-11 18:03:04.450 INFO [==============================================    ] 139/151
+2021-10-11 18:03:04.655 INFO [===============================================   ] 142/151
+2021-10-11 18:03:04.851 INFO [================================================  ] 145/151
+2021-10-11 18:03:05.070 INFO [================================================= ] 148/151
+2021-10-11 18:03:05.077 INFO [==================================================] 151/151
+2021-10-11 18:03:05.077 INFO Action took 10.19s
+2021-10-11 18:03:05.081 INFO Verifying...
+2021-10-11 18:03:05.135 INFO [                                                  ]
+2021-10-11 18:03:05.190 INFO [==                                                ] 1/19
+2021-10-11 18:03:05.252 INFO [=====                                             ] 2/19
+2021-10-11 18:03:05.306 INFO [=======                                           ] 3/19
+2021-10-11 18:03:05.363 INFO [==========                                        ] 4/19
+2021-10-11 18:03:05.420 INFO [=============                                     ] 5/19
+2021-10-11 18:03:05.481 INFO [===============                                   ] 6/19
+2021-10-11 18:03:05.537 INFO [==================                                ] 7/19
+2021-10-11 18:03:05.593 INFO [=====================                             ] 8/19
+2021-10-11 18:03:05.654 INFO [=======================                           ] 9/19
+2021-10-11 18:03:05.710 INFO [==========================                        ] 10/19
+2021-10-11 18:03:05.770 INFO [============================                      ] 11/19
+2021-10-11 18:03:05.827 INFO [===============================                   ] 12/19
+2021-10-11 18:03:05.886 INFO [==================================                ] 13/19
+2021-10-11 18:03:05.947 INFO [====================================              ] 14/19
+2021-10-11 18:03:05.999 INFO [=======================================           ] 15/19
+2021-10-11 18:03:06.065 INFO [==========================================        ] 16/19
+2021-10-11 18:03:06.115 INFO [============================================      ] 17/19
+2021-10-11 18:03:06.174 INFO [===============================================   ] 18/19
+2021-10-11 18:03:06.175 INFO [==================================================] 19/19
+2021-10-11 18:03:06.193 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 18:03:06.201 INFO Action took 1.11s
+2021-10-11 18:03:06.239 INFO 
+2021-10-11 18:03:06.261 INFO EXIT_CODE: 0
+2021-10-11 18:03:08.301 INFO Serial Port is now open
+2021-10-11 18:03:09.317 INFO TEST STARTED AT: 11/10/2021 18:03:09
+2021-10-11 18:03:09.320 INFO Reading serial data
+2021-10-11 18:03:09.321 INFO Serial Read thread has started!
+2021-10-11 18:03:10.852 INFO PORT-A IO check finished!
+2021-10-11 18:03:10.897 INFO [ERR] Internally, PA4 not working!
+2021-10-11 18:03:10.921 INFO [ERR] Internally, PA6 not working!
+2021-10-11 18:03:10.978 INFO [X] In PORT A (PA1-PA7), a total
+2021-10-11 18:03:11.016 INFO of only 5 pins are working!
+2021-10-11 18:03:11.021 INFO 
+2021-10-11 18:03:11.655 INFO PORT-B IO check finished!
+2021-10-11 18:03:11.691 INFO [ERR] Internally, PB5 not working!
+2021-10-11 18:03:11.754 INFO [X] In PORT B (PB0-PB1 & PB4-PB7), a total
+2021-10-11 18:03:11.778 INFO of only 5 pins are working!
+2021-10-11 18:03:11.787 INFO 
+2021-10-11 18:03:12.154 INFO PORT-C IO check finished!
+2021-10-11 18:03:12.194 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 18:03:12.224 INFO All pins are working!
+2021-10-11 18:03:12.236 INFO 
+2021-10-11 18:03:12.242 INFO 
+2021-10-11 18:03:12.281 INFO ATTINY Digital IO Test finished!
+2021-10-11 18:03:12.284 INFO 
+2021-10-11 18:03:12.289 INFO 
+2021-10-11 18:03:12.316 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 18:03:12.355 INFO ----------------------------
+2021-10-11 18:03:14.159 INFO RTC_ADDR_FOUND:1
+2021-10-11 18:03:14.162 INFO 
+2021-10-11 18:03:14.205 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 18:03:14.227 INFO ------------------------
+2021-10-11 18:03:16.391 INFO 18:03:15
+2021-10-11 18:03:16.406 INFO 11/10/2021
+2021-10-11 18:03:16.442 INFO RTC_READABLE:1
+2021-10-11 18:03:16.445 INFO 
+2021-10-11 18:03:16.496 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 18:03:16.537 INFO -----------------------------
+2021-10-11 18:03:18.418 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 18:03:19.417 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 18:03:20.417 INFO SW_STATE: 0 [7 sec left]
+2021-10-11 18:03:21.443 INFO SW_STATE: 0 [6 sec left]
+2021-10-11 18:03:22.441 INFO SW_STATE: 1 [5 sec left]
+2021-10-11 18:03:23.424 INFO SW_STATE: 1 [4 sec left]
+2021-10-11 18:03:24.442 INFO SW_STATE: 1 [3 sec left]
+2021-10-11 18:03:25.454 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 18:03:26.454 INFO SW_STATE: 0 [1 sec left]
+2021-10-11 18:03:27.438 INFO SW_STATE: 0 [0 sec left]
+2021-10-11 18:03:27.451 INFO 
+2021-10-11 18:03:27.545 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 18:03:27.649 INFO -----------------------------
+2021-10-11 18:03:29.494 INFO Watch if you see the below pattern
+2021-10-11 18:03:29.530 INFO in the segments
+2021-10-11 18:03:29.591 INFO (Starting in 5 sec):
+2021-10-11 18:03:29.615 INFO 0, 1
+2021-10-11 18:03:29.629 INFO 2, 3
+2021-10-11 18:03:29.659 INFO delay(4000);
+2021-10-11 18:03:29.668 INFO 4, 5
+2021-10-11 18:03:29.687 INFO 6, 7
+2021-10-11 18:03:29.712 INFO delay(4000);
+2021-10-11 18:03:29.727 INFO 8, 9
+2021-10-11 18:03:29.743 INFO 0, 0
+2021-10-11 18:03:29.783 INFO delay(4000);
+2021-10-11 18:03:29.826 INFO Finally display will Turn OFF
+2021-10-11 18:03:46.519 INFO 
+2021-10-11 18:03:46.587 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 18:03:46.704 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 18:03:46.714 INFO Terminator received
+2021-10-11 18:03:46.719 INFO Serial Port Closed
+2021-10-11 18:03:47.730 INFO TEST ENDED AT: 11/10/2021 18:03:47
+2021-10-11 18:03:54.499 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:03:54.501 INFO Operator said: DISPLAY WORKING!
+2021-10-11 18:04:11.201 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:05:13.243 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 18:05:16.719 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:05:28.804 INFO Sketch uses 9659 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 18:05:28.813 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 18:05:29.039 INFO SerialUPDI
+2021-10-11 18:05:29.055 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 18:05:29.061 INFO Based on pymcuprog, with significant modifications
+2021-10-11 18:05:29.063 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 18:05:29.064 INFO Version 1.2.0 - June 2021
+2021-10-11 18:05:29.065 INFO Using serial port /dev/tty.usbserial-A5XK3RJT at 230400 baud.
+2021-10-11 18:05:29.072 INFO Target: attiny1607
+2021-10-11 18:05:29.084 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 18:05:29.086 INFO Action: write
+2021-10-11 18:05:29.100 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 18:05:30.368 INFO Pinging device...
+2021-10-11 18:05:31.608 INFO Ping response: 1E9423
+2021-10-11 18:05:31.608 INFO Setting fuse 0x2=0x2
+2021-10-11 18:05:31.620 INFO Writing literal values...
+2021-10-11 18:05:31.785 INFO Verifying literal values...
+2021-10-11 18:05:31.807 INFO Action took 0.19s
+2021-10-11 18:05:31.814 INFO Setting fuse 0x6=0x0
+2021-10-11 18:05:31.826 INFO Writing literal values...
+2021-10-11 18:05:31.965 INFO Verifying literal values...
+2021-10-11 18:05:31.996 INFO Action took 0.19s
+2021-10-11 18:05:32.001 INFO Setting fuse 0x8=0x0
+2021-10-11 18:05:32.012 INFO Writing literal values...
+2021-10-11 18:05:32.180 INFO Verifying literal values...
+2021-10-11 18:05:32.191 INFO Action took 0.19s
+2021-10-11 18:05:32.202 INFO Finished writing fuses.
+2021-10-11 18:05:32.202 INFO Chip/Bulk erase,
+2021-10-11 18:05:32.226 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 18:05:32.233 INFO Memory type flash is always erased
+2021-10-11 18:05:32.239 INFO Memory type lockbits is always erased
+2021-10-11 18:05:32.244 INFO ...
+2021-10-11 18:05:32.245 INFO Erased.
+2021-10-11 18:05:32.251 INFO Action took 0.06s
+2021-10-11 18:05:32.279 INFO Writing from hex file...
+2021-10-11 18:05:32.285 INFO Writing flash...
+2021-10-11 18:05:32.593 INFO [                                                  ]
+2021-10-11 18:05:32.797 INFO [=                                                 ] 4/151
+2021-10-11 18:05:32.997 INFO [==                                                ] 7/151
+2021-10-11 18:05:33.204 INFO [===                                               ] 10/151
+2021-10-11 18:05:33.401 INFO [====                                              ] 13/151
+2021-10-11 18:05:33.604 INFO [=====                                             ] 16/151
+2021-10-11 18:05:33.803 INFO [======                                            ] 19/151
+2021-10-11 18:05:34.004 INFO [=======                                           ] 22/151
+2021-10-11 18:05:34.206 INFO [========                                          ] 25/151
+2021-10-11 18:05:34.407 INFO [=========                                         ] 28/151
+2021-10-11 18:05:34.608 INFO [==========                                        ] 31/151
+2021-10-11 18:05:34.814 INFO [===========                                       ] 34/151
+2021-10-11 18:05:35.016 INFO [============                                      ] 37/151
+2021-10-11 18:05:35.212 INFO [=============                                     ] 40/151
+2021-10-11 18:05:35.420 INFO [==============                                    ] 43/151
+2021-10-11 18:05:35.622 INFO [===============                                   ] 46/151
+2021-10-11 18:05:35.816 INFO [================                                  ] 49/151
+2021-10-11 18:05:36.017 INFO [=================                                 ] 52/151
+2021-10-11 18:05:36.229 INFO [==================                                ] 55/151
+2021-10-11 18:05:36.431 INFO [===================                               ] 58/151
+2021-10-11 18:05:36.623 INFO [====================                              ] 61/151
+2021-10-11 18:05:36.824 INFO [=====================                             ] 64/151
+2021-10-11 18:05:37.025 INFO [======================                            ] 67/151
+2021-10-11 18:05:37.237 INFO [=======================                           ] 70/151
+2021-10-11 18:05:37.441 INFO [========================                          ] 73/151
+2021-10-11 18:05:37.635 INFO [=========================                         ] 76/151
+2021-10-11 18:05:37.838 INFO [==========================                        ] 79/151
+2021-10-11 18:05:38.039 INFO [===========================                       ] 82/151
+2021-10-11 18:05:38.245 INFO [============================                      ] 85/151
+2021-10-11 18:05:38.443 INFO [=============================                     ] 88/151
+2021-10-11 18:05:38.642 INFO [==============================                    ] 91/151
+2021-10-11 18:05:38.848 INFO [===============================                   ] 94/151
+2021-10-11 18:05:39.046 INFO [================================                  ] 97/151
+2021-10-11 18:05:39.250 INFO [=================================                 ] 100/151
+2021-10-11 18:05:39.452 INFO [==================================                ] 103/151
+2021-10-11 18:05:39.653 INFO [===================================               ] 106/151
+2021-10-11 18:05:39.852 INFO [====================================              ] 109/151
+2021-10-11 18:05:40.050 INFO [=====================================             ] 112/151
+2021-10-11 18:05:40.250 INFO [======================================            ] 115/151
+2021-10-11 18:05:40.454 INFO [=======================================           ] 118/151
+2021-10-11 18:05:40.652 INFO [========================================          ] 121/151
+2021-10-11 18:05:40.857 INFO [=========================================         ] 124/151
+2021-10-11 18:05:41.058 INFO [==========================================        ] 127/151
+2021-10-11 18:05:41.258 INFO [===========================================       ] 130/151
+2021-10-11 18:05:41.457 INFO [============================================      ] 133/151
+2021-10-11 18:05:41.668 INFO [=============================================     ] 136/151
+2021-10-11 18:05:41.860 INFO [==============================================    ] 139/151
+2021-10-11 18:05:42.064 INFO [===============================================   ] 142/151
+2021-10-11 18:05:42.267 INFO [================================================  ] 145/151
+2021-10-11 18:05:42.480 INFO [================================================= ] 148/151
+2021-10-11 18:05:42.495 INFO [==================================================] 151/151
+2021-10-11 18:05:42.500 INFO Action took 10.23s
+2021-10-11 18:05:42.506 INFO Verifying...
+2021-10-11 18:05:42.563 INFO [                                                  ]
+2021-10-11 18:05:42.621 INFO [==                                                ] 1/19
+2021-10-11 18:05:42.678 INFO [=====                                             ] 2/19
+2021-10-11 18:05:42.734 INFO [=======                                           ] 3/19
+2021-10-11 18:05:42.794 INFO [==========                                        ] 4/19
+2021-10-11 18:05:42.852 INFO [=============                                     ] 5/19
+2021-10-11 18:05:42.910 INFO [===============                                   ] 6/19
+2021-10-11 18:05:42.968 INFO [==================                                ] 7/19
+2021-10-11 18:05:43.027 INFO [=====================                             ] 8/19
+2021-10-11 18:05:43.084 INFO [=======================                           ] 9/19
+2021-10-11 18:05:43.143 INFO [==========================                        ] 10/19
+2021-10-11 18:05:43.200 INFO [============================                      ] 11/19
+2021-10-11 18:05:43.257 INFO [===============================                   ] 12/19
+2021-10-11 18:05:43.316 INFO [==================================                ] 13/19
+2021-10-11 18:05:43.372 INFO [====================================              ] 14/19
+2021-10-11 18:05:43.436 INFO [=======================================           ] 15/19
+2021-10-11 18:05:43.495 INFO [==========================================        ] 16/19
+2021-10-11 18:05:43.549 INFO [============================================      ] 17/19
+2021-10-11 18:05:43.601 INFO [===============================================   ] 18/19
+2021-10-11 18:05:43.609 INFO [==================================================] 19/19
+2021-10-11 18:05:43.630 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 18:05:43.639 INFO Action took 1.13s
+2021-10-11 18:05:43.678 INFO 
+2021-10-11 18:05:43.694 INFO EXIT_CODE: 0
+2021-10-11 18:05:45.727 INFO Serial Port is now open
+2021-10-11 18:05:46.740 INFO TEST STARTED AT: 11/10/2021 18:05:46
+2021-10-11 18:05:46.744 INFO Reading serial data
+2021-10-11 18:05:46.748 INFO Serial Read thread has started!
+2021-10-11 18:05:48.323 INFO PORT-A IO check finished!
+2021-10-11 18:05:48.392 INFO [ERR] Internally, PA4 not working!
+2021-10-11 18:05:48.445 INFO [ERR] Internally, PA6 not working!
+2021-10-11 18:05:48.482 INFO [X] In PORT A (PA1-PA7), a total
+2021-10-11 18:05:48.551 INFO of only 5 pins are working!
+2021-10-11 18:05:48.570 INFO 
+2021-10-11 18:05:49.126 INFO PORT-B IO check finished!
+2021-10-11 18:05:49.168 INFO [ERR] Internally, PB5 not working!
+2021-10-11 18:05:49.234 INFO [X] In PORT B (PB0-PB1 & PB4-PB7), a total
+2021-10-11 18:05:49.265 INFO of only 5 pins are working!
+2021-10-11 18:05:49.298 INFO 
+2021-10-11 18:05:49.590 INFO PORT-C IO check finished!
+2021-10-11 18:05:49.641 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 18:05:49.672 INFO All pins are working!
+2021-10-11 18:05:49.684 INFO 
+2021-10-11 18:05:49.691 INFO 
+2021-10-11 18:05:49.732 INFO ATTINY Digital IO Test finished!
+2021-10-11 18:05:49.739 INFO 
+2021-10-11 18:05:49.749 INFO 
+2021-10-11 18:05:49.817 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 18:05:49.866 INFO ----------------------------
+2021-10-11 18:05:51.625 INFO RTC_ADDR_FOUND:1
+2021-10-11 18:05:51.634 INFO 
+2021-10-11 18:05:51.691 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 18:05:51.728 INFO ------------------------
+2021-10-11 18:05:53.839 INFO 18:05:52
+2021-10-11 18:05:53.855 INFO 11/10/2021
+2021-10-11 18:05:53.858 INFO RTC_READABLE:1
+2021-10-11 18:05:53.867 INFO 
+2021-10-11 18:05:53.890 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 18:05:53.928 INFO -----------------------------
+2021-10-11 18:05:55.860 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 18:05:56.904 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 18:05:57.942 INFO SW_STATE: 0 [7 sec left]
+2021-10-11 18:05:58.881 INFO SW_STATE: 0 [6 sec left]
+2021-10-11 18:05:59.916 INFO SW_STATE: 0 [5 sec left]
+2021-10-11 18:06:00.880 INFO SW_STATE: 1 [4 sec left]
+2021-10-11 18:06:01.916 INFO SW_STATE: 1 [3 sec left]
+2021-10-11 18:06:02.915 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 18:06:03.908 INFO SW_STATE: 0 [1 sec left]
+2021-10-11 18:06:04.913 INFO SW_STATE: 0 [0 sec left]
+2021-10-11 18:06:04.923 INFO 
+2021-10-11 18:06:04.993 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 18:06:05.079 INFO -----------------------------
+2021-10-11 18:06:06.963 INFO Watch if you see the below pattern
+2021-10-11 18:06:07.010 INFO in the segments
+2021-10-11 18:06:07.040 INFO (Starting in 5 sec):
+2021-10-11 18:06:07.066 INFO 0, 1
+2021-10-11 18:06:07.083 INFO 2, 3
+2021-10-11 18:06:07.137 INFO delay(4000);
+2021-10-11 18:06:07.170 INFO 4, 5
+2021-10-11 18:06:07.188 INFO 6, 7
+2021-10-11 18:06:07.223 INFO delay(4000);
+2021-10-11 18:06:07.259 INFO 8, 9
+2021-10-11 18:06:07.279 INFO 0, 0
+2021-10-11 18:06:07.311 INFO delay(4000);
+2021-10-11 18:06:07.370 INFO Finally display will Turn OFF
+2021-10-11 18:06:23.983 INFO 
+2021-10-11 18:06:24.059 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 18:06:24.113 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 18:06:24.124 INFO Terminator received
+2021-10-11 18:06:24.130 INFO Serial Port Closed
+2021-10-11 18:06:25.140 INFO TEST ENDED AT: 11/10/2021 18:06:25
+2021-10-11 18:06:28.988 INFO Operator said: DISPLAY WORKING!
+2021-10-11 18:06:34.791 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:06:36.102 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:06:38.346 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:06:39.517 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 18:06:40.684 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:25:59.441 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 19:26:04.447 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:26:06.311 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:27:56.110 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:28:04.102 INFO Sketch uses 9617 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 19:28:04.105 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 19:28:04.402 INFO SerialUPDI
+2021-10-11 19:28:04.414 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 19:28:04.422 INFO Based on pymcuprog, with significant modifications
+2021-10-11 19:28:04.423 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 19:28:04.426 INFO Version 1.2.0 - June 2021
+2021-10-11 19:28:04.433 INFO Using serial port /dev/tty.usbserial-A5XK3RJT at 230400 baud.
+2021-10-11 19:28:04.440 INFO Target: attiny1607
+2021-10-11 19:28:04.441 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 19:28:04.453 INFO Action: write
+2021-10-11 19:28:04.464 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 19:28:05.696 INFO Pinging device...
+2021-10-11 19:28:06.932 INFO Ping response: 1E9423
+2021-10-11 19:28:06.944 INFO Setting fuse 0x2=0x2
+2021-10-11 19:28:06.952 INFO Writing literal values...
+2021-10-11 19:28:07.092 INFO Verifying literal values...
+2021-10-11 19:28:07.123 INFO Action took 0.19s
+2021-10-11 19:28:07.129 INFO Setting fuse 0x6=0x0
+2021-10-11 19:28:07.141 INFO Writing literal values...
+2021-10-11 19:28:07.286 INFO Verifying literal values...
+2021-10-11 19:28:07.315 INFO Action took 0.19s
+2021-10-11 19:28:07.320 INFO Setting fuse 0x8=0x0
+2021-10-11 19:28:07.321 INFO Writing literal values...
+2021-10-11 19:28:07.487 INFO Verifying literal values...
+2021-10-11 19:28:07.512 INFO Action took 0.19s
+2021-10-11 19:28:07.517 INFO Finished writing fuses.
+2021-10-11 19:28:07.518 INFO Chip/Bulk erase,
+2021-10-11 19:28:07.520 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 19:28:07.528 INFO Memory type flash is always erased
+2021-10-11 19:28:07.537 INFO Memory type lockbits is always erased
+2021-10-11 19:28:07.545 INFO ...
+2021-10-11 19:28:07.574 INFO Erased.
+2021-10-11 19:28:07.580 INFO Action took 0.06s
+2021-10-11 19:28:07.594 INFO Writing from hex file...
+2021-10-11 19:28:07.597 INFO Writing flash...
+2021-10-11 19:28:07.919 INFO [                                                  ]
+2021-10-11 19:28:08.120 INFO [=                                                 ] 4/151
+2021-10-11 19:28:08.325 INFO [==                                                ] 7/151
+2021-10-11 19:28:08.524 INFO [===                                               ] 10/151
+2021-10-11 19:28:08.726 INFO [====                                              ] 13/151
+2021-10-11 19:28:08.945 INFO [=====                                             ] 16/151
+2021-10-11 19:28:09.131 INFO [======                                            ] 19/151
+2021-10-11 19:28:09.336 INFO [=======                                           ] 22/151
+2021-10-11 19:28:09.539 INFO [========                                          ] 25/151
+2021-10-11 19:28:09.741 INFO [=========                                         ] 28/151
+2021-10-11 19:28:09.951 INFO [==========                                        ] 31/151
+2021-10-11 19:28:10.151 INFO [===========                                       ] 34/151
+2021-10-11 19:28:10.346 INFO [============                                      ] 37/151
+2021-10-11 19:28:10.553 INFO [=============                                     ] 40/151
+2021-10-11 19:28:10.758 INFO [==============                                    ] 43/151
+2021-10-11 19:28:10.956 INFO [===============                                   ] 46/151
+2021-10-11 19:28:11.156 INFO [================                                  ] 49/151
+2021-10-11 19:28:11.359 INFO [=================                                 ] 52/151
+2021-10-11 19:28:11.568 INFO [==================                                ] 55/151
+2021-10-11 19:28:11.775 INFO [===================                               ] 58/151
+2021-10-11 19:28:11.973 INFO [====================                              ] 61/151
+2021-10-11 19:28:12.179 INFO [=====================                             ] 64/151
+2021-10-11 19:28:12.370 INFO [======================                            ] 67/151
+2021-10-11 19:28:12.573 INFO [=======================                           ] 70/151
+2021-10-11 19:28:12.782 INFO [========================                          ] 73/151
+2021-10-11 19:28:12.982 INFO [=========================                         ] 76/151
+2021-10-11 19:28:13.184 INFO [==========================                        ] 79/151
+2021-10-11 19:28:13.390 INFO [===========================                       ] 82/151
+2021-10-11 19:28:13.591 INFO [============================                      ] 85/151
+2021-10-11 19:28:13.794 INFO [=============================                     ] 88/151
+2021-10-11 19:28:14.000 INFO [==============================                    ] 91/151
+2021-10-11 19:28:14.202 INFO [===============================                   ] 94/151
+2021-10-11 19:28:14.406 INFO [================================                  ] 97/151
+2021-10-11 19:28:14.605 INFO [=================================                 ] 100/151
+2021-10-11 19:28:14.808 INFO [==================================                ] 103/151
+2021-10-11 19:28:15.015 INFO [===================================               ] 106/151
+2021-10-11 19:28:15.214 INFO [====================================              ] 109/151
+2021-10-11 19:28:15.420 INFO [=====================================             ] 112/151
+2021-10-11 19:28:15.622 INFO [======================================            ] 115/151
+2021-10-11 19:28:15.825 INFO [=======================================           ] 118/151
+2021-10-11 19:28:16.027 INFO [========================================          ] 121/151
+2021-10-11 19:28:16.232 INFO [=========================================         ] 124/151
+2021-10-11 19:28:16.436 INFO [==========================================        ] 127/151
+2021-10-11 19:28:16.643 INFO [===========================================       ] 130/151
+2021-10-11 19:28:16.844 INFO [============================================      ] 133/151
+2021-10-11 19:28:17.047 INFO [=============================================     ] 136/151
+2021-10-11 19:28:17.248 INFO [==============================================    ] 139/151
+2021-10-11 19:28:17.455 INFO [===============================================   ] 142/151
+2021-10-11 19:28:17.661 INFO [================================================  ] 145/151
+2021-10-11 19:28:17.880 INFO [================================================= ] 148/151
+2021-10-11 19:28:17.889 INFO [==================================================] 151/151
+2021-10-11 19:28:17.920 INFO Action took 10.31s
+2021-10-11 19:28:17.933 INFO Verifying...
+2021-10-11 19:28:17.980 INFO [                                                  ]
+2021-10-11 19:28:18.035 INFO [==                                                ] 1/19
+2021-10-11 19:28:18.092 INFO [=====                                             ] 2/19
+2021-10-11 19:28:18.159 INFO [=======                                           ] 3/19
+2021-10-11 19:28:18.215 INFO [==========                                        ] 4/19
+2021-10-11 19:28:18.277 INFO [=============                                     ] 5/19
+2021-10-11 19:28:18.358 INFO [===============                                   ] 6/19
+2021-10-11 19:28:18.427 INFO [==================                                ] 7/19
+2021-10-11 19:28:18.501 INFO [=====================                             ] 8/19
+2021-10-11 19:28:18.575 INFO [=======================                           ] 9/19
+2021-10-11 19:28:18.652 INFO [==========================                        ] 10/19
+2021-10-11 19:28:18.718 INFO [============================                      ] 11/19
+2021-10-11 19:28:18.780 INFO [===============================                   ] 12/19
+2021-10-11 19:28:18.854 INFO [==================================                ] 13/19
+2021-10-11 19:28:18.929 INFO [====================================              ] 14/19
+2021-10-11 19:28:19.006 INFO [=======================================           ] 15/19
+2021-10-11 19:28:19.076 INFO [==========================================        ] 16/19
+2021-10-11 19:28:19.149 INFO [============================================      ] 17/19
+2021-10-11 19:28:19.200 INFO [===============================================   ] 18/19
+2021-10-11 19:28:19.217 INFO [==================================================] 19/19
+2021-10-11 19:28:19.231 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 19:28:19.232 INFO Action took 1.35s
+2021-10-11 19:28:19.306 INFO 
+2021-10-11 19:28:19.336 INFO EXIT_CODE: 0
+2021-10-11 19:28:21.374 INFO Serial Port is now open
+2021-10-11 19:28:22.384 INFO TEST STARTED AT: 11/10/2021 19:28:22
+2021-10-11 19:28:22.385 INFO Reading serial data
+2021-10-11 19:28:22.385 INFO Serial Read thread has started!
+2021-10-11 19:28:22.406 INFO Serial COM is okay!
+2021-10-11 19:28:22.406 INFO SERIAL:1
+2021-10-11 19:28:22.429 INFO 
+2021-10-11 19:28:22.556 INFO CHECKING ATTINY's INT IOs:
+2021-10-11 19:28:23.992 INFO -----------------------PORT-A IO check finished!
+2021-10-11 19:28:24.141 INFO [/] In PORT A (PA1-PA7),
+2021-10-11 19:28:24.220 INFO All pins are working!
+2021-10-11 19:28:24.244 INFO 
+2021-10-11 19:28:24.730 INFO PORT-B IO check finished!
+2021-10-11 19:28:24.827 INFO [/] In PORT B (PB0-PB1 & PB4-PB7),
+2021-10-11 19:28:24.861 INFO All pins are working!
+2021-10-11 19:28:24.877 INFO 
+2021-10-11 19:28:25.227 INFO PORT-C IO check finished!
+2021-10-11 19:28:25.330 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 19:28:25.417 INFO All pins are working!
+2021-10-11 19:28:25.446 INFO 
+2021-10-11 19:28:25.470 INFO 
+2021-10-11 19:28:25.634 INFO ATTINY Digital IO Test finished!
+2021-10-11 19:28:25.657 INFO 
+2021-10-11 19:28:25.666 INFO 
+2021-10-11 19:28:25.701 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 19:28:25.800 INFO ----------------------------
+2021-10-11 19:28:27.275 INFO RTC_ADDR_FOUND:1
+2021-10-11 19:28:27.292 INFO 
+2021-10-11 19:28:27.347 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 19:28:27.470 INFO ------------------------
+2021-10-11 19:28:29.481 INFO 19:28:28
+2021-10-11 19:28:29.533 INFO 11/10/2021
+2021-10-11 19:28:29.633 INFO RTC_READABLE:1
+2021-10-11 19:28:29.641 INFO 
+2021-10-11 19:28:29.795 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 19:28:29.908 INFO -----------------------------
+2021-10-11 19:28:31.545 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 19:28:32.603 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 19:28:33.544 INFO SW_STATE: 0 [7 sec left]
+2021-10-11 19:28:34.539 INFO SW_STATE: 0 [6 sec left]
+2021-10-11 19:28:35.534 INFO SW_STATE: 0 [5 sec left]
+2021-10-11 19:28:36.563 INFO SW_STATE: 1 [4 sec left]
+2021-10-11 19:28:37.601 INFO SW_STATE: 0 [3 sec left]
+2021-10-11 19:28:38.589 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 19:28:39.552 INFO SW_STATE: 1 [1 sec left]
+2021-10-11 19:28:40.602 INFO SW_STATE: 0 [0 sec left]
+2021-10-11 19:28:40.626 INFO 
+2021-10-11 19:28:40.720 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 19:28:40.727 INFO -----------------------------
+2021-10-11 19:28:42.586 INFO Watch if you see the below pattern
+2021-10-11 19:28:42.632 INFO in the segments
+2021-10-11 19:28:42.713 INFO (Starting in 5 sec):
+2021-10-11 19:28:42.738 INFO 0, 1
+2021-10-11 19:28:42.764 INFO 2, 3
+2021-10-11 19:28:42.820 INFO delay(4000);
+2021-10-11 19:28:42.833 INFO 4, 5
+2021-10-11 19:28:42.848 INFO 6, 7
+2021-10-11 19:28:42.915 INFO delay(4000);
+2021-10-11 19:28:42.959 INFO 8, 9
+2021-10-11 19:28:43.012 INFO 0, 0
+2021-10-11 19:28:43.085 INFO delay(4000);
+2021-10-11 19:28:43.214 INFO Finally display will Turn OFF
+2021-10-11 19:28:59.586 INFO 
+2021-10-11 19:28:59.666 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 19:28:59.785 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 19:28:59.795 INFO Terminator received
+2021-10-11 19:28:59.843 INFO Serial Port Closed
+2021-10-11 19:29:00.848 INFO TEST ENDED AT: 11/10/2021 19:29:00
+2021-10-11 19:29:07.655 INFO Operator said: DISPLAY WORKING!
+2021-10-11 19:29:23.260 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:29:29.401 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A5XK3RJT -P serialupdi
+2021-10-11 19:29:38.003 INFO Sketch uses 3969 bytes (24%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 19:29:38.029 INFO Global variables use 252 bytes (24%) of dynamic memory, leaving 772 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 19:29:38.261 INFO SerialUPDI
+2021-10-11 19:29:38.272 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 19:29:38.280 INFO Based on pymcuprog, with significant modifications
+2021-10-11 19:29:38.288 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 19:29:38.296 INFO Version 1.2.0 - June 2021
+2021-10-11 19:29:38.304 INFO Using serial port /dev/tty.usbserial-A5XK3RJT at 230400 baud.
+2021-10-11 19:29:38.305 INFO Target: attiny1607
+2021-10-11 19:29:38.305 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 19:29:38.306 INFO Action: write
+2021-10-11 19:29:38.314 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-57431938940A86EFDE130007D33B4A0A/clock_firmware_production.ino.hex
+2021-10-11 19:29:40.857 INFO Pinging device...
+2021-10-11 19:29:42.097 INFO Ping response: 1E9423
+2021-10-11 19:29:42.109 INFO Setting fuse 0x2=0x2
+2021-10-11 19:29:42.118 INFO Writing literal values...
+2021-10-11 19:29:42.255 INFO Verifying literal values...
+2021-10-11 19:29:42.286 INFO Action took 0.19s
+2021-10-11 19:29:42.293 INFO Setting fuse 0x6=0x0
+2021-10-11 19:29:42.294 INFO Writing literal values...
+2021-10-11 19:29:42.443 INFO Verifying literal values...
+2021-10-11 19:29:42.480 INFO Action took 0.19s
+2021-10-11 19:29:42.480 INFO Setting fuse 0x8=0x0
+2021-10-11 19:29:42.480 INFO Writing literal values...
+2021-10-11 19:29:42.645 INFO Verifying literal values...
+2021-10-11 19:29:42.667 INFO Action took 0.19s
+2021-10-11 19:29:42.667 INFO Finished writing fuses.
+2021-10-11 19:29:42.667 INFO Chip/Bulk erase,
+2021-10-11 19:29:42.669 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 19:29:42.670 INFO Memory type flash is always erased
+2021-10-11 19:29:42.671 INFO Memory type lockbits is always erased
+2021-10-11 19:29:42.671 INFO ...
+2021-10-11 19:29:42.739 INFO Erased.
+2021-10-11 19:29:42.740 INFO Action took 0.06s
+2021-10-11 19:29:42.748 INFO Writing from hex file...
+2021-10-11 19:29:42.749 INFO Writing flash...
+2021-10-11 19:29:42.934 INFO [                                                  ]
+2021-10-11 19:29:43.002 INFO [=                                                 ] 2/63
+2021-10-11 19:29:43.073 INFO [==                                                ] 3/63
+2021-10-11 19:29:43.202 INFO [===                                               ] 4/63
+2021-10-11 19:29:43.269 INFO [====                                              ] 6/63
+2021-10-11 19:29:43.337 INFO [=====                                             ] 7/63
+2021-10-11 19:29:43.407 INFO [======                                            ] 8/63
+2021-10-11 19:29:43.542 INFO [=======                                           ] 9/63
+2021-10-11 19:29:43.611 INFO [========                                          ] 11/63
+2021-10-11 19:29:43.676 INFO [=========                                         ] 12/63
+2021-10-11 19:29:43.744 INFO [==========                                        ] 13/63
+2021-10-11 19:29:43.881 INFO [===========                                       ] 14/63
+2021-10-11 19:29:43.950 INFO [============                                      ] 16/63
+2021-10-11 19:29:44.017 INFO [=============                                     ] 17/63
+2021-10-11 19:29:44.086 INFO [==============                                    ] 18/63
+2021-10-11 19:29:44.218 INFO [===============                                   ] 19/63
+2021-10-11 19:29:44.289 INFO [================                                  ] 21/63
+2021-10-11 19:29:44.355 INFO [=================                                 ] 22/63
+2021-10-11 19:29:44.432 INFO [==================                                ] 23/63
+2021-10-11 19:29:44.561 INFO [===================                               ] 24/63
+2021-10-11 19:29:44.630 INFO [====================                              ] 26/63
+2021-10-11 19:29:44.698 INFO [=====================                             ] 27/63
+2021-10-11 19:29:44.762 INFO [======================                            ] 28/63
+2021-10-11 19:29:44.897 INFO [=======================                           ] 29/63
+2021-10-11 19:29:44.965 INFO [========================                          ] 31/63
+2021-10-11 19:29:45.035 INFO [=========================                         ] 32/63
+2021-10-11 19:29:45.171 INFO [==========================                        ] 33/63
+2021-10-11 19:29:45.237 INFO [===========================                       ] 35/63
+2021-10-11 19:29:45.302 INFO [============================                      ] 36/63
+2021-10-11 19:29:45.373 INFO [=============================                     ] 37/63
+2021-10-11 19:29:45.506 INFO [==============================                    ] 38/63
+2021-10-11 19:29:45.574 INFO [===============================                   ] 40/63
+2021-10-11 19:29:45.641 INFO [================================                  ] 41/63
+2021-10-11 19:29:45.711 INFO [=================================                 ] 42/63
+2021-10-11 19:29:45.846 INFO [==================================                ] 43/63
+2021-10-11 19:29:45.912 INFO [===================================               ] 45/63
+2021-10-11 19:29:45.980 INFO [====================================              ] 46/63
+2021-10-11 19:29:46.052 INFO [=====================================             ] 47/63
+2021-10-11 19:29:46.196 INFO [======================================            ] 48/63
+2021-10-11 19:29:46.258 INFO [=======================================           ] 50/63
+2021-10-11 19:29:46.322 INFO [========================================          ] 51/63
+2021-10-11 19:29:46.389 INFO [=========================================         ] 52/63
+2021-10-11 19:29:46.525 INFO [==========================================        ] 53/63
+2021-10-11 19:29:46.596 INFO [===========================================       ] 55/63
+2021-10-11 19:29:46.659 INFO [============================================      ] 56/63
+2021-10-11 19:29:46.729 INFO [=============================================     ] 57/63
+2021-10-11 19:29:46.865 INFO [==============================================    ] 58/63
+2021-10-11 19:29:46.932 INFO [===============================================   ] 60/63
+2021-10-11 19:29:47.023 INFO [================================================  ] 61/63
+2021-10-11 19:29:47.100 INFO [================================================= ] 62/63
+2021-10-11 19:29:47.103 INFO [==================================================] 63/63
+2021-10-11 19:29:47.104 INFO Action took 4.36s
+2021-10-11 19:29:47.105 INFO Verifying...
+2021-10-11 19:29:47.182 INFO [                                                  ]
+2021-10-11 19:29:47.248 INFO [======                                            ] 1/8
+2021-10-11 19:29:47.324 INFO [============                                      ] 2/8
+2021-10-11 19:29:47.387 INFO [==================                                ] 3/8
+2021-10-11 19:29:47.460 INFO [=========================                         ] 4/8
+2021-10-11 19:29:47.535 INFO [===============================                   ] 5/8
+2021-10-11 19:29:47.607 INFO [=====================================             ] 6/8
+2021-10-11 19:29:47.661 INFO [===========================================       ] 7/8
+2021-10-11 19:29:47.664 INFO [==================================================] 8/8
+2021-10-11 19:29:47.694 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 19:29:47.696 INFO Action took 0.60s
+2021-10-11 19:29:47.754 INFO 
+2021-10-11 19:29:47.767 INFO EXIT_CODE: 0
+2021-10-11 19:29:49.809 INFO Serial Port is now open
+2021-10-11 19:29:49.816 INFO 
+Will Start sending time data for RTC's time RESET
+2021-10-11 19:29:54.828 INFO Sending b'19:29:54:0:11:10:2021\n' to uC
+2021-10-11 19:29:55.846 INFO Sending b'19:29:55:0:11:10:2021\n' to uC
+2021-10-11 19:29:56.859 INFO Sending b'19:29:56:0:11:10:2021\n' to uC
+2021-10-11 19:29:57.874 INFO Sending b'19:29:57:0:11:10:2021\n' to uC
+2021-10-11 19:29:58.892 INFO Sending b'19:29:58:0:11:10:2021\n' to uC
+2021-10-11 19:29:59.909 INFO Sending b'19:29:59:0:11:10:2021\n' to uC
+2021-10-11 19:30:00.922 INFO Sending b'19:30:0:0:11:10:2021\n' to uC
+2021-10-11 19:30:01.932 INFO Sending b'19:30:1:0:11:10:2021\n' to uC
+2021-10-11 19:30:02.958 INFO Sending b'19:30:2:0:11:10:2021\n' to uC
+2021-10-11 19:30:03.974 INFO Sending b'19:30:3:0:11:10:2021\n' to uC
+2021-10-11 19:30:04.982 INFO Sending b'19:30:4:0:11:10:2021\n' to uC
+2021-10-11 19:30:05.993 INFO Sending b'19:30:5:0:11:10:2021\n' to uC
+2021-10-11 19:30:07.003 INFO Sending b'19:30:7:0:11:10:2021\n' to uC
+2021-10-11 19:30:08.018 INFO Sending b'19:30:8:0:11:10:2021\n' to uC
+2021-10-11 19:30:09.024 INFO Sending b'19:30:9:0:11:10:2021\n' to uC
+2021-10-11 19:30:10.040 INFO Sending b'19:30:10:0:11:10:2021\n' to uC
+2021-10-11 19:30:11.061 INFO Sending b'19:30:11:0:11:10:2021\n' to uC
+2021-10-11 19:30:12.077 INFO Sending b'19:30:12:0:11:10:2021\n' to uC
+2021-10-11 19:30:13.093 INFO Sending b'19:30:13:0:11:10:2021\n' to uC
+2021-10-11 19:30:14.098 INFO Sending b'19:30:14:0:11:10:2021\n' to uC
+2021-10-11 19:30:15.110 INFO Serial Port Closed
+2021-10-11 19:30:16.116 INFO TEST ENDED AT: 11/10/2021 19:30:16
+2021-10-11 19:30:32.922 WARNING Disabled debug serial port opening scope
+2021-10-11 19:30:37.606 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 19:31:00.576 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 19:31:13.913 INFO COMMAND: git up
+2021-10-11 19:31:13.977 INFO Fetching origin
+2021-10-11 19:31:20.144 INFO EXIT_CODE: 0
+2021-10-11 21:24:20.096 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 21:24:35.036 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 21:24:53.792 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 21:25:18.039 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 23:40:20.189 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 23:49:42.066 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 23:49:45.453 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-11 23:49:51.016 INFO Sketch uses 9622 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 23:49:51.038 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 23:49:51.222 INFO SerialUPDI
+2021-10-11 23:49:51.229 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 23:49:51.233 INFO Based on pymcuprog, with significant modifications
+2021-10-11 23:49:51.244 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 23:49:51.244 INFO Version 1.2.0 - June 2021
+2021-10-11 23:49:51.248 INFO Using serial port /dev/tty.usbserial-A10KHTR4 at 230400 baud.
+2021-10-11 23:49:51.252 INFO Target: attiny1607
+2021-10-11 23:49:51.262 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 23:49:51.278 INFO Action: write
+2021-10-11 23:49:51.307 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 23:49:52.511 INFO Pinging device...
+2021-10-11 23:49:53.754 INFO Ping response: 1E9423
+2021-10-11 23:49:53.754 INFO Setting fuse 0x2=0x2
+2021-10-11 23:49:53.766 INFO Writing literal values...
+2021-10-11 23:49:53.919 INFO Verifying literal values...
+2021-10-11 23:49:53.948 INFO Action took 0.19s
+2021-10-11 23:49:53.965 INFO Setting fuse 0x6=0x0
+2021-10-11 23:49:53.976 INFO Writing literal values...
+2021-10-11 23:49:54.122 INFO Verifying literal values...
+2021-10-11 23:49:54.144 INFO Action took 0.19s
+2021-10-11 23:49:54.151 INFO Setting fuse 0x8=0x0
+2021-10-11 23:49:54.151 INFO Writing literal values...
+2021-10-11 23:49:54.299 INFO Verifying literal values...
+2021-10-11 23:49:54.331 INFO Action took 0.19s
+2021-10-11 23:49:54.336 INFO Finished writing fuses.
+2021-10-11 23:49:54.340 INFO Chip/Bulk erase,
+2021-10-11 23:49:54.371 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 23:49:54.375 INFO Memory type flash is always erased
+2021-10-11 23:49:54.376 INFO Memory type lockbits is always erased
+2021-10-11 23:49:54.379 INFO ...
+2021-10-11 23:49:54.392 INFO Erased.
+2021-10-11 23:49:54.395 INFO Action took 0.06s
+2021-10-11 23:49:54.427 INFO Writing from hex file...
+2021-10-11 23:49:54.430 INFO Writing flash...
+2021-10-11 23:49:54.748 INFO [                                                  ]
+2021-10-11 23:49:54.941 INFO [=                                                 ] 4/151
+2021-10-11 23:49:55.144 INFO [==                                                ] 7/151
+2021-10-11 23:49:55.342 INFO [===                                               ] 10/151
+2021-10-11 23:49:55.548 INFO [====                                              ] 13/151
+2021-10-11 23:49:55.746 INFO [=====                                             ] 16/151
+2021-10-11 23:49:55.944 INFO [======                                            ] 19/151
+2021-10-11 23:49:56.147 INFO [=======                                           ] 22/151
+2021-10-11 23:49:56.349 INFO [========                                          ] 25/151
+2021-10-11 23:49:56.549 INFO [=========                                         ] 28/151
+2021-10-11 23:49:56.751 INFO [==========                                        ] 31/151
+2021-10-11 23:49:56.955 INFO [===========                                       ] 34/151
+2021-10-11 23:49:57.153 INFO [============                                      ] 37/151
+2021-10-11 23:49:57.355 INFO [=============                                     ] 40/151
+2021-10-11 23:49:57.559 INFO [==============                                    ] 43/151
+2021-10-11 23:49:57.753 INFO [===============                                   ] 46/151
+2021-10-11 23:49:57.960 INFO [================                                  ] 49/151
+2021-10-11 23:49:58.159 INFO [=================                                 ] 52/151
+2021-10-11 23:49:58.355 INFO [==================                                ] 55/151
+2021-10-11 23:49:58.561 INFO [===================                               ] 58/151
+2021-10-11 23:49:58.757 INFO [====================                              ] 61/151
+2021-10-11 23:49:58.959 INFO [=====================                             ] 64/151
+2021-10-11 23:49:59.159 INFO [======================                            ] 67/151
+2021-10-11 23:49:59.360 INFO [=======================                           ] 70/151
+2021-10-11 23:49:59.560 INFO [========================                          ] 73/151
+2021-10-11 23:49:59.759 INFO [=========================                         ] 76/151
+2021-10-11 23:49:59.963 INFO [==========================                        ] 79/151
+2021-10-11 23:50:00.169 INFO [===========================                       ] 82/151
+2021-10-11 23:50:00.362 INFO [============================                      ] 85/151
+2021-10-11 23:50:00.563 INFO [=============================                     ] 88/151
+2021-10-11 23:50:00.763 INFO [==============================                    ] 91/151
+2021-10-11 23:50:00.966 INFO [===============================                   ] 94/151
+2021-10-11 23:50:01.169 INFO [================================                  ] 97/151
+2021-10-11 23:50:01.370 INFO [=================================                 ] 100/151
+2021-10-11 23:50:01.578 INFO [==================================                ] 103/151
+2021-10-11 23:50:01.771 INFO [===================================               ] 106/151
+2021-10-11 23:50:01.969 INFO [====================================              ] 109/151
+2021-10-11 23:50:02.176 INFO [=====================================             ] 112/151
+2021-10-11 23:50:02.371 INFO [======================================            ] 115/151
+2021-10-11 23:50:02.572 INFO [=======================================           ] 118/151
+2021-10-11 23:50:02.773 INFO [========================================          ] 121/151
+2021-10-11 23:50:02.976 INFO [=========================================         ] 124/151
+2021-10-11 23:50:03.177 INFO [==========================================        ] 127/151
+2021-10-11 23:50:03.376 INFO [===========================================       ] 130/151
+2021-10-11 23:50:03.585 INFO [============================================      ] 133/151
+2021-10-11 23:50:03.785 INFO [=============================================     ] 136/151
+2021-10-11 23:50:03.977 INFO [==============================================    ] 139/151
+2021-10-11 23:50:04.183 INFO [===============================================   ] 142/151
+2021-10-11 23:50:04.380 INFO [================================================  ] 145/151
+2021-10-11 23:50:04.596 INFO [================================================= ] 148/151
+2021-10-11 23:50:04.600 INFO [==================================================] 151/151
+2021-10-11 23:50:04.604 INFO Action took 10.20s
+2021-10-11 23:50:04.608 INFO Verifying...
+2021-10-11 23:50:04.660 INFO [                                                  ]
+2021-10-11 23:50:04.721 INFO [==                                                ] 1/19
+2021-10-11 23:50:04.776 INFO [=====                                             ] 2/19
+2021-10-11 23:50:04.836 INFO [=======                                           ] 3/19
+2021-10-11 23:50:04.894 INFO [==========                                        ] 4/19
+2021-10-11 23:50:04.952 INFO [=============                                     ] 5/19
+2021-10-11 23:50:05.011 INFO [===============                                   ] 6/19
+2021-10-11 23:50:05.070 INFO [==================                                ] 7/19
+2021-10-11 23:50:05.121 INFO [=====================                             ] 8/19
+2021-10-11 23:50:05.181 INFO [=======================                           ] 9/19
+2021-10-11 23:50:05.242 INFO [==========================                        ] 10/19
+2021-10-11 23:50:05.295 INFO [============================                      ] 11/19
+2021-10-11 23:50:05.356 INFO [===============================                   ] 12/19
+2021-10-11 23:50:05.412 INFO [==================================                ] 13/19
+2021-10-11 23:50:05.473 INFO [====================================              ] 14/19
+2021-10-11 23:50:05.538 INFO [=======================================           ] 15/19
+2021-10-11 23:50:05.603 INFO [==========================================        ] 16/19
+2021-10-11 23:50:05.646 INFO [============================================      ] 17/19
+2021-10-11 23:50:05.696 INFO [===============================================   ] 18/19
+2021-10-11 23:50:05.708 INFO [==================================================] 19/19
+2021-10-11 23:50:05.717 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 23:50:05.738 INFO Action took 1.11s
+2021-10-11 23:50:05.753 INFO 
+2021-10-11 23:50:05.770 INFO EXIT_CODE: 0
+2021-10-11 23:50:07.805 INFO Serial Port is now open
+2021-10-11 23:50:08.809 INFO TEST STARTED AT: 11/10/2021 23:50:08
+2021-10-11 23:50:08.809 INFO Reading serial data
+2021-10-11 23:50:08.809 INFO Serial Read thread has started!
+2021-10-11 23:50:10.336 INFO PORT-A IO check finished!
+2021-10-11 23:50:10.389 INFO [/] In PORT A (PA1-PA7),
+2021-10-11 23:50:10.428 INFO All pins are working!
+2021-10-11 23:50:10.435 INFO 
+2021-10-11 23:50:11.137 INFO PORT-B IO check finished!
+2021-10-11 23:50:11.198 INFO [/] In PORT B (PB0-PB1 & PB4-PB7),
+2021-10-11 23:50:11.212 INFO All pins are working!
+2021-10-11 23:50:11.218 INFO 
+2021-10-11 23:50:11.664 INFO PORT-C IO check finished!
+2021-10-11 23:50:11.687 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 23:50:11.717 INFO All pins are working!
+2021-10-11 23:50:11.731 INFO 
+2021-10-11 23:50:11.737 INFO 
+2021-10-11 23:50:11.777 INFO ATTINY Digital IO Test finished!
+2021-10-11 23:50:11.780 INFO 
+2021-10-11 23:50:11.786 INFO 
+2021-10-11 23:50:11.845 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 23:50:11.874 INFO ----------------------------
+2021-10-11 23:50:13.673 INFO RTC_ADDR_FOUND:1
+2021-10-11 23:50:13.685 INFO 
+2021-10-11 23:50:13.715 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 23:50:13.743 INFO ------------------------
+2021-10-11 23:50:15.881 INFO 23:50:14
+2021-10-11 23:50:15.891 INFO 11/10/2035
+2021-10-11 23:50:15.913 INFO RTC_READABLE:1
+2021-10-11 23:50:15.915 INFO 
+2021-10-11 23:50:15.992 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 23:50:16.029 INFO -----------------------------
+2021-10-11 23:50:17.884 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 23:50:18.892 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 23:50:19.888 INFO SW_STATE: 1 [7 sec left]
+2021-10-11 23:50:20.878 INFO SW_STATE: 0 [6 sec left]
+2021-10-11 23:50:21.900 INFO SW_STATE: 1 [5 sec left]
+2021-10-11 23:50:22.899 INFO SW_STATE: 0 [4 sec left]
+2021-10-11 23:50:23.892 INFO SW_STATE: 0 [3 sec left]
+2021-10-11 23:50:24.882 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 23:50:25.902 INFO SW_STATE: 0 [1 sec left]
+2021-10-11 23:50:26.875 INFO SW_STATE: 0 [0 sec left]
+2021-10-11 23:50:26.883 INFO 
+2021-10-11 23:50:26.914 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 23:50:26.939 INFO -----------------------------
+2021-10-11 23:50:28.927 INFO Watch if you see the below pattern
+2021-10-11 23:50:28.946 INFO in the segments
+2021-10-11 23:50:28.963 INFO (Starting in 5 sec):
+2021-10-11 23:50:28.968 INFO 0, 1
+2021-10-11 23:50:28.973 INFO 2, 3
+2021-10-11 23:50:29.002 INFO delay(4000);
+2021-10-11 23:50:29.021 INFO 4, 5
+2021-10-11 23:50:29.035 INFO 6, 7
+2021-10-11 23:50:29.049 INFO delay(4000);
+2021-10-11 23:50:29.055 INFO 8, 9
+2021-10-11 23:50:29.072 INFO 0, 0
+2021-10-11 23:50:29.100 INFO delay(4000);
+2021-10-11 23:50:29.157 INFO Finally display will Turn OFF
+2021-10-11 23:50:45.870 INFO 
+2021-10-11 23:50:45.916 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 23:50:45.961 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 23:50:45.968 INFO Terminator received
+2021-10-11 23:51:33.106 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 23:51:35.231 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-11 23:51:39.917 INFO Sketch uses 9622 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 23:51:39.931 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 23:51:40.033 INFO SerialUPDI
+2021-10-11 23:51:40.042 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 23:51:40.045 INFO Based on pymcuprog, with significant modifications
+2021-10-11 23:51:40.056 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 23:51:40.069 INFO Version 1.2.0 - June 2021
+2021-10-11 23:51:40.084 INFO Using serial port /dev/tty.usbserial-A10KHTR4 at 230400 baud.
+2021-10-11 23:51:40.087 INFO Target: attiny1607
+2021-10-11 23:51:40.095 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 23:51:40.099 INFO Action: write
+2021-10-11 23:51:40.129 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 23:51:41.306 INFO Pinging device...
+2021-10-11 23:51:42.558 INFO Ping response: 1E9423
+2021-10-11 23:51:42.561 INFO Setting fuse 0x2=0x2
+2021-10-11 23:51:42.564 INFO Writing literal values...
+2021-10-11 23:51:42.717 INFO Verifying literal values...
+2021-10-11 23:51:42.751 INFO Action took 0.19s
+2021-10-11 23:51:42.766 INFO Setting fuse 0x6=0x0
+2021-10-11 23:51:42.773 INFO Writing literal values...
+2021-10-11 23:51:42.905 INFO Verifying literal values...
+2021-10-11 23:51:42.936 INFO Action took 0.19s
+2021-10-11 23:51:42.936 INFO Setting fuse 0x8=0x0
+2021-10-11 23:51:42.937 INFO Writing literal values...
+2021-10-11 23:51:43.109 INFO Verifying literal values...
+2021-10-11 23:51:43.134 INFO Action took 0.19s
+2021-10-11 23:51:43.138 INFO Finished writing fuses.
+2021-10-11 23:51:43.138 INFO Chip/Bulk erase,
+2021-10-11 23:51:43.151 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 23:51:43.166 INFO Memory type flash is always erased
+2021-10-11 23:51:43.173 INFO Memory type lockbits is always erased
+2021-10-11 23:51:43.176 INFO ...
+2021-10-11 23:51:43.191 INFO Erased.
+2021-10-11 23:51:43.191 INFO Action took 0.06s
+2021-10-11 23:51:43.213 INFO Writing from hex file...
+2021-10-11 23:51:43.218 INFO Writing flash...
+2021-10-11 23:51:43.522 INFO [                                                  ]
+2021-10-11 23:51:43.726 INFO [=                                                 ] 4/151
+2021-10-11 23:51:43.925 INFO [==                                                ] 7/151
+2021-10-11 23:51:44.129 INFO [===                                               ] 10/151
+2021-10-11 23:51:44.326 INFO [====                                              ] 13/151
+2021-10-11 23:51:44.529 INFO [=====                                             ] 16/151
+2021-10-11 23:51:44.727 INFO [======                                            ] 19/151
+2021-10-11 23:51:44.928 INFO [=======                                           ] 22/151
+2021-10-11 23:51:45.129 INFO [========                                          ] 25/151
+2021-10-11 23:51:45.332 INFO [=========                                         ] 28/151
+2021-10-11 23:51:45.529 INFO [==========                                        ] 31/151
+2021-10-11 23:51:45.730 INFO [===========                                       ] 34/151
+2021-10-11 23:51:45.938 INFO [============                                      ] 37/151
+2021-10-11 23:51:46.134 INFO [=============                                     ] 40/151
+2021-10-11 23:51:46.334 INFO [==============                                    ] 43/151
+2021-10-11 23:51:46.534 INFO [===============                                   ] 46/151
+2021-10-11 23:51:46.739 INFO [================                                  ] 49/151
+2021-10-11 23:51:46.935 INFO [=================                                 ] 52/151
+2021-10-11 23:51:47.136 INFO [==================                                ] 55/151
+2021-10-11 23:51:47.336 INFO [===================                               ] 58/151
+2021-10-11 23:51:47.536 INFO [====================                              ] 61/151
+2021-10-11 23:51:47.737 INFO [=====================                             ] 64/151
+2021-10-11 23:51:47.938 INFO [======================                            ] 67/151
+2021-10-11 23:51:48.144 INFO [=======================                           ] 70/151
+2021-10-11 23:51:48.350 INFO [========================                          ] 73/151
+2021-10-11 23:51:48.545 INFO [=========================                         ] 76/151
+2021-10-11 23:51:48.750 INFO [==========================                        ] 79/151
+2021-10-11 23:51:48.947 INFO [===========================                       ] 82/151
+2021-10-11 23:51:49.147 INFO [============================                      ] 85/151
+2021-10-11 23:51:49.346 INFO [=============================                     ] 88/151
+2021-10-11 23:51:49.545 INFO [==============================                    ] 91/151
+2021-10-11 23:51:49.748 INFO [===============================                   ] 94/151
+2021-10-11 23:51:49.947 INFO [================================                  ] 97/151
+2021-10-11 23:51:50.149 INFO [=================================                 ] 100/151
+2021-10-11 23:51:50.349 INFO [==================================                ] 103/151
+2021-10-11 23:51:50.553 INFO [===================================               ] 106/151
+2021-10-11 23:51:50.749 INFO [====================================              ] 109/151
+2021-10-11 23:51:50.950 INFO [=====================================             ] 112/151
+2021-10-11 23:51:51.154 INFO [======================================            ] 115/151
+2021-10-11 23:51:51.352 INFO [=======================================           ] 118/151
+2021-10-11 23:51:51.556 INFO [========================================          ] 121/151
+2021-10-11 23:51:51.755 INFO [=========================================         ] 124/151
+2021-10-11 23:51:51.954 INFO [==========================================        ] 127/151
+2021-10-11 23:51:52.156 INFO [===========================================       ] 130/151
+2021-10-11 23:51:52.356 INFO [============================================      ] 133/151
+2021-10-11 23:51:52.561 INFO [=============================================     ] 136/151
+2021-10-11 23:51:52.760 INFO [==============================================    ] 139/151
+2021-10-11 23:51:52.963 INFO [===============================================   ] 142/151
+2021-10-11 23:51:53.159 INFO [================================================  ] 145/151
+2021-10-11 23:51:53.379 INFO [================================================= ] 148/151
+2021-10-11 23:51:53.384 INFO [==================================================] 151/151
+2021-10-11 23:51:53.395 INFO Action took 10.18s
+2021-10-11 23:51:53.399 INFO Verifying...
+2021-10-11 23:51:53.443 INFO [                                                  ]
+2021-10-11 23:51:53.501 INFO [==                                                ] 1/19
+2021-10-11 23:51:53.564 INFO [=====                                             ] 2/19
+2021-10-11 23:51:53.618 INFO [=======                                           ] 3/19
+2021-10-11 23:51:53.670 INFO [==========                                        ] 4/19
+2021-10-11 23:51:53.731 INFO [=============                                     ] 5/19
+2021-10-11 23:51:53.787 INFO [===============                                   ] 6/19
+2021-10-11 23:51:53.847 INFO [==================                                ] 7/19
+2021-10-11 23:51:53.904 INFO [=====================                             ] 8/19
+2021-10-11 23:51:53.964 INFO [=======================                           ] 9/19
+2021-10-11 23:51:54.020 INFO [==========================                        ] 10/19
+2021-10-11 23:51:54.076 INFO [============================                      ] 11/19
+2021-10-11 23:51:54.133 INFO [===============================                   ] 12/19
+2021-10-11 23:51:54.191 INFO [==================================                ] 13/19
+2021-10-11 23:51:54.250 INFO [====================================              ] 14/19
+2021-10-11 23:51:54.308 INFO [=======================================           ] 15/19
+2021-10-11 23:51:54.366 INFO [==========================================        ] 16/19
+2021-10-11 23:51:54.427 INFO [============================================      ] 17/19
+2021-10-11 23:51:54.473 INFO [===============================================   ] 18/19
+2021-10-11 23:51:54.474 INFO [==================================================] 19/19
+2021-10-11 23:51:54.487 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 23:51:54.494 INFO Action took 1.10s
+2021-10-11 23:51:54.530 INFO 
+2021-10-11 23:51:54.542 INFO EXIT_CODE: 0
+2021-10-11 23:51:56.567 INFO Serial Port is now open
+2021-10-11 23:51:57.572 INFO TEST STARTED AT: 11/10/2021 23:51:57
+2021-10-11 23:51:57.572 INFO Reading serial data
+2021-10-11 23:51:57.578 INFO Serial Read thread has started!
+2021-10-11 23:51:59.167 INFO PORT-A IO check finished!
+2021-10-11 23:51:59.214 INFO [/] In PORT A (PA1-PA7),
+2021-10-11 23:51:59.259 INFO All pins are working!
+2021-10-11 23:51:59.262 INFO 
+2021-10-11 23:51:59.939 INFO PORT-B IO check finished!
+2021-10-11 23:52:00.036 INFO [/] In PORT B (PB0-PB1 & PB4-PB7),
+2021-10-11 23:52:00.070 INFO All pins are working!
+2021-10-11 23:52:00.079 INFO 
+2021-10-11 23:52:00.459 INFO PORT-C IO check finished!
+2021-10-11 23:52:00.489 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 23:52:00.525 INFO All pins are working!
+2021-10-11 23:52:00.531 INFO 
+2021-10-11 23:52:00.539 INFO 
+2021-10-11 23:52:00.592 INFO ATTINY Digital IO Test finished!
+2021-10-11 23:52:00.602 INFO 
+2021-10-11 23:52:00.608 INFO 
+2021-10-11 23:52:00.638 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 23:52:00.668 INFO ----------------------------
+2021-10-11 23:52:02.448 INFO RTC_ADDR_FOUND:1
+2021-10-11 23:52:02.456 INFO 
+2021-10-11 23:52:02.491 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 23:52:02.521 INFO ------------------------
+2021-10-11 23:52:04.648 INFO 23:52:03
+2021-10-11 23:52:04.675 INFO 11/10/2035
+2021-10-11 23:52:04.692 INFO RTC_READABLE:1
+2021-10-11 23:52:04.702 INFO 
+2021-10-11 23:52:04.764 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 23:52:04.798 INFO -----------------------------
+2021-10-11 23:52:06.694 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 23:52:07.684 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 23:52:08.685 INFO SW_STATE: 0 [7 sec left]
+2021-10-11 23:52:09.692 INFO SW_STATE: 1 [6 sec left]
+2021-10-11 23:52:10.689 INFO SW_STATE: 0 [5 sec left]
+2021-10-11 23:52:11.685 INFO SW_STATE: 1 [4 sec left]
+2021-10-11 23:52:12.711 INFO SW_STATE: 0 [3 sec left]
+2021-10-11 23:52:13.693 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 23:52:14.695 INFO SW_STATE: 0 [1 sec left]
+2021-10-11 23:52:15.712 INFO SW_STATE: 0 [0 sec left]
+2021-10-11 23:52:15.715 INFO 
+2021-10-11 23:52:15.752 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 23:52:15.777 INFO -----------------------------
+2021-10-11 23:52:17.729 INFO Watch if you see the below pattern
+2021-10-11 23:52:17.761 INFO in the segments
+2021-10-11 23:52:17.788 INFO (Starting in 5 sec):
+2021-10-11 23:52:17.794 INFO 0, 1
+2021-10-11 23:52:17.810 INFO 2, 3
+2021-10-11 23:52:17.835 INFO delay(4000);
+2021-10-11 23:52:17.841 INFO 4, 5
+2021-10-11 23:52:17.850 INFO 6, 7
+2021-10-11 23:52:17.863 INFO delay(4000);
+2021-10-11 23:52:17.883 INFO 8, 9
+2021-10-11 23:52:17.899 INFO 0, 0
+2021-10-11 23:52:17.938 INFO delay(4000);
+2021-10-11 23:52:17.976 INFO Finally display will Turn OFF
+2021-10-11 23:52:34.694 INFO 
+2021-10-11 23:52:34.736 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 23:52:34.784 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 23:52:34.791 INFO Terminator received
+2021-10-11 23:53:10.454 INFO Chosen Debug Serial port will be available for usage
+2021-10-11 23:53:12.251 INFO COMMAND: /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-11 23:53:16.713 INFO Sketch uses 9622 bytes (58%) of program storage space. Maximum is 16384 bytes.
+2021-10-11 23:53:16.722 INFO Global variables use 321 bytes (31%) of dynamic memory, leaving 703 bytes for local variables. Maximum is 1024 bytes.
+2021-10-11 23:53:16.804 INFO SerialUPDI
+2021-10-11 23:53:16.807 INFO UPDI programming for Arduino using a serial adapter
+2021-10-11 23:53:16.810 INFO Based on pymcuprog, with significant modifications
+2021-10-11 23:53:16.813 INFO By Quentin Bolsee and Spence Konde
+2021-10-11 23:53:16.829 INFO Version 1.2.0 - June 2021
+2021-10-11 23:53:16.841 INFO Using serial port /dev/tty.usbserial-A10KHTR4 at 230400 baud.
+2021-10-11 23:53:16.841 INFO Target: attiny1607
+2021-10-11 23:53:16.850 INFO Set fuses: ['2:0x02', '6:0x00', '8:0x00']
+2021-10-11 23:53:16.856 INFO Action: write
+2021-10-11 23:53:16.889 INFO File: /var/folders/yp/37w_03rx1qdbfsqckbyyk9t80000gn/T/arduino-sketch-5380282240B235EA65F31E83BC95B4D4/components_check.ino.hex
+2021-10-11 23:53:18.091 INFO Pinging device...
+2021-10-11 23:53:19.336 INFO Ping response: 1E9423
+2021-10-11 23:53:19.336 INFO Setting fuse 0x2=0x2
+2021-10-11 23:53:19.337 INFO Writing literal values...
+2021-10-11 23:53:19.499 INFO Verifying literal values...
+2021-10-11 23:53:19.532 INFO Action took 0.19s
+2021-10-11 23:53:19.535 INFO Setting fuse 0x6=0x0
+2021-10-11 23:53:19.539 INFO Writing literal values...
+2021-10-11 23:53:19.690 INFO Verifying literal values...
+2021-10-11 23:53:19.721 INFO Action took 0.19s
+2021-10-11 23:53:19.724 INFO Setting fuse 0x8=0x0
+2021-10-11 23:53:19.729 INFO Writing literal values...
+2021-10-11 23:53:19.878 INFO Verifying literal values...
+2021-10-11 23:53:19.906 INFO Action took 0.19s
+2021-10-11 23:53:19.912 INFO Finished writing fuses.
+2021-10-11 23:53:19.915 INFO Chip/Bulk erase,
+2021-10-11 23:53:19.923 INFO Memory type eeprom is conditionally erased (depending upon EESAVE fuse setting)
+2021-10-11 23:53:19.932 INFO Memory type flash is always erased
+2021-10-11 23:53:19.938 INFO Memory type lockbits is always erased
+2021-10-11 23:53:19.938 INFO ...
+2021-10-11 23:53:19.971 INFO Erased.
+2021-10-11 23:53:19.972 INFO Action took 0.06s
+2021-10-11 23:53:19.983 INFO Writing from hex file...
+2021-10-11 23:53:19.986 INFO Writing flash...
+2021-10-11 23:53:20.303 INFO [                                                  ]
+2021-10-11 23:53:20.502 INFO [=                                                 ] 4/151
+2021-10-11 23:53:20.707 INFO [==                                                ] 7/151
+2021-10-11 23:53:20.905 INFO [===                                               ] 10/151
+2021-10-11 23:53:21.106 INFO [====                                              ] 13/151
+2021-10-11 23:53:21.306 INFO [=====                                             ] 16/151
+2021-10-11 23:53:21.505 INFO [======                                            ] 19/151
+2021-10-11 23:53:21.707 INFO [=======                                           ] 22/151
+2021-10-11 23:53:21.908 INFO [========                                          ] 25/151
+2021-10-11 23:53:22.112 INFO [=========                                         ] 28/151
+2021-10-11 23:53:22.311 INFO [==========                                        ] 31/151
+2021-10-11 23:53:22.518 INFO [===========                                       ] 34/151
+2021-10-11 23:53:22.716 INFO [============                                      ] 37/151
+2021-10-11 23:53:22.915 INFO [=============                                     ] 40/151
+2021-10-11 23:53:23.114 INFO [==============                                    ] 43/151
+2021-10-11 23:53:23.316 INFO [===============                                   ] 46/151
+2021-10-11 23:53:23.514 INFO [================                                  ] 49/151
+2021-10-11 23:53:23.713 INFO [=================                                 ] 52/151
+2021-10-11 23:53:23.918 INFO [==================                                ] 55/151
+2021-10-11 23:53:24.120 INFO [===================                               ] 58/151
+2021-10-11 23:53:24.315 INFO [====================                              ] 61/151
+2021-10-11 23:53:24.520 INFO [=====================                             ] 64/151
+2021-10-11 23:53:24.721 INFO [======================                            ] 67/151
+2021-10-11 23:53:24.919 INFO [=======================                           ] 70/151
+2021-10-11 23:53:25.119 INFO [========================                          ] 73/151
+2021-10-11 23:53:25.324 INFO [=========================                         ] 76/151
+2021-10-11 23:53:25.522 INFO [==========================                        ] 79/151
+2021-10-11 23:53:25.725 INFO [===========================                       ] 82/151
+2021-10-11 23:53:25.927 INFO [============================                      ] 85/151
+2021-10-11 23:53:26.128 INFO [=============================                     ] 88/151
+2021-10-11 23:53:26.323 INFO [==============================                    ] 91/151
+2021-10-11 23:53:26.523 INFO [===============================                   ] 94/151
+2021-10-11 23:53:26.726 INFO [================================                  ] 97/151
+2021-10-11 23:53:26.926 INFO [=================================                 ] 100/151
+2021-10-11 23:53:27.127 INFO [==================================                ] 103/151
+2021-10-11 23:53:27.327 INFO [===================================               ] 106/151
+2021-10-11 23:53:27.527 INFO [====================================              ] 109/151
+2021-10-11 23:53:27.730 INFO [=====================================             ] 112/151
+2021-10-11 23:53:27.930 INFO [======================================            ] 115/151
+2021-10-11 23:53:28.132 INFO [=======================================           ] 118/151
+2021-10-11 23:53:28.335 INFO [========================================          ] 121/151
+2021-10-11 23:53:28.534 INFO [=========================================         ] 124/151
+2021-10-11 23:53:28.737 INFO [==========================================        ] 127/151
+2021-10-11 23:53:28.935 INFO [===========================================       ] 130/151
+2021-10-11 23:53:29.136 INFO [============================================      ] 133/151
+2021-10-11 23:53:29.340 INFO [=============================================     ] 136/151
+2021-10-11 23:53:29.536 INFO [==============================================    ] 139/151
+2021-10-11 23:53:29.739 INFO [===============================================   ] 142/151
+2021-10-11 23:53:29.947 INFO [================================================  ] 145/151
+2021-10-11 23:53:30.155 INFO [================================================= ] 148/151
+2021-10-11 23:53:30.166 INFO [==================================================] 151/151
+2021-10-11 23:53:30.177 INFO Action took 10.18s
+2021-10-11 23:53:30.181 INFO Verifying...
+2021-10-11 23:53:30.226 INFO [                                                  ]
+2021-10-11 23:53:30.280 INFO [==                                                ] 1/19
+2021-10-11 23:53:30.335 INFO [=====                                             ] 2/19
+2021-10-11 23:53:30.392 INFO [=======                                           ] 3/19
+2021-10-11 23:53:30.450 INFO [==========                                        ] 4/19
+2021-10-11 23:53:30.510 INFO [=============                                     ] 5/19
+2021-10-11 23:53:30.569 INFO [===============                                   ] 6/19
+2021-10-11 23:53:30.625 INFO [==================                                ] 7/19
+2021-10-11 23:53:30.680 INFO [=====================                             ] 8/19
+2021-10-11 23:53:30.739 INFO [=======================                           ] 9/19
+2021-10-11 23:53:30.800 INFO [==========================                        ] 10/19
+2021-10-11 23:53:30.857 INFO [============================                      ] 11/19
+2021-10-11 23:53:30.917 INFO [===============================                   ] 12/19
+2021-10-11 23:53:30.977 INFO [==================================                ] 13/19
+2021-10-11 23:53:31.034 INFO [====================================              ] 14/19
+2021-10-11 23:53:31.086 INFO [=======================================           ] 15/19
+2021-10-11 23:53:31.153 INFO [==========================================        ] 16/19
+2021-10-11 23:53:31.218 INFO [============================================      ] 17/19
+2021-10-11 23:53:31.254 INFO [===============================================   ] 18/19
+2021-10-11 23:53:31.271 INFO [==================================================] 19/19
+2021-10-11 23:53:31.292 INFO Verify successful. Data in flash matches data in specified hex-file
+2021-10-11 23:53:31.293 INFO Action took 1.11s
+2021-10-11 23:53:31.309 INFO 
+2021-10-11 23:53:31.321 INFO EXIT_CODE: 0
+2021-10-11 23:53:33.344 INFO Serial Port is now open
+2021-10-11 23:53:34.350 INFO TEST STARTED AT: 11/10/2021 23:53:34
+2021-10-11 23:53:34.356 INFO Reading serial data
+2021-10-11 23:53:34.362 INFO Serial Read thread has started!
+2021-10-11 23:53:35.969 INFO PORT-A IO check finished!
+2021-10-11 23:53:35.992 INFO [/] In PORT A (PA1-PA7),
+2021-10-11 23:53:36.013 INFO All pins are working!
+2021-10-11 23:53:36.016 INFO 
+2021-10-11 23:53:36.741 INFO PORT-B IO check finished!
+2021-10-11 23:53:36.790 INFO [/] In PORT B (PB0-PB1 & PB4-PB7),
+2021-10-11 23:53:36.811 INFO All pins are working!
+2021-10-11 23:53:36.825 INFO 
+2021-10-11 23:53:37.242 INFO PORT-C IO check finished!
+2021-10-11 23:53:37.290 INFO [/] In PORT C (PC0-PC5),
+2021-10-11 23:53:37.318 INFO All pins are working!
+2021-10-11 23:53:37.328 INFO 
+2021-10-11 23:53:37.334 INFO 
+2021-10-11 23:53:37.355 INFO ATTINY Digital IO Test finished!
+2021-10-11 23:53:37.358 INFO 
+2021-10-11 23:53:37.361 INFO 
+2021-10-11 23:53:37.375 INFO CHECKING RTC's AVAILABILITY:
+2021-10-11 23:53:37.416 INFO ----------------------------
+2021-10-11 23:53:39.220 INFO RTC_ADDR_FOUND:1
+2021-10-11 23:53:39.222 INFO 
+2021-10-11 23:53:39.259 INFO CHECKING RTC's R/W FUNC:
+2021-10-11 23:53:39.284 INFO ------------------------
+2021-10-11 23:53:41.451 INFO 23:53:40
+2021-10-11 23:53:41.487 INFO 11/10/2035
+2021-10-11 23:53:41.498 INFO RTC_READABLE:1
+2021-10-11 23:53:41.503 INFO 
+2021-10-11 23:53:41.543 INFO CHECKING BUTTON COND [Press]:
+2021-10-11 23:53:41.583 INFO -----------------------------
+2021-10-11 23:53:43.482 INFO SW_STATE: 0 [9 sec left]
+2021-10-11 23:53:44.502 INFO SW_STATE: 0 [8 sec left]
+2021-10-11 23:53:45.481 INFO SW_STATE: 0 [7 sec left]
+2021-10-11 23:53:46.494 INFO SW_STATE: 0 [6 sec left]
+2021-10-11 23:53:47.478 INFO SW_STATE: 1 [5 sec left]
+2021-10-11 23:53:48.460 INFO SW_STATE: 0 [4 sec left]
+2021-10-11 23:53:49.485 INFO SW_STATE: 1 [3 sec left]
+2021-10-11 23:53:50.483 INFO SW_STATE: 1 [2 sec left]
+2021-10-11 23:53:51.489 INFO SW_STATE: 1 [1 sec left]
+2021-10-11 23:53:52.510 INFO SW_STATE: 1 [0 sec left]
+2021-10-11 23:53:52.513 INFO 
+2021-10-11 23:53:52.557 INFO CHECKING DISPLAY's CONDITION:
+2021-10-11 23:53:52.600 INFO -----------------------------
+2021-10-11 23:53:54.526 INFO Watch if you see the below pattern
+2021-10-11 23:53:54.540 INFO in the segments
+2021-10-11 23:53:54.556 INFO (Starting in 5 sec):
+2021-10-11 23:53:54.570 INFO 0, 1
+2021-10-11 23:53:54.586 INFO 2, 3
+2021-10-11 23:53:54.597 INFO delay(4000);
+2021-10-11 23:53:54.606 INFO 4, 5
+2021-10-11 23:53:54.620 INFO 6, 7
+2021-10-11 23:53:54.638 INFO delay(4000);
+2021-10-11 23:53:54.656 INFO 8, 9
+2021-10-11 23:53:54.682 INFO 0, 0
+2021-10-11 23:53:54.710 INFO delay(4000);
+2021-10-11 23:53:54.732 INFO Finally display will Turn OFF
+2021-10-11 23:54:11.510 INFO 
+2021-10-11 23:54:11.552 INFO Report DISPLAY OKAY by pressing '1'
+2021-10-11 23:54:11.613 INFO Report DISPLAY NOT OKAY by pressing '0'
+2021-10-11 23:54:11.619 INFO Terminator received
+2021-10-11 23:54:19.809 INFO Serial Port Closed
+2021-10-11 23:54:20.815 INFO TEST ENDED AT: 11/10/2021 23:54:20

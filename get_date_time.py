@@ -23,4 +23,13 @@ def get_formatted_time():
 						  week_day + ":" + date + ":" + month + ":" + year + "\n"
 	return formatted_date_time
 
-# print(get_formatted_time().encode())
+def get_std_date_time():
+	''' To be used for logs and printing '''
+	now = datetime.now()
+	std_date_time = now.strftime("%d/%m/%Y %H:%M:%S")
+	std_date_time = std_date_time.strip()
+	return std_date_time
+
+
+# print(get_std_date_time())
+
