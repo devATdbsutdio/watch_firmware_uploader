@@ -1,4 +1,4 @@
-# #!/usr/bin/env python3
+#!/usr/bin/env python3
 
 
 # import sys
@@ -137,11 +137,3 @@
 
 # # Line feeds
 # printer.feed(6)
-
-from datetime import datetime
-
-print(datetime.today().weekday())
-
-
-
-
