@@ -33,7 +33,8 @@ settings = """
 
 script_path = os.path.realpath(__file__)
 script_dir = script_path[:script_path.rindex('/')+1]
-settings_file = script_dir + 'test_programmer_settings.yaml'
+settings_file = script_dir + 'programmer_settings.yaml'
+# settings_file = script_dir + 'test_programmer_settings.yaml'
 # settings_file = 'test_programmer_settings.yaml'
 print("\n\nLoading settings...")
 
