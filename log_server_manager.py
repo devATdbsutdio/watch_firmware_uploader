@@ -50,7 +50,6 @@ def start_server():
 
 
 
-
 # --- Get IP address of the machine --- #
 IFACES = ifaddr.get_adapters()
 
