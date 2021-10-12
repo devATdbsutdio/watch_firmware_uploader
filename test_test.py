@@ -144,16 +144,16 @@
 # path of the script
  
  
-import os
+# import os
  
-# Get the current working 
-# directory (CWD) 
-cwd = os.getcwd() 
-print("Current Directory:", cwd)
+# # Get the current working 
+# # directory (CWD) 
+# cwd = os.getcwd() 
+# print("Current Directory:", cwd)
  
-# Get the directory of
-# script
-script_path = os.path.realpath(__file__)
-print("Script Path:", script_path)
-script_dir = script_path[:script_path.rindex('/')+1]
-print("Script Dir:", script_dir)
+# # Get the directory of
+# # script
+# script_path = os.path.realpath(__file__)
+# print("Script Path:", script_path)
+# script_dir = script_path[:script_path.rindex('/')+1]
+# print("Script Dir:", script_dir)
