@@ -2,11 +2,53 @@
 find log web server details and use in UI
 '''
 
+
 import threading
 import time
+import os
 from subprocess import Popen, PIPE, STDOUT
 import ifaddr
 import global_vars as gv
+
+
+
+# --- Launch web log server --- #
+logfile_path = ""
+
+web_log_server_cmd = [
+		gv.frontail_path,
+		"--ui-hide-topbar",
+		"--theme", "dark",
+		# "--ui-highlight", #
+		# FRONTAIL_STYLE_FILE_PATH,
+		"--disable-usage-stats",
+		"-p",
+		gv.frontail_init_port,
+		logfile_path
+]
+
+def start_server():
+	'''For spawning frontail server web log server for logfile'''
+	from subprocess import Popen, PIPE, STDOUT
+	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
+	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
+	web_log_server_cmd[0] = gv.frontail_path
+
+	script_path = os.path.realpath(__file__)
+	script_dir = script_path[:script_path.rindex('/')+1]
+	logfile_path = script_dir + gv.logfile
+	web_log_server_cmd[7] = logfile_path
+
+	print(' '.join(web_log_server_cmd))
+
+	P2 = Popen(web_log_server_cmd, stdout=PIPE, stderr=STDOUT)
+	if P2.poll() is None:
+		print("'frontail' web logserver has started!")
+
+
+
+
+
 
 
 # --- Get IP address of the machine --- #
@@ -88,7 +130,7 @@ def watch_log_server():
 
 LOG_SERVER_WATCHER = threading.Thread(target=watch_log_server)
 
-def start_thread():
+def start_status_watchdog():
 	'''For starting the thread from main module'''
 	LOG_SERVER_WATCHER.start()
 

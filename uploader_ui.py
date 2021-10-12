@@ -9,10 +9,11 @@ import os
 import curses
 import sys
 import npyscreen
+import time
 # -- LOCAL MODULE IMPORTS -- #
 import global_vars as gv
 import keyboard as kbd
-import get_log_uri
+import log_server_manager
 import logger
 
 GREEN = '\033[0;32m'
@@ -23,11 +24,21 @@ RESET = '\033[0m'
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+
+# Start the web log uri getting thread
+log_server_manager.start_status_watchdog()
+# Start the web log server:
+print("weblog server status watch dog started! Starting weblog server thyself...")
+time.sleep(5)
+log_server_manager.start_server()
+time.sleep(5)
+
+
+
+
 # Start the keyboard watcher that will implement key press detection and event based business logic
 kbd.start_thread()
 
-# Start the web log uri getting thread
-get_log_uri.start_thread()
 
 # npyscreen.disableColor()
 # npyscreen.setTheme(npyscreen.Themes.ColorfulTheme)
