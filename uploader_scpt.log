@@ -6081,3 +6081,15 @@ Will Start sending time data for RTC's time RESET
 2021-10-12 01:16:14.763 INFO 
 2021-10-12 01:16:14.799 INFO CHECKING RTC's R/W FUNC:
 2021-10-12 01:16:14.845 INFO ------------------------
+2021-10-12 18:51:41.949 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:52:31.046 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:52:54.781 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:53:44.868 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:54:29.442 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:54:29.475 INFO 38
+2021-10-12 18:55:51.015 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:55:51.058 INFO 44
+2021-10-12 18:57:29.090 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 18:57:29.136 INFO 44
+2021-10-12 19:10:49.524 INFO Chosen Debug Serial port will be available for usage
+2021-10-12 19:10:49.567 INFO 44

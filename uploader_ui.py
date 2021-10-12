@@ -13,6 +13,7 @@ import npyscreen
 import global_vars as gv
 import keyboard as kbd
 import get_log_uri
+import logger
 
 GREEN = '\033[0;32m'
 YELLOW = '\033[0;33m'
@@ -58,6 +59,7 @@ class App(npyscreen.NPSApp):
         term_dims = curses.initscr().getmaxyx()
         height = int(term_dims[0])
         # width = int(term_dims[1])
+        logger.log_info(str(height))
 
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT", lines=height)
 

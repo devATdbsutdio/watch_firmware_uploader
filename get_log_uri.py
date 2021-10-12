@@ -24,7 +24,7 @@ def get_ip_addrs(_iface):
 
 
 
-# --- Get port used by log server "fontail" --- #
+# --- Get port used by log server "frontail" --- #
 CMD_SEARCH_CMD = "ps aux | grep frontail"
 
 def get_shell_res(_cmd):
@@ -42,7 +42,7 @@ def find_char_idx(_str, _chr):
 
 def get_log_server_port(_cmd):
 	''' intended to return the grep search reslt '''
-	fontail_port = 0 # we do not know yet
+	frontail_port = 0 # we do not know yet
 	shell_res = get_shell_res(_cmd)
 	char_idx_list = list(find_char_idx(shell_res, '-'))
 	# print(char_idx_list)

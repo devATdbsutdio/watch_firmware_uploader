@@ -10,6 +10,20 @@ logfile = 'uploader_scpt.log'
 log_server_uri = ""
 kill_web_log_watcher_thread = False
 
+# FRONTAIL_PATH = ""
+# FRONTAIL_STYLE_FILE_PATH = ""
+# web_log_server_cmd = [
+# 		FRONTAIL_PATH,
+# 		"--ui-hide-topbar",
+# 		"--theme", "dark",
+# 		"--ui-highlight", #
+# 		FRONTTAIL_STYLE_FILE_PATH,
+# 		"--disable-usage-stats",
+# 		"-p",
+# 		"",
+
+# ]
+
 exit_code = 0
 
 
