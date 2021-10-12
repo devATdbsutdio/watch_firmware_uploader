@@ -143,7 +143,7 @@ printer_port = '/dev/tty.usbserial-AI05HDSG'
 -- pull cmd
 -- upload cmd
 '''
-git_pull_cmd = ["git", "up"]
+git_pull_cmd = ["cd", prod_firmware_path, "&&", "git", "up", "&&", "cd", "$HOME"]
 
 
 
