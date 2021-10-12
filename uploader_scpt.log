@@ -6192,3 +6192,33 @@ Will Start sending time data for RTC's time RESET
 2021-10-13 01:43:23.183 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
 2021-10-13 01:43:25.554 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
 2021-10-13 01:43:27.457 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 02:54:48.283 WARNING Disabled debug serial port opening scope
+2021-10-13 02:54:48.292 INFO 72
+2021-10-13 02:54:59.413 INFO cd
+2021-10-13 02:54:59.416 INFO /home/pi/Arduino/sketchbook/clock_firmware_production
+2021-10-13 02:54:59.416 INFO &&
+2021-10-13 02:54:59.420 INFO git
+2021-10-13 02:54:59.420 INFO up
+2021-10-13 02:54:59.422 INFO &&
+2021-10-13 02:54:59.424 INFO cd
+2021-10-13 02:54:59.429 INFO ~
+2021-10-13 02:55:36.536 WARNING Disabled debug serial port opening scope
+2021-10-13 02:55:36.545 INFO 72
+2021-10-13 02:55:38.190 INFO cd
+2021-10-13 02:55:38.193 INFO /home/pi/Arduino/sketchbook/clock_firmware_production
+2021-10-13 02:55:38.196 INFO &&
+2021-10-13 02:55:38.201 INFO git
+2021-10-13 02:55:38.201 INFO up
+2021-10-13 02:55:38.207 INFO &&
+2021-10-13 02:55:38.210 INFO cd
+2021-10-13 02:55:38.210 INFO ~
+2021-10-13 02:56:10.862 WARNING Disabled debug serial port opening scope
+2021-10-13 02:56:10.870 INFO 72
+2021-10-13 02:56:12.081 INFO cd
+2021-10-13 02:56:12.084 INFO /home/pi/Arduino/sketchbook/clock_firmware_production
+2021-10-13 02:56:12.084 INFO &&
+2021-10-13 02:56:12.087 INFO git
+2021-10-13 02:56:12.087 INFO up
+2021-10-13 02:56:12.089 INFO &&
+2021-10-13 02:56:12.091 INFO cd
+2021-10-13 02:56:12.094 INFO ~
