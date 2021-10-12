@@ -6,6 +6,7 @@ find log web server details and use in UI
 import threading
 import time
 import os
+import sys
 from subprocess import Popen, PIPE, STDOUT
 import ifaddr
 import global_vars as gv
@@ -107,7 +108,12 @@ def get_log_server_port(_cmd):
 def watch_log_server():
 	'''Thread to update uri variables'''
 	#  only once on launch ...
-	self_ip_addr = get_ip_addrs('en0')[0] # if multiple? [TBD]
+	
+	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+		self_ip_addr = get_ip_addrs('wlan0')[0] # if multiple? [TBD]
+	
+	if sys.platform.startswith('darwin'):
+		self_ip_addr = get_ip_addrs('en0')[0] # if multiple? [TBD]
 
 	while True:
 		if gv.kill_web_log_watcher_thread:
