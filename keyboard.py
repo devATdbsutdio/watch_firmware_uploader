@@ -128,7 +128,6 @@ def watch_kbd():
 						time.sleep(1)
 						# Add date time header in logs and printer outputs
 						logger.log_info(["","TEST STARTED AT: " + sys_clock.get_std_date_time()])
-						# TBD add to printer outputs
 						printer.print_text(gv.printer_port, ["", "TEST STARTED AT: " + sys_clock.get_std_date_time()])
 
 						# Read serial monitor and print in receipts

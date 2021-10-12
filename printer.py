@@ -56,9 +56,9 @@ def print_text(_filter_port, _data):
 
 		if have_paper:
 			if isinstance(_data, str):
-				# TBD: Assign the heading identifier from global_vars.py 
-				if _data.startswith('[H]'): # it is a heading
-					_data = _data.replace('[H]', '')
+				if _data.startswith(gv.heading_identifier): # it is a heading
+					# get rid of the heading identifier from teh serial string
+					_data = _data.replace(gv.heading_identifier, '')
 					printer.out(_data, bold=True, justify='L',left_margin=0, size='S')
 				elif _data.startswith('TEST'): # it is a header or a footer
 					printer.out(_data, bold=True, justify='L', left_margin=0, size='S', underline=1)
@@ -70,8 +70,8 @@ def print_text(_filter_port, _data):
 					printer.out(_data, bold=False, justify='L',left_margin=0, size='S')
 			if isinstance(_data, list):
 				for _item in _data:
-					if _item.startswith('[H]'): # it is a heading
-						_item = _item.replace('[H]', '')
+					if _item.startswith(gv.heading_identifier): # it is a heading
+						_item = _item.replace(gv.heading_identifier, '')
 						printer.out(_item, bold=True, justify='L', left_margin=0, size='S')
 					elif _item.startswith('TEST'): # it is a header or a footer
 						printer.out(_item, bold=True, justify='L', left_margin=0, size='S', underline=1)
