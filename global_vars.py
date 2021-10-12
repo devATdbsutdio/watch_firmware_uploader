@@ -1,19 +1,21 @@
 '''All the variables goes here which will be exchanged between modules'''
 
 import time
+import os
 import sys
 import yaml as yp
 
 
 
 
-logfile = 'uploader_scpt.log' # [get bsolute pathfrom the log_server_manager]
-log_server_uri = "" # [TBD absolute path]
+logfile_name = 'uploader_scpt.log' # Get absolute path from the log_server_manager
+logfile_path = ""
+log_server_uri = "" 
 kill_web_log_watcher_thread = False
 
-frontail_path = "frontail" # [get bsolute pathfrom the log_server_manager]
+frontail_path = "frontail" # Get absolute path from the log_server_manager
 frontail_init_port = "3060"
-# FRONTAIL_STYLE_FILE_PATH = "" # [TBD absolute path]
+# FRONTAIL_STYLE_FILE_PATH = "" # [TBD] absolute path
 
 
 
@@ -29,34 +31,34 @@ settings = """
 - 'EMPTY'
 """
 
-settings_file = 'test_programmer_settings.yaml'
-print("Loading settings...")
-time.sleep(2)
+script_path = os.path.realpath(__file__)
+script_dir = script_path[:script_path.rindex('/')+1]
+settings_file = script_dir + 'test_programmer_settings.yaml'
+# settings_file = 'test_programmer_settings.yaml'
+print("\n\nLoading settings...")
 
 try:
 	with open(settings_file, 'r') as setting_f:
-		programmer_settings = yp.safe_load(setting_f)
-	settings = programmer_settings
+		settings = yp.safe_load(setting_f)
 	print('Successfully loaded the ' + settings_file)
 	print('\n')
-	print(yp.dump(programmer_settings))
+	print(yp.dump(settings))
 	print('\n')
-	time.sleep(2)
+	time.sleep(1)
 except OSError as err:
 	print(err)
 	print('\n\n')
-	print('Quitting in 2 sec...')
-	time.sleep(2)
+	print('Quitting in 1 sec...')
+	time.sleep(1)
 	sys.exit(1)
 except IOError as err:
 	print(err)
 	print('\n\n')
 	print('Make sure you have the ' + settings_file + ' in the same directory.')
 	time.sleep(1)
-	print('I couldn\'t find it')
+	print('Couldn\'t find it')
+	print('Quitting in 1 sec...')
 	time.sleep(1)
-	print('Quitting in 2 sec...')
-	time.sleep(2)
 	sys.exit(1)
 
 

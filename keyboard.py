@@ -139,10 +139,9 @@ def watch_kbd():
 						gv.output_msg_buff = ["", "Printing Test result now!"]
 						printer.print_text(gv.printer_port, gv.test_log_dict)
 					else:
-						#- log file
+						#- UI variable & Log file
 						logger.log_error(["", "Debug Serial Port could not be opened",
 							                 "So not starting Serial Read!"])
-						#- UI
 						gv.output_msg_buff = ["", "Debug Serial Port could not be opened",
 						                      "So not starting Serial Read!"
 						                     ]
@@ -173,7 +172,7 @@ def watch_kbd():
 					logger.log_info(["", "Debug Serial Port Closed"])
 					gv.output_msg_buff = ["", "Debug Serial Port Closed"]
 					time.sleep(1)
-					# Add date time header in logs and printer outputs
+					# Add date time header in logs
 					logger.log_info("TEST ENDED AT: " + sys_clock.get_std_date_time())
 					time.sleep(1)
 					if gv.curr_firmware_num == 1:

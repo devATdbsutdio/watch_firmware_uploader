@@ -19,6 +19,7 @@ import global_vars as gv
 import logger
 
 
+
 # -- Serial object init
 SER = serial.Serial()
 SER.baudrate = 115200

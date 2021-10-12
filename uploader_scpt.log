@@ -6131,3 +6131,64 @@ Will Start sending time data for RTC's time RESET
 2021-10-12 20:20:27.285 INFO 44
 2021-10-12 20:38:01.996 INFO Chosen Debug Serial port will be available for usage
 2021-10-12 20:38:12.060 INFO 44
+2021-10-12 23:56:28.832 WARNING Disabled debug serial port opening scope
+2021-10-12 23:56:38.902 INFO 35
+2021-10-12 23:57:05.092 WARNING Disabled debug serial port opening scope
+2021-10-12 23:57:15.140 INFO 42
+2021-10-13 00:16:47.018 WARNING Disabled debug serial port opening scope
+2021-10-13 00:17:55.286 WARNING Disabled debug serial port opening scope
+2021-10-13 00:18:05.343 INFO 42
+2021-10-13 00:19:28.727 WARNING Disabled debug serial port opening scope
+2021-10-13 00:28:06.958 WARNING Disabled debug serial port opening scope
+2021-10-13 00:28:11.025 INFO 42
+2021-10-13 00:28:22.330 WARNING Disabled debug serial port opening scope
+2021-10-13 00:28:30.090 WARNING Disabled debug serial port opening scope
+2021-10-13 00:28:34.137 INFO 42
+2021-10-13 00:28:42.035 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 00:28:43.737 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 00:31:17.574 WARNING Disabled debug serial port opening scope
+2021-10-13 00:31:17.586 INFO 42
+2021-10-13 00:32:05.613 WARNING Disabled debug serial port opening scope
+2021-10-13 00:32:05.621 INFO 42
+2021-10-13 00:32:07.217 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 00:33:45.062 WARNING Disabled debug serial port opening scope
+2021-10-13 00:33:45.071 INFO 42
+2021-10-13 00:35:20.476 WARNING Disabled debug serial port opening scope
+2021-10-13 00:35:20.487 INFO 42
+2021-10-13 00:42:04.294 WARNING Disabled debug serial port opening scope
+2021-10-13 00:42:04.305 INFO 42
+2021-10-13 00:42:42.428 WARNING Disabled debug serial port opening scope
+2021-10-13 00:42:42.435 INFO 42
+2021-10-13 00:43:03.935 WARNING Disabled debug serial port opening scope
+2021-10-13 00:43:03.945 INFO 42
+2021-10-13 00:43:29.136 WARNING Disabled debug serial port opening scope
+2021-10-13 00:43:29.146 INFO 42
+2021-10-13 00:43:44.444 WARNING Disabled debug serial port opening scope
+2021-10-13 00:43:44.453 INFO 42
+2021-10-13 00:44:18.337 INFO Log server started
+2021-10-13 00:44:18.354 WARNING Disabled debug serial port opening scope
+2021-10-13 00:44:18.362 INFO 42
+2021-10-13 00:44:45.144 INFO Log server started
+2021-10-13 00:44:45.158 WARNING Disabled debug serial port opening scope
+2021-10-13 00:44:45.170 INFO 42
+2021-10-13 00:44:56.510 INFO Log server started
+2021-10-13 00:44:56.517 WARNING Disabled debug serial port opening scope
+2021-10-13 00:44:56.527 INFO 42
+2021-10-13 00:45:16.866 INFO Log server started
+2021-10-13 00:45:16.874 WARNING Disabled debug serial port opening scope
+2021-10-13 00:45:16.883 INFO 42
+2021-10-13 00:54:09.236 WARNING Disabled debug serial port opening scope
+2021-10-13 00:54:09.246 INFO 42
+2021-10-13 00:54:22.659 WARNING Disabled debug serial port opening scope
+2021-10-13 00:54:22.668 INFO 42
+2021-10-13 01:36:52.710 WARNING Disabled debug serial port opening scope
+2021-10-13 01:36:56.781 INFO 42
+2021-10-13 01:41:46.192 WARNING Disabled debug serial port opening scope
+2021-10-13 01:41:46.201 INFO 42
+2021-10-13 01:42:45.977 WARNING Disabled debug serial port opening scope
+2021-10-13 01:42:45.987 INFO 42
+2021-10-13 01:42:47.305 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 01:42:49.403 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 01:43:23.183 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 01:43:25.554 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi
+2021-10-13 01:43:27.457 INFO /usr/local/bin/arduino-cli compile -b megaTinyCore:megaavr:atxy7:chip=1607,clock=5internal,bodvoltage=1v8,bodmode=disabled,eesave=enable,millis=enabled,resetpin=UPDI,startuptime=0,uartvoltage=skip /Users/saurabhdatta/PersonalProjects/clock/Arduino/clock_firmware_production/Tests/components_check -u -p /dev/tty.usbserial-A10KHTR4 -P serialupdi

@@ -12,9 +12,20 @@ import npyscreen
 import time
 # -- LOCAL MODULE IMPORTS -- #
 import global_vars as gv
-import keyboard as kbd
 import log_server_manager
+
+# Start the web log uri getting thread
+log_server_manager.start_status_watchdog()
+# Start the web log server:
+print("weblog server status watch dog started! Starting weblog server thyself...")
+time.sleep(2)
+log_server_manager.start_server()
+time.sleep(2)
+
 import logger
+import keyboard as kbd
+
+
 
 GREEN = '\033[0;32m'
 YELLOW = '\033[0;33m'
@@ -24,14 +35,6 @@ RESET = '\033[0m'
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Start the web log uri getting thread
-log_server_manager.start_status_watchdog()
-# Start the web log server:
-print("weblog server status watch dog started! Starting weblog server thyself...")
-time.sleep(5)
-log_server_manager.start_server()
-time.sleep(5)
 
 
 
@@ -140,7 +143,7 @@ class App(npyscreen.NPSApp):
                 "UPDI:    " + gv.updi_port,
                 "DEBUG: " + gv.ui_highlight_ser_port_0 + gv.serial_debug_ports[0],
                 "       " + gv.ui_highlight_ser_port_1 + gv.serial_debug_ports[1],
-                "PRINTER: " + "--",
+                "PRINTER: " + gv.printer_port,
                 " ",
                 " ",
                 "* Press \"S\" Key to enable or",
@@ -157,8 +160,6 @@ class App(npyscreen.NPSApp):
             setting_and_info_panel.values = [
                 "FIRMWARE: " + gv.curr_firmware_name,
                 "CHIP: " + gv.target_name,
-                # "UPLOADS: " + "refer ext file",
-                # "PULL: " + "refer ext file",
                 "DUBUG AT: " + gv.curr_serial_debug_port,
                 "DUBUG PORT: " + gv.debug_port_status,
                 "LOG: " + gv.log_server_uri

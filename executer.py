@@ -8,24 +8,11 @@ import global_vars as gv
 import logger
 
 
-# def execute(_cmd):
-#     output = [] # outputs are going to append to this list
-#     with Popen(_cmd, stdout=PIPE, stderr=STDOUT, bufsize=1, universal_newlines=True) as p:
-#         for out in p.stdout:
-#             output.append(out)
-#         try:
-#             for err in p.stderr:
-#               output.append(err)
-#         except Exception as e:
-#             output.append("OK!")
-#             pass
-#     return output
-
-
 def execute(_cmd, _timeout):
     '''execute cmd, read chars of returned res and err'''
     cmd_string = ' '.join(_cmd)
     logger.log_info("COMMAND: "+cmd_string)
+    # log_info("COMMAND: "+cmd_string)
 
     process = Popen(_cmd, stdout=PIPE, stderr=STDOUT)
     end_time = time.time() + _timeout
@@ -34,7 +21,7 @@ def execute(_cmd, _timeout):
     while process.poll() is None:
         # - Timeout
         if time.time() > end_time:
-            # exitcode = 1
+            exit_code = 1
             gv.output_msg_buff.insert(0, "Process timed out...")
             logger.log_error("Process timed out...")
             process.kill()
@@ -52,34 +39,28 @@ def execute(_cmd, _timeout):
             if p_output_chars:
                 # Output in UI widget window and Log [spl. method]
                 if p_output_chars == '\n' or p_output_chars == '\r':
-                    #- UI
+                    #- UI variable & Log
                     gv.output_msg_buff = [new_line.strip()]
-                    #- log
                     logger.log_info(new_line.strip())
                     new_line = ""
                 else:
                     new_line += p_output_chars
         except Exception as err:
             logger.log_exception(err)
-            # pass
 
         p_error = ""
         try:
             p_error = process.stderr.readline().decode('utf-8')
             if p_error:
-                #- UI
-                # output in UI windget window
+                #- UI and Log file
                 gv.output_msg_buff = [p_error.strip()]
-                #- Log
                 logger.log_error(p_error.strip())
         except Exception as err:
             logger.log_exception(err)
-            # pass
 
     gv.exit_code = process.poll()
-    #- UI - Output in UI windget window
+    #- UI & Log 
     gv.output_msg_buff.insert(0, "EXIT_CODE: " + str(gv.exit_code))
-    #- Log
     logger.log_info("EXIT_CODE: " + str(gv.exit_code))
 
 

@@ -4,7 +4,7 @@ Thermal printer manager for thermal printer logs
 
 import glob
 import sys
-import logger
+from logger import log_warning
 import global_vars as gv
 from thermalprinter import ThermalPrinter
 
@@ -49,34 +49,32 @@ def print_text(_filter_port, _data):
 
 		if have_paper:
 			if isinstance(_data, str):
-				if _data.startswith(gv.heading_identifier): # it is a heading
+				if _data.startswith(gv.heading_identifier): 
+					# it is a heading
 					# get rid of the heading identifier from teh serial string
 					_data = _data.replace(gv.heading_identifier, '')
 					printer.out(_data, bold=True, justify='L', left_margin=0, size='S')
 				elif _data.startswith('TEST'): # it is a header or a footer
 					printer.out(_data, bold=True, justify='L', left_margin=0, size='S', underline=1)
-					# printer.out(_item, underline=1)
 				else:
 					printer.out(_data, bold=False, justify='L', left_margin=0, size='S')
 			if isinstance(_data, list):
 				for _item in _data:
-					if _item.startswith(gv.heading_identifier): # it is a heading
+					if _item.startswith(gv.heading_identifier): 
+						# it is a heading
 						_item = _item.replace(gv.heading_identifier, '')
 						printer.out(_item, bold=True, justify='L', left_margin=0, size='S')
 					elif _item.startswith('TEST'): # it is a header or a footer
 						printer.out(_item, bold=True, justify='L', left_margin=0, size='S', underline=1)
-						# printer.out(_item, underline=1)
 					else:
 						printer.out(_item, bold=False, justify='L', left_margin=0, size='S')
 			printer.feed(4)
 		else:
-			# print("No paper")
 			logger.log_warning(["", "You asked a Thermal printer to print the log.",
 								               "But there is no paper in the printer"
 						  	             ])
 			gv.output_msg_buff = ["", "Asked for physical log.", "But no paper in printer!"]
 	else:
-		# print("No printer")
 		logger.log_warning(["", "You asked a Thermal printer to print the log.",
 							               "But there is no Thermal printer on the port:",
 							               gv.printer_port

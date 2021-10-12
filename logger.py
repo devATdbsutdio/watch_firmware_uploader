@@ -5,7 +5,7 @@ Exposing easy logging levels through functions for other modules
 import logging
 import global_vars as gv
 
-logging.basicConfig(filename=gv.logfile,
+logging.basicConfig(filename=gv.logfile_path, #[TBD] logfile_path <- log_servewr_manager module
                     format='%(asctime)s.%(msecs)03d %(levelname)s %(message)s',
                     level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 

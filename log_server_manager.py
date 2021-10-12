@@ -11,10 +11,7 @@ import ifaddr
 import global_vars as gv
 
 
-
 # --- Launch web log server --- #
-
-
 SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 		  gv.frontail_path,
 		  "--ui-hide-topbar",
@@ -36,8 +33,8 @@ def start_server():
 
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
-	log_file_path = script_dir + gv.logfile
-	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = log_file_path
+	gv.logfile_path = script_dir + gv.logfile_name
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
@@ -46,9 +43,6 @@ def start_server():
 		print("'frontail' web logserver has started!")
 	else:
 		print("'frontail' web logserver have NOT been started!")
-
-
-
 
 
 
@@ -125,8 +119,6 @@ def watch_log_server():
 			gv.log_server_uri = "No Log Server running!"
 		else:
 			gv.log_server_uri = "http://" + self_ip_addr + ":" + log_server_port
-
-		# print(gv.log_server_uri)
 		time.sleep(1)
 
 
