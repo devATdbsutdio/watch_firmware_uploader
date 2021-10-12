@@ -160,7 +160,7 @@
 
 from subprocess import Popen, PIPE, STDOUT
 # process = Popen(["cd", "/home/pi/Arduino/sketchbook/clock_firmware_productio", "&&", "git", "up", "&&", "cd", "~"], stdout=PIPE, stderr=STDOUT)
-process = Popen(["git", "-C", "/home/pi/Arduino/sketchbook/clock_firmware_productio", "pull"], stdout=PIPE, stderr=STDOUT)
+process = Popen(["git", "-C", "/home/pi/Arduino/sketchbook/clock_firmware_production", "pull"], stdout=PIPE, stderr=STDOUT)
 new_line = ""
 while process.poll() is None:
     p_output_chars = ""
