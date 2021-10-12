@@ -13,37 +13,40 @@ import global_vars as gv
 
 
 # --- Launch web log server --- #
-logfile_path = ""
 
-web_log_server_cmd = [
-		gv.frontail_path,
-		"--ui-hide-topbar",
-		"--theme", "dark",
-		# "--ui-highlight", #
-		# FRONTAIL_STYLE_FILE_PATH,
-		"--disable-usage-stats",
-		"-p",
-		gv.frontail_init_port,
-		logfile_path
+
+SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
+		  gv.frontail_path,
+		  "--ui-hide-topbar",
+		  "--theme", "dark",
+		  # "--ui-highlight", #
+		  # FRONTAIL_STYLE_FILE_PATH,
+		  "--disable-usage-stats",
+		  "-p",
+		  gv.frontail_init_port,
+		  "<log_file_path>"
 ]
 
 def start_server():
 	'''For spawning frontail server web log server for logfile'''
-	from subprocess import Popen, PIPE, STDOUT
+
 	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
-	web_log_server_cmd[0] = gv.frontail_path
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
-	logfile_path = script_dir + gv.logfile
-	web_log_server_cmd[7] = logfile_path
+	log_file_path = script_dir + gv.logfile
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = log_file_path
 
-	print(' '.join(web_log_server_cmd))
+	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
-	P2 = Popen(web_log_server_cmd, stdout=PIPE, stderr=STDOUT)
-	if P2.poll() is None:
+	front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
+	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
+	else:
+		print("'frontail' web logserver have NOT been started!")
+
 
 
 
@@ -83,7 +86,7 @@ def find_char_idx(_str, _chr):
 
 def get_log_server_port(_cmd):
 	''' intended to return the grep search reslt '''
-	frontail_port = 0 # we do not know yet
+	frontail_port = "0" # we do not know yet
 	shell_res = get_shell_res(_cmd)
 	char_idx_list = list(find_char_idx(shell_res, '-'))
 	# print(char_idx_list)
@@ -100,10 +103,10 @@ def get_log_server_port(_cmd):
 			end_idx = start_idx+4
 
 	if start_idx != 0 and end_idx != 0:
-		fontail_port = shell_res[start_idx:end_idx]
+		frontail_port = shell_res[start_idx:end_idx]
 	else:
-		fontail_port = "0"
-	return fontail_port
+		frontail_port = "0"
+	return frontail_port
 
 
 # --- Main grabber functions--- #
