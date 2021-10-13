@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ---- color info ---- #
 BLUE='\033[0;34m'
@@ -39,6 +39,44 @@ lib_install_count=0
 firm_wares_cloned=false
 steps=0
 
+install_proj_requirements() {
+  clear
+  sleep 1
+  echo "Installing npyscreen, pyyaml ifaddr using pip3"
+  sleep 1
+  echo ""
+  pip3 install npyscreen
+  pip3 install pyyaml
+  pip3 install ifaddr
+  clear
+  sleep 1
+  echo "Installing pyserial, thermalprinter and PIL using pip3"
+  sleep 1
+  echo ""
+  pip3 install pyserial
+  python3 -m pip install --upgrade --user pyserial
+  python3 -m pip install --upgrade --user thermalprinter
+  python3 -m pip install --upgrade --user pytest
+  python3 -m pip install --upgrade Pillow
+  clear
+  sleep 1
+  echo "nodejs and frontail"
+  sleep 1
+  echo ""
+  sudo apt install nodejs -y
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  brc # source bashrc alias
+  nvm install node
+  nvm install —lts
+  clear
+  sleep 1
+  sudo npm i frontail -g
+  clear
+  sleep 1
+  echo "Done the rest of sys installations"
+  sleep 2
+}
+
 next_step() {
   echo ""
   read -r -p "$(echo -e "${YELLOW}" Press any key to continue: "${RESET}")" next
@@ -66,7 +104,6 @@ on_finish_setup() {
     sleep 1
     ;;
   esac
-
 }
 
 process_list() {
@@ -138,7 +175,8 @@ process_list() {
     # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
     case $input in
     [yY])
-      break
+      # Do rest fo the installation ...
+      install_proj_requirements() break
       ;;
     [nN])
       echo "QUITTING..."
