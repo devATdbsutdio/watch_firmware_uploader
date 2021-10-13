@@ -55,6 +55,8 @@ def watch_kbd():
 				gv.curr_firmware_num = 0
 				gv.curr_firmware_name = gv.test_firmware_name
 				gv.curr_firmware_path = gv.test_firmware_path
+
+
 				# Update the visual highlither variable for UI
 				gv.ui_highlight_test_firmware = "> "
 				gv.ui_highlight_prod_firmware = "  "
@@ -73,6 +75,8 @@ def watch_kbd():
 				gv.curr_firmware_num = 1
 				gv.curr_firmware_name = gv.prod_firmware_name
 				gv.curr_firmware_path = gv.prod_firmware_path
+
+				
 				# update the visual highlither variable for UI
 				gv.ui_highlight_test_firmware = "  "
 				gv.ui_highlight_prod_firmware = "> "

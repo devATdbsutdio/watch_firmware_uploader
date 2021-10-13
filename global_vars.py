@@ -3,6 +3,7 @@
 import time
 import os
 import sys
+from subprocess import Popen, PIPE, STDOUT
 import yaml as yp
 
 
@@ -77,6 +78,29 @@ test_firmware_name = test_firmware_path.rsplit('/', 1)[1]
 prod_firmware_path = settings['FIRMWARE']['SKETCHES'][0]
 prod_firmware_name = prod_firmware_path.rsplit('/', 1)[1]
 
+print("prod firmware loc: " + prod_firmware_path)
+print("test firmware loc: " + test_firmware_path)
+
+
+#-- For testing on mac, firmwares are at diff paths
+if sys.platform.startswith('darwin'):
+	process = Popen(["which", "arduino-cli"], stdout=PIPE, stderr=STDOUT)
+	ARDUINO_CLI = process.stdout.readline().decode('utf-8').strip('\n\r ')
+	
+	script_path = os.path.realpath(__file__)
+	script_dir = script_path[:script_path.rindex('/')]
+	mac_proj_dir = script_dir[:script_dir.rindex('/')]
+	mac_arduino_firmware_loc = mac_proj_dir + "/Arduino/clock_firmware_production"
+	prod_firmware_path = mac_arduino_firmware_loc
+	test_firmware_path = prod_firmware_path + '/Tests/components_check'
+
+	print("\nSince we are on mac, new firmware paths are:")
+	print("arduino-cli loc: " + ARDUINO_CLI)
+	print("prod firmware loc: " + prod_firmware_path)
+	print("test firmware loc: " + test_firmware_path)
+
+
+
 CORE = settings['MICROCONTROLLER']['TARGET']['CORE']
 CHIP = settings['MICROCONTROLLER']['FUSES']['CHIP']
 CLOCK = settings['MICROCONTROLLER']['FUSES']['CLOCK']
@@ -145,15 +169,6 @@ printer_port = '/dev/tty.usbserial-AI05HDSG'
 '''
 
 
-#-- For testing on mac, firmwareesare at diff paths
-if sys.platform.startswith('darwin'):
-	script_path = os.path.realpath(__file__)
-	script_dir = script_path[:script_path.rindex('/')]
-	mac_proj_dir = script_dir[:script_dir.rindex('/')]
-	mac_arduino_firmware_loc = mac_proj_dir + "/Arduino/clock_firmware_production/"
-	print("arduino firmware loc: " + mac_arduino_firmware_loc)
-	prod_firmware_path = mac_arduino_firmware_loc
-	curr_firmware_path = mac_arduino_firmware_loc
 
 
 
@@ -183,8 +198,9 @@ upload_cmd = [
 
 
 # print(upload_cmd)
-# print("\n")
-# print(' '.join(upload_cmd))
+print("\n")
+print(' '.join(upload_cmd))
+print("\n")
 # time.sleep(10)
 
 

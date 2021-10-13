@@ -4,7 +4,7 @@ Thermal printer manager for thermal printer logs
 
 import glob
 import sys
-from logger import log_warning
+import logger
 import global_vars as gv
 from thermalprinter import ThermalPrinter
 

@@ -20,7 +20,7 @@ MICROCONTROLLER:
         RESET_PIN: UPDI
         STARTUP_TIME: 0
         UARTV: skip
-        PROGRAMMER: pyupdi
+        PROGRAMMER: serialupdi
 
 FIRMWARE:
     SKETCHES:
