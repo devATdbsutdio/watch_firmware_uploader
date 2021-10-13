@@ -39,6 +39,10 @@ def start_server():
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
+	# TBD rm and touch the log file, git add git commit
+	os.system('rm ' + gv.logfile_path)
+	os.system('touch ' + gv.logfile_path)
+
 	front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
