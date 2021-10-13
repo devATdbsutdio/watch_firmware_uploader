@@ -92,7 +92,7 @@ def watch_kbd():
 			elif string == 'p':
 				#--- Pull latest firmware ---#
 				# action.execute(["cmd_arg", "cmd_arg", ...], <timeout_value_in_sec>)
-				logger.log_info(''.join(gv.git_pull_cmd))
+				logger.log_info(' '.join(gv.git_pull_cmd))
 				gv.output_msg_buff = ["", "pulling latest firmware", ''.join(gv.git_pull_cmd)]
 				action.execute(gv.git_pull_cmd, 120)
 			elif string == 'u':

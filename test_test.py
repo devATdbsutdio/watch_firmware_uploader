@@ -158,19 +158,19 @@
 # script_dir = script_path[:script_path.rindex('/')+1]
 # print("Script Dir:", script_dir)
 
-from subprocess import Popen, PIPE, STDOUT
-# process = Popen(["cd", "/home/pi/Arduino/sketchbook/clock_firmware_productio", "&&", "git", "up", "&&", "cd", "~"], stdout=PIPE, stderr=STDOUT)
-process = Popen(["git", "-C", "/home/pi/Arduino/sketchbook/clock_firmware_production", "pull"], stdout=PIPE, stderr=STDOUT)
-new_line = ""
-while process.poll() is None:
-    p_output_chars = ""
-    try:
-        p_output_chars = process.stdout.read(1).decode('utf-8')
-        if p_output_chars:
-            if p_output_chars == '\n' or p_output_chars == '\r':
-                print(new_line.strip())
-                new_line = ""
-            else:
-                new_line += p_output_chars
-    except Exception as err:
-        print(err)
+# from subprocess import Popen, PIPE, STDOUT
+# # process = Popen(["cd", "/home/pi/Arduino/sketchbook/clock_firmware_productio", "&&", "git", "up", "&&", "cd", "~"], stdout=PIPE, stderr=STDOUT)
+# process = Popen(["git", "-C", "/home/pi/Arduino/sketchbook/clock_firmware_production", "pull"], stdout=PIPE, stderr=STDOUT)
+# new_line = ""
+# while process.poll() is None:
+#     p_output_chars = ""
+#     try:
+#         p_output_chars = process.stdout.read(1).decode('utf-8')
+#         if p_output_chars:
+#             if p_output_chars == '\n' or p_output_chars == '\r':
+#                 print(new_line.strip())
+#                 new_line = ""
+#             else:
+#                 new_line += p_output_chars
+#     except Exception as err:
+#         print(err)
