@@ -143,6 +143,20 @@ printer_port = '/dev/tty.usbserial-AI05HDSG'
 -- pull cmd
 -- upload cmd
 '''
+
+
+#-- For testing on mac, firmwareesare at diff paths
+if sys.platform.startswith('darwin'):
+	script_path = os.path.realpath(__file__)
+	script_dir = script_path[:script_path.rindex('/')]
+	mac_proj_dir = script_dir[:script_dir.rindex('/')]
+	mac_arduino_firmware_loc = mac_proj_dir + "/Arduino/clock_firmware_production/"
+	print("arduino firmware loc: " + mac_arduino_firmware_loc)
+	prod_firmware_path = mac_arduino_firmware_loc
+	curr_firmware_path = mac_arduino_firmware_loc
+
+
+
 git_pull_cmd = ["git", "-C", prod_firmware_path, "pull"]
 
 
@@ -165,6 +179,8 @@ upload_cmd = [
 	   "-P",
 	   PROGRAMMER
 ]
+
+
 
 # print(upload_cmd)
 # print("\n")
