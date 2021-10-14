@@ -84,6 +84,8 @@ print("test firmware loc: " + test_firmware_path)
 
 #-- For testing on mac, firmwares are at diff paths
 if sys.platform.startswith('darwin'):
+	# Replace arduino cli path, hw firmware paths (are loacted in proj dir)
+
 	process = Popen(["which", "arduino-cli"], stdout=PIPE, stderr=STDOUT)
 	ARDUINO_CLI = process.stdout.readline().decode('utf-8').strip('\n\r ')
 	
