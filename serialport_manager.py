@@ -81,7 +81,15 @@ def get_ser_data_line():
 	gv.output_msg_buff = ["Serial Read thread has started!"]
 	while True:
 		time.sleep(.001)
-		incoming_line = SER.readline()
+		incoming_line = ""
+
+		# [TBD] check if serial is open vs exception on Hw line disconnect 
+		try:
+			incoming_line = SER.readline()
+		except SerialException as serr:
+			pass
+
+		
 		# while not '\\n'in str(incoming_line):
 		while '\\n' not in str(incoming_line):
 			time.sleep(.001)
