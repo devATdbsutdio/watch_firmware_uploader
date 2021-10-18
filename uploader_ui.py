@@ -117,7 +117,7 @@ class App(npyscreen.NPSApp):
             BufferPagerBox,
             name='PROCESS OUTPUT MONITOR',
             rely=output_pos_y,
-            height=18,
+            height=19,
             editable=False,
             color='WARNING'
         )
