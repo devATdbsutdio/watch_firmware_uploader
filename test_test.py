@@ -178,12 +178,12 @@
 
 import serial.tools.list_ports
 raw_ports = serial.tools.list_ports.comports()
-usable_ports = {for p in raw_ports if p.serial_number is not None}
-
+usable_ports = []
+for port_info in raw_ports:
+	if port_info.serial_number is not None:
+		usable_ports.append(port_info.device)
 for port in usable_ports:
-	print(port_info.device)
-	print(port_info.serial_number)
-	print("")
+	print(port)
 print("\n")
 
 # for port in serial.tools.list_ports.comports():
