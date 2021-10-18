@@ -175,7 +175,14 @@
 #     except Exception as err:
 #         print(err)
 
-import serial
 
-for p in serial.tools.list_ports.comports():
-	print(p)
+import serial.tools.list_ports
+ports = serial.tools.list_ports.comports()
+for port_info in ports:
+	print(port_info)
+	print(port_info.hwid)
+	print("")
+print("\n")
+
+# for port in serial.tools.list_ports.comports():
+#     print(port.hwid)
