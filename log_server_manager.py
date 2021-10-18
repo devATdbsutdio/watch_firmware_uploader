@@ -33,10 +33,10 @@ def start_server():
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
 	# TBD git add and git commit
-	subprocess.call(['/usr/bin/rm', gv.logfile_path]);
-	time.sleep(0.1)
-	subprocess.call(['/usr/bin/touch', gv.frontail_path]);
-	time.sleep(0.1)
+	# subprocess.call(['/usr/bin/rm', gv.logfile_path]);
+	# time.sleep(0.1)
+	# subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+	# time.sleep(0.1)
 	# os.system('/usr/bin/rm ' + gv.logfile_path)
 	# os.system('/usr/bin/touch ' + gv.logfile_path)
 	# print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
@@ -48,6 +48,8 @@ def start_server():
 	script_dir = script_path[:script_path.rindex('/')+1]
 	gv.logfile_path = script_dir + gv.logfile_name
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
+
+	print(gv.logfile_path)
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
