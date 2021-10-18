@@ -212,7 +212,7 @@ def watch_ser_ports():
 					gv.updi_port = port
 					logger.log_info("UPDI:\t" + gv.updi_port + "\t" + str(port_info.serial_number))
 				# if not none and not UPDI FTDI ID, must be debug chip port
-				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id:
+				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id and port_info.serial_number != gv.thermal_printer_serial_chip_id:
 					gv.curr_serial_debug_port = port
 					logger.log_info("SER:\t" + gv.curr_serial_debug_port + "\t" + str(port_info.serial_number))
 
