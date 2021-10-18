@@ -220,15 +220,19 @@ def watch_ser_ports():
 			if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 				gv.updi_port = gv.serial_debug_ports[1]
 				gv.curr_serial_debug_port = gv.serial_debug_ports[0]
+				gv.last_serial_debug_port = gv.curr_serial_debug_port
+				# Set the actual serial debug port to that current selected port
+				SER.port = gv.curr_serial_debug_port
+				# update the upload command with the *correct fixed updi port
+				gv.upload_cmd[7] = gv.updi_port
 			elif sys.platform.startswith('darwin'):
 				gv.updi_port = gv.serial_debug_ports[0]
 				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
-			
-			gv.last_serial_debug_port = gv.curr_serial_debug_port
-			# Set the actual serial debug port to that current selected port
-			SER.port = gv.curr_serial_debug_port
-			# update the upload command with the *correct fixed updi port
-			gv.upload_cmd[7] = gv.updi_port
+				gv.last_serial_debug_port = gv.curr_serial_debug_port
+				# Set the actual serial debug port to that current selected port
+				SER.port = gv.curr_serial_debug_port
+				# update the upload command with the *correct fixed updi port
+				gv.upload_cmd[7] = gv.updi_port
 			gv.app_launched = False
 
 
