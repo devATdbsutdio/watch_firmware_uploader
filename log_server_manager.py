@@ -7,6 +7,7 @@ import threading
 import time
 import os
 import sys
+import subprocess
 from subprocess import Popen, PIPE, STDOUT
 import ifaddr
 import global_vars as gv
@@ -32,11 +33,15 @@ def start_server():
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
 	# TBD git add and git commit
+	subprocess.call(['/usr/bin/rm', gv.logfile_path]);
+	time.sleep(0.1)
+	subprocess.call(['/usr/bin/touch', gv.frontail_path]);
+	time.sleep(0.1)
 	# os.system('/usr/bin/rm ' + gv.logfile_path)
 	# os.system('/usr/bin/touch ' + gv.logfile_path)
 	# print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
-	print(os.popen("/usr/bin/rm uploader_scpt.log").read())
-	print(os.popen("/usr/bin/touch uploader_scpt.log").read())
+	# print(os.popen("/usr/bin/rm uploader_scpt.log").read())
+	# print(os.popen("/usr/bin/touch uploader_scpt.log").read())
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -127,6 +132,8 @@ def watch_log_server():
 	if sys.platform.startswith('darwin'):
 		self_ip_addr = get_ip_addrs('en0')[0] 
 
+	print("weblog server status watch dog started! Starting weblog server thyself...")
+
 	while True:
 		if gv.kill_web_log_watcher_thread:
 			break
@@ -145,6 +152,5 @@ LOG_SERVER_WATCHER = threading.Thread(target=watch_log_server)
 def start_status_watchdog():
 	'''For starting the thread from main module'''
 	LOG_SERVER_WATCHER.start()
-	print("weblog server status watch dog started! Starting weblog server thyself...")
 
 # start_thread()
