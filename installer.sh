@@ -536,7 +536,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
     echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
     echo " "
     # cd "$firmware_loc" && $git_parse pull
-    cd "$firmware_loc" && git checkout main && git up
+    cd "$firmware_loc" && git checkout production && git up
   else
     echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
     $git_parse clone "$git_clone_link"
