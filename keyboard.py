@@ -76,7 +76,7 @@ def watch_kbd():
 				gv.curr_firmware_name = gv.prod_firmware_name
 				gv.curr_firmware_path = gv.prod_firmware_path
 
-				
+
 				# update the visual highlither variable for UI
 				gv.ui_highlight_test_firmware = "  "
 				gv.ui_highlight_prod_firmware = "> "
@@ -101,7 +101,6 @@ def watch_kbd():
 				# pull_cmd = ' '.join(gv.git_pull_cmd)
 				# pull_cmd = "\t" + pull_cmd
 				# gv.output_msg_buff = ["", "pulling latest firmware ...", pull_cmd]
-
 				action.execute(gv.git_pull_cmd, 120)
 			elif string == 'u':
 				#--- Upload current firmware (which ever it is (prod or test))
