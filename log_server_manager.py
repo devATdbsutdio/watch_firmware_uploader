@@ -34,8 +34,9 @@ def start_server():
 	# TBD git add and git commit
 	# os.system('/usr/bin/rm ' + gv.logfile_path)
 	# os.system('/usr/bin/touch ' + gv.logfile_path)
-	print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
-	print(os.popen("/usr/bin/touch " + gv.logfile_path).read())
+	# print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
+	print(os.popen("/usr/bin/rm uploader_scpt.log").read())
+	print(os.popen("/usr/bin/touch uploader_scpt.log").read())
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -46,6 +47,7 @@ def start_server():
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
 	front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
+
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
 		time.sleep(10)
@@ -143,5 +145,6 @@ LOG_SERVER_WATCHER = threading.Thread(target=watch_log_server)
 def start_status_watchdog():
 	'''For starting the thread from main module'''
 	LOG_SERVER_WATCHER.start()
+	print("weblog server status watch dog started! Starting weblog server thyself...")
 
 # start_thread()
