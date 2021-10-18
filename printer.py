@@ -83,9 +83,9 @@ def print_text(_filter_port, _data):
 							                ]
 
 
-# print_text('/dev/tty.usbserial-AI05HDSG', '[H]printer is there!')
-# print_text('/dev/tty.usbserial-AI05HDSG', 'TEST printer is there!')
-# print_text('/dev/tty.usbserial-AI05HDSG', 'CHECKING Checking')
+print_text('/dev/ttyUSB0', '[H]printer is there!')
+print_text('/dev/ttyUSB0', 'TEST printer is there!')
+print_text('/dev/ttyUSB0', 'CHECKING Checking')
 
 # import time
 # while True:
