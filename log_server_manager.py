@@ -46,7 +46,7 @@ def start_server():
 		print("Old log file found. Deleting it...")
 		subprocess.call(['/usr/bin/rm', gv.logfile_path]);
 		time.sleep(1)
-		time.sleep("Creatig an EMPTY log file again...")
+		print("Creatig an EMPTY log file again...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
 		time.sleep(1)
 	else:
