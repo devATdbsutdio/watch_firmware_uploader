@@ -144,20 +144,6 @@ def write_to_port(_data):
 
 
 
-# create list of ports according to OS
-# ** no windows for now :)
-# def all_ser_ports():
-# 	'''OS based listing of all serial ports'''
-# 	ports = []
-# 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-# 		ports = glob.glob('/dev/tty[A-Za-z]*')
-# 	elif sys.platform.startswith('darwin'):
-# 		ports = glob.glob('/dev/tty.*')
-# 	else:
-# 		ports = ['0', '0']
-# 	return ports
-
-
 # ** no windows for now :)
 def filtered_ser_ports():
 	'''filtering of interested USB serial ports'''
@@ -168,19 +154,6 @@ def filtered_ser_ports():
 		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
 			# usable_ports.append([port_info.serial_number, port_info.device])
 			usable_ports.append(port_info.device.decode('utf-8').strip())
-
-	'''OS based filtering of interested USB serial ports'''
-	# raw_ports = all_ser_ports()
-	# usable_ports = []
-	# if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-	# 	for port in raw_ports:
-	# 		if port.startswith("/dev/ttyUSB") and not port.startswith("/dev/ttyUSB1"):
-	# 			usable_ports.append(port)
-	# elif sys.platform.startswith('darwin'):
-	# 	for port in raw_ports:
-	# 		if port.startswith("/dev/tty.usbserial") and not port.startswith("/dev/tty.usbserial-AI05"):
-	# 			usable_ports.append(port)
-
 	return usable_ports
 
 
@@ -227,18 +200,6 @@ def watch_ser_ports():
 
 		# on launch only once for assigning the current serial port info
 		if gv.app_launched:
-			# if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-			# 	if "/dev/ttyUSB0" in gv.serial_debug_ports:
-			# 		gv.updi_port = "/dev/ttyUSB0"
-			# 	if "/dev/ttyUSB2" in gv.serial_debug_ports: # USB1 is thermal printer
-			# 		gv.curr_serial_debug_port = "/dev/ttyUSB2"
-			# elif sys.platform.startswith('darwin'):
-			# 	gv.updi_port = gv.serial_debug_ports[0]
-			# 	gv.curr_serial_debug_port = gv.serial_debug_ports[1]
-
-			# debug_FTDI_ID = "A995AL2X"
-			
-
 			for port_info in serial.tools.list_ports.comports():
 				# if not none and not UPDI FTDI ID, must be debug chip port
 				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id:
