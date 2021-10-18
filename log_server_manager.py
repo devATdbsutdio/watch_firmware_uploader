@@ -39,7 +39,7 @@ def start_server():
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
-	# TBD rm and touch the log file, git add git commit
+	# TBD git add and git commit
 	os.system('rm ' + gv.logfile_path)
 	os.system('touch ' + gv.logfile_path)
 
@@ -114,10 +114,10 @@ def watch_log_server():
 	#  only once on launch ...
 	
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-		self_ip_addr = get_ip_addrs('wlan0')[0] # if multiple? [TBD]
+		self_ip_addr = get_ip_addrs('wlan0')[0] 
 	
 	if sys.platform.startswith('darwin'):
-		self_ip_addr = get_ip_addrs('en0')[0] # if multiple? [TBD]
+		self_ip_addr = get_ip_addrs('en0')[0] 
 
 	while True:
 		if gv.kill_web_log_watcher_thread:

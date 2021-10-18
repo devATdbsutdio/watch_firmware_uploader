@@ -71,6 +71,7 @@ def close_serial_port():
 
 def get_ser_data_line():
 	'''Serial Read line method for reading cont. Arduino's serial println()'''
+	serial_available = False
 
 	gv.test_log_dict = []
 
@@ -83,49 +84,55 @@ def get_ser_data_line():
 		time.sleep(.001)
 		incoming_line = ""
 
-		# [TBD] check if serial is open vs exception on Hw line disconnect 
 		try:
-			incoming_line = SER.readline()
-		except SerialException as serr:
-			pass
-
-		
-		# while not '\\n'in str(incoming_line):
-		while '\\n' not in str(incoming_line):
-			time.sleep(.001)
-			temp = SER.readline()
-			# if not not temp.decode():
-			if temp.decode():
-				incoming_line = (incoming_line.decode()+temp.decode()).encode()
-		incoming_line = incoming_line.decode()
-		incoming_line = incoming_line.strip()
-
-		#- Serial RXTX line check by comnfirming received flag
-		if incoming_line == 'SERIAL:1':
-			logger.log_info("Serial COM is okay!")
-			gv.output_msg_buff = ["Serial COM is okay!"]
-
-		#- uC dev board send "!" as a char to end the serial read
-		if incoming_line == "!":
-			gv.test_data_read = True
-			logger.log_info("Terminator received")
-			gv.output_msg_buff = ["Terminator received"]
-			# current time: in log and printer
+			if SER:
+				serial_available = True
+			else:
+				serial_available = False
+				break
+		except Exception as ERR:
+			serial_available = False
 			break
 
-		#- Add incoming lines to a buffer array dict for thermal printer
-		gv.test_log_dict.append(incoming_line)
 
-		#- Remove header marker from serial data string
-		serial_log_str = incoming_line
-		if serial_log_str.startswith('[H]'):
-			serial_log_str = serial_log_str.replace('[H]', '')
-		logger.log_info(serial_log_str)
-		gv.output_msg_buff = [serial_log_str]
+		# [TBD] check if serial is open vs exception on Hw line disconnect 
+		if serial_available:
+			incoming_line = SER.readline()
+			while '\\n' not in str(incoming_line):
+				time.sleep(.001)
+				temp = SER.readline()
+				
+				if temp.decode():
+					incoming_line = (incoming_line.decode()+temp.decode()).encode()
+			incoming_line = incoming_line.decode()
+			incoming_line = incoming_line.strip()
 
-		# [TBD]
-		# time out if incoming string is nothing..
-		# Meaning serial is not working..
+			#- Serial RXTX line check by comnfirming received flag
+			if incoming_line == 'SERIAL:1':
+				logger.log_info("Serial COM is okay!")
+				gv.output_msg_buff = ["Serial COM is okay!"]
+
+			#- uC dev board send "!" as a char to end the serial read
+			if incoming_line == "!":
+				gv.test_data_read = True
+				logger.log_info("Terminator received")
+				gv.output_msg_buff = ["Terminator received"]
+				# current time: in log and printer
+				break
+
+			#- Add incoming lines to a buffer array dict for thermal printer
+			gv.test_log_dict.append(incoming_line)
+
+			#- Remove header marker from serial data string
+			serial_log_str = incoming_line
+			if serial_log_str.startswith('[H]'):
+				serial_log_str = serial_log_str.replace('[H]', '')
+			logger.log_info(serial_log_str)
+			gv.output_msg_buff = [serial_log_str]
+
+			# [TBD]
+			# time out if incoming string is nothing..
+			# Meaning serial is not working..
 
 
 

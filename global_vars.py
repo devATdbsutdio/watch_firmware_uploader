@@ -16,7 +16,6 @@ kill_web_log_watcher_thread = False
 
 frontail_path = "frontail" # Get absolute path from the log_server_manager
 frontail_init_port = "3060"
-# FRONTAIL_STYLE_FILE_PATH = "" # [TBD] absolute path
 
 
 
@@ -203,7 +202,7 @@ upload_cmd = [
 print("\n")
 print(' '.join(upload_cmd))
 print("\n")
-time.sleep(10)
+time.sleep(2)
 
 
 app_launched = True
