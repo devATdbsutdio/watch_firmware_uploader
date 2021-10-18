@@ -218,10 +218,10 @@ def watch_ser_ports():
 		# on launch only once for assigning the current serial port info
 		if gv.app_launched:
 			if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-				if port.startswith("/dev/ttyUSB0"):
-					gv.updi_port = port
-				if port.startswith("/dev/ttyUSB2"): # USB1 is thermal printer
-					gv.curr_serial_debug_port = port
+				if "/dev/ttyUSB0" in gv.serial_debug_ports:
+					gv.updi_port = "/dev/ttyUSB0"
+				if "/dev/ttyUSB2" in gv.serial_debug_ports: # USB1 is thermal printer
+					gv.curr_serial_debug_port = "/dev/ttyUSB2"
 			elif sys.platform.startswith('darwin'):
 				gv.updi_port = gv.serial_debug_ports[0]
 				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
