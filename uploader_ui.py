@@ -97,7 +97,7 @@ class App(npyscreen.NPSApp):
             name="SERIAL PORTS",
             relx=49,
             rely=2,
-            max_width=39,
+            max_width=38,
             height=18
             #  max_height=terminal_dimensions()[0] - 10
         )
@@ -117,7 +117,7 @@ class App(npyscreen.NPSApp):
             BufferPagerBox,
             name='PROCESS OUTPUT MONITOR',
             rely=output_pos_y,
-            max_width=width-6,
+            max_width=width-7,
             height=24,
             editable=False,
             color='WARNING'
