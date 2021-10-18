@@ -119,14 +119,15 @@
 
 # from PIL import Image
 # from thermalprinter import ThermalPrinter
-
-
-# printer = ThermalPrinter(port='/dev/')
+# 
+# 
+# printer = ThermalPrinter(port='/dev/tty.usbserial-AC01O32Q')
+# # printer = ThermalPrinter(port='/dev/tty.usbserial-AC01NYWT')
 # print(printer)
-
+# 
 # # Line feeds
 # printer.feed(2)
-
+# 
 # printer.out('Bold', bold=True)
 # printer.out('Double height', double_height=True)
 # printer.out('Double width', double_width=True)
@@ -135,7 +136,7 @@
 # printer.out('Strike', strike=True)
 # printer.out('Underline', underline=1)
 # printer.out('Upside down', upside_down=True)
-
+# 
 # # Line feeds
 # printer.feed(6)
 
@@ -177,20 +178,20 @@
 #         print(err)
 
 
-import time
-import serial.tools.list_ports
-while True:
-	raw_ports = serial.tools.list_ports.comports()
-	usable_ports = []
-	for port_info in raw_ports:
-		if port_info.serial_number != None:
-			data = port_info.device
-			print([port_info.device, port_info.serial_number])
-			usable_ports.append(data)
-	for port in usable_ports:
-		print(port, type(port))
-	print("\n")
-	time.sleep(4)
+# import time
+# import serial.tools.list_ports
+# while True:
+# 	raw_ports = serial.tools.list_ports.comports()
+# 	usable_ports = []
+# 	for port_info in raw_ports:
+# 		if port_info.serial_number != None:
+# 			data = port_info.device
+# 			print([port_info.device, port_info.serial_number])
+# 			usable_ports.append(data)
+# 	for port in usable_ports:
+# 		print(port, type(port))
+# 	print("\n")
+# 	time.sleep(4)
 
-for port in serial.tools.list_ports.comports():
-    print(port.hwid)
+# for port in serial.tools.list_ports.comports():
+#     print(port.hwid)
