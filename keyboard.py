@@ -71,8 +71,8 @@ def watch_kbd():
 				gv.ui_highlight_ser_port_0 = "> "
 				gv.ui_highlight_ser_port_1 = "  "
 
-				if gv.curr_serial_debug_port == gv.gv.updi_port or \
-				    gv.curr_serial_debug_port == gv.printer_port:
+				if gv.curr_serial_debug_port == gv.updi_port or \
+					gv.curr_serial_debug_port == gv.printer_port:
 					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
 					logger.log_warning(["Conflicting Debug Port with other ports", "Change it!"])
 			if string == '1' and not gv.port_selection_active and not gv.test_data_read:
@@ -96,7 +96,7 @@ def watch_kbd():
 				gv.ui_highlight_ser_port_0 = "  "
 				gv.ui_highlight_ser_port_1 = "> "
 
-				if gv.curr_serial_debug_port == gv.gv.updi_port or \
+				if gv.curr_serial_debug_port == gv.updi_port or \
 				    gv.curr_serial_debug_port == gv.printer_port:
 					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
 					logger.log_warning(["Conflicting Debug Port with other ports", "Change it!"])
