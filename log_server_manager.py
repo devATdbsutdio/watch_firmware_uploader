@@ -63,10 +63,10 @@ def start_server():
 
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
-		time.sleep(5)
+		time.sleep(1)
 	else:
 		print("'frontail' web logserver have NOT been started!")
-		time.sleep(5)
+		time.sleep(1)
 
 
 

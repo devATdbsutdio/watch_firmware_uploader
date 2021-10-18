@@ -153,7 +153,9 @@ def filtered_ser_ports():
 	for port_info in serial.tools.list_ports.comports():
 		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
 			# usable_ports.append([port_info.serial_number, port_info.device])
-			usable_ports.append(port_info.device.decode('utf-8').strip())
+			port = str(port_info.device)
+			port = port.strip()
+			usable_ports.append(port)
 	return usable_ports
 
 
@@ -201,11 +203,14 @@ def watch_ser_ports():
 		# on launch only once for assigning the current serial port info
 		if gv.app_launched:
 			for port_info in serial.tools.list_ports.comports():
+				port = str(port_info.device)
+				port = port.strip()
+
 				# if not none and not UPDI FTDI ID, must be debug chip port
 				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id:
-					gv.curr_serial_debug_port = port_info.device
+					gv.curr_serial_debug_port = port
 				if port_info.serial_number != None and port_info.serial_number == gv.updi_ftdi_id:
-					gv.updi_port = port_info.device
+					gv.updi_port = port
 
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
 			# Set the actual serial debug port to that current selected port

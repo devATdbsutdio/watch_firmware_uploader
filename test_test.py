@@ -182,6 +182,7 @@ usable_ports = []
 for port_info in raw_ports:
 	if port_info.serial_number != None:
 		data = port_info.device
+		print([port_info.device, port_info.serial_number])
 		usable_ports.append(data)
 for port in usable_ports:
 	print(port, type(port))
