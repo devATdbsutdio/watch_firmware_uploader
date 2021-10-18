@@ -52,10 +52,12 @@ def start_server():
 	gv.logfile_path = script_dir + gv.logfile_name
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
-	print(gv.logfile_path)
+	print(gv.logfile_path + "\n")
+
 	if os.path.exists(gv.logfile_path):
 		# file exists, delete and create
-		subprocess.call(['/usr/bin/rm', gv.logfile_path, '&&', '/usr/bin/touch', gv.logfile_path]);
+		subprocess.call(['/usr/bin/rm', gv.logfile_path]);
+		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
 	else:
 		# file doesn't exist, just create
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
