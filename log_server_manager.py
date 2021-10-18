@@ -48,8 +48,6 @@ def start_server():
 		time.sleep(1)
 		print("Creatig an EMPTY log file again...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
-		# do a git add and commit
-		subprocess.call(['/usr/bin/git', gv.logfile_path]);
 		time.sleep(1)
 	else:
 		# file doesn't exist, just create
