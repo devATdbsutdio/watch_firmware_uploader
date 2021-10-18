@@ -174,15 +174,15 @@ def watch_ser_ports():
 		if len(gv.serial_debug_ports) < 2:
 			gv.serial_debug_ports.append("Null")
 
-			if gv.curr_serial_debug_port != gv.updi_port:
-				gv.curr_serial_debug_port = "Null"
+			# if gv.curr_serial_debug_port != gv.updi_port:
+			gv.curr_serial_debug_port = "Null"
 				
 			if gv.last_serial_debug_port == gv.serial_debug_ports[0]:
-				gv.ui_highlight_ser_port_0 = "  "
-				gv.ui_highlight_ser_port_1 = "> "
-			if gv.last_serial_debug_port == gv.serial_debug_ports[1]:
 				gv.ui_highlight_ser_port_0 = "> "
 				gv.ui_highlight_ser_port_1 = "  "
+			if gv.last_serial_debug_port == gv.serial_debug_ports[1]:
+				gv.ui_highlight_ser_port_0 = "  "
+				gv.ui_highlight_ser_port_1 = "> "
 
 			# close debug serial port if was open
 			if ser_null_once:
