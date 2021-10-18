@@ -97,7 +97,7 @@ class App(npyscreen.NPSApp):
             name="SERIAL PORTS",
             relx=49,
             rely=2,
-            max_width=37,
+            max_width=38,
             height=18
             #  max_height=terminal_dimensions()[0] - 10
         )
