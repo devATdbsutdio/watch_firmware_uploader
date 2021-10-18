@@ -166,7 +166,7 @@ test_data_read = False
 
 heading_identifier = '[H]'
 test_log_dict = []
-printer_port = '/dev/tty.usbserial-AI05HDSG'
+# printer_port = '/dev/tty.usbserial-AI05HDSG'
 
 '''
 -- COMAMND CONSTRUCTORS --
