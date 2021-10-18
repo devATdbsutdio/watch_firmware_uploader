@@ -209,15 +209,15 @@ def watch_ser_ports():
 				port = str(port_info.device)
 				port = port.strip()
 
+				if port_info.serial_number != None and port_info.serial_number == gv.thermal_printer_serial_chip_id:
+					gv.printer_port = port
+				if port_info.serial_number != None and port_info.serial_number == gv.updi_ftdi_id:
+					gv.updi_port = port
+					logger.log_info("UPDI:\t" + gv.updi_port + "\t" + str(port_info.serial_number))
 				# if not none and not UPDI FTDI ID, must be debug chip port
 				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id:
 					gv.curr_serial_debug_port = port
 					logger.log_info("SER:\t" + gv.curr_serial_debug_port + "\t" + str(port_info.serial_number))
-				if port_info.serial_number != None and port_info.serial_number == gv.updi_ftdi_id:
-					gv.updi_port = port
-					logger.log_info("UPDI:\t" + gv.updi_port + "\t" + str(port_info.serial_number))
-				if port_info.serial_number != None and port_info.serial_number == gv.thermal_printer_serial_chip_id:
-					gv.printer_port = port
 
 				if i == 0:
 					gv.ui_highlight_ser_port_0 = "> "
