@@ -220,7 +220,6 @@ def watch_ser_ports():
 			gv.updi_port = gv.serial_debug_ports[0]
 			gv.curr_serial_debug_port = gv.serial_debug_ports[1]
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
-			gv.printer_port = gv.serial_debug_ports[2]
 			# Set the actual serial debug port to that current selected port
 			SER.port = gv.curr_serial_debug_port
 			# update the upload command with the *correct fixed updi port
