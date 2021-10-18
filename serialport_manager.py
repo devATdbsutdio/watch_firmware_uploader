@@ -211,6 +211,8 @@ def watch_ser_ports():
 					gv.curr_serial_debug_port = port
 				if port_info.serial_number != None and port_info.serial_number == gv.updi_ftdi_id:
 					gv.updi_port = port
+				if port_info.serial_number != None and port_info.serial_number == gv.thermal_printer_serial_chip_id:
+					gv.printer_port = port
 
 
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
@@ -219,8 +221,8 @@ def watch_ser_ports():
 			# update the upload command with the *correct fixed updi port
 			gv.upload_cmd[7] = gv.updi_port
 
-			logger.log_info("UPDI: " + gv.updi_port)
-			logger.log_info("SER: " + gv.curr_serial_debug_port)
+			logger.log_info("UPDI:\t" + gv.updi_port)
+			logger.log_info("SER:\t" + gv.curr_serial_debug_port)
 			logger.log_info("LEN OF PORTS:" + str(len(gv.serial_debug_ports)))
 
 			gv.app_launched = False

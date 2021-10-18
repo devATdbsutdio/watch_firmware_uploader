@@ -102,10 +102,6 @@ if sys.platform.startswith('darwin'):
 	print("prod firmware loc: " + prod_firmware_path)
 	print("test firmware loc: " + test_firmware_path)
 
-	printer_port = '/dev/tty.usbserial-AI05HDSG'
-else:
-	printer_port = '/dev/ttyUSB1'
-
 
 
 
