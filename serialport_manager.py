@@ -225,7 +225,7 @@ def watch_ser_ports():
 				elif i == 1:
 					ui_highlight_ser_port_0 = "  "
 					ui_highlight_ser_port_1 = "> "
-				i++
+				i += 1
 
 
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
