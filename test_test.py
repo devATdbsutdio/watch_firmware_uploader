@@ -180,7 +180,7 @@ import serial.tools.list_ports
 raw_ports = serial.tools.list_ports.comports()
 usable_ports = []
 for port_info in raw_ports:
-	if port_info.serial_number is not None:
+	if port_info.serial_number != None and port_info.serial_number != "AI05HDSG"::
 		data = [port_info.serial_number, port_info.device]
 		usable_ports.append(data)
 for port in usable_ports:

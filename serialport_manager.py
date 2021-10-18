@@ -13,7 +13,7 @@ import threading
 import glob
 import time
 import sys
-import serial_available
+import serial
 import serial.tools.list_ports
 
 import global_vars as gv
@@ -146,39 +146,40 @@ def write_to_port(_data):
 
 # create list of ports according to OS
 # ** no windows for now :)
-def all_ser_ports():
-	'''OS based listing of all serial ports'''
-	ports = []
-	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-		ports = glob.glob('/dev/tty[A-Za-z]*')
-	elif sys.platform.startswith('darwin'):
-		ports = glob.glob('/dev/tty.*')
-	else:
-		ports = ['0', '0']
-	return ports
+# def all_ser_ports():
+# 	'''OS based listing of all serial ports'''
+# 	ports = []
+# 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+# 		ports = glob.glob('/dev/tty[A-Za-z]*')
+# 	elif sys.platform.startswith('darwin'):
+# 		ports = glob.glob('/dev/tty.*')
+# 	else:
+# 		ports = ['0', '0']
+# 	return ports
 
 
 # ** no windows for now :)
 def filtered_ser_ports():
 	'''OS based filtering of interested USB serial ports'''
 	# raw_ports = all_ser_ports()
+
 	raw_ports = serial.tools.list_ports.comports()
+	usable_ports = []
 
-	# usable_ports = []
-	usable_ports = {for p in raw_ports if p.serial_number is not None}
+	for port_info in raw_ports:
+		if port_info.serial_number != None and port_info.serial_number != "AI05HDSG":
+			data = [port_info.serial_number, port_info.device]
+			usable_ports.append(data)
 
-	for port_info in ports:
-		if port_info.serial_number is not None:
+	# if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+	# 	for port in raw_ports:
+	# 		if port.startswith("/dev/ttyUSB") and not port.startswith("/dev/ttyUSB1"):
+	# 			usable_ports.append(port)
+	# elif sys.platform.startswith('darwin'):
+	# 	for port in raw_ports:
+	# 		if port.startswith("/dev/tty.usbserial") and not port.startswith("/dev/tty.usbserial-AI05"):
+	# 			usable_ports.append(port)
 
-
-	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-		for port in raw_ports:
-			if port.startswith("/dev/ttyUSB") and not port.startswith("/dev/ttyUSB1"):
-				usable_ports.append(port)
-	elif sys.platform.startswith('darwin'):
-		for port in raw_ports:
-			if port.startswith("/dev/tty.usbserial") and not port.startswith("/dev/tty.usbserial-AI05"):
-				usable_ports.append(port)
 	return usable_ports
 
 
