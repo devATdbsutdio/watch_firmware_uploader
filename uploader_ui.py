@@ -14,13 +14,14 @@ import time
 import global_vars as gv
 import log_server_manager
 
-# Start the web log uri getting thread
-log_server_manager.start_status_watchdog()
+
 # Start the web log server:
 print("weblog server status watch dog started! Starting weblog server thyself...")
 time.sleep(2)
 log_server_manager.start_server()
 time.sleep(2)
+# Start the web log uri getting thread
+log_server_manager.start_status_watchdog()
 
 import logger
 import keyboard as kbd
