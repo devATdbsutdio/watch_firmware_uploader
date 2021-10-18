@@ -117,11 +117,12 @@
 # action.execute(vars.upload_cmd, 120)
 
 
-# from PIL import Image
+from PIL import Image
 from thermalprinter import ThermalPrinter
 
 
 printer = ThermalPrinter(port='/dev/ttyUSB0')
+print(printer)
 
 # Line feeds
 printer.feed(2)
