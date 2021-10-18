@@ -201,7 +201,6 @@ def watch_ser_ports():
 			SER.port = gv.curr_serial_debug_port
 
 		# on launch only once for assigning the current serial port info
-		i = 0
 		if gv.app_launched:
 			for port_info in serial.tools.list_ports.comports():
 				port = str(port_info.device)
@@ -217,13 +216,12 @@ def watch_ser_ports():
 					gv.curr_serial_debug_port = port
 					logger.log_info("SER:\t" + gv.curr_serial_debug_port + "\t" + str(port_info.serial_number))
 
-				if i == 0:
+				if gv.serial_debug_ports[0] == gv.curr_serial_debug_port:
 					gv.ui_highlight_ser_port_0 = "> "
 					gv.ui_highlight_ser_port_1 = "  "
-				elif i == 1:
+				if gv.serial_debug_ports[1] == gv.curr_serial_debug_port:
 					gv.ui_highlight_ser_port_0 = "  "
 					gv.ui_highlight_ser_port_1 = "> "
-				i += 1
 
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
 			# Set the actual serial debug port to that current selected port
