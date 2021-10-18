@@ -13,7 +13,8 @@ import threading
 import glob
 import time
 import sys
-import serial
+import serial_available
+import serial.tools.list_ports
 
 import global_vars as gv
 import logger
@@ -160,8 +161,15 @@ def all_ser_ports():
 # ** no windows for now :)
 def filtered_ser_ports():
 	'''OS based filtering of interested USB serial ports'''
-	raw_ports = all_ser_ports()
-	usable_ports = []
+	# raw_ports = all_ser_ports()
+	raw_ports = serial.tools.list_ports.comports()
+
+	# usable_ports = []
+	usable_ports = {for p in raw_ports if p.serial_number is not None}
+
+	for port_info in ports:
+		if port_info.serial_number is not None:
+
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		for port in raw_ports:

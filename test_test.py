@@ -177,8 +177,10 @@
 
 
 import serial.tools.list_ports
-ports = serial.tools.list_ports.comports()
-for port_info in ports:
+raw_ports = serial.tools.list_ports.comports()
+usable_ports = {for p in raw_ports if p.serial_number is not None}
+
+for port in usable_ports:
 	print(port_info.device)
 	print(port_info.serial_number)
 	print("")
