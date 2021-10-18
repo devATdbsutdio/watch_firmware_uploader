@@ -32,8 +32,10 @@ def start_server():
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
 	# TBD git add and git commit
-	os.system('/usr/bin/rm ' + gv.logfile_path)
-	os.system('/usr/bin/touch ' + gv.logfile_path)
+	# os.system('/usr/bin/rm ' + gv.logfile_path)
+	# os.system('/usr/bin/touch ' + gv.logfile_path)
+	print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
+	print(os.popen("/usr/bin/touch " + gv.logfile_path).read())
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
