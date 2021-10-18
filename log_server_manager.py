@@ -47,14 +47,10 @@ def start_server():
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
 		time.sleep(10)
-		gv.kill_ser_port_watcher_thread = True
-        gv.kill_web_log_watcher_thread = True
         sys.exit(1)
 	else:
 		print("'frontail' web logserver have NOT been started!")
 		time.sleep(10)
-		gv.kill_ser_port_watcher_thread = True
-        gv.kill_web_log_watcher_thread = True
         sys.exit(1)
 
 

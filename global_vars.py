@@ -202,7 +202,7 @@ upload_cmd = [
 print("\n")
 print(' '.join(upload_cmd))
 print("\n")
-time.sleep(10)
+time.sleep(2)
 
 
 app_launched = True
