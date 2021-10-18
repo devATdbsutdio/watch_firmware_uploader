@@ -147,12 +147,10 @@ def write_to_port(_data):
 # ** no windows for now :)
 def filtered_ser_ports():
 	'''filtering of interested USB serial ports'''
-	
 	usable_ports = []
 
 	for port_info in serial.tools.list_ports.comports():
 		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
-			# usable_ports.append([port_info.serial_number, port_info.device])
 			port = str(port_info.device)
 			port = port.strip()
 			usable_ports.append(port)
@@ -227,17 +225,11 @@ def watch_ser_ports():
 					gv.ui_highlight_ser_port_1 = "> "
 				i += 1
 
-
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
 			# Set the actual serial debug port to that current selected port
 			SER.port = gv.curr_serial_debug_port
 			# update the upload command with the *correct fixed updi port
 			gv.upload_cmd[7] = gv.updi_port
-
-			logger.log_info("UPDI:\t" + gv.updi_port)
-			logger.log_info("SER:\t" + gv.curr_serial_debug_port)
-			logger.log_info("LEN OF PORTS:" + str(len(gv.serial_debug_ports)))
-
 			gv.app_launched = False
 
 
