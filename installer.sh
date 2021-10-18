@@ -176,6 +176,7 @@ process_list() {
     case $input in
     [yY])
       # Do rest fo the installation ...
+      break
       # install_proj_requirements() break [TBD]
       ;;
     [nN])
