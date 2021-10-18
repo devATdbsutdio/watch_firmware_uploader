@@ -165,7 +165,7 @@ def filtered_ser_ports():
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		for port in raw_ports:
-			if port.startswith("/dev/ttyUSB") not port.startswith("/dev/ttyUSB1"):
+			if port.startswith("/dev/ttyUSB") and not port.startswith("/dev/ttyUSB1"):
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
 		for port in raw_ports:
