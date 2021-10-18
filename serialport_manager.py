@@ -218,21 +218,19 @@ def watch_ser_ports():
 		# on launch only once for assigning the current serial port info
 		if gv.app_launched:
 			if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-				gv.updi_port = gv.serial_debug_ports[1]
-				gv.curr_serial_debug_port = gv.serial_debug_ports[0]
-				gv.last_serial_debug_port = gv.curr_serial_debug_port
-				# Set the actual serial debug port to that current selected port
-				SER.port = gv.curr_serial_debug_port
-				# update the upload command with the *correct fixed updi port
-				gv.upload_cmd[7] = gv.updi_port
+				if port.startswith("/dev/ttyUSB0"):
+					gv.updi_port = port
+				if port.startswith("/dev/ttyUSB2"): # USB1 is thermal printer
+					gv.curr_serial_debug_port = port
 			elif sys.platform.startswith('darwin'):
 				gv.updi_port = gv.serial_debug_ports[0]
 				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
-				gv.last_serial_debug_port = gv.curr_serial_debug_port
-				# Set the actual serial debug port to that current selected port
-				SER.port = gv.curr_serial_debug_port
-				# update the upload command with the *correct fixed updi port
-				gv.upload_cmd[7] = gv.updi_port
+			
+			gv.last_serial_debug_port = gv.curr_serial_debug_port
+			# Set the actual serial debug port to that current selected port
+			SER.port = gv.curr_serial_debug_port
+			# update the upload command with the *correct fixed updi port
+			gv.upload_cmd[7] = gv.updi_port
 			gv.app_launched = False
 
 
