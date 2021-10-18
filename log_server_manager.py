@@ -48,13 +48,15 @@ def start_server():
 		time.sleep(1)
 		print("Creatig an EMPTY log file again...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+		# do a git add and commit
+		subprocess.call(['/usr/bin/git', gv.logfile_path]);
 		time.sleep(1)
 	else:
 		# file doesn't exist, just create
 		print("No Old log file found. Creatig an EMPTY one...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
 		time.sleep(1)
-	# TBD git add and git commit
+	# [TBD] git add and git commit
 
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
@@ -63,12 +65,10 @@ def start_server():
 
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
-		time.sleep(10)
-		sys.exit(1)
+		time.sleep(5)
 	else:
 		print("'frontail' web logserver have NOT been started!")
-		time.sleep(10)
-		sys.exit(1)
+		time.sleep(5)
 
 
 
