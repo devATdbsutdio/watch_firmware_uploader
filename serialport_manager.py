@@ -220,11 +220,11 @@ def watch_ser_ports():
 					gv.printer_port = port
 
 				if i == 0:
-					ui_highlight_ser_port_0 = "> "
-					ui_highlight_ser_port_1 = "  "
+					gv.ui_highlight_ser_port_0 = "> "
+					gv.ui_highlight_ser_port_1 = "  "
 				elif i == 1:
-					ui_highlight_ser_port_0 = "  "
-					ui_highlight_ser_port_1 = "> "
+					gv.ui_highlight_ser_port_0 = "  "
+					gv.ui_highlight_ser_port_1 = "> "
 				i += 1
 
 
