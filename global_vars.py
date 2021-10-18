@@ -147,7 +147,7 @@ curr_firmware_path = test_firmware_path
 '''
 updi_ftdi_id = "A10KHTR4"
 # thermal_printer_serial_chip_id = "AI05HDSG"
-thermal_printer_serial_chip_id = "AC01032Q"
+thermal_printer_serial_chip_id = "AC01O32Q"
 
 port_selection_active = False
 kill_ser_port_watcher_thread = False
