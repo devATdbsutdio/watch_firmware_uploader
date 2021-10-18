@@ -74,7 +74,7 @@ class App(npyscreen.NPSApp):
         ''' main app creator '''
         term_dims = curses.initscr().getmaxyx()
         height = int(term_dims[0])
-        # width = int(term_dims[1])
+        width = int(term_dims[1])
         logger.log_info(str(height))
 
         form = npyscreen.FormBaseNew(name="WATCH HW SW TESTING UNIT", lines=height)
@@ -117,6 +117,7 @@ class App(npyscreen.NPSApp):
             BufferPagerBox,
             name='PROCESS OUTPUT MONITOR',
             rely=output_pos_y,
+            max_width=width-4
             height=24,
             editable=False,
             color='WARNING'
