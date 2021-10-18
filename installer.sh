@@ -175,9 +175,7 @@ process_list() {
     # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
     case $input in
     [yY])
-      # Do rest fo the installation ...
-      # break
-      install_proj_requirements break
+      break
       ;;
     [nN])
       echo "QUITTING..."
@@ -193,6 +191,8 @@ process_list() {
 
   # THE END
   if [ $steps = 6 ]; then
+    # Do rest fo the installation ...
+    install_proj_requirements
     #  we have reached the end
     on_finish_setup
   fi
