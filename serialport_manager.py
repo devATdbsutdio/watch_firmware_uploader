@@ -203,6 +203,7 @@ def watch_ser_ports():
 			SER.port = gv.curr_serial_debug_port
 
 		# on launch only once for assigning the current serial port info
+		i = 0
 		if gv.app_launched:
 			for port_info in serial.tools.list_ports.comports():
 				port = str(port_info.device)
@@ -217,6 +218,14 @@ def watch_ser_ports():
 					logger.log_info("UPDI:\t" + gv.updi_port + "\t" + str(port_info.serial_number))
 				if port_info.serial_number != None and port_info.serial_number == gv.thermal_printer_serial_chip_id:
 					gv.printer_port = port
+
+				if i == 0:
+					ui_highlight_ser_port_0 = "> "
+					ui_highlight_ser_port_1 = "  "
+				elif i == 1:
+					ui_highlight_ser_port_0 = "  "
+					ui_highlight_ser_port_1 = "> "
+				i++
 
 
 			gv.last_serial_debug_port = gv.curr_serial_debug_port

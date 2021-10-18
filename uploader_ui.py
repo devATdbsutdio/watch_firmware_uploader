@@ -144,7 +144,7 @@ class App(npyscreen.NPSApp):
             serial_ports_panel.values = [
                 "UPDI:    " + gv.updi_port,
                 "DEBUG: " + gv.ui_highlight_ser_port_0 + gv.serial_debug_ports[0],
-                "       " + gv.ui_highlight_ser_port_1,
+                "       " + gv.ui_highlight_ser_port_1 + gv.serial_debug_ports[1],
                 "PRINTER: " + gv.printer_port,
                 " ",
                 " ",

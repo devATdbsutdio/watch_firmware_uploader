@@ -158,7 +158,7 @@ curr_serial_debug_port = serial_debug_ports[1]
 last_serial_debug_port = curr_serial_debug_port
 
 ui_highlight_ser_port_0 = "  "
-ui_highlight_ser_port_1 = "> "
+ui_highlight_ser_port_1 = "  "
 # ui_highlight_ser_port_2 = "  "
 
 debug_channel_open = False
