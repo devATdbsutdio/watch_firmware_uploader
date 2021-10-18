@@ -176,7 +176,7 @@ def watch_ser_ports():
 
 			if gv.curr_serial_debug_port != gv.updi_port:
 				gv.curr_serial_debug_port = "Null"
-				logger.log(gv.last_serial_debug_port)
+				logger.log_info(gv.last_serial_debug_port)
 				if gv.last_serial_debug_port == gv.serial_debug_ports[0]:
 					gv.ui_highlight_ser_port_0 = "> "
 					gv.ui_highlight_ser_port_1 = "  "
