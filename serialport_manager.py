@@ -217,8 +217,13 @@ def watch_ser_ports():
 
 		# on launch only once for assigning the current serial port info
 		if gv.app_launched:
-			gv.updi_port = gv.serial_debug_ports[0]
-			gv.curr_serial_debug_port = gv.serial_debug_ports[1]
+			if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
+				gv.updi_port = gv.serial_debug_ports[0]
+				gv.curr_serial_debug_port = gv.serial_debug_ports[1]
+			elif sys.platform.startswith('darwin'):
+				gv.updi_port = gv.serial_debug_ports[1]
+				gv.curr_serial_debug_port = gv.serial_debug_ports[0]
+			
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
 			# Set the actual serial debug port to that current selected port
 			SER.port = gv.curr_serial_debug_port
