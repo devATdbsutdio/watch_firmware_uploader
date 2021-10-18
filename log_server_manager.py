@@ -32,7 +32,8 @@ def start_server():
 	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
-	# TBD git add and git commit
+	
+
 	# subprocess.call(['/usr/bin/rm', gv.logfile_path]);
 	# time.sleep(0.1)
 	# subprocess.call(['/usr/bin/touch', gv.logfile_path]);
@@ -42,6 +43,8 @@ def start_server():
 	# print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
 	# print(os.popen("/usr/bin/rm uploader_scpt.log").read())
 	# print(os.popen("/usr/bin/touch uploader_scpt.log").read())
+
+
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -50,6 +53,15 @@ def start_server():
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
 	print(gv.logfile_path)
+	if os.path.exists(gv.logfile_path):
+		# file exists, delete and create
+		subprocess.call(['/usr/bin/rm', gv.logfile_path, '&&', '/usr/bin/touch', gv.logfile_path]);
+	else:
+		# file doesn't exist, just create
+		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+	# TBD git add and git commit
+
+
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
