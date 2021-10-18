@@ -167,7 +167,7 @@ def filtered_ser_ports():
 	for port_info in serial.tools.list_ports.comports():
 		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
 			# usable_ports.append([port_info.serial_number, port_info.device])
-			usable_ports.append(port_info.device)
+			usable_ports.append(port_info.device.decode('utf-8').strip())
 
 	'''OS based filtering of interested USB serial ports'''
 	# raw_ports = all_ser_ports()
