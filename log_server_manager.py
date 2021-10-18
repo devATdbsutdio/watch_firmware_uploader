@@ -32,8 +32,8 @@ def start_server():
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
 	# TBD git add and git commit
-	os.system('rm ' + gv.logfile_path)
-	os.system('touch ' + gv.logfile_path)
+	os.system('/usr/bin/rm ' + gv.logfile_path)
+	os.system('/usr/bin/touch ' + gv.logfile_path)
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -47,9 +47,15 @@ def start_server():
 	if front_tail_process_spawner.poll() is None:
 		print("'frontail' web logserver has started!")
 		time.sleep(10)
+		gv.kill_ser_port_watcher_thread = True
+        gv.kill_web_log_watcher_thread = True
+        sys.exit(1)
 	else:
 		print("'frontail' web logserver have NOT been started!")
 		time.sleep(10)
+		gv.kill_ser_port_watcher_thread = True
+        gv.kill_web_log_watcher_thread = True
+        sys.exit(1)
 
 
 
