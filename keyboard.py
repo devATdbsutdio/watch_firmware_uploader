@@ -70,6 +70,11 @@ def watch_kbd():
 				# Update the visual highlither variable for UI
 				gv.ui_highlight_ser_port_0 = "> "
 				gv.ui_highlight_ser_port_1 = "  "
+
+				if gv.curr_serial_debug_port == gv.gv.updi_port or \
+				    gv.curr_serial_debug_port == gv.printer_port:
+					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
+					logger.log_warning(["Conflicting Debug Port with other ports", "Change it!"])
 			if string == '1' and not gv.port_selection_active and not gv.test_data_read:
 				# Assign production code as the firmware to be uploaded
 				gv.curr_firmware_num = 1
@@ -90,6 +95,11 @@ def watch_kbd():
 				# update the visual highlither variable for UI
 				gv.ui_highlight_ser_port_0 = "  "
 				gv.ui_highlight_ser_port_1 = "> "
+
+				if gv.curr_serial_debug_port == gv.gv.updi_port or \
+				    gv.curr_serial_debug_port == gv.printer_port:
+					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
+					logger.log_warning(["Conflicting Debug Port with other ports", "Change it!"])
 
 			if string == 's':
 				gv.port_selection_active = not gv.port_selection_active
@@ -113,6 +123,7 @@ def watch_kbd():
 				#--- Open DEBUG serial port if it is not opened,
 				if gv.curr_serial_debug_port != "Null" and \
 					gv.curr_serial_debug_port != gv.updi_port and \
+					gv.curr_serial_debug_port != gv.printer_port and \
 					gv.debug_channel_open == False:
 
 					# Open DEBUG serial port if it is not opened
@@ -127,8 +138,8 @@ def watch_kbd():
 						logger.log_error(" Error Opening the Debug Serial Port!")
 						gv.output_msg_buff = ["Error Opening the Debug Serial Port!"]
 				else:
-					gv.output_msg_buff = ["Debug Port is same as UPDI port", "Change it!"]
-					logger.log_error(["Debug Port is same as UPDI port", "Change it!"])
+					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
+					logger.log_error(["Conflicting Debug Port with other ports", "Change it!"])
 
 
 				#--- Serial read/write based on current firmware 0/1
