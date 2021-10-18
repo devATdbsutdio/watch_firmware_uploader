@@ -30,6 +30,10 @@ def start_server():
 
 	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
+
+	# TBD git add and git commit
+	os.system('rm ' + gv.logfile_path)
+	os.system('touch ' + gv.logfile_path)
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -38,10 +42,6 @@ def start_server():
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
-
-	# TBD git add and git commit
-	os.system('rm ' + gv.logfile_path)
-	os.system('touch ' + gv.logfile_path)
 
 	front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
 	if front_tail_process_spawner.poll() is None:
