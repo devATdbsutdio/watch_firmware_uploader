@@ -165,7 +165,7 @@ def filtered_ser_ports():
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		for port in raw_ports:
-			if port.startswith("/dev/ttyUSB"):
+			if port.startswith("/dev/ttyUSB") not port.startswith("/dev/ttyUSB1"):
 				usable_ports.append(port)
 	elif sys.platform.startswith('darwin'):
 		for port in raw_ports:
@@ -220,6 +220,7 @@ def watch_ser_ports():
 			gv.updi_port = gv.serial_debug_ports[0]
 			gv.curr_serial_debug_port = gv.serial_debug_ports[1]
 			gv.last_serial_debug_port = gv.curr_serial_debug_port
+			gv.printer_port = gv.serial_debug_ports[2]
 			# Set the actual serial debug port to that current selected port
 			SER.port = gv.curr_serial_debug_port
 			# update the upload command with the *correct fixed updi port

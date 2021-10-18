@@ -26,7 +26,6 @@ def have_printer_port(_filter_port):
 
 	if sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
 		state = bool(_filter_port in raw_ports)
-
 	if sys.platform.startswith('darwin'):
 		state = bool(_filter_port in raw_ports)
 	return state

@@ -64,6 +64,8 @@ except IOError as err:
 
 
 
+printer_port = ""
+
 
 '''
 -- ALL THE VARIABLES TO BE USED ACROSS MODULES --
@@ -99,6 +101,9 @@ if sys.platform.startswith('darwin'):
 	print("arduino-cli loc: " + ARDUINO_CLI)
 	print("prod firmware loc: " + prod_firmware_path)
 	print("test firmware loc: " + test_firmware_path)
+
+	printer_port = '/dev/tty.usbserial-AI05HDSG'
+
 
 
 
