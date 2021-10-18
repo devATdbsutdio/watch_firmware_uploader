@@ -32,19 +32,6 @@ def start_server():
 	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
-	
-
-	# subprocess.call(['/usr/bin/rm', gv.logfile_path]);
-	# time.sleep(0.1)
-	# subprocess.call(['/usr/bin/touch', gv.logfile_path]);
-	# time.sleep(0.1)
-	# os.system('/usr/bin/rm ' + gv.logfile_path)
-	# os.system('/usr/bin/touch ' + gv.logfile_path)
-	# print(os.popen("/usr/bin/rm " + gv.logfile_path).read())
-	# print(os.popen("/usr/bin/rm uploader_scpt.log").read())
-	# print(os.popen("/usr/bin/touch uploader_scpt.log").read())
-
-
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
@@ -56,13 +43,18 @@ def start_server():
 
 	if os.path.exists(gv.logfile_path):
 		# file exists, delete and create
+		print("Old log file found. Deleting it...")
 		subprocess.call(['/usr/bin/rm', gv.logfile_path]);
+		time.sleep(1)
+		time.sleep("Creatig an EMPTY log file again...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+		time.sleep(1)
 	else:
 		# file doesn't exist, just create
+		print("No Old log file found. Creatig an EMPTY one...")
 		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+		time.sleep(1)
 	# TBD git add and git commit
-
 
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
@@ -146,9 +138,7 @@ def watch_log_server():
 		self_ip_addr = get_ip_addrs('wlan0')[0] 
 	
 	if sys.platform.startswith('darwin'):
-		self_ip_addr = get_ip_addrs('en0')[0] 
-
-	print("weblog server status watch dog started! Starting weblog server thyself...")
+		self_ip_addr = get_ip_addrs('en0')[0]
 
 	while True:
 		if gv.kill_web_log_watcher_thread:
