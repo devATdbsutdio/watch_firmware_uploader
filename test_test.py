@@ -177,10 +177,11 @@
 
 
 import serial.tools.list_ports
-ports = serial.tools.list_ports.comports()
+ports = serial.tools.list_ports.ListPortInfo()
 for port_info in ports:
-	print(port_info)
+	print(port_info.device)
 	print(port_info.hwid)
+	print(port_info.serial_number)
 	print("")
 print("\n")
 
