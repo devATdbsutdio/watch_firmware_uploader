@@ -176,7 +176,7 @@ process_list() {
     case $input in
     [yY])
       # Do rest fo the installation ...
-      install_proj_requirements() break
+      # install_proj_requirements() break [TBD]
       ;;
     [nN])
       echo "QUITTING..."
