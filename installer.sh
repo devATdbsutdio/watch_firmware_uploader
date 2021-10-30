@@ -67,7 +67,7 @@ install_proj_requirements() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   brc # source bashrc alias
   nvm install node
-  nvm install —lts
+  nvm install --lts
   clear
   sleep 1
   sudo npm i frontail -g
