@@ -178,20 +178,20 @@
 #         print(err)
 
 
-# import time
-# import serial.tools.list_ports
-# while True:
-# 	raw_ports = serial.tools.list_ports.comports()
-# 	usable_ports = []
-# 	for port_info in raw_ports:
-# 		if port_info.serial_number != None:
-# 			data = port_info.device
-# 			print([port_info.device, port_info.serial_number])
-# 			usable_ports.append(data)
-# 	for port in usable_ports:
-# 		print(port, type(port))
-# 	print("\n")
-# 	time.sleep(4)
+import time
+import serial.tools.list_ports
+while True:
+	raw_ports = serial.tools.list_ports.comports()
+	usable_ports = []
+	for port_info in raw_ports:
+		if port_info.serial_number != None:
+			data = port_info.device
+			print([port_info.device, port_info.serial_number])
+			usable_ports.append(data)
+	for port in usable_ports:
+		print(port, type(port))
+	print("\n")
+	time.sleep(4)
 
 # for port in serial.tools.list_ports.comports():
 #     print(port.hwid)
