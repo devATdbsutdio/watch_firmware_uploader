@@ -150,7 +150,8 @@ def filtered_ser_ports():
 	usable_ports = []
 
 	for port_info in serial.tools.list_ports.comports():
-		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
+		# if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id:
+		if port_info.serial_number != None and port_info.serial_number != gv.thermal_printer_serial_chip_id and port_info.serial_number != 'HIDPC':
 			port = str(port_info.device)
 			port = port.strip()
 			usable_ports.append(port)
