@@ -116,7 +116,9 @@ def watch_kbd():
 				#--- Upload current firmware (which ever it is (prod or test))
 				#  In UI, show that the "upload firmware" cmd will be executed
 				gv.output_msg_buff = ["Uploading current firmware: "+ gv.curr_firmware_name]
-				action.execute(gv.upload_cmd, 220)
+				logger.log_info(' '.join(gv.upload_cmd))
+				action.execute(gv.upload_cmd, 120)
+
 
 				time.sleep(2)
 
