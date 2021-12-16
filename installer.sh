@@ -110,6 +110,248 @@ process_list() {
   while true; do
     clear
     echo -e "${RESET}PROCESS STATUS:${RESET}"
+        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+      fi
+    fi
+
+    if [ $firm_wares_cloned = true ] && [ ! $lib_install_count = 0 ]; then
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
+    else
+      echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
+    fi
+
+    echo ""
+    read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
+    # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
+    case $input in
+    [yY])
+      break
+      ;;
+    [nN])
+      echo "QUITTING..."
+      sleep 1
+      exit 1
+      ;;
+    *)
+      echo "Invalid input"
+      ;;
+    esac
+  done
+  clear
+
+  # THE END
+  if [ $steps = 6 ]; then
+    # Do rest fo the installation ...
+    install_proj_requirements
+    #  we have reached the end
+    on_finish_setup
+  fi
+}
+
+# Show the list and task to do
+clear
+process_list
+
+# -------- Read data in from settings file ------- #
+clear
+sleep 1
+echo -e "${YELLOW} Loading settings ...${RESET}"
+sleep 1
+if [ -f "$I_SETTINGS_FILE" ]; then
+  echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
+
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
+  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
+  # -- Add "/" at the end of PATH if it doesn't exist
+  case "$BIN_BASE_DIR" in
+  */) ;;
+
+  *)
+    BIN_BASE_DIR=$BIN_BASE_DIR/
+    ;;
+  esac
+
+  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
+
+  sleep 2
+  echo ""
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo ""
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
+  echo ""
+  echo -e "${BLUE} CORE URLS:${RESET}"
+  c=0
+  for CORE_URL in ${CORE_URLS[*]}; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE_URL"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} CORES:${RESET}"
+  for CORE in "${CORES[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} LIBRARIES:${RESET}"
+  for LIB in "${LIB_LIST[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $LIB"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} FIRMWARE REPOS:${RESET}"
+  for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $git_clone_link"
+  done
+        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+      fi
+    fi
+
+    if [ $firm_wares_cloned = true ] && [ ! $lib_install_count = 0 ]; then
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
+    else
+      echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
+    fi
+
+    echo ""
+    read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
+    # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
+    case $input in
+    [yY])
+      break
+      ;;
+    [nN])
+      echo "QUITTING..."
+      sleep 1
+      exit 1
+      ;;
+    *)
+      echo "Invalid input"
+      ;;
+    esac
+  done
+  clear
+
+  # THE END
+  if [ $steps = 6 ]; then
+    # Do rest fo the installation ...
+    install_proj_requirements
+    #  we have reached the end
+    on_finish_setup
+  fi
+}
+
+# Show the list and task to do
+clear
+process_list
+
+# -------- Read data in from settings file ------- #
+clear
+sleep 1
+echo -e "${YELLOW} Loading settings ...${RESET}"
+sleep 1
+if [ -f "$I_SETTINGS_FILE" ]; then
+  echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
+
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
+  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
+  # -- Add "/" at the end of PATH if it doesn't exist
+  case "$BIN_BASE_DIR" in
+  */) ;;
+
+  *)
+    BIN_BASE_DIR=$BIN_BASE_DIR/
+    ;;
+  esac
+
+  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
+
+  sleep 2
+  echo ""
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo ""
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
+  echo ""
+  echo -e "${BLUE} CORE URLS:${RESET}"
+  c=0
+  for CORE_URL in ${CORE_URLS[*]}; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE_URL"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} CORES:${RESET}"
+  for CORE in "${CORES[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} LIBRARIES:${RESET}"
+  for LIB in "${LIB_LIST[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $LIB"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} FIRMWARE REPOS:${RESET}"
+  for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $git_clone_link"
+  done
+  c=0
+
+  settings_found_loaded=true
+else
+  echo -e "${RED} TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+  # Show the updated list and task to do
+  settings_found_loaded=false
+  echo -e "${RED} QUITTING in 5 sec !${RESET}"
+  sleep 5
+  exit 1
+fi
+# ----------------------------- #
+steps=$((steps + 1))
+next_step
+process_list
+
+# ---- Install arduino-cli ---- #
+cli_present=false
+
+while true; do
+  echo ""
+  read -r -p "
+  c=0
+
+  settings_found_loaded=true
+else
+  echo -e "${RED} TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+  # Show the updated list and task to do
+  settings_found_loaded=false
+  echo -e "${RED} QUITTING in 5 sec !${RESET}"
+  sleep 5
+  exit 1
+fi
+# ----------------------------- #
+steps=$((steps + 1))
+next_step
+process_list
+
+# ---- Install arduino-cli ---- #
+cli_present=false
+
+while true; do
+  echo ""
+  read -r -p "
     if [ $settings_found_loaded = true ]; then
       echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
     else
@@ -121,7 +363,128 @@ process_list() {
     fi
 
     if [ $cli_installed = true ]; then
-      echo -e "${GREEN} [STEP 2] \"arduino-cli\" is now installed/asigned${RESET}"
+      echo -e "${GREEN} [STEP 2] \"arduino-cli\" is now installed/a
+        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+      fi
+    fi
+
+    if [ $firm_wares_cloned = true ] && [ ! $lib_install_count = 0 ]; then
+      echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
+    else
+      echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
+    fi
+
+    echo ""
+    read -r -p "$(echo -e "${YELLOW}" Proceed to next step? [Y/n]: "${RESET}")" input
+    # read -r -p "${YELLOW}  Proceed to next step? [Y/n]: ${RESET}" input"
+    case $input in
+    [yY])
+      break
+      ;;
+    [nN])
+      echo "QUITTING..."
+      sleep 1
+      exit 1
+      ;;
+    *)
+      echo "Invalid input"
+      ;;
+    esac
+  done
+  clear
+
+  # THE END
+  if [ $steps = 6 ]; then
+    # Do rest fo the installation ...
+    install_proj_requirements
+    #  we have reached the end
+    on_finish_setup
+  fi
+}
+
+# Show the list and task to do
+clear
+process_list
+
+# -------- Read data in from settings file ------- #
+clear
+sleep 1
+echo -e "${YELLOW} Loading settings ...${RESET}"
+sleep 1
+if [ -f "$I_SETTINGS_FILE" ]; then
+  echo -e "${GREEN} TARGET SETTINGS EXIST IN: $I_SETTINGS_FILE${RESET}"
+
+  CLI_DOWNLOAD_LINK="$($ymal_parse e '.BINARY.LINK' "$I_SETTINGS_FILE")"
+  BIN_BASE_DIR="$($ymal_parse e '.BINARY.BASE' "$I_SETTINGS_FILE")"
+  # -- Add "/" at the end of PATH if it doesn't exist
+  case "$BIN_BASE_DIR" in
+  */) ;;
+
+  *)
+    BIN_BASE_DIR=$BIN_BASE_DIR/
+    ;;
+  esac
+
+  IFS=$'\n' read -r -d '' -a CORE_URLS < <($ymal_parse e '.BINARY.CORES.LINKS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a CORES < <($ymal_parse e '.BINARY.CORES.CORE_NAMES[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a LIB_LIST < <($ymal_parse e '.LIBS[]' "$I_SETTINGS_FILE")
+  IFS=$'\n' read -r -d '' -a FIRMWARE_LINKS < <($ymal_parse e '.FIRMWARE.LINKS[]' "$I_SETTINGS_FILE")
+
+  sleep 2
+  echo ""
+  echo -e "${GREEN} FOUND SETTINGS:${RESET}"
+  echo ""
+  echo -e "${BLUE} ardunio-cli path mentioned in settings file:${RESET} ${BIN_BASE_DIR}arduino-cli"
+  echo ""
+  echo -e "${BLUE} CORE URLS:${RESET}"
+  c=0
+  for CORE_URL in ${CORE_URLS[*]}; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE_URL"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} CORES:${RESET}"
+  for CORE in "${CORES[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $CORE"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} LIBRARIES:${RESET}"
+  for LIB in "${LIB_LIST[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $LIB"
+  done
+  c=0
+  echo ""
+  echo -e "${BLUE} FIRMWARE REPOS:${RESET}"
+  for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
+    c=$((c + 1))
+    echo -e " [$c] $git_clone_link"
+  done
+  c=0
+
+  settings_found_loaded=true
+else
+  echo -e "${RED} TARGET SETTINGS file $I_SETTING_FILE_NAME doesn't seem to exist in: $SETTINGS_DIR/${RESET}"
+  # Show the updated list and task to do
+  settings_found_loaded=false
+  echo -e "${RED} QUITTING in 5 sec !${RESET}"
+  sleep 5
+  exit 1
+fi
+# ----------------------------- #
+steps=$((steps + 1))
+next_step
+process_list
+
+# ---- Install arduino-cli ---- #
+cli_present=false
+
+while true; do
+  echo ""
+  read -r -p "signed${RESET}"
     else
       if [ $steps = 0 ] || [ $steps = 1 ]; then
         echo -e "${RED} [STEP 2] \"arduino-cli\" location not assigned. It may not be installed as well. Check?${RESET}"

@@ -17,10 +17,12 @@ def get_formatted_time():
 	date = str(now.day)
 	month = str(now.month)
 	year = str(now.year)
+	delay_in_sec = "5" # delay for which the display will be on is also set by external variable here
 
 	# Arduino uses "\n" this for recoginizng EOL
 	formatted_date_time = hour + ":" + minute + ":" + second + ":" + \
-						  week_day + ":" + date + ":" + month + ":" + year + "\n"
+						  week_day + ":" + date + ":" + month + ":" + \
+						  year + ":"+ delay_in_sec + "\n"
 	return formatted_date_time
 
 def get_std_date_time():
