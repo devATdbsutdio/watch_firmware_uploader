@@ -1,10 +1,11 @@
 ---
-description: README
+description: >-
+  Scripts for installing tools and configuring a raspberry pi to make
+  assembly-line style mass firmware uploading to Arduino based micros.
+
 ---
 
 # Introduction
-
-## Scripts for installing tools and configuring a raspberry pi to make assembly-line style mass firmware uploading to Arduino based micros.
 
 ## Back-story:
 
@@ -27,7 +28,8 @@ The arduino-cli API is awesome and well designed for automation but to install e
 
 ## Overview:
 
-![](.gitbook/assets/programming_gif.gif)
+
+![](.gitbook/assets/programming_gif%20%281%29.gif)
 
 So I sat down and wrote a shell script, in pure bash \(why? why not?\), with raspberry PI in mind as the SBC for such a host system and this is what it is all about:
 
