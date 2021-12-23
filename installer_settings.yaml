@@ -19,5 +19,5 @@ LIBS: # 3rd-party libraries you want to install (can be both names or git links)
 FIRMWARE: 
     # firmware/s, that needs to be cloned goes here
     LINKS:
-        - git@github.com:dattasaurabh82/clock_firmware_production.git
+        - git@github.com:devATdbsutdio/watch_firmware.git
         # - https://github.com/dattasaurabh82/clock_firmware_production.git
