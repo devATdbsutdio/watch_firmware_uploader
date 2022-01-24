@@ -115,6 +115,10 @@ MILLIS = settings['MICROCONTROLLER']['FUSES']['MILLIS']
 RESET_PIN = settings['MICROCONTROLLER']['FUSES']['RESET_PIN']
 STARTUP_TIME = settings['MICROCONTROLLER']['FUSES']['STARTUP_TIME']
 UARTV = settings['MICROCONTROLLER']['FUSES']['UARTV']
+WIRE_MODE = settings['MICROCONTROLLER']['FUSES']['WIRE_MODE']
+PRINT_F = settings['MICROCONTROLLER']['FUSES']['PRINT_F']
+ATTACH_INT = settings['MICROCONTROLLER']['FUSES']['ATTACH_INT']
+
 PROGRAMMER = settings['MICROCONTROLLER']['FUSES']['PROGRAMMER']
 
 
@@ -184,9 +188,14 @@ git_pull_cmd = ["git", "-C", prod_firmware_path, "pull"]
 
 
 
+# FULL_FQBN_WITH_FUSES = CORE +":chip="+str(CHIP)+",clock="+CLOCK+",bodvoltage="+BOD+ \
+# 	",bodmode="+BODMODE+",eesave="+EEPROM_SAVE+",millis="+MILLIS+",resetpin="+ \
+# 	RESET_PIN+",startuptime="+str(STARTUP_TIME)+",uartvoltage="+UARTV
+
 FULL_FQBN_WITH_FUSES = CORE +":chip="+str(CHIP)+",clock="+CLOCK+",bodvoltage="+BOD+ \
 	",bodmode="+BODMODE+",eesave="+EEPROM_SAVE+",millis="+MILLIS+",resetpin="+ \
-	RESET_PIN+",startuptime="+str(STARTUP_TIME)+",uartvoltage="+UARTV
+	RESET_PIN+",startuptime="+str(STARTUP_TIME)+",wiremode="+WIRE_MODE+",printf="+ \
+	PRINT_F+",attach="+ATTACH_INT
 
 # upload_cmd = ["timeout", "10", "ping", "www.google.com"]
 

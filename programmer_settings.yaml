@@ -20,6 +20,9 @@ MICROCONTROLLER:
         RESET_PIN: UPDI
         STARTUP_TIME: 0
         UARTV: skip
+        WIRE_MODE: mors
+        PRINT_F: minimal
+        ATTACH_INT: allenabled
         PROGRAMMER: serialupdi
 
 FIRMWARE:
