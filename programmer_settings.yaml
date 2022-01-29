@@ -21,7 +21,7 @@ MICROCONTROLLER:
         STARTUP_TIME: 0
         UARTV: skip
         WIRE_MODE: mors
-        PRINT_F: minimal
+        PRINT_F: default
         ATTACH_INT: allenabled
         PROGRAMMER: serialupdi
 
