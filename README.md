@@ -2,4 +2,4 @@
 
 ---
 
-(WIKI)[https://werkhause.gitbook.io/firmware-uploader-terminal/]
+[WIKI](https://werkhause.gitbook.io/firmware-uploader-terminal/)
