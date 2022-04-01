@@ -10,7 +10,7 @@ import yaml as yp
 
 logfile_name = 'uploader_scpt.log' # Get absolute path from the log_server_manager
 logfile_path = ""
-log_server_uri = "" 
+log_server_uri = ""
 kill_web_log_watcher_thread = False
 
 frontail_path = "frontail" # Get absolute path from the log_server_manager
@@ -52,7 +52,7 @@ try:
 		settings = yp.safe_load(setting_f)
 	print("\""+settings_file_name + "\" : LOADED SUCCESSFULLY!")
 	print('\n')
-	print(yp.dump(settings))	
+	print(yp.dump(settings))
 	print('\n')
 	time.sleep(1)
 except OSError as err:
@@ -100,7 +100,6 @@ if sys.platform.startswith('darwin'):
 
 	process = Popen(["which", "arduino-cli"], stdout=PIPE, stderr=STDOUT)
 	ARDUINO_CLI = process.stdout.readline().decode('utf-8').strip('\n\r ')
-	
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')]
 	mac_proj_dir = script_dir[:script_dir.rindex('/')]
