@@ -5,3 +5,4 @@ programmer.sh
 __pycache__*
 Assets*
 test_test.py
+test_programmer_settings.yaml
