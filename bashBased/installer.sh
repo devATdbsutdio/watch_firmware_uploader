@@ -8,7 +8,7 @@ RED='\033[0;31m'
 RESET='\033[0m'
 # -------------------- #
 
-ymal_parse="$(/usr/bin/which yq)" #used for parsing setting file
+ymal_parse="$(/usr/bin/which yq)" # used for parsing setting file
 tar_parse="$(/usr/bin/which tar)"
 git_parse="$(/usr/bin/which git)"
 
@@ -26,6 +26,7 @@ I_SETTING_FILE_NAME=installer_settings.yaml
 P_SETTING_FILE_NAME=programmer_settings.yaml
 
 FULL_PATH=$(realpath "$0")
+# TBD: go one dir back
 SETTINGS_DIR=$(dirname "$FULL_PATH")
 
 I_SETTINGS_FILE=$SETTINGS_DIR/$I_SETTING_FILE_NAME
