@@ -8,7 +8,6 @@ import yaml as yp
 
 
 
-
 logfile_name = 'uploader_scpt.log' # Get absolute path from the log_server_manager
 logfile_path = ""
 log_server_uri = "" 
@@ -31,19 +30,29 @@ settings = """
 - 'EMPTY'
 """
 
-script_path = os.path.realpath(__file__)
-script_dir = script_path[:script_path.rindex('/')+1]
-settings_file = script_dir + 'programmer_settings.yaml'
-# settings_file = script_dir + 'test_programmer_settings.yaml'
-# settings_file = 'test_programmer_settings.yaml'
-print("\n\nLoading settings...")
+
+# OLD settings file loc in their own dir...
+# script_path = os.path.realpath(__file__)
+# script_dir = script_path[:script_path.rindex('/')+1]
+# settings_file = script_dir + 'programmer_settings.yaml'
+
+
+# NEW settings file loc in the project main dir
+settings_file_name = 'programmer_settings.yaml'
+settings_dir = os.path.realpath('') + '/'
+settings_file = settings_dir + settings_file_name
+print("\n\nMAIN SETTINGS FILE LOC: " + settings_file)
+
+
+
+print("\nLoading settings...")
 
 try:
 	with open(settings_file, 'r') as setting_f:
 		settings = yp.safe_load(setting_f)
-	print('Successfully loaded the ' + settings_file)
+	print("\""+settings_file_name + "\" : LOADED SUCCESSFULLY!")
 	print('\n')
-	print(yp.dump(settings))
+	print(yp.dump(settings))	
 	print('\n')
 	time.sleep(1)
 except OSError as err:
@@ -55,6 +64,8 @@ except OSError as err:
 except IOError as err:
 	print(err)
 	print('\n\n')
+	print("\""+settings_file_name + "\" : FAILED TO LOAD!")
+	print('\n')
 	print('Make sure you have the ' + settings_file + ' in the same directory.')
 	time.sleep(1)
 	print('Couldn\'t find it')
@@ -214,8 +225,7 @@ upload_cmd = [
 
 
 
-# print(upload_cmd)
-print("\n")
+print('\nUPLOAD CMD:')
 print(' '.join(upload_cmd))
 print("\n")
 time.sleep(5)

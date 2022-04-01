@@ -1,0 +1,33 @@
+BINARY:
+    LOCATION: /home/pi/bin/arduino-cli
+
+# The deatils you can find:
+# arduino-cli board details -b FQBN
+# e.g: arduino-cli board details -b megaTinyCore:megaavr:atxy7 
+# More on this here: https://github.com/dattasaurabh82/megaTinyCore/blob/master/Installation.md
+MICROCONTROLLER:
+    # Edit this parameters for your needs
+    TARGET: 
+        NAME: ATTINY1607 # just a nice name for usage in UI
+        CORE: megaTinyCore:megaavr:atxy7
+    FUSES:
+        CHIP: 1607
+        CLOCK: 5internal
+        BOD: 1v8
+        BODMODE: disabled
+        EEPROM_SAVE: enable
+        MILLIS: enabled
+        RESET_PIN: UPDI
+        STARTUP_TIME: 0
+        UARTV: skip
+        WIRE_MODE: mors
+        PRINT_F: default
+        ATTACH_INT: allenabled
+        PROGRAMMER: serialupdi
+
+FIRMWARE:
+    SKETCHES:
+        # - /home/pi/Arduino/sketchbook/clock_firmware_production
+        # - /home/pi/Arduino/sketchbook/clock_firmware_production/Tests/components_check
+        - /home/pi/Arduino/sketchbook/watch_firmware
+        - /home/pi/Arduino/sketchbook/watch_firmware/Tests/components_check

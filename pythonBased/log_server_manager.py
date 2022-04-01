@@ -13,6 +13,13 @@ import ifaddr
 import global_vars as gv
 
 
+# SET THE Gloabl params for some system execs like 'rm' and 'touch' etc. to be used here for log file handling
+p = Popen(["which", "rm"], stdout=PIPE, stderr=STDOUT)
+rm = p.stdout.readline().decode('utf-8').strip('\n\r')
+p = Popen(["which", "touch"], stdout=PIPE, stderr=STDOUT)
+touch = p.stdout.readline().decode('utf-8').strip('\n\r')
+
+
 # --- Launch web log server --- #
 SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 		  gv.frontail_path,
@@ -44,15 +51,15 @@ def start_server():
 	if os.path.exists(gv.logfile_path):
 		# file exists, delete and create
 		print("Old log file found. Deleting it...")
-		subprocess.call(['/usr/bin/rm', gv.logfile_path]);
+		subprocess.call([rm, gv.logfile_path]);
 		time.sleep(1)
 		print("Creatig an EMPTY log file again...")
-		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+		subprocess.call([touch, gv.logfile_path]);
 		time.sleep(1)
 	else:
 		# file doesn't exist, just create
 		print("No Old log file found. Creatig an EMPTY one...")
-		subprocess.call(['/usr/bin/touch', gv.logfile_path]);
+		subprocess.call([touch, gv.logfile_path]);
 		time.sleep(1)
 	# [TBD] git add and git commit
 
@@ -90,7 +97,7 @@ def get_ip_addrs(_iface):
 CMD_SEARCH_CMD = "ps aux | grep frontail"
 
 def get_shell_res(_cmd):
-	''' intended to return the grep search reslt '''
+	''' intended to return the grep search result '''
 	process = Popen(_cmd, shell=True, stdout=PIPE, stderr=STDOUT)
 	output = process.communicate()
 	shell_res = output[0].decode('utf-8').strip()
