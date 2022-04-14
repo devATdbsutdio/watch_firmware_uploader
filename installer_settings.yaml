@@ -8,11 +8,9 @@ BINARY:
             - http://drazzy.com/package_drazzy.com_index.json
             - https://dl.espressif.com/dl/package_esp32_index.json
         CORE_NAMES: # names of cores you want to install. Note that I have used full FQBN here
-            - megaTinyCore:megaavr 
-            - esp32:esp32
+            - megaTinyCore:megaavr
 
 LIBS: # 3rd-party libraries you want to install (can be both names or git links)
-    - https://github.com/dattasaurabh82/TinyMegaI2CMaster.git
     - TinyMegaI2C   
     - RV8803Tiny
 
