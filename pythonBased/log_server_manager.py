@@ -36,8 +36,8 @@ def start_server():
 
 	# [TBD] Fix why I can't get frontail path from here
 	process = Popen(['which', 'frontail'], stdout=PIPE, stderr=STDOUT)
-	fp = process.stdout.readline().decode('utf-8').strip('\n\r')
-	print(fp)
+	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r')
+	print(gv.frontail_path)
 
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
@@ -53,17 +53,17 @@ def start_server():
 		# file exists, delete and create
 		print("Old log file found. Deleting it...")
 		subprocess.call([rm, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
+		# subprocess.call(['ls', '-l']);
 		time.sleep(1)
 		print("Creatig an EMPTY log file again...")
 		subprocess.call([touch, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
+		# subprocess.call(['ls', '-l']);
 		time.sleep(1)
 	else:
 		# file doesn't exist, just create
 		print("No Old log file found. Creatig an EMPTY one...")
 		subprocess.call([touch, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
+		# subprocess.call(['ls', '-l']);
 		time.sleep(1)
 	# [TBD] git add and git commit
 

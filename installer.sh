@@ -64,15 +64,22 @@ install_proj_requirements() {
   echo "nodejs and frontail"
   sleep 1
   echo ""
+  # install latest node: (as of Apr 2022)
+  curl -sL https://deb.nodesource.com/setup_17.x | sudo bash -
   sudo apt install nodejs -y
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-  brc # source bashrc alias
-  nvm install node
-  nvm install --lts
-  clear
+  $(which node) --version
+  $(which npm) --version
+
+  # NOTE: Don't use NVM here as later fronttail installed by npm can't be found
+
+  # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  # brc # source bashrc alias
+  # nvm install node
+  # nvm install --lts
+  # clear
+
   sleep 1
-  # sudo npm i frontail -g
-  npm i frontail -g
+  sudo npm i frontail -g
   clear
   sleep 1
   echo "Done the rest of sys installations"
