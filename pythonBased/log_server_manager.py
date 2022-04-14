@@ -35,7 +35,7 @@ def start_server():
 	'''For spawning frontail server web log server for logfile'''
 
 	process = Popen(['which', 'frontail], stdout=PIPE, stderr=STDOUT)
-	print(process.stdout.readline())
+	print(process.stdout.readline().decode('utf-8'))
 	# gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
 	# print(gv.frontail_path)
