@@ -150,7 +150,7 @@ def filtered_ser_ports():
 	usable_ports = []
 
 	for port_info in serial.tools.list_ports.comports():
-		if port_info.serial_number != gv.thermal_printer_serial_chip_id and port_info.serial_number != 'HIDPC':
+		if port_info.device != '/dev/ttyAMA0' and port_info.serial_number != gv.thermal_printer_serial_chip_id and port_info.serial_number != 'HIDPC':
 			port = str(port_info.device)
 			port = port.strip()
 			usable_ports.append(port)
@@ -213,13 +213,13 @@ def watch_ser_ports():
 				port = str(port_info.device)
 				port = port.strip()
 
-				if port_info.serial_number != None and port_info.serial_number == gv.thermal_printer_serial_chip_id and port_info.serial_number != "HIDPC":
+				if port_info.device != '/dev/ttyAMA0' and port_info.serial_number == gv.thermal_printer_serial_chip_id and port_info.serial_number != "HIDPC":
 					gv.printer_port = port
-				if port_info.serial_number != None and port_info.serial_number == gv.updi_ftdi_id and port_info.serial_number != "HIDPC":
+				if pport_info.device != '/dev/ttyAMA0' and port_info.serial_number == gv.updi_ftdi_id and port_info.serial_number != "HIDPC":
 					gv.updi_port = port
 					logger.log_info("UPDI:\t" + gv.updi_port + "\t" + str(port_info.serial_number))
 				# if not none and not UPDI FTDI ID, must be debug chip port
-				if port_info.serial_number != None and port_info.serial_number != gv.updi_ftdi_id and \
+				if port_info.serial_number != gv.updi_ftdi_id and \
 					port_info.serial_number != gv.thermal_printer_serial_chip_id and port_info.serial_number != "HIDPC":
 					gv.curr_serial_debug_port = port
 					logger.log_info("SER:\t" + gv.curr_serial_debug_port + "\t" + str(port_info.serial_number))
