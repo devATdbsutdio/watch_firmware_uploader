@@ -34,43 +34,40 @@ SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 def start_server():
 	'''For spawning frontail server web log server for logfile'''
 
-	# process = Popen(['which', 'frontail], stdout=PIPE, stderr=STDOUT)
-	# print(process.stdout.readline().decode('utf-8'))
-	# gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
+	# [TBD] Fix why I can't get frontail path from here
+	process = Popen(['which', 'frontail'], stdout=PIPE, stderr=STDOUT)
+	fp = process.stdout.readline().decode('utf-8').strip('\n\r')
+	print(fp)
 
-	print(gv.frontail_path)
-	# gv.frontail_path` = 
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
 	gv.logfile_path = script_dir + gv.logfile_name
 
-	print(gv.logfile_path + "\n")
+	print("EXPECTED LOG AT: " + gv.logfile_path + "\n")
 
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
-	# if os.path.exists(gv.logfile_path):
-	# 	# file exists, delete and create
-	# 	print("Old log file found. Deleting it...")
-	# 	subprocess.call([rm, gv.logfile_path]);
-	# 	subprocess.call(['ls', '-l']);
-	# 	time.sleep(1)
-	# 	print("Creatig an EMPTY log file again...")
-	# 	subprocess.call([touch, gv.logfile_path]);
-	# 	subprocess.call(['ls', '-l']);
-	# 	time.sleep(1)
-	# else:
-	# 	# file doesn't exist, just create
-	# 	print("No Old log file found. Creatig an EMPTY one...")
-	# 	subprocess.call([touch, gv.logfile_path]);
-	# 	subprocess.call(['ls', '-l']);
-	# 	time.sleep(1)
-	# # [TBD] git add and git commit
+	if os.path.exists(gv.logfile_path):
+		# file exists, delete and create
+		print("Old log file found. Deleting it...")
+		subprocess.call([rm, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
+		time.sleep(1)
+		print("Creatig an EMPTY log file again...")
+		subprocess.call([touch, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
+		time.sleep(1)
+	else:
+		# file doesn't exist, just create
+		print("No Old log file found. Creatig an EMPTY one...")
+		subprocess.call([touch, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
+		time.sleep(1)
+	# [TBD] git add and git commit
 
 	print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
-
-	# print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
 
 	# front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
 
