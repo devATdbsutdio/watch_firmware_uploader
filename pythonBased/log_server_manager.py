@@ -66,9 +66,9 @@ def start_server():
 		time.sleep(1)
 	# [TBD] git add and git commit
 
-	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
+	print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
-	print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
+	# print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
 
 	# front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
 
