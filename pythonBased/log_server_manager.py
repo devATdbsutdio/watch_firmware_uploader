@@ -34,13 +34,13 @@ SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 def start_server():
 	'''For spawning frontail server web log server for logfile'''
 
-	process = Popen(['which', 'frontail], stdout=PIPE, stderr=STDOUT)
-	print(process.stdout.readline().decode('utf-8'))
+	# process = Popen(['which', 'frontail], stdout=PIPE, stderr=STDOUT)
+	# print(process.stdout.readline().decode('utf-8'))
 	# gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
-	# print(gv.frontail_path)
-
-	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
+	print(gv.frontail_path)
+	# gv.frontail_path` = 
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
 	# script_path = os.path.realpath(__file__)
 	# script_dir = script_path[:script_path.rindex('/')+1]
@@ -69,7 +69,7 @@ def start_server():
 	# 	time.sleep(1)
 	# # [TBD] git add and git commit
 
-	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
+	print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
 	# print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
 
