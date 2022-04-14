@@ -34,10 +34,11 @@ SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 def start_server():
 	'''For spawning frontail server web log server for logfile'''
 
-	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
-	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
+	process = Popen(['which', 'frontail], stdout=PIPE, stderr=STDOUT)
+	print(process.stdout.readline())
+	# gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
-	print(gv.frontail_path)
+	# print(gv.frontail_path)
 
 	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
