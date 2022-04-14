@@ -23,6 +23,7 @@ time.sleep(2)
 # Start the web log uri getting thread
 log_server_manager.start_status_watchdog()
 print("weblog server status watch dog started! Starting weblog server thyself...")
+time.sleep(5)
 
 import logger
 import keyboard as kbd
