@@ -151,7 +151,7 @@ def filtered_ser_ports():
 
 	for port_info in serial.tools.list_ports.comports():
 		pnd = str(port_info.device)
-		pnd = port.strip()
+		pnd = pnd.strip()
 		if pnd != '/dev/ttyAMA0' and port_info.serial_number != gv.thermal_printer_serial_chip_id and port_info.serial_number != 'HIDPC':
 			port = str(port_info.device)
 			port = port.strip()
