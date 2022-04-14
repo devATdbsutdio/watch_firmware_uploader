@@ -42,7 +42,7 @@ def start_server():
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
 	gv.logfile_path = script_dir + gv.logfile_name
-	
+
 	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 	SPAWN_FRONTAIL_LOG_FILE_WATCHER[6] = gv.logfile_path
 
@@ -52,27 +52,32 @@ def start_server():
 		# file exists, delete and create
 		print("Old log file found. Deleting it...")
 		subprocess.call([rm, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
 		time.sleep(1)
 		print("Creatig an EMPTY log file again...")
 		subprocess.call([touch, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
 		time.sleep(1)
 	else:
 		# file doesn't exist, just create
 		print("No Old log file found. Creatig an EMPTY one...")
 		subprocess.call([touch, gv.logfile_path]);
+		subprocess.call(['ls', '-l']);
 		time.sleep(1)
 	# [TBD] git add and git commit
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
-	front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
+	print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
 
-	if front_tail_process_spawner.poll() is None:
-		print("'frontail' web logserver has started!")
-		time.sleep(1)
-	else:
-		print("'frontail' web logserver have NOT been started!")
-		time.sleep(1)
+	# front_tail_process_spawner = Popen(SPAWN_FRONTAIL_LOG_FILE_WATCHER, stdout=PIPE, stderr=STDOUT)
+
+	# if front_tail_process_spawner.poll() is None:
+	# 	print("'frontail' web logserver has started!")
+	# 	time.sleep(1)
+	# else:
+	# 	print("'frontail' web logserver have NOT been started!")
+	# 	time.sleep(1)
 
 
 
