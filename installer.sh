@@ -71,7 +71,8 @@ install_proj_requirements() {
   nvm install --lts
   clear
   sleep 1
-  sudo npm i frontail -g
+  # sudo npm i frontail -g
+  npm i frontail -g
   clear
   sleep 1
   echo "Done the rest of sys installations"
