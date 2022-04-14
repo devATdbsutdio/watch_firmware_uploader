@@ -45,10 +45,10 @@ def start_server():
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
 	gv.logfile_path = script_dir + gv.logfile_name
+
 	print(gv.logfile_path + "\n")
 
-	# # SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
-	SPAWN_FRONTAIL_LOG_FILE_WATCHER[6] = gv.logfile_path
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
 
 	# if os.path.exists(gv.logfile_path):
 	# 	# file exists, delete and create
