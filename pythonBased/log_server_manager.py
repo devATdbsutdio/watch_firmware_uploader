@@ -25,8 +25,6 @@ SPAWN_FRONTAIL_LOG_FILE_WATCHER = [
 		  gv.frontail_path,
 		  "--ui-hide-topbar",
 		  "--theme", "dark",
-		  # "--ui-highlight", #
-		  # FRONTAIL_STYLE_FILE_PATH,
 		  "--disable-usage-stats",
 		  "-p",
 		  gv.frontail_init_port,
@@ -44,7 +42,9 @@ def start_server():
 	script_path = os.path.realpath(__file__)
 	script_dir = script_path[:script_path.rindex('/')+1]
 	gv.logfile_path = script_dir + gv.logfile_name
-	SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
+	
+	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
+	SPAWN_FRONTAIL_LOG_FILE_WATCHER[6] = gv.logfile_path
 
 	print(gv.logfile_path + "\n")
 
@@ -62,7 +62,6 @@ def start_server():
 		subprocess.call([touch, gv.logfile_path]);
 		time.sleep(1)
 	# [TBD] git add and git commit
-
 
 	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
