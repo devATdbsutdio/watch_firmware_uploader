@@ -39,11 +39,10 @@ settings = """
 
 # NEW settings file loc in the project main dir
 settings_file_name = 'programmer_settings.yaml'
-settings_dir = os.path.realpath('') + '/'
-
 path_parent = os.path.dirname(os.getcwd())
 os.chdir(path_parent)
-settings_dir = os.getcwd()
+settings_dir = os.getcwd() + '/'
+
 settings_file = settings_dir + settings_file_name
 print("\n\nMAIN SETTINGS FILE LOC: " + settings_file)
 
