@@ -65,7 +65,7 @@ install_proj_requirements() {
   sleep 1
   echo ""
   sudo apt install nodejs -y
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
   brc # source bashrc alias
   nvm install node
   nvm install --lts
