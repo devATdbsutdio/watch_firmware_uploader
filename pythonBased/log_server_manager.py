@@ -37,36 +37,38 @@ def start_server():
 	process = Popen(["which", "frontail"], stdout=PIPE, stderr=STDOUT)
 	gv.frontail_path = process.stdout.readline().decode('utf-8').strip('\n\r ')
 
-	SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
+	print(gv.frontail_path)
 
-	script_path = os.path.realpath(__file__)
-	script_dir = script_path[:script_path.rindex('/')+1]
-	gv.logfile_path = script_dir + gv.logfile_name
+	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[0] = gv.frontail_path
 
-	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
-	SPAWN_FRONTAIL_LOG_FILE_WATCHER[6] = gv.logfile_path
+	# script_path = os.path.realpath(__file__)
+	# script_dir = script_path[:script_path.rindex('/')+1]
+	# gv.logfile_path = script_dir + gv.logfile_name
 
-	print(gv.logfile_path + "\n")
+	# # SPAWN_FRONTAIL_LOG_FILE_WATCHER[7] = gv.logfile_path
+	# SPAWN_FRONTAIL_LOG_FILE_WATCHER[6] = gv.logfile_path
 
-	if os.path.exists(gv.logfile_path):
-		# file exists, delete and create
-		print("Old log file found. Deleting it...")
-		subprocess.call([rm, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
-		time.sleep(1)
-		print("Creatig an EMPTY log file again...")
-		subprocess.call([touch, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
-		time.sleep(1)
-	else:
-		# file doesn't exist, just create
-		print("No Old log file found. Creatig an EMPTY one...")
-		subprocess.call([touch, gv.logfile_path]);
-		subprocess.call(['ls', '-l']);
-		time.sleep(1)
-	# [TBD] git add and git commit
+	# print(gv.logfile_path + "\n")
 
-	print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
+	# if os.path.exists(gv.logfile_path):
+	# 	# file exists, delete and create
+	# 	print("Old log file found. Deleting it...")
+	# 	subprocess.call([rm, gv.logfile_path]);
+	# 	subprocess.call(['ls', '-l']);
+	# 	time.sleep(1)
+	# 	print("Creatig an EMPTY log file again...")
+	# 	subprocess.call([touch, gv.logfile_path]);
+	# 	subprocess.call(['ls', '-l']);
+	# 	time.sleep(1)
+	# else:
+	# 	# file doesn't exist, just create
+	# 	print("No Old log file found. Creatig an EMPTY one...")
+	# 	subprocess.call([touch, gv.logfile_path]);
+	# 	subprocess.call(['ls', '-l']);
+	# 	time.sleep(1)
+	# # [TBD] git add and git commit
+
+	# print(' '.join(SPAWN_FRONTAIL_LOG_FILE_WATCHER))
 
 	# print(SPAWN_FRONTAIL_LOG_FILE_WATCHER)
 
