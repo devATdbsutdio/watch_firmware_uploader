@@ -46,15 +46,15 @@ install_proj_requirements() {
   echo "Installing npyscreen, pyyaml ifaddr using pip3"
   sleep 1
   echo ""
-  pip3 install npyscreen
-  pip3 install pyyaml
-  pip3 install ifaddr
+  python3 -m pip install npyscreen
+  python3 -m pip install pyyaml
+  python3 -m pip install ifaddr
   clear
   sleep 1
   echo "Installing pyserial, thermalprinter and PIL using pip3"
   sleep 1
   echo ""
-  pip3 install pyserial
+  python3 -m pip install pyserial
   python3 -m pip install --upgrade --user pyserial
   python3 -m pip install --upgrade --user thermalprinter
   python3 -m pip install --upgrade --user pytest
@@ -117,66 +117,66 @@ on_finish_setup() {
 
 process_list() {
   while true; do
-    clear
-    echo -e "${RESET}PROCESS STATUS:${RESET}"
-    if [ $settings_found_loaded = true ]; then
-      echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
-    else
-      if [ $steps = 0 ]; then
-        echo -e "${RED} [STEP 1] Must try to load \"installer_settings.yaml\" before anything else. Do it?${RESET}"
-      else
-        echo -e "${RED} [STEP 1] \"installer_settings.yaml\" Not Loaded${RESET}"
-      fi
-    fi
+    # clear
+    # echo -e "${RESET}PROCESS STATUS:${RESET}"
+    # if [ $settings_found_loaded = true ]; then
+    #   echo -e "${GREEN} [STEP 1] \"installer_settings.yaml\" Located and Loaded${RESET}"
+    # else
+    #   if [ $steps = 0 ]; then
+    #     echo -e "${RED} [STEP 1] Must try to load \"installer_settings.yaml\" before anything else. Do it?${RESET}"
+    #   else
+    #     echo -e "${RED} [STEP 1] \"installer_settings.yaml\" Not Loaded${RESET}"
+    #   fi
+    # fi
 
-    if [ $cli_installed = true ]; then
-      echo -e "${GREEN} [STEP 2] \"arduino-cli\" is now installed/asigned${RESET}"
-    else
-      if [ $steps = 0 ] || [ $steps = 1 ]; then
-        echo -e "${RED} [STEP 2] \"arduino-cli\" location not assigned. It may not be installed as well. Check?${RESET}"
-      else
-        echo -e "${RED} [STEP 2] \"arduino-cli\" potentially not installed${RESET}"
-      fi
-    fi
+    # if [ $cli_installed = true ]; then
+    #   echo -e "${GREEN} [STEP 2] \"arduino-cli\" is now installed/asigned${RESET}"
+    # else
+    #   if [ $steps = 0 ] || [ $steps = 1 ]; then
+    #     echo -e "${RED} [STEP 2] \"arduino-cli\" location not assigned. It may not be installed as well. Check?${RESET}"
+    #   else
+    #     echo -e "${RED} [STEP 2] \"arduino-cli\" potentially not installed${RESET}"
+    #   fi
+    # fi
 
-    if [ $cli_init_file_created = true ]; then
-      echo -e "${GREEN} [STEP 3] Made sure arduino-cli's config file is there${RESET}"
-    else
-      if [ $steps = 0 ] || [ $steps = 2 ]; then
-        echo -e "${RED} [STEP 3] Not sure if arduino-cli's config file is there or not! Check?${RESET}"
-      else
-        echo -e "${RED} [STEP 3] arduino-cli's config file could not be created!${RESET}"
-      fi
-    fi
+    # if [ $cli_init_file_created = true ]; then
+    #   echo -e "${GREEN} [STEP 3] Made sure arduino-cli's config file is there${RESET}"
+    # else
+    #   if [ $steps = 0 ] || [ $steps = 2 ]; then
+    #     echo -e "${RED} [STEP 3] Not sure if arduino-cli's config file is there or not! Check?${RESET}"
+    #   else
+    #     echo -e "${RED} [STEP 3] arduino-cli's config file could not be created!${RESET}"
+    #   fi
+    # fi
 
-    if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${GREEN} [STEP 4] All the listed cores (from provided settings) must have been installed!${RESET}"
-    elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
-      echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Consult ardunio-cli config!"
-    else
-      if [ $steps = 0 ] || [ $steps = 3 ]; then
-        echo -e "${RED} [STEP 4] Not sure if the listed cores (from provided settings) are installed! Check?${RESET}"
-      else
-        echo -e "${RED} [STEP 4] None of the listed cores (from provided settings) are installed!${RESET}"
-      fi
-    fi
+    # if [ $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
+    #   echo -e "${GREEN} [STEP 4] All the listed cores (from provided settings) must have been installed!${RESET}"
+    # elif [ ! $core_install_count = "${#CORES[*]}" ] && [ ! $core_install_count = 0 ]; then
+    #   echo -e "${YELLOW} [STEP 4] Some cores are NOT installed${RESET}.Consult ardunio-cli config!"
+    # else
+    #   if [ $steps = 0 ] || [ $steps = 3 ]; then
+    #     echo -e "${RED} [STEP 4] Not sure if the listed cores (from provided settings) are installed! Check?${RESET}"
+    #   else
+    #     echo -e "${RED} [STEP 4] None of the listed cores (from provided settings) are installed!${RESET}"
+    #   fi
+    # fi
 
-    if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
-      echo -e "${GREEN} [STEP 5] All the listed libraries (from provided settings) must have been installed!${RESET}"
-    elif [ ! $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
-      echo -e "${YELLOW} [STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
-    else
-      if [ $steps = 0 ] || [ $steps = 4 ]; then
-        echo -e "${RED} [STEP 5] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
-      else
-        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
-      fi
-    fi
+    # if [ $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
+    #   echo -e "${GREEN} [STEP 5] All the listed libraries (from provided settings) must have been installed!${RESET}"
+    # elif [ ! $lib_install_count = "${#LIB_LIST[*]}" ] && [ ! $lib_install_count = 0 ]; then
+    #   echo -e "${YELLOW} [STEP 5] Some libraries are not installed${RESET}.Consult ardunio-cli config!"
+    # else
+    #   if [ $steps = 0 ] || [ $steps = 4 ]; then
+    #     echo -e "${RED} [STEP 5] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
+    #   else
+    #     echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+    #   fi
+    # fi
 
     if [ $firm_wares_cloned = true ] && [ ! $lib_install_count = 0 ]; then
       echo -e "${GREEN}[STEP 6] Firmwares are cloned !${RESET}"
     else
-      echo -e "${RED} [STEP 6] Firmwares loaction: Not sure. Check?${RESET}"
+      echo -e "${RED} [STEP 6] Firmwares location: Not sure. Check?${RESET}"
     fi
 
     echo ""
@@ -199,12 +199,12 @@ process_list() {
   clear
 
   # THE END
-  if [ $steps = 6 ]; then
-    # Do rest fo the installation ...
-    install_proj_requirements
-    #  we have reached the end
-    on_finish_setup
-  fi
+  # if [ $steps = 6 ]; then
+  #   # Do rest fo the installation ...
+  #   install_proj_requirements
+  #   #  we have reached the end
+  #   on_finish_setup
+  # fi
 }
 
 # Show the list and task to do
@@ -543,15 +543,15 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   firmware_loc=$sketchbook_loc$SKETCH_NAME
 
   # if sketch already exists, git pull
-  if [ -d "$firmware_loc" ]; then
-    echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
-    echo " "
-    # cd "$firmware_loc" && $git_parse pull
-    cd "$firmware_loc" && git checkout production && git up
-  else
-    echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
-    $git_parse clone "$git_clone_link"
-  fi
+  # if [ -d "$firmware_loc" ]; then
+  #   echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
+  #   echo " "
+  #   # cd "$firmware_loc" && $git_parse pull
+  #   cd "$firmware_loc" && git checkout production && git up
+  # else
+  echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
+  $git_parse clone "$git_clone_link"
+  # fi
   cd "$HOME" || return
 
   # enter the path in programmer settings
