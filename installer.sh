@@ -533,6 +533,8 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
   SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
 
+  echo $SKETCH_NAME
+
   # -- FOR SSH git links
   # IFS='/' read -ra parts_of_link <<<"$git_clone_link"
   # SKETCH_NAME_WITH_GIT=${parts_of_link[1]}
@@ -541,6 +543,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   # SKETCH_NAME=${SKETCH_NAME_WITH_GIT:0:$IDX_OF_DOT}
 
   firmware_loc=$sketchbook_loc$SKETCH_NAME
+  echo $firmware_loc
 
   # if sketch already exists, git pull
   # if [ -d "$firmware_loc" ]; then
@@ -549,23 +552,23 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   #   # cd "$firmware_loc" && $git_parse pull
   #   cd "$firmware_loc" && git checkout production && git up
   # else
-  echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
-  $git_parse clone "$git_clone_link"
-  # fi
-  cd "$HOME" || return
+  # echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
+  # $git_parse clone "$git_clone_link"
+  # # fi
+  # cd "$HOME" || return
 
-  # enter the path in programmer settings
-  echo -e "${GREEN} Firmware-$i is now in system at:${RESET} $firmware_loc"
-  sleep 1
-  echo -e "${YELLOW} Entering this location PATH in${RESET} $P_SETTING_FILE_NAME ..."
+  # # enter the path in programmer settings
+  # echo -e "${GREEN} Firmware-$i is now in system at:${RESET} $firmware_loc"
+  # sleep 1
+  # echo -e "${YELLOW} Entering this location PATH in${RESET} $P_SETTING_FILE_NAME ..."
 
-  # Enter it in settings
-  $ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
-  echo -e "${GREEN} DONE!${RESET}"
-  echo " "
-  echo "-------------------"
-  $ymal_parse e "$P_SETTINGS_FILE"
-  echo "-------------------"
+  # # Enter it in settings
+  # $ymal_parse e ".FIRMWARE.SKETCHES[$i] = \"$firmware_loc\"" -i "$P_SETTINGS_FILE"
+  # echo -e "${GREEN} DONE!${RESET}"
+  # echo " "
+  # echo "-------------------"
+  # $ymal_parse e "$P_SETTINGS_FILE"
+  # echo "-------------------"
   i=$((i + 1))
 done
 firm_wares_cloned=true
