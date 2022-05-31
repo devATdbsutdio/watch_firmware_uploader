@@ -27,5 +27,5 @@ MICROCONTROLLER:
 
 FIRMWARE:
     SKETCHES:
-        - /home/pi/Arduino/sketchbook/watch_firmware
-        - /home/pi/Arduino/sketchbook/watch_firmware/Tests/components_check
+        # - /home/pi/Arduino/sketchbook/watch_firmware
+        # - /home/pi/Arduino/sketchbook/watch_firmware/Tests/components_check
