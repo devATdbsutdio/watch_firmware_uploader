@@ -543,15 +543,15 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   firmware_loc=$sketchbook_loc$SKETCH_NAME
 
   # if sketch already exists, git pull
-  if [ -d "$firmware_loc" ]; then
-    echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
-    echo " "
-    # cd "$firmware_loc" && $git_parse pull
-    cd "$firmware_loc" && git checkout production && git up
-  else
-    echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
-    $git_parse clone "$git_clone_link"
-  fi
+  # if [ -d "$firmware_loc" ]; then
+  #   echo -e "${BLUE} File already exists.${RESET} ${YELLOW}So pulling ...${RESET}"
+  #   echo " "
+  #   # cd "$firmware_loc" && $git_parse pull
+  #   cd "$firmware_loc" && git checkout production && git up
+  # else
+  echo -e "${YELLOW} [$i] Cloning $git_clone_link to${RESET} $sketchbook_loc"
+  $git_parse clone "$git_clone_link"
+  # fi
   cd "$HOME" || return
 
   # enter the path in programmer settings
