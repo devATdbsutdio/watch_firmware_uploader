@@ -46,6 +46,7 @@ install_proj_requirements() {
   echo "Installing npyscreen, pyyaml ifaddr using pip3"
   sleep 1
   echo ""
+  /usr/bin/python3 -m pip install --upgrade pip
   python3 -m pip install npyscreen
   python3 -m pip install pyyaml
   python3 -m pip install ifaddr
