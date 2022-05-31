@@ -169,7 +169,11 @@ process_list() {
       if [ $steps = 0 ] || [ $steps = 4 ]; then
         echo -e "${RED} [STEP 5] Not sure if the listed libraries (from provided settings) are installed! Check?${RESET}"
       else
-        echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+        if [ $steps = 6 ]; then
+          echo -e "${GREEN} [STEP 5] All the listed libraries (from provided settings) must have been installed!${RESET}"
+        else
+          echo -e "${RED} [STEP 5] None of the listed libraries are (from provided settings) installed${RESET}"
+        fi
       fi
     fi
 
