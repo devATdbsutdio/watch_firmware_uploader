@@ -533,6 +533,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
   SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
 
+  echo "SKETCH_NAME:"
   echo $SKETCH_NAME
 
   # -- FOR SSH git links
@@ -543,6 +544,7 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   # SKETCH_NAME=${SKETCH_NAME_WITH_GIT:0:$IDX_OF_DOT}
 
   firmware_loc=$sketchbook_loc$SKETCH_NAME
+  echo "SKETCH_LOC:"
   echo $firmware_loc
 
   # if sketch already exists, git pull
