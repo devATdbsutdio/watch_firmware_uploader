@@ -139,7 +139,7 @@ def watch_kbd():
 						gv.debug_port_status = "Closed"
 						logger.log_error(" Error Opening the Debug Serial Port!")
 						gv.output_msg_buff = ["Error Opening the Debug Serial Port!"]
-				else:
+				else:	 
 					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
 					logger.log_error(["Conflicting Debug Port with other ports", "Change it!"])
 
