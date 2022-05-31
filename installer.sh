@@ -529,21 +529,21 @@ for git_clone_link in "${FIRMWARE_LINKS[@]}"; do
   # --- parse the end of the git link to get sketch's dir name
 
   # -- FOR HTTPS git links
-  SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
+  # SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME}
+  # IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
+  # SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
+
+  # -- FOR SSH git links
+  IFS='/' read -ra parts_of_link <<<"$git_clone_link"
+  SKETCH_NAME_WITH_GIT=${parts_of_link[1]}
+  SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME_WITH_GIT}
   IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
-  SKETCH_NAME=${SKETCH_NAME:0:$IDX_OF_DOT}
+  SKETCH_NAME=${SKETCH_NAME_WITH_GIT:0:$IDX_OF_DOT}
+
+  firmware_loc=$sketchbook_loc$SKETCH_NAME
 
   echo "SKETCH_NAME:"
   echo $SKETCH_NAME
-
-  # -- FOR SSH git links
-  # IFS='/' read -ra parts_of_link <<<"$git_clone_link"
-  # SKETCH_NAME_WITH_GIT=${parts_of_link[1]}
-  # SKETCH_NAME_LEN_WITH_GIT=${#SKETCH_NAME_WITH_GIT}
-  # IDX_OF_DOT=$((SKETCH_NAME_LEN_WITH_GIT - 4))
-  # SKETCH_NAME=${SKETCH_NAME_WITH_GIT:0:$IDX_OF_DOT}
-
-  firmware_loc=$sketchbook_loc$SKETCH_NAME
   echo "SKETCH_LOC:"
   echo $firmware_loc
 
