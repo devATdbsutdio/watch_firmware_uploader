@@ -174,7 +174,6 @@ kill_ser_port_watcher_thread = False
 serial_debug_ports = ['', '']
 
 updi_port = serial_debug_ports[0]
-# updi_port = "/dev/tty.usbserial-A5XK3RJT"
 curr_serial_debug_port = serial_debug_ports[1]
 last_serial_debug_port = curr_serial_debug_port
 
