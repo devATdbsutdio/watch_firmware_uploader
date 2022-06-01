@@ -9,6 +9,9 @@ logging.basicConfig(filename=gv.logfile_path, #[TBD] logfile_path <- log_servewr
                     format='%(asctime)s.%(msecs)03d %(levelname)s %(message)s',
                     level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
+logger = logging.getLogger()
+print = logger.info
+
 def log_info(_data):
     '''info logger for strings and lists'''
     if isinstance(_data, list):
