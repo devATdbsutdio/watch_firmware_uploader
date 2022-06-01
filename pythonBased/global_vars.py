@@ -5,6 +5,7 @@ import os
 import sys
 from subprocess import Popen, PIPE, STDOUT
 import yaml as yp
+from ftfy import fix_text
 
 
 

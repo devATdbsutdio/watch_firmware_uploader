@@ -101,9 +101,14 @@ def get_ser_data_line():
 			while '\\n' not in str(incoming_line):
 				time.sleep(.001)
 				temp = SER.readline()
+				# special function to handle special characters if serial spits out garbage
+				temp = fix_text(temp) 
 				
 				if temp.decode():
 					incoming_line = (incoming_line.decode()+temp.decode()).encode()
+					
+			# special function to handle special characters if serial spits out garbage
+			incoming_line = fix_text(incoming_line) 
 			incoming_line = incoming_line.decode()
 			incoming_line = incoming_line.strip()
 
