@@ -12,7 +12,6 @@ logfile_name = 'uploader_scpt.log' # Get absolute path from the log_server_manag
 logfile_path = ""
 log_server_uri = ""
 kill_web_log_watcher_thread = False
-
 frontail_path = "frontail" # Get absolute path from the log_server_manager
 frontail_init_port = "3060"
 
