@@ -85,6 +85,7 @@ def get_ser_data_line():
 		time.sleep(.001)
 		incoming_line = ""
 
+		# [TBD] check if serial is open vs exception on Hw line disconnect 
 		try:
 			if SER:
 				serial_available = True
@@ -94,9 +95,7 @@ def get_ser_data_line():
 		except Exception as ERR:
 			serial_available = False
 			break
-
-
-		# [TBD] check if serial is open vs exception on Hw line disconnect 
+		
 		if serial_available:
 			incoming_line = SER.readline()
 			while '\\n' not in str(incoming_line):
@@ -115,7 +114,8 @@ def get_ser_data_line():
 
 			#- uC dev board send "!" as a char to end the serial read
 			if incoming_line == "!":
-				gv.test_data_read = True
+				# gv.test_data_read = True
+
 				logger.log_info("Terminator received")
 				gv.output_msg_buff = ["Terminator received"]
 				# current time: in log and printer

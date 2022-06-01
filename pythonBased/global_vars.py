@@ -183,7 +183,7 @@ ui_highlight_ser_port_1 = "  "
 
 debug_channel_open = False
 debug_port_status = "Closed"
-test_data_read = False
+# test_data_read = False
 
 heading_identifier = '[H]'
 test_log_dict = []

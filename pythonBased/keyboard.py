@@ -49,8 +49,11 @@ def watch_kbd():
 		if char == EOT or char == EOC or char == ESC:
 			break
 		elif char == '\r':
-			# print(string)
-			if string == '0' and not gv.port_selection_active and not gv.test_data_read:
+			# [Debug]
+			logger.log_info("keyboard pressed: " + string)
+
+			# if string == '0' and not gv.port_selection_active and not gv.test_data_read:
+			if string == '0' and not gv.port_selection_active:
 				# Assign test code as the firmware to be uploaded
 				gv.curr_firmware_num = 0
 				gv.curr_firmware_name = gv.test_firmware_name
@@ -75,7 +78,8 @@ def watch_kbd():
 					gv.curr_serial_debug_port == gv.printer_port:
 					gv.output_msg_buff = ["Conflicting Debug Port with other ports", "Change it!"]
 					logger.log_warning(["Conflicting Debug Port with other ports", "Change it!"])
-			if string == '1' and not gv.port_selection_active and not gv.test_data_read:
+			# if string == '1' and not gv.port_selection_active and not gv.test_data_read:
+			if string == '1' and not gv.port_selection_active:
 				# Assign production code as the firmware to be uploaded
 				gv.curr_firmware_num = 1
 				gv.curr_firmware_name = gv.prod_firmware_name
@@ -104,12 +108,8 @@ def watch_kbd():
 				gv.port_selection_active = not gv.port_selection_active
 			elif string == 'p':
 				#--- Pull latest firmware ---#
-				# action.execute(["cmd_arg", "cmd_arg", ...], <timeout_value_in_sec>)
 				logger.log_info(' '.join(gv.git_pull_cmd))
 				gv.output_msg_buff = ["", "pulling latest firmware ..."]
-				# pull_cmd = ' '.join(gv.git_pull_cmd)
-				# pull_cmd = "\t" + pull_cmd
-				# gv.output_msg_buff = ["", "pulling latest firmware ...", pull_cmd]
 				action.execute(gv.git_pull_cmd, 120)
 			elif string == 'u':
 				#--- Upload current firmware (which ever it is (prod or test))
@@ -159,6 +159,8 @@ def watch_kbd():
 						# Once all the serial read finishes, print the serial logs to thermal printer
 						gv.output_msg_buff = ["", "Printing Test result now!"]
 						printer.print_text(gv.printer_port, gv.test_log_dict)
+						
+						# gv.gv.test_data_read = False
 					else:
 						#- UI variable & Log file
 						logger.log_error(["", "Debug Serial Port could not be opened",
@@ -209,8 +211,9 @@ def watch_kbd():
 			string += char
 
 
-KBD_THREAD = threading.Thread(target=watch_kbd)
 
+
+KBD_THREAD = threading.Thread(target=watch_kbd)
 
 def start_thread():
 	'''For starting the thread from main module'''
