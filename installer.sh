@@ -50,6 +50,7 @@ install_proj_requirements() {
   python3 -m pip install npyscreen
   python3 -m pip install pyyaml
   python3 -m pip install ifaddr
+  python3 -m pip install ftfy
   clear
   sleep 1
   echo "Installing pyserial, thermalprinter and PIL using pip3"
