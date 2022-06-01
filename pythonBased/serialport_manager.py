@@ -15,9 +15,10 @@ import time
 import sys
 import serial
 import serial.tools.list_ports
-
+from ftfy import fix_text
 import global_vars as gv
 import logger
+
 
 
 
@@ -106,7 +107,7 @@ def get_ser_data_line():
 				
 				if temp.decode():
 					incoming_line = (incoming_line.decode()+temp.decode()).encode()
-					
+
 			# special function to handle special characters if serial spits out garbage
 			incoming_line = fix_text(incoming_line) 
 			incoming_line = incoming_line.decode()
